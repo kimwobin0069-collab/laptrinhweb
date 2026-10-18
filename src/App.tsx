@@ -9,6 +9,7 @@ import { OverviewView } from './components/OverviewView';
 import { Footer } from './components/Footer';
 import { SearchModal } from './components/SearchModal';
 import { ProgressModal } from './components/ProgressModal';
+import { DonationModal } from './components/DonationModal';
 import { TryitEditor } from './components/TryitEditor';
 import {
   getLessonById,
@@ -50,6 +51,7 @@ export function App() {
   // Modals state
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isProgressOpen, setIsProgressOpen] = useState<boolean>(false);
+  const [isDonationOpen, setIsDonationOpen] = useState<boolean>(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState<boolean>(false);
   const [isSidebarHidden, setIsSidebarHidden] = useState(() => {
     try { return localStorage.getItem('web-learning-sidebar-hidden') === 'true'; } catch { return false; }
@@ -205,6 +207,7 @@ export function App() {
         isMobileSidebarOpen={isMobileSidebarOpen}
         progress={progress}
         onNavigateHome={navigateToOverview}
+        onOpenDonation={() => setIsDonationOpen(true)}
       />
 
       <SeasonalEffects />
@@ -238,12 +241,13 @@ export function App() {
               prevLesson={prevLesson}
               nextLesson={nextLesson}
               onSelectLesson={navigateToLesson}
+              onOpenDonation={() => setIsDonationOpen(true)}
             />
           )}
         </main>
       </div>
 
-      <Footer />
+      <Footer onOpenDonation={() => setIsDonationOpen(true)} />
       <SeasonPreview />
       {/* Search Modal */}
       <SearchModal
@@ -258,6 +262,12 @@ export function App() {
         onClose={() => setIsProgressOpen(false)}
         progress={progress}
         onResetProgress={handleResetProgress}
+      />
+
+      {/* Donation Modal: Bao tôi ly cà phê */}
+      <DonationModal
+        isOpen={isDonationOpen}
+        onClose={() => setIsDonationOpen(false)}
       />
     </div>
   );

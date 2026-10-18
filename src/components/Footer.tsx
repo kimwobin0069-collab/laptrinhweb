@@ -2,7 +2,11 @@ import React from 'react';
 import { SeasonalAccent } from '../seasonal/SeasonalEffects';
 import { IconCode } from './Icons';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenDonation?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenDonation }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -35,13 +39,27 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Cột phải: Designed by Duy Khoa */}
-          <div className="flex items-center justify-center md:justify-end gap-1.5 text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap">
-            <span className="font-normal">Designed by</span>
-            <span className="inline-flex items-center gap-1.5 font-bold px-3 py-1 rounded-full bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-violet-500/10 border border-blue-200/80 dark:border-blue-800/60 text-blue-700 dark:text-blue-300 shadow-xs hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Duy Khoa
-            </span>
+          {/* Cột phải: Bao tôi ly cà phê & Designed by Duy Khoa */}
+          <div className="flex items-center justify-center md:justify-end gap-2.5 text-xs text-slate-500 dark:text-slate-400 whitespace-nowrap">
+            {onOpenDonation && (
+              <button
+                type="button"
+                onClick={onOpenDonation}
+                className="group inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 hover:bg-amber-500/20 border border-amber-300/80 dark:border-amber-700/60 text-amber-700 dark:text-amber-300 font-semibold shadow-xs hover:scale-105 active:scale-95 transition-all"
+                title="Mời tác giả ly cà phê ☕"
+              >
+                <span className="text-sm transition-transform group-hover:rotate-12">☕</span>
+                <span>Bao tôi ly cà phê</span>
+              </button>
+            )}
+            <span className="hidden sm:inline text-slate-300 dark:text-slate-700">|</span>
+            <div className="flex items-center gap-1.5">
+              <span className="font-normal">Designed by</span>
+              <span className="inline-flex items-center gap-1.5 font-bold px-3 py-1 rounded-full bg-gradient-to-r from-blue-500/10 via-indigo-500/10 to-violet-500/10 border border-blue-200/80 dark:border-blue-800/60 text-blue-700 dark:text-blue-300 shadow-xs hover:border-blue-400 dark:hover:border-blue-600 transition-colors">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Duy Khoa
+              </span>
+            </div>
           </div>
         </div>
       </div>

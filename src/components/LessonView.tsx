@@ -24,6 +24,7 @@ interface LessonViewProps {
   prevLesson: Lesson | null;
   nextLesson: Lesson | null;
   onSelectLesson: (id: string) => void;
+  onOpenDonation?: () => void;
 }
 
 const hasRichFormatting = (text: string) => /<(span|strong|em|code|kbd|mark|b|i)\b[^>]*>/i.test(text);
@@ -35,6 +36,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
   prevLesson,
   nextLesson,
   onSelectLesson,
+  onOpenDonation,
 }) => {
   const trackName =
     lesson.track === 'html'
@@ -335,6 +337,33 @@ export const LessonView: React.FC<LessonViewProps> = ({
               )}<SeasonalAccent placement="button" variant={0}/>
             </button>
           </div>
+
+          {/* Coffee Donation Banner */}
+          {onOpenDonation && (
+            <div className="my-6 flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl border border-amber-200/80 bg-gradient-to-r from-amber-50/80 via-orange-50/50 to-amber-50/70 p-4 sm:p-5 dark:border-amber-900/50 dark:from-amber-950/25 dark:via-orange-950/15 dark:to-amber-950/20 shadow-xs">
+              <div className="flex items-center gap-3.5">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-500/15 text-2xl shadow-xs">
+                  ☕
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 dark:text-slate-100 text-sm">
+                    Bạn thấy bài học này bổ ích chứ?
+                  </h4>
+                  <p className="text-slate-600 dark:text-slate-400 text-xs mt-0.5 leading-relaxed">
+                    Bao Duy Khoa một ly cà phê để tiếp thêm năng lượng phát triển học liệu web nhé!
+                  </p>
+                </div>
+              </div>
+              <button
+                type="button"
+                onClick={onOpenDonation}
+                className="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs shadow-sm shadow-amber-500/25 hover:shadow-md hover:scale-105 active:scale-95 transition-all"
+              >
+                <span>☕</span>
+                <span>Bao tôi ly cà phê</span>
+              </button>
+            </div>
+          )}
 
           {/* Previous / Next Lesson Buttons */}
           <div className="flex items-center justify-between gap-4">
