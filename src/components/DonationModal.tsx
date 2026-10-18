@@ -194,7 +194,7 @@ function DonationDialog({ onClose }: { onClose: () => void }) {
             <div className="support-drink-menu">
               <div className="support-menu-caption">
                 <div className="menu-caption-left">
-                  <h3>Hôm nay, bạn muốn mời thầy món gì?</h3>
+                  <h3>Hôm nay, bạn muốn mời tôi món gì?</h3>
                 </div>
                 {selectedId && (
                   <button
