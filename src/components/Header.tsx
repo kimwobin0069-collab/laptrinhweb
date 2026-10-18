@@ -1,3 +1,5 @@
+import { SupportDrink } from './SupportArtwork';
+import './donation.css';
 import React from 'react';
 import { useSeason } from '../seasonal/SeasonProvider';
 import { SeasonalAccent } from '../seasonal/SeasonalEffects';
@@ -72,18 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
           <span className="header-progress-ring" aria-hidden="true"><svg viewBox="0 0 36 36"><circle className="ring-track" cx="18" cy="18" r="14"/><circle className="ring-value" cx="18" cy="18" r="14" strokeDasharray="87.965" strokeDashoffset={87.965*(1-percent/100)}/></svg><span>{percent}<small>%</small></span></span>
           <span className="header-progress-copy"><span>Tiến độ học tập</span><strong>{completedCount}<span> / {totalLessons} bài</span></strong></span>
         </button>
-        {onOpenDonation && (
-          <button
-            type="button"
-            onClick={onOpenDonation}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-700 dark:text-amber-300 border border-amber-300/80 dark:border-amber-700/60 text-xs font-semibold shadow-xs hover:scale-105 active:scale-95 transition-all"
-            title="Bao tôi ly cà phê ☕"
-            aria-label="Bao tôi ly cà phê"
-          >
-            <span className="text-sm">☕</span>
-            <span className="hidden xl:inline">Bao cà phê</span>
-          </button>
-        )}
+        {onOpenDonation&&<button type="button" onClick={onOpenDonation} className="support-header-button" title="Bao tôi ly cà phê" aria-label="Bao tôi ly cà phê"><SupportDrink/><span>Bao tôi ly cà phê</span></button>}
         {holiday.id!=='halloween'&&<><span className="header-divider" aria-hidden="true"/>
         <button type="button" className="header-theme" onClick={onToggleTheme}
           aria-label={currentTheme==='dark'?'Chuyển sang giao diện sáng':'Chuyển sang giao diện tối'} title={currentTheme==='dark'?'Giao diện sáng':'Giao diện tối'}>

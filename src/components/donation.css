@@ -1,0 +1,1277 @@
+/* ==========================================================================
+   SUPPORT & DONATION MODAL ("Bao tôi một ly cà phê")
+   Designed with Warm Specialty Coffeehouse x Modern Fintech Aesthetics
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Header Trigger Button
+   -------------------------------------------------------------------------- */
+.support-header-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 6px 14px;
+  border: 1px solid #fed7aa;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  color: #92400e;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgba(180, 83, 9, 0.08);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.support-header-button > svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.support-header-button:hover {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border-color: #f59e0b;
+  color: #78350f;
+  transform: translateY(-1.5px);
+  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.18);
+}
+
+.support-header-button:hover > svg {
+  transform: scale(1.1) rotate(-6deg);
+}
+
+.support-header-button:active {
+  transform: translateY(0);
+}
+
+.dark .support-header-button {
+  background: linear-gradient(135deg, #2b1f14, #3a2919);
+  border-color: #784a1e;
+  color: #fde68a;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.dark .support-header-button:hover {
+  background: linear-gradient(135deg, #3d2b1a, #4e361f);
+  border-color: #d97706;
+  color: #fffbeb;
+  box-shadow: 0 4px 14px rgba(217, 119, 6, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   2. Dialog Variables & Window
+   -------------------------------------------------------------------------- */
+.support-dialog {
+  --support-surface: #ffffff;
+  --support-surface-subtle: #f8fafc;
+  --support-border: #e2e8f0;
+  --support-border-warm: #fed7aa;
+  --support-text-main: #0f172a;
+  --support-text-muted: #64748b;
+  --support-amber: #d97706;
+  --support-amber-dark: #92400e;
+  --support-amber-soft: #fffbeb;
+  --support-blue: #2563eb;
+  --support-blue-dark: #1d4ed8;
+  --support-blue-soft: #eff6ff;
+  --support-success: #10b981;
+
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(880px, calc(100vw - 28px));
+  max-width: none;
+  max-height: min(600px, calc(100dvh - 28px));
+  padding: 0;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 24px;
+  background: var(--support-surface);
+  box-shadow: 0 25px 70px -12px rgba(15, 23, 42, 0.25), 0 0 0 1px rgba(0, 0, 0, 0.03);
+  overflow: hidden;
+  font-family: inherit;
+  color: var(--support-text-main);
+  animation: dialog-appear 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes dialog-appear {
+  0% {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.support-dialog::backdrop {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.support-dialog-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: min(600px, calc(100dvh - 28px));
+}
+
+/* Dark Mode Theme Variables */
+.dark .support-dialog {
+  --support-surface: #0f172a;
+  --support-surface-subtle: #131d31;
+  --support-border: #1e293b;
+  --support-border-warm: #593514;
+  --support-text-main: #f8fafc;
+  --support-text-muted: #94a3b8;
+  --support-amber: #f59e0b;
+  --support-amber-dark: #fbbf24;
+  --support-amber-soft: #241a12;
+  --support-blue: #3b82f6;
+  --support-blue-dark: #60a5fa;
+  --support-blue-soft: #162444;
+  --support-success: #34d399;
+
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 80px -10px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   3. Dialog Header
+   -------------------------------------------------------------------------- */
+.support-dialog-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  padding: 12px 22px;
+  background: var(--support-surface);
+  border-bottom: 1px solid var(--support-border);
+}
+
+.support-coffee-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.support-coffee-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  border: 1px solid #fde68a;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.12);
+  flex-shrink: 0;
+}
+
+.support-coffee-mark > svg {
+  width: 32px;
+  height: 32px;
+}
+
+.dark .support-coffee-mark {
+  background: linear-gradient(135deg, #2b1f14, #3d2a1b);
+  border-color: #633a18;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.support-coffee-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.support-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.support-coffee-titles h2 {
+  font-size: 17px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: var(--support-text-main);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.support-badge-heart {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fecaca;
+}
+
+.support-badge-heart > svg {
+  width: 12px;
+  height: 12px;
+}
+
+.dark .support-badge-heart {
+  background: #2a1518;
+  color: #f87171;
+  border-color: #5c2328;
+}
+
+.support-coffee-titles p {
+  font-size: 12px;
+  color: var(--support-text-muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.support-close {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--support-text-muted);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.support-close:hover {
+  background: var(--support-surface-subtle);
+  border-color: var(--support-border);
+  color: var(--support-text-main);
+  transform: rotate(90deg);
+}
+
+/* --------------------------------------------------------------------------
+   4. Dialog Body (2-Column Grid)
+   -------------------------------------------------------------------------- */
+.support-dialog-body {
+  display: grid;
+  grid-template-columns: 1.15fr 0.95fr;
+  min-height: 0;
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* --------------------------------------------------------------------------
+   5. Left Column: Choice Panel
+   -------------------------------------------------------------------------- */
+.support-choice-panel {
+  padding: 16px 20px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.support-announcement-wrap {
+  padding: 12px 20px 4px;
+  background: var(--support-surface);
+  flex-shrink: 0;
+}
+
+/* Teacher Quote Card */
+.support-teacher-card {
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fffbeb 0%, #fff7ed 100%);
+  border: 1px solid var(--support-border-warm);
+  box-shadow: 0 1px 4px rgba(217, 119, 6, 0.05);
+}
+
+.teacher-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 750;
+  color: var(--support-amber-dark);
+  margin-bottom: 4px;
+}
+
+.teacher-card-badge .teacher-icon {
+  font-size: 12px;
+}
+
+.support-teacher-card p {
+  margin: 0;
+  font-size: 11.5px;
+  line-height: 1.55;
+  color: #78350f;
+}
+
+.support-teacher-card strong {
+  font-weight: 750;
+  color: #451a03;
+}
+
+.dark .support-teacher-card {
+  background: linear-gradient(135deg, #221812 0%, #2b1d16 100%);
+  border-color: var(--support-border-warm);
+}
+
+.dark .support-teacher-card p {
+  color: #fde68a;
+}
+
+.dark .support-teacher-card strong {
+  color: #fffbeb;
+}
+
+/* Drink Menu Section */
+.support-drink-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.support-menu-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.menu-caption-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu-caption-left h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--support-text-main);
+  letter-spacing: -0.01em;
+}
+
+.menu-subtag {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--support-amber);
+  background: var(--support-amber-soft);
+  padding: 1px 7px;
+  border-radius: 6px;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.support-quick-clear {
+  background: none;
+  border: none;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--support-text-muted);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.support-quick-clear:hover {
+  color: var(--support-amber);
+  background: var(--support-amber-soft);
+}
+
+/* Drink List (Vertical Stack) */
+.support-drink-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.support-drink-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 50px;
+  padding: 6px 13px;
+  border: 1px solid var(--support-border);
+  border-radius: 13px;
+  background: var(--support-surface);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+.support-drink-option:hover {
+  transform: translateX(3px);
+  border-color: #cbd5e1;
+  background: #fbfcfe;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.support-drink-option.is-selected {
+  border-color: var(--support-amber);
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.08) 0%, var(--support-surface) 100%);
+  box-shadow: 0 0 0 1.5px var(--support-amber), 0 4px 14px rgba(245, 158, 11, 0.12);
+}
+
+.dark .support-drink-option:hover {
+  background: #1e293b;
+  border-color: #475569;
+}
+
+.dark .support-drink-option.is-selected {
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.14) 0%, #1e293b 100%);
+  border-color: var(--support-amber);
+}
+
+.support-drink-visual {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.support-drink-option:hover .support-drink-visual {
+  transform: scale(1.08) rotate(3deg);
+}
+
+.support-drink-option.is-selected .support-drink-visual {
+  background: #fef3c7;
+  border-color: #fde68a;
+  transform: scale(1.04);
+}
+
+.support-drink-visual > svg {
+  width: 28px;
+  height: 28px;
+}
+
+.dark .support-drink-visual {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .support-drink-option.is-selected .support-drink-visual {
+  background: #3a2512;
+  border-color: #78350f;
+}
+
+.support-drink-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.support-drink-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.support-drink-name {
+  font-size: 13px;
+  font-weight: 750;
+  color: var(--support-text-main);
+  line-height: 1.25;
+}
+
+.drink-popular-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 1.5px 7px;
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+  font-size: 9.5px;
+  font-weight: 800;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+}
+
+.dark .drink-popular-tag {
+  background: #451a03;
+  color: #fde68a;
+  border-color: #78350f;
+}
+
+.support-drink-description {
+  font-size: 11px;
+  color: var(--support-text-muted);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.support-drink-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+  flex-shrink: 0;
+  padding-left: 8px;
+}
+
+.support-drink-price {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: var(--support-amber);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.support-selection-check {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  background: transparent;
+  color: transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.support-drink-option:hover .support-selection-check {
+  border-color: var(--support-amber);
+}
+
+.support-drink-option.is-selected .support-selection-check {
+  border-color: var(--support-amber);
+  background: var(--support-amber);
+  color: #ffffff;
+  box-shadow: 0 1px 4px rgba(245, 158, 11, 0.35);
+  animation: check-pop 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dark .support-selection-check {
+  border-color: #475569;
+}
+
+@keyframes check-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Voluntary note */
+.support-voluntary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(245, 158, 11, 0.05);
+  border: 1px dashed rgba(245, 158, 11, 0.25);
+  font-size: 11px;
+  color: var(--support-text-muted);
+  text-align: center;
+}
+
+.voluntary-heart {
+  width: 15px;
+  height: 15px;
+  color: #ef4444;
+  flex-shrink: 0;
+  animation: heart-gentle 2s ease-in-out infinite;
+}
+
+@keyframes heart-gentle {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.dark .support-voluntary {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.3);
+  color: #cbd5e1;
+}
+
+/* --------------------------------------------------------------------------
+   6. Right Column: Payment Panel (VietQR & Smart Bank Pass)
+   -------------------------------------------------------------------------- */
+.support-payment-panel {
+  background: var(--support-surface-subtle);
+  border-left: 1px solid var(--support-border);
+  padding: 16px 20px 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+/* VietQR Viewfinder Wrapper */
+.support-qr-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.support-qr-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+}
+
+.support-qr-viewfinder {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  display: grid;
+  place-items: center;
+  background: #ffffff;
+}
+
+.support-qr-viewfinder img {
+  display: block;
+  width: 174px;
+  height: 174px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+/* Camera scan corner reticles */
+.qr-reticle {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--support-amber);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.corner-tl {
+  top: -3px;
+  left: -3px;
+  border-width: 3px 0 0 3px;
+  border-top-left-radius: 6px;
+}
+
+.corner-tr {
+  top: -3px;
+  right: -3px;
+  border-width: 3px 3px 0 0;
+  border-top-right-radius: 6px;
+}
+
+.corner-bl {
+  bottom: -3px;
+  left: -3px;
+  border-width: 0 0 3px 3px;
+  border-bottom-left-radius: 6px;
+}
+
+.corner-br {
+  bottom: -3px;
+  right: -3px;
+  border-width: 0 3px 3px 0;
+  border-bottom-right-radius: 6px;
+}
+
+.support-qr-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(2px);
+  color: var(--support-text-muted);
+  font-size: 11px;
+  border-radius: 8px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.support-qr-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e2e8f0;
+  border-top-color: var(--support-amber);
+  border-radius: 50%;
+  animation: qr-spin 0.75s linear infinite;
+}
+
+@keyframes qr-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.support-qr-error {
+  padding: 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  color: #dc2626;
+  text-align: center;
+}
+
+.support-qr-error small {
+  display: block;
+  color: var(--support-text-muted);
+  margin-top: 4px;
+}
+
+/* Smart Bank Pass (Thẻ Ngân Hàng Số MB Bank) */
+.support-bank-card {
+  position: relative;
+  width: 100%;
+  padding: 12px 14px 11px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #0b1e4f 0%, #1e3a8a 55%, #1d4ed8 100%);
+  border: 1px solid rgba(147, 197, 253, 0.3);
+  box-shadow: 0 8px 20px rgba(30, 58, 138, 0.2), 0 2px 6px rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  color: #ffffff;
+}
+
+.bank-card-pattern {
+  position: absolute;
+  top: -24px;
+  right: -24px;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 70%);
+  pointer-events: none;
+}
+
+.bank-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.bank-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bank-logo-tag {
+  display: inline-grid;
+  place-items: center;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #1e3a8a;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.bank-full-name {
+  font-size: 11px;
+  font-weight: 700;
+  color: #f1f5f9;
+  letter-spacing: 0.01em;
+}
+
+.bank-card-chip {
+  display: flex;
+  align-items: center;
+  opacity: 0.95;
+}
+
+.chip-svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
+}
+
+.bank-field-row.main-acc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 2px 0;
+}
+
+.bank-field-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.bank-field-label {
+  font-size: 8.5px;
+  color: #93c5fd;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+}
+
+.bank-account-num {
+  font-size: 16px;
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  user-select: all;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  display: inline-flex;
+  gap: 5px;
+}
+
+.bank-card-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 2px;
+}
+
+.bank-field-value {
+  font-size: 12px;
+  font-weight: 750;
+  color: #f8fafc;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.bank-napas-tag {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.12);
+  padding: 2px 6px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Copy Action Button (Glassmorphic) */
+.bank-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.bank-copy-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.55);
+  transform: translateY(-1px);
+}
+
+.bank-copy-btn.is-copied {
+  background: #22c55e;
+  border-color: #4ade80;
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+}
+
+/* Copy status / memo line */
+.support-status-line {
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2px 4px;
+}
+
+.status-toast {
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  animation: toast-in 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.status-toast.success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-toast.error {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Memo Pill */
+.support-memo-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 10px;
+  background: rgba(30, 58, 138, 0.05);
+  border: 1px dashed rgba(30, 58, 138, 0.22);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--support-text-muted);
+  line-height: 1.35;
+  text-align: center;
+}
+
+.memo-pill-icon {
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.memo-pill-text {
+  letter-spacing: -0.01em;
+}
+
+.dark .support-memo-pill {
+  background: rgba(59, 130, 246, 0.08);
+  border-color: rgba(59, 130, 246, 0.25);
+  color: #cbd5e1;
+}
+
+@keyframes toast-in {
+  from {
+    transform: translateY(3px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Dialog Footer
+   -------------------------------------------------------------------------- */
+.support-dialog-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+  padding: 10px 22px;
+  background: var(--support-surface);
+  border-top: 1px solid var(--support-border);
+}
+
+.footer-left-quote {
+  font-size: 11.5px;
+  color: var(--support-text-muted);
+}
+
+.support-dialog-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 9999px;
+  background: var(--support-blue);
+  color: #ffffff;
+  border: 1px solid transparent;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.2);
+}
+
+.cta-icon-wrapper {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.support-dialog-cta:hover {
+  background: var(--support-blue-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.support-dialog-cta:hover .cta-icon-wrapper {
+  transform: translateX(2px);
+}
+
+.support-dialog-cta:active {
+  transform: translateY(0);
+}
+
+/* Focus styles for keyboard accessibility */
+.support-dialog button:focus-visible,
+.support-header-button:focus-visible,
+.site-learning-footer button:focus-visible {
+  outline: 2px solid var(--support-blue);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Site Learning Footer Banner (Preserved and Harmonized)
+   -------------------------------------------------------------------------- */
+.site-learning-footer {
+  background: var(--support-paper, #ffffff);
+  border-top: 1px solid var(--support-line, #e2e8f0);
+  width: 100%;
+  position: relative;
+}
+
+.support-footer-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 24px 32px;
+  border-bottom: 1px solid var(--support-line, #e2e8f0);
+  isolation: isolate;
+}
+
+.support-footer-symbol {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #fff7ed, #fef3c7);
+  border: 1px solid #fed7aa;
+  border-radius: 16px;
+  color: #ea580c;
+  transform: rotate(-4deg);
+}
+
+.support-footer-symbol > svg {
+  width: 28px;
+  height: 28px;
+}
+
+.support-footer-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.support-eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #d97706;
+}
+
+.support-footer-copy > h2 {
+  margin: 2px 0 0;
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: var(--support-ink, #0f172a);
+}
+
+.support-footer-copy > p {
+  font-size: 12.5px;
+  line-height: 1.5;
+  margin: 3px 0 0;
+  color: var(--support-muted, #64748b);
+}
+
+.support-footer-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.support-footer-action > button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 10px 18px;
+  min-height: 42px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.22);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.support-footer-action > button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.3);
+}
+
+.support-footer-action > span {
+  font-size: 10.5px;
+  color: var(--support-muted, #64748b);
+}
+
+.support-footer-drinks {
+  display: flex;
+  align-items: flex-end;
+  gap: 0;
+  max-width: 90px;
+  flex-shrink: 0;
+}
+
+.support-footer-drinks > svg {
+  width: 44px;
+  height: 44px;
+}
+
+.site-footer-meta {
+  max-width: 1160px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 32px;
+  font-size: 11px;
+  color: var(--support-muted, #64748b);
+}
+
+.site-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--support-ink, #0f172a);
+  font-size: 12.5px;
+  min-width: 0;
+}
+
+.site-footer-credit strong {
+  color: var(--support-ink, #0f172a);
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   9. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .support-dialog {
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+    border-radius: 20px;
+  }
+
+  .support-dialog-shell {
+    max-height: calc(100dvh - 20px);
+  }
+
+  .support-dialog-heading {
+    padding: 10px 16px;
+  }
+
+  .support-dialog-body {
+    grid-template-columns: 1fr;
+  }
+
+  .support-choice-panel {
+    padding: 14px 16px;
+  }
+
+  .support-payment-panel {
+    border-left: none;
+    border-top: 1px solid var(--support-border);
+    padding: 16px;
+  }
+
+  .support-drink-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .support-footer-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 16px;
+    gap: 14px;
+  }
+
+  .support-footer-drinks {
+    display: none;
+  }
+
+  .site-footer-meta {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 14px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .support-drink-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .support-dialog-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 16px;
+    text-align: center;
+  }
+
+  .support-dialog-cta {
+    justify-content: center;
+    width: 100%;
+  }
+}

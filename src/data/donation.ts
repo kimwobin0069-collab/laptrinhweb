@@ -1,43 +1,23 @@
-export interface DonationTier {
-  amount: number;
-  label: string;
-  emoji: string;
-  description: string;
-}
-
-export interface BankConfig {
-  bankName: string;
-  bankCode: string;
-  accountNumber: string;
-  accountName: string;
-  defaultMemo: string;
-}
-
-export interface MomoConfig {
-  phoneNumber: string;
-  accountName: string;
-}
-
-export const DONATION_CONFIG = {
-  authorName: 'Duy Khoa',
-  tagline: 'Bao tôi ly cà phê ☕',
-  description:
-    'Website Học Lập Trình Web hoàn toàn phi lợi nhuận và miễn phí 100% dành cho học sinh THPT. Một ly cà phê nhỏ là nguồn động viên rất lớn giúp Duy Khoa duy trì máy chủ và phát triển thêm nhiều bài học hay!',
-  bank: {
-    bankName: 'MB Bank (Ngân hàng Quân Đội)',
-    bankCode: 'MB', // Mã VietQR (MB, VCB, TCB, ACB, VPB, TPB, ...)
-    accountNumber: '0901234567', // Bạn có thể thay đổi số tài khoản tại đây
-    accountName: 'DUY KHOA',
-    defaultMemo: 'Ung ho Hoc Lap Trinh Web',
-  } as BankConfig,
-  momo: {
-    phoneNumber: '0901234567', // Bạn có thể thay đổi số MoMo tại đây
-    accountName: 'DUY KHOA',
-  } as MomoConfig,
-  tiers: [
-    { amount: 10000, label: '10.000đ', emoji: '🧊', description: 'Trà đá thanh mát' },
-    { amount: 20000, label: '20.000đ', emoji: '☕', description: 'Cà phê đen tỉnh táo (Gợi ý)' },
-    { amount: 30000, label: '30.000đ', emoji: '🧋', description: 'Cà phê sữa ngọt ngào' },
-    { amount: 50000, label: '50.000đ', emoji: '🥤', description: 'Bạc xỉu tràn đầy năng lượng' },
-  ] as DonationTier[],
+export type DrinkKind='coffee'|'milk-tea'|'black-tea'|'bac-xiu'|'americano'|'cold-brew'|'flat-white';
+export interface DonationTier { id:DrinkKind; amount:number; label:string; description:string; }
+export interface BankConfig { bankName:string; bankCode:string; accountNumber:string; accountName:string; memoNote:string; }
+export const DONATION_CONFIG={
+ authorName:'Thầy Duy Khoa',
+ tagline:'Một lời động viên, thêm nhiều bài học hay.',
+ description:'Cảm ơn bạn đã đồng hành cùng thầy Duy Khoa, giúp duy trì website và phát triển thêm những bài học miễn phí.',
+ bank:{bankName:'MB Bank (Ngân hàng Quân Đội)',bankCode:'MB',accountNumber:'0818237416',accountName:'HUYNH DUY KHOA',memoNote:'Vui lòng ghi lời nhắn nếu có thể. Xin cám ơn!'} as BankConfig,
+ tiers:[
+  {id:'bac-xiu',amount:30000,label:'Bạc xỉu đá',description:'Một chút cà phê, nhiều sữa ngọt ngào'},
+  {id:'americano',amount:45000,label:'Americano đá',description:'Đậm đà nguyên bản, sảng khoái và tỉnh táo'},
+  {id:'coffee',amount:55000,label:'Capuchino nóng',description:'Đậm đà thơm béo, ấm áp và cảm hứng'},
+  {id:'cold-brew',amount:75000,label:'Cold Brew',description:'Ủ lạnh ủ chậm, êm dịu và sảng khoái'},
+  {id:'flat-white',amount:100000,label:'Flat White',description:'Espresso đậm đà hòa quyện lớp bọt sữa mịn màng'}
+ ] as DonationTier[]
 };
+export function formatDonationAmount(amount:number){return new Intl.NumberFormat('vi-VN').format(amount)+'đ';}
+export function buildDonationQrUrl(amount?:number){
+ const {bank}=DONATION_CONFIG;
+ const params=new URLSearchParams({accountName:bank.accountName});
+ if(amount!==undefined&&Number.isSafeInteger(amount)&&amount>0)params.set('amount',String(amount));
+ return 'https://img.vietqr.io/image/'+bank.bankCode+'-'+bank.accountNumber+'-compact.png?'+params.toString();
+}

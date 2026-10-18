@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test:seasonal": "node scripts/test-seasonal.mjs",
     "start": "node scripts/serve.mjs",
-    "dev:themes": "vite --mode seasonal-preview"
+    "dev:themes": "vite --mode seasonal-preview",
+    "test:donation": "node scripts/test-donation.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
