@@ -45,7 +45,7 @@ export function App() {
 
   // Navigation state (lesson ID or null for overview)
   const [currentLessonId, setCurrentLessonId] = useState<string>('html-1');
-  const [isOverview, setIsOverview] = useState<boolean>(false);
+  const [isOverview, setIsOverview] = useState<boolean>(true);
   const [tryitExampleId, setTryitExampleId] = useState<string | null>(null);
 
   // Modals state
@@ -124,18 +124,17 @@ export function App() {
       }
 
       // Default fallback
-      setIsOverview(false);
-      setCurrentLessonId('html-1');
+      setIsOverview(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     // Check initial hash
-    if (window.location.hash) {
+    if (window.location.hash && window.location.hash !== '#' && window.location.hash !== '#/') {
       handleHashChange();
     } else {
-      // Direct access opens first lesson immediately without ad-wall
-      setIsOverview(false);
-      setCurrentLessonId('html-1');
-      window.location.hash = '#/lesson/html-1';
+      // Default route is Overview
+      setIsOverview(true);
+      window.location.hash = '#/overview';
     }
 
     window.addEventListener('hashchange', handleHashChange);
