@@ -1,0 +1,113 @@
+/* Decorations belong to lesson surfaces, not just the viewport perimeter. */
+:root{--inner-motif:'✦';--inner-surface:#edf4ff;--inner-outline:#c8daf3;--frost-fill:#d9f0ff;--frost-edge:#6cafd4}
+html[data-season="halloween"]{--inner-motif:'🕸';--inner-surface:#f5edf8;--inner-outline:#d6b7e0}
+html[data-season="teachers"]{--inner-motif:'✿';--inner-surface:#f7f0dd;--inner-outline:#c7d5b5}
+html[data-season="christmas"]{--inner-motif:'❄';--inner-surface:#edf6f0;--inner-outline:#b8d4c3}
+html[data-season="new-year"]{--inner-motif:'✦';--inner-surface:#fbf0dc;--inner-outline:#dfc58f}
+html[data-season="spring"]{--inner-motif:'❀';--inner-surface:#fcf0ef;--inner-outline:#e7bac5}
+html.dark{--inner-surface:#24324a;--inner-outline:#53637f;--frost-fill:#b6ddf3;--frost-edge:#74a9cb}
+html.dark[data-season="halloween"]{--inner-surface:#33213e;--inner-outline:#725184}
+html.dark[data-season="teachers"]{--inner-surface:#2a362c;--inner-outline:#57735e}
+html.dark[data-season="christmas"]{--inner-surface:#263b34;--inner-outline:#4c7e65}
+html.dark[data-season="new-year"],html.dark[data-season="spring"]{--inner-surface:#3b2a31;--inner-outline:#8f626d}
+.season-title,.season-panel,.season-bar,.season-control,.season-table{position:relative}
+.season-accent-section{position:absolute;right:7px;top:50%;transform:translateY(-50%);width:27px;height:27px;opacity:.85;pointer-events:none}
+.season-accent-bar{width:24px;height:24px;margin-left:auto;opacity:.85;pointer-events:none}
+.season-accent-button{width:17px;height:17px;margin-left:1px;opacity:1;pointer-events:none}
+html[data-season-effects="on"]:not([data-season="default"]) .lesson-article .season-title,
+html[data-winter="on"] .lesson-article .season-title{padding:12px 44px 12px 15px!important;border-left:3px solid var(--season-accent);border-radius:0 8px 8px 0;border-bottom:0!important;background:var(--inner-surface);line-height:1.6}
+html[data-season-effects="on"]:not([data-season="default"]) .season-bar{box-shadow:inset 0 2px var(--inner-outline)}
+html[data-season-effects="on"]:not([data-season="default"]) .season-table{border-color:var(--inner-outline)}
+html[data-season-effects="on"]:not([data-season="default"]) .season-control{border-color:var(--inner-outline);overflow:visible}
+html[data-season-effects="on"]:not([data-season="default"]) .season-control:not(:has(.season-accent)){padding-right:27px}
+html[data-season-effects="on"]:not([data-season="default"]) .season-control:not(:has(.season-accent))::after{content:var(--inner-motif);position:absolute;right:6px;top:50%;transform:translateY(-50%);font-size:12px;line-height:1;color:var(--season-accent);opacity:.75;pointer-events:none;user-select:none}
+.workshop-toolbar>.flex:first-child{flex-wrap:wrap}
+.workshop-toolbar .season-accent-bar{margin-left:4px;flex-shrink:0}
+/* Blue rim and small icicles remain legible on a white reading surface. */
+html[data-winter="on"]{--snow-cap:#d9f0ff;--snow-rim:#6cafd4}
+html[data-winter="on"] :is(.course-card,.lesson-article,.code-workshop,.concept-entry,.home-hero,.season-panel,.season-table,.season-bar,.season-control,.lesson-masthead)::before{content:'';display:block;position:absolute;z-index:2;top:-1px;left:1px;right:1px;height:12px;pointer-events:none!important;user-select:none;background:linear-gradient(180deg,#f3fbff 0,var(--frost-fill) 70%);border-top:1px solid #c6e7fa;border-bottom:1px solid var(--frost-edge);border-radius:6px 6px 0 0;clip-path:polygon(0 0,100% 0,100% 47%,98% 50%,97% 95%,96% 52%,84% 59%,83% 98%,82% 57%,66% 64%,65% 90%,64% 61%,43% 54%,42% 100%,41% 59%,23% 63%,22% 95%,21% 60%,6% 55%,5% 88%,4% 50%,0 55%);filter:drop-shadow(0 1px 0 var(--frost-edge));animation:inner-frost-rise 35s ease-out both;transform-origin:top}
+html[data-winter="on"] .theory-section.season-panel::before{display:none}
+html[data-winter="on"] .season-title::before{content:'';position:absolute;top:0;left:3px;right:3px;height:4px;border-radius:3px;background:var(--frost-fill);border-bottom:1px solid var(--frost-edge);pointer-events:none}
+html[data-winter="on"] .season-control::before{height:7px;left:1px;right:1px}
+html[data-winter="on"] .season-control{box-shadow:inset 0 2px 0 #b9e0f4;padding-top:10px!important;padding-bottom:8px!important}
+html[data-winter="on"] .season-bar{box-shadow:inset 0 3px 0 #a6d3ec;padding-top:12px!important}
+html[data-winter="on"] .editor-label{padding-top:10px!important;padding-bottom:8px!important}
+html[data-winter="on"] .season-table{border-color:#9ecbe4;box-shadow:0 1px 0 #d8ecf7}
+html[data-winter="on"] #muc-tieu{border-top:1px solid #99cbe8}
+html[data-winter="on"] .lesson-masthead{padding-top:20px}
+@keyframes inner-frost-rise{from{transform:scaleY(.75);opacity:.85}to{transform:scaleY(1);opacity:1}}
+.encounter-gift-then-boo .encounter-boo{animation-delay:.85s}
+.halloween-encounter[open].encounter-gift-then-boo .encounter-visitor{animation-delay:.85s}
+@media(max-width:767px){.season-accent-section{width:23px;height:23px;right:6px}.season-accent-bar{width:19px;height:19px}.season-accent-button{width:15px;height:15px}html[data-season-effects="on"]:not([data-season="default"]) .lesson-article .season-title,html[data-winter="on"] .lesson-article .season-title{padding:11px 36px 11px 11px!important}html[data-winter="on"] :is(.season-bar,.season-panel,.season-table)::before{height:9px}.season-control{min-height:34px}}
+@media(prefers-reduced-motion:reduce){html[data-winter="on"] ::before{animation:none!important;transform:none!important}}
+html[data-season-motion="reduced"][data-winter="on"] ::before{animation:none!important;transform:none!important}
+
+/* Painted seasonal artwork: vivid details, reserved space around lesson text. */
+.illustrated-glyph{overflow:visible;filter:drop-shadow(0 1px 1px #24304d1c)}
+.season-accent{opacity:1}
+.season-scene .season-ornament{opacity:.94;filter:drop-shadow(0 2px 2px #422d4824)}
+.season-accent-section.season-branch-accent{width:94px;height:62px;right:7px;opacity:1}
+html[data-season-effects="on"] .lesson-article .season-title:has(.season-branch-accent){padding-right:108px!important;min-height:65px}
+.painted-branch{display:block;width:100%;height:100%;overflow:visible;filter:drop-shadow(0 2px 1px #5d3a2b16)}
+.season-branch-accent .painted-branch{transform-origin:10% 100%;animation:branch-sway 7s ease-in-out infinite alternate}
+.branch-blossom{transform-box:fill-box;transform-origin:center;animation:blossom-breathe 6s ease-in-out infinite alternate}
+.home-hero{position:relative}
+.season-botanical{position:absolute;right:0;top:0;width:285px;height:140px;pointer-events:none;user-select:none;z-index:2;overflow:hidden;border-top-right-radius:inherit}
+.season-botanical>span{position:absolute;width:200px;height:132px;display:block;transform-origin:50% 50%}
+.botanical-mai{right:-7px;top:-12px;transform:rotate(180deg);animation:hero-mai-sway 9s ease-in-out infinite alternate}
+.botanical-peach{right:109px;top:-30px;transform:rotate(180deg);animation:hero-peach-sway 8s ease-in-out infinite alternate}
+@keyframes branch-sway{from{rotate:-2deg}to{rotate:2deg}}
+@keyframes blossom-breathe{from{scale:.97}to{scale:1.035}}
+@keyframes hero-mai-sway{from{rotate:-2deg}to{rotate:2deg}}
+@keyframes hero-peach-sway{from{rotate:2deg}to{rotate:-1deg}}
+html[data-season="halloween"]{--brand:#a74b0a;--brand-deep:#833a13;--season-accent:#8643ad}
+html[data-season="teachers"]{--brand:#26705a;--brand-deep:#1d5845;--season-accent:#ce5989}
+html[data-season="christmas"]{--brand:#bd3046;--brand-deep:#98293b;--season-accent:#168160}
+html[data-season="new-year"],html[data-season="spring"]{--brand:#c22d48;--brand-deep:#a1233d;--season-accent:#c4890b}
+html.dark[data-season="halloween"]{--brand:#ffc17b;--brand-deep:#f6b068;--season-accent:#bd8ddc}
+html.dark[data-season="teachers"]{--brand:#a3cbb9;--brand-deep:#7aac97;--season-accent:#f29cc1}
+html.dark[data-season="christmas"]{--brand:#f3a4b0;--brand-deep:#e4889b;--season-accent:#68c9a4}
+html.dark[data-season="new-year"],html.dark[data-season="spring"]{--brand:#ffc1ad;--brand-deep:#f0a18e;--season-accent:#eac867}
+@media(max-width:767px){.season-scene .season-ornament{opacity:.8}.season-botanical{width:175px;height:90px}.season-botanical>span{width:130px;height:85px}.botanical-mai{right:-5px;top:-8px}.botanical-peach{right:65px;top:-20px}.season-accent-section.season-branch-accent{width:63px;height:45px;right:4px}html[data-season-effects="on"] .lesson-article .season-title:has(.season-branch-accent){padding-right:73px!important;min-height:54px}}
+@media(prefers-reduced-motion:reduce){.painted-branch,.branch-blossom,.season-botanical>span{animation:none!important}}
+html[data-season-motion="reduced"] :is(.painted-branch,.branch-blossom,.season-botanical>span){animation:none!important}
+
+/* Full figures need enough room for boots, antlers and the flying stride. */
+.scene-christmas .season-ornament:has(.illustrated-glyph){width:53px;height:53px}
+.santa-caravan{opacity:1}.santa-caravan>svg{width:64px;height:64px;flex-shrink:0;filter:drop-shadow(0 2px 2px #37455726)}
+.crystal-snowflake{filter:drop-shadow(0 0 1px #96dcf0)}
+@media(max-width:767px){.scene-christmas .season-ornament:has(.illustrated-glyph){width:31px;height:31px}.santa-caravan>svg{width:38px;height:38px}}
+
+/* Gregorian New Year: midnight blue, champagne gold, party decorations. */
+html[data-season="new-year"]{--brand:#355481;--brand-deep:#263e63;--ice:#eef2fb;--ground:#f8f9fd;--line:#d8deec;--season-accent:#b58a32;--greeting-bg:#1c2b49;--greeting-ink:#ffe7a4;--inner-motif:'✦';--inner-surface:#f0f3fa;--inner-outline:#c7d2e7}
+html.dark[data-season="new-year"]{--brand:#c0d3ff;--brand-deep:#a5bceb;--ice:#222d45;--ground:#101720;--line:#3d455e;--season-accent:#e6c574;--inner-surface:#222d45;--inner-outline:#526180}
+
+.illustrated-lion{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 2px 2px #8a4e2330);pointer-events:none;user-select:none}
+.scene-spring .season-ornament:has(.illustrated-lion){width:62px;height:56px;left:0}
+.scene-new-year .season-ornament:has(svg){width:47px;height:47px}
+@media(max-width:767px){.scene-spring .season-ornament:has(.illustrated-lion){width:36px;height:33px;left:-5px}.scene-new-year .season-ornament:has(svg){width:29px;height:29px}}
+
+/* Spring has a few separated focal points, leaving lesson text unobstructed. */
+.scene-spring .season-ornament{animation-duration:12s;opacity:.88}
+.scene-spring .ornament-kind-lion{top:auto;bottom:56px;left:3px!important;width:54px!important;height:48px!important;animation:spring-lion-step 12s ease-in-out infinite}
+.scene-spring .ornament-kind-goat{left:auto;right:9px;top:auto;bottom:126px;width:29px;height:34px;animation:spring-goat-sway 10s ease-in-out infinite}
+.scene-spring .ornament-kind-firecrackers{top:43%;left:-7px;width:28px;height:34px}
+.scene-spring .ornament-kind-couplet{top:19%;right:5px;bottom:auto;width:29px;height:34px}
+.scene-spring .ornament-kind-mai{top:35%;right:7px;width:26px;height:26px}
+.scene-spring .ornament-kind-watermelon{bottom:20px;right:5px;width:31px;height:28px}
+.spring-hero-goat{position:absolute;bottom:17px;right:25px;width:43px;height:49px;pointer-events:none;user-select:none;animation:spring-goat-sway 10s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes spring-goat-sway{0%,100%{transform:rotate(-2deg) translateY(0)}50%{transform:rotate(2deg) translateY(-3px)}}
+@keyframes spring-lion-step{0%,100%{transform:translate(0,0) rotate(-2deg)}50%{transform:translate(6px,-4px) rotate(2deg)}}
+@media(max-width:767px){.scene-spring .ornament-kind-lion{width:34px!important;height:31px!important;bottom:21px;left:1px!important}.scene-spring .ornament-kind-mai{width:19px;height:19px;right:-5px}.scene-spring .ornament-kind-couplet{display:none}.scene-spring .ornament-kind-watermelon{width:23px;height:22px;right:-5px}.spring-hero-goat{width:29px;height:34px;right:15px;bottom:12px}}
+@media(prefers-reduced-motion:reduce){.spring-hero-goat{animation:none!important}}
+html[data-season-motion="reduced"] .spring-hero-goat{animation:none!important}
+
+@media(max-width:767px){.home-hero:has(.season-botanical){padding-top:65px}.season-botanical{width:155px;height:62px}.season-botanical>span{width:105px;height:69px}.botanical-mai{right:-4px;top:-8px}.botanical-peach{right:59px;top:-18px}}
+
+.season-accent-button,.season-accent-bar{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;vertical-align:middle;user-select:none}
+html[data-season="spring"] .season-accent-section:not(.season-branch-accent){width:36px;height:36px;right:9px}
+html[data-season="spring"] .season-accent-button{width:22px;height:22px}
+html[data-season="spring"] .season-accent-bar{width:27px;height:27px}
+.explanation-bar:has(.season-accent){display:flex;align-items:flex-start;gap:5px;flex-wrap:wrap}.explanation-bar>.season-accent{margin-left:auto}
+.editor-label{gap:8px;flex-wrap:wrap}.editor-label>.season-accent{margin-left:0}
+@media(max-width:767px){html[data-season="spring"] .season-accent-button{width:18px;height:18px}html[data-season="spring"] .season-accent-bar{width:23px;height:23px}html[data-season="spring"] .season-accent-section:not(.season-branch-accent){width:28px;height:28px;right:7px}.workshop-toolbar>div:last-child{flex-wrap:wrap}}

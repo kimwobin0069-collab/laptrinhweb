@@ -1,0 +1,609 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  body {
+    @apply text-slate-800 bg-slate-50 dark:bg-slate-950 dark:text-slate-100;
+  }
+
+  /* Focus ring accessibility */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-slate-900;
+  }
+
+  /* Code font */
+  code, pre, kbd {
+    font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-600;
+}
+
+/* Custom utility for code syntax simulation */
+.code-token-tag {
+  @apply text-blue-600 dark:text-blue-400 font-semibold;
+}
+.code-token-attr {
+  @apply text-emerald-600 dark:text-emerald-400;
+}
+.code-token-val {
+  @apply text-amber-600 dark:text-amber-300;
+}
+.code-token-comment {
+  @apply text-slate-400 dark:text-slate-500 italic;
+}
+
+/* Learning studio: white, cobalt and icy blue, inspired by the supplied reference. */
+:root{--brand:#2563eb;--brand-deep:#1549cb;--ink:#142747;--muted:#5b6f8d;--paper:#fff;--ground:#f4f8ff;--line:#dfE8f5;--ice:#eaf3ff}
+.dark{--ink:#e9f1ff;--muted:#a7b8d1;--paper:#111e34;--ground:#0b1425;--line:#273b58;--ice:#162c50}
+body{background:var(--ground);color:var(--ink)}
+::selection{background:#bfdbfe;color:#123a8a}
+button,a{transition:background-color .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
+button:active{transform:translateY(1px)}
+header{box-shadow:0 3px 20px #194cac06}
+header>div:first-child>button:last-child>div:first-child{border-radius:50%;background:var(--brand)}
+
+main{background:var(--ground)}
+main>div{animation:page-enter .5s ease both}
+aside[aria-label],aside{border-color:var(--line)}
+.flex.flex-1>aside{background:var(--paper);width:264px}
+nav[aria-label="Mục lục bài học"]>div{border:0;background:none;box-shadow:none}
+nav[aria-label="Mục lục bài học"]>div>button{padding:16px 4px 12px}
+nav[aria-label="Mục lục bài học"]>div>button>div{gap:4px}
+nav[aria-label="Mục lục bài học"]>div>button>div:last-child>span:last-child{display:none}
+nav[aria-label="Mục lục bài học"] ul{border:0;padding:0}
+nav[aria-label="Mục lục bài học"] li button{min-height:39px;font-size:12px;border-radius:7px}
+nav[aria-label="Mục lục bài học"] button[aria-current="page"]{background:var(--ice);color:var(--brand);box-shadow:inset 3px 0 var(--brand)}
+.learning-home{max-width:1440px;margin:auto;padding:30px 36px 0}
+.eyebrow{color:var(--brand);font-size:10px;letter-spacing:.13em;font-weight:700;line-height:1.7;margin-bottom:16px}
+.home-hero{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;min-height:420px;background:var(--ice);border-radius:20px;padding:42px 36px;overflow:hidden;gap:10px}
+.hero-copy{position:relative;z-index:1}
+.hero-copy h1{font-size:clamp(30px,3.1vw,49px);font-weight:750;letter-spacing:-.05em;line-height:1.17;margin-bottom:20px;color:var(--ink)}
+.hero-copy h1 span{color:var(--brand)}
+.hero-copy>p:not(.eyebrow){color:var(--muted);font-size:15px;line-height:1.85;max-width:440px}
+.primary-action{display:inline-flex;gap:20px;align-items:center;background:var(--brand);color:white;border-radius:8px;padding:14px 20px;font-size:13px;font-weight:650;margin-top:26px;box-shadow:0 6px 16px #2563eb23}
+.primary-action:hover{background:var(--brand-deep);transform:translateY(-3px)}
+.hero-facts{display:flex;flex-wrap:wrap;gap:18px;margin-top:30px;font-size:10px;color:var(--muted);align-items:center}
+.hero-facts b{font-size:17px;color:var(--ink);margin-right:3px}
+.hero-visual{position:relative;min-width:0;animation:float-image 7s ease-in-out infinite}
+.hero-visual img{width:100%;border-radius:14px;mix-blend-mode:multiply}
+.dark .hero-visual img{mix-blend-mode:normal}
+.visual-caption{display:flex;justify-content:center;align-items:center;gap:8px;font-size:11px;font-weight:500;color:var(--brand);margin-top:8px}
+.status-dot{height:6px;width:6px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px #2563eb12}
+.course-section,.roadmap-section{margin:48px 0}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}
+.section-heading .eyebrow{margin-bottom:7px}
+h2{letter-spacing:-.03em}
+.section-heading h2,.visual-library h2,.study-section h2{font-size:26px;line-height:1.3;font-weight:700;color:var(--ink)}
+.section-heading>span{color:var(--muted);font-size:11px}
+.course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.course-card{display:flex;flex-direction:column;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px 20px;min-width:0}
+.course-card:hover{border-color:#93b8ff;transform:translateY(-5px);box-shadow:0 12px 28px #1747ac0d}
+.course-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:24px;color:var(--muted);font-size:10px}
+.course-symbol{color:var(--brand);background:var(--ice);font-size:21px;font-family:monospace;font-weight:700;width:44px;height:44px;display:grid;place-items:center;border-radius:10px}
+.course-card h3{color:var(--ink);font-size:16px;font-weight:700;letter-spacing:-.025em;margin-bottom:10px}
+.course-card p{color:var(--muted);font-size:12px;line-height:1.85;flex:1}
+.course-progress{height:3px;background:var(--ice);margin:24px 0 13px;border-radius:5px;overflow:hidden}
+.course-progress>span{display:block;height:100%;background:var(--brand);transition:width .6s}
+.course-bottom{display:flex;justify-content:space-between;align-items:center;color:var(--brand);font-size:10px;font-weight:600}
+.visual-library{display:grid;grid-template-columns:.85fr 1fr 1fr;gap:22px;align-items:center;background:var(--paper);border:1px solid var(--line);padding:28px;border-radius:14px}
+.visual-library>div>p:last-child{font-size:13px;line-height:1.85;color:var(--muted);margin-top:14px}
+.image-lesson{min-width:0;text-align:left;overflow:hidden;border-radius:8px;background:var(--ground)}
+.image-lesson img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:transform .4s}
+.image-lesson:hover img{transform:scale(1.035)}
+.image-lesson>span{display:flex;justify-content:space-between;align-items:center;padding:14px 12px;color:var(--ink);font-size:12px;font-weight:650}
+.roadmap-row{display:grid;grid-template-columns:44px minmax(0,1fr) 140px;gap:18px;padding:25px 0;border-bottom:1px solid var(--line)}
+.step-number{font-size:27px;font-weight:500;color:#88abec;line-height:1.3}
+.roadmap-row h3{font-size:15px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.roadmap-row p{font-size:12px;color:var(--muted);line-height:1.8}
+.roadmap-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:13px}
+.roadmap-tags span{display:flex;gap:5px;align-items:center;color:var(--brand);font-size:10px}
+.step-duration{font-size:10px;color:var(--muted);line-height:1.8;text-align:right}
+.study-section{margin:48px 0}
+.study-section>div{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 40px;margin-top:28px}
+.study-section article>span{font-size:11px;font-weight:700;color:var(--brand)}
+.study-section h3{font-size:15px;font-weight:700;margin:6px 0;color:var(--ink)}
+.study-section article p{font-size:12px;line-height:1.85;color:var(--muted)}
+.learning-footer{border-top:1px solid var(--line);padding:25px 0;display:flex;gap:20px;flex-wrap:wrap;align-items:center;font-size:10px;color:var(--muted)}
+.learning-footer strong{font-size:13px;color:var(--ink)}
+.learning-footer a{margin-left:auto;color:var(--brand)}
+.lesson-layout{gap:28px;padding-top:20px}
+.lesson-article{max-width:100%;background:var(--paper);padding:30px;border:1px solid var(--line);border-radius:14px}
+.lesson-article>h1{font-size:clamp(28px,3vw,40px);letter-spacing:-.045em;line-height:1.2}
+.lesson-article>p{font-size:15px;line-height:1.9}
+.lesson-article section{scroll-margin-top:90px}
+.lesson-article section h2{line-height:1.5}
+.lesson-article table{min-width:440px}
+.theory-figure{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:var(--ground);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:0 0 30px}
+.theory-image{position:relative;background:#f3f8ff}
+.theory-image img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.theory-image>span{position:absolute;top:12px;left:12px;font-size:8px;letter-spacing:.1em;color:#2559a8;background:#ffffffd9;padding:4px 6px;border-radius:3px}
+.theory-figure figcaption{padding:20px}
+.theory-figure h2{font-size:17px;font-weight:700;color:var(--ink);line-height:1.4}
+.theory-tabs{display:flex;gap:7px;margin:14px 0}
+.theory-tabs button{font-size:10px;width:29px;height:27px;color:var(--brand);border:1px solid var(--line);border-radius:5px;background:var(--paper)}
+.theory-tabs button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:white}
+.theory-figure figcaption p{font-size:12px;line-height:1.8;color:var(--muted);min-height:65px}
+.theory-figure small{font-size:9px;color:var(--muted);display:block;margin-top:10px}
+@keyframes page-enter{from{opacity:.3;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float-image{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes section-enter{from{opacity:.55;transform:translateY(20px)}to{opacity:1;transform:none}}
+@supports(animation-timeline:view()){.course-card,.visual-library,.roadmap-row,.study-section article,.lesson-article section{animation:section-enter both;animation-timeline:view();animation-range:entry 0% entry 22%}}
+@media(min-width:1280px){.lesson-layout>aside{width:250px;padding-right:0}.lesson-layout>aside button{white-space:normal;line-height:1.5}}
+@media(max-width:1100px){.learning-home{padding:24px 24px 0}.home-hero{grid-template-columns:1fr;padding:30px}.hero-visual{display:none}.hero-copy h1{font-size:38px}.visual-library{grid-template-columns:1fr 1fr}.visual-library>div{grid-column:1/-1}.course-grid{gap:10px}.course-card{padding:18px 14px}.course-card h3{font-size:14px}.section-heading>span{display:none}.lesson-article{padding:22px}.roadmap-row{grid-template-columns:36px 1fr}.step-duration{grid-column:2;text-align:left}.theory-figure{grid-template-columns:1fr}.theory-image img{max-height:260px;object-fit:contain}.theory-figure figcaption p{min-height:0}}
+@media(max-width:767px){header{padding-left:8px!important;padding-right:8px!important;gap:5px}header>div:first-child{gap:4px}header>div:first-child>button:last-child>div:last-child>div>span:first-child{font-size:12px;max-width:95px;line-height:1.3}header>div:first-child>button:last-child>div:first-child{width:30px;height:30px}header>div:first-child>button:last-child>div:last-child>div>span:last-child{display:none}header>div:nth-child(2){margin:0 4px;max-width:40px}header>div:nth-child(2)>button{padding:10px}header>div:nth-child(2)>button>span>span{display:none}header>div:last-child{gap:5px}header>div:last-child>button{padding:8px}.learning-home{padding:16px 16px 0}.home-hero{padding:25px 20px;border-radius:12px;min-height:0}.hero-copy h1{font-size:32px}.hero-copy>p:not(.eyebrow){font-size:14px}.hero-facts{gap:12px;margin-top:22px}.hero-facts span:last-child{width:100%}.eyebrow{font-size:8px}.course-grid{grid-template-columns:1fr;gap:12px}.course-card{padding:22px}.course-top{margin-bottom:15px}.course-card h3{font-size:18px}.course-card p{font-size:13px}.section-heading h2,.visual-library h2,.study-section h2{font-size:24px}.course-section,.roadmap-section,.study-section{margin:32px 0}.visual-library{padding:20px;gap:14px;grid-template-columns:1fr}.visual-library>div{grid-column:auto}.image-lesson img{max-height:220px;object-fit:contain}.study-section>div{grid-template-columns:1fr;gap:20px}.roadmap-row{gap:12px}.roadmap-row p{font-size:13px}.learning-footer{gap:10px}.learning-footer span{width:100%}.learning-footer a{margin-left:0}.lesson-layout{padding:16px 12px}.lesson-article{padding:20px 16px;border-radius:10px}.lesson-article>h1{font-size:29px}.lesson-article>p{font-size:14px}.lesson-article section p,.lesson-article section li{font-size:14px}.theory-figure figcaption{padding:18px}.theory-figure figcaption p{font-size:13px}.theory-tabs button{width:36px;height:34px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.dark header>div:last-child>button:nth-last-child(2){background:var(--paper);border-color:var(--line)}
+.dark .eyebrow,.dark .visual-caption,.dark .course-bottom,.dark .roadmap-tags span,.dark .theory-tabs button:not([aria-pressed="true"]){color:#8bb8ff}
+
+/* Shared lesson pages and interactive web concepts. */
+.sidebar-toggle{flex-shrink:0}
+.sidebar-desktop-heading{display:flex;align-items:center;justify-content:space-between;padding:15px 16px 4px;gap:8px;color:var(--muted);font-size:9px;letter-spacing:.08em;font-weight:650}
+.sidebar-desktop-heading button{display:grid;place-items:center;width:28px;height:28px;border-radius:6px;color:var(--muted)}
+.sidebar-desktop-heading button:hover{background:var(--ice);color:var(--brand)}
+.desktop-lesson-sidebar.sidebar-collapsed{display:none!important}
+#mobile-lesson-sidebar .sidebar-desktop-heading{display:none}
+.lesson-masthead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 0 18px;margin-bottom:24px;border-bottom:2px solid var(--brand);font-size:10px;font-weight:700;letter-spacing:.08em;color:var(--brand)}
+.lesson-article>.flex.flex-wrap{margin-bottom:16px}
+.lesson-article>h1{margin-top:14px;margin-bottom:20px}
+.lesson-article .theory-section{padding-top:26px;border-top:1px solid var(--line)}
+.lesson-article .theory-section>h2{border:0;font-size:22px;letter-spacing:-.025em;margin-bottom:18px}
+.lesson-article .theory-section>div>p{line-height:1.95}
+.lesson-article #muc-tieu{border:0;border-left:3px solid var(--brand);border-radius:0 10px 10px 0;padding:22px;background:var(--ice)}
+.lesson-article #muc-tieu li{line-height:1.8}
+.lesson-subsection{margin-top:24px}
+.lesson-subsection h3{font-weight:700;font-size:17px;margin-bottom:10px}
+.lesson-subsection p{font-size:15px;line-height:1.85;margin-top:10px}
+.lesson-subsection pre{overflow:auto;background:#101d34;color:#dceaff;padding:18px;border-radius:8px;margin-top:14px;font-size:12px}
+.lesson-subsection figcaption{font-size:12px;color:var(--muted);padding-top:8px}
+.lesson-sources{font-size:11px;line-height:1.8;color:var(--muted);padding-top:30px}
+.lesson-sources a{color:var(--brand);text-decoration:underline;text-underline-offset:3px}
+.code-workshop{border-radius:12px;border-color:var(--line);box-shadow:none}
+.code-workshop>div:first-child{padding:16px;background:var(--ice);border-color:var(--line)}
+.code-workshop textarea{font-size:13px;line-height:1.9;min-height:280px}
+.live-web-preview{min-width:0;background:var(--paper);border:1px solid #c7daf8;border-radius:12px;overflow:hidden;box-shadow:0 18px 40px #153b8310;transform:rotate(1deg)}
+.preview-window-bar{display:flex;justify-content:space-between;align-items:center;background:var(--ground);border-bottom:1px solid var(--line);padding:12px 16px;color:var(--muted);font-size:10px}
+.preview-window-bar>span:first-child{letter-spacing:3px;color:#7c9ac1}
+.preview-mode{display:flex;gap:5px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.preview-mode button{padding:6px 8px;font-size:10px;color:var(--muted);border-radius:4px}
+.preview-mode button[aria-pressed=true]{background:var(--ice);color:var(--brand);font-weight:700}
+.preview-result{padding:28px 24px;min-height:200px;background:var(--paper);transition:background .4s}
+.preview-result>span{font-size:9px;letter-spacing:.14em;color:var(--muted)}
+.preview-result h2{font-size:27px;font-weight:700;color:var(--brand);margin:8px 0 12px;line-height:1.2}
+.preview-result p{font-size:12px;color:var(--muted)}
+.preview-result button{font-size:11px;background:var(--brand);color:white;border-radius:6px;padding:9px 14px;margin-top:20px}
+.preview-result button:disabled{opacity:.5;cursor:default}
+.preview-result.mode-0{font-family:Georgia,serif;background:var(--paper)}
+.preview-result.mode-0 h2{color:var(--ink);font-weight:400;font-size:24px}
+.preview-result.mode-0 button{border:1px solid var(--muted);border-radius:0;background:transparent;color:var(--ink)}
+.preview-code{background:#10203b;padding:15px 18px;color:#b9d7ff;overflow-wrap:anywhere}
+.preview-code code{font-size:10px}
+.preview-code p{color:#98aecf;font-size:10px;margin-top:6px;line-height:1.7}
+.concept-entry{display:flex;justify-content:space-between;align-items:center;gap:30px;background:var(--paper);border:1px solid var(--line);padding:30px;border-radius:12px}
+.concept-entry h2{font-size:26px;font-weight:700;color:var(--ink);line-height:1.3}
+.concept-entry p:not(.eyebrow){font-size:13px;line-height:1.85;color:var(--muted);max-width:530px;margin-top:12px}
+.concept-entry .primary-action{flex-shrink:0;margin:0;font-size:12px}
+.concept-demo,.web-mechanism{margin:24px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper)}
+.concept-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding:14px 18px;background:var(--ice);border-bottom:1px solid var(--line)}
+.concept-toolbar>span{color:var(--muted);font-size:9px;letter-spacing:.08em;font-weight:700}
+.concept-toolbar>div{display:flex;gap:6px}
+.concept-toolbar button{font-size:11px;color:var(--brand);background:var(--paper);border:1px solid var(--line);padding:7px 12px;border-radius:5px}
+.concept-toolbar button[aria-pressed=true]{background:var(--brand);color:white;border-color:var(--brand)}
+.web-type-grid{display:grid;grid-template-columns:1fr 1fr}
+.web-type-grid article{padding:22px;min-width:0}
+.web-type-grid article+article{border-left:1px solid var(--line)}
+.concept-label{font-size:9px;letter-spacing:.07em;color:var(--brand);font-weight:700}
+.web-type-grid h3{font-size:18px;font-weight:700;color:var(--ink);margin:10px 0 18px}
+.web-type-grid article>p{color:var(--muted);font-size:12px!important;line-height:1.9!important}
+.request-flow{display:flex;align-items:center;flex-wrap:wrap;gap:6px;color:var(--brand);margin:16px 0}
+.request-flow code{font-size:9px;background:var(--ice);padding:5px;border-radius:4px}
+.sample-response{padding:20px 14px;margin:20px 0;background:var(--ground);border-top:2px solid var(--brand);min-height:127px}
+.sample-response small{font-size:8px;letter-spacing:.06em;color:var(--muted)}
+.sample-response h4{font-size:15px;font-weight:700;color:var(--ink);margin:10px 0}
+.sample-response p{font-size:12px!important;color:var(--muted)}
+.concept-note{padding:14px 18px!important;background:var(--ground);border-top:1px solid var(--line);font-size:11px!important;line-height:1.85!important;color:var(--muted);margin:0!important}
+.network-scroll{overflow-x:auto;padding:12px 4px 0}
+.network-diagram{width:100%;min-width:600px;color:#6d89b4;display:block}
+.network-line{fill:none;stroke:#b8cbe5;stroke-width:2;color:#9fb6d5;transition:stroke .3s}
+.optional-line{stroke-dasharray:5 4}
+.network-line.line-active{stroke:var(--brand);color:var(--brand);stroke-dasharray:7 4;animation:flow-dash 1.2s linear infinite}
+.network-node rect{fill:var(--ground);stroke:var(--line);stroke-width:1.5;transition:fill .3s,stroke .3s}
+.network-node.node-active rect{fill:var(--ice);stroke:var(--brand);stroke-width:2}
+.node-title{fill:var(--ink);font-size:15px;font-weight:700}
+.node-subtitle{fill:var(--muted);font-size:10px}
+.node-icon{fill:var(--brand);font-size:24px}
+.line-label{fill:var(--muted);font-size:11px}
+.network-steps{display:flex;justify-content:center;gap:8px;padding:4px 12px 20px}
+.network-steps button{width:32px;height:32px;border:1px solid var(--line);border-radius:50%;color:var(--muted);font-size:11px}
+.network-steps button[aria-pressed=true]{background:var(--brand);color:white;border-color:var(--brand)}
+.network-explanation{padding:20px 24px;background:var(--ice);min-height:175px}
+.network-explanation>span{font-size:9px;font-weight:700;letter-spacing:.07em;color:var(--brand)}
+.network-explanation h3{font-size:18px;font-weight:700;color:var(--ink);margin:8px 0 10px}
+.network-explanation p{font-size:13px!important;line-height:1.85!important;color:var(--muted)}
+.network-navigation{display:flex;justify-content:space-between;padding:12px 20px}
+.network-navigation button{color:var(--brand);font-size:11px;padding:7px}
+.network-navigation button:disabled{opacity:.35;cursor:default}
+@keyframes flow-dash{to{stroke-dashoffset:-22}}
+@media(min-width:768px){.home-hero{grid-template-columns:1.05fr 1fr}.live-web-preview{display:block}.sidebar-toggle{display:flex!important}}
+@media(max-width:1100px) and (min-width:768px){.home-hero{grid-template-columns:1fr;gap:30px}.live-web-preview{max-width:520px;width:100%}.concept-entry{flex-direction:column;align-items:start}.hero-copy h1{font-size:35px}}
+@media(max-width:767px){.sidebar-desktop-heading{display:none}.home-hero{gap:28px}.live-web-preview{transform:none;width:100%}.preview-result{padding:22px;min-height:180px}.concept-entry{flex-direction:column;align-items:start;padding:22px}.concept-entry h2{font-size:23px}.web-type-grid{grid-template-columns:1fr}.web-type-grid article+article{border-left:0;border-top:1px solid var(--line)}.lesson-masthead{font-size:9px}.lesson-article .theory-section>h2{font-size:20px}.network-explanation{padding:18px;min-height:215px}.concept-toolbar{padding:12px}.network-steps{gap:6px}.network-steps button{width:30px;height:30px}.concept-entry .primary-action{font-size:11px}.code-workshop>div:first-child{padding:12px}.code-workshop textarea{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.network-line.line-active{animation:none!important}.live-web-preview{transform:none}}
+
+.technology-logo{display:inline-block;flex-shrink:0;vertical-align:middle}
+.course-symbol.course-brand{background:transparent;width:44px;height:48px;border-radius:0}
+.sidebar-track-brand,.lesson-track-brand{display:inline-flex;align-items:center;gap:8px}
+.sidebar-track-brand{font-size:10px!important;letter-spacing:.025em!important}
+.lesson-content-figure{margin:26px 0;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.lesson-content-figure>a{display:block;cursor:zoom-in}
+.lesson-content-figure img{display:block;width:100%;height:auto;object-fit:contain}
+.lesson-content-figure figcaption{padding:12px 14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 14px;background:var(--ground);border-top:1px solid var(--line);font-size:11px;color:var(--muted);line-height:1.8}
+.lesson-content-figure figcaption>a{color:var(--brand);font-weight:600;white-space:nowrap}
+@media(max-width:767px){.lesson-content-figure{margin:20px -4px}.lesson-content-figure figcaption{font-size:11px;padding:10px}.sidebar-track-brand{font-size:11px!important}}
+
+/* Compact masthead with quiet controls and a visible learning-progress ring. */
+header.site-header{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:30px;width:100%;height:72px;padding:0 24px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 3px 16px #17386704}
+.site-header .header-start{display:flex;align-items:center;gap:15px;flex-shrink:0}
+.site-header .header-menu{display:grid;place-items:center;width:34px;height:36px;padding:0;color:var(--muted);border:1px solid transparent;border-radius:8px;background:transparent;flex-shrink:0}
+.site-header .header-menu:hover{background:var(--ice);color:var(--brand)}
+.site-header .header-brand{display:flex;align-items:center;gap:11px;text-align:left;border-radius:8px;padding:0}
+.site-header .header-brand-mark{width:42px;height:42px;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#ffffff;border:1px solid var(--line);border-radius:11px;box-shadow:0 2px 7px #2563eb18;padding:4px;overflow:hidden}
+.header-brand-logo-img{width:100%;height:100%;object-fit:contain;display:block}
+.site-header .header-brand-copy{display:flex;flex-direction:column;gap:5px}
+.site-header .header-brand-title{display:flex;align-items:center;gap:8px;font-size:17px;line-height:1.2;font-weight:750;letter-spacing:-.04em;color:var(--ink);white-space:nowrap}
+.site-header .header-school-badge{padding:3px 5px;background:var(--ice);border:1px solid var(--line);border-radius:4px;font-size:8px;font-weight:700;letter-spacing:.06em;color:var(--brand);line-height:1}
+.site-header .header-brand-subtitle{display:flex;gap:7px;align-items:center;font-size:10px;line-height:1;color:var(--muted);letter-spacing:.025em}
+.site-header .header-brand-subtitle i{display:block;width:3px;height:3px;border-radius:50%;background:#a1b5d0}
+header.site-header .header-ticker-wrap{display:flex;align-items:center;flex:1;max-width:540px;height:38px;background:transparent;border:none;border-radius:0;padding:0 8px;overflow:hidden;position:relative}
+.header-ticker-track{flex:1;overflow:hidden;white-space:nowrap;position:relative;mask-image:linear-gradient(to right,transparent,black 20px,black calc(100% - 20px),transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 20px,black calc(100% - 20px),transparent)}
+.header-ticker-content{display:inline-flex;white-space:nowrap;animation:ticker-slide 22s linear infinite;font-size:13.5px;font-weight:600;color:var(--brand-deep,#1e40af)}
+.dark .header-ticker-content{color:var(--brand,#93c5fd)}
+.header-ticker-wrap:hover .header-ticker-content{animation-play-state:paused}
+.header-ticker-content span{padding-right:50px}
+@keyframes ticker-slide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.site-header .header-actions{display:flex;align-items:center;gap:20px;flex-shrink:0}
+.site-header .header-roadmap{display:flex;gap:7px;align-items:center;padding:8px 0;background:transparent;color:var(--muted);font-size:12px;font-weight:600;border-radius:6px}
+.site-header .header-roadmap svg{color:var(--brand)}
+.site-header .header-roadmap:hover{color:var(--brand)}
+header.site-header .header-progress{display:flex;align-items:center;gap:9px;padding:5px 0;background:transparent!important;border:0!important;border-radius:7px;box-shadow:none}
+.site-header .header-progress-ring{position:relative;display:block;width:36px;height:36px;color:var(--brand);flex-shrink:0}
+.site-header .header-progress-ring svg{display:block;width:100%;height:100%;transform:rotate(-90deg)}
+.site-header .header-progress-ring circle{fill:none;stroke-width:2.5}
+.site-header .ring-track{stroke:var(--line)}
+.site-header .ring-value{stroke:var(--brand);stroke-linecap:round;transition:stroke-dashoffset .5s ease}
+.site-header .header-progress-ring>span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:1px;font-size:9px;font-weight:700;font-variant-numeric:tabular-nums}
+.site-header .header-progress-ring small{font-size:6px}
+.site-header .header-progress-copy{display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+.site-header .header-progress-copy>span{font-size:9px;color:var(--muted);line-height:1}
+.site-header .header-progress-copy strong{font-size:13px;line-height:1;color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.site-header .header-progress-copy strong>span{font-size:11px;font-weight:500;color:var(--muted)}
+.site-header .header-divider{height:24px;width:1px;background:var(--line)}
+.site-header .header-theme{display:grid;place-items:center;width:34px;height:34px;padding:0;background:transparent;color:var(--muted);border:0;border-radius:8px;box-shadow:none}
+.site-header .header-theme:hover{color:var(--brand);background:var(--ice)}
+.site-header button:focus-visible{outline:2px solid var(--brand);outline-offset:4px;box-shadow:none}
+.desktop-lesson-sidebar>div{top:72px;height:calc(100vh - 72px)}
+.lesson-layout>aside>div{top:88px}
+@media(min-width:1600px){header.site-header{gap:50px;padding:0 32px}.site-header .header-start{gap:20px}header.site-header .header-ticker-wrap{max-width:560px}.site-header .header-actions{gap:25px}}
+@media(max-width:1100px){header.site-header{gap:20px;padding:0 18px}.site-header .header-actions{gap:14px}.site-header .header-roadmap{display:none}.site-header .header-brand-title{font-size:15px}.site-header .header-school-badge{display:none}.site-header .header-start{gap:10px}}
+@media(max-width:767px){header.site-header{height:64px;gap:12px;padding:0 12px!important}.site-header .header-start{gap:8px!important}.site-header .header-menu{width:28px;height:36px}.site-header .header-brand{gap:8px}.site-header .header-brand-mark{width:32px;height:35px;border-radius:9px}.site-header .header-brand-mark svg{width:19px}.site-header .header-brand-title{font-size:13px;white-space:normal;max-width:145px}.site-header .header-brand-subtitle{font-size:8px;gap:4px}.site-header .header-brand-copy{gap:5px}header.site-header .header-ticker-wrap{height:32px;padding:0 6px;max-width:none;flex:1}.header-ticker-tag{font-size:9px;padding:2px 5px}.header-ticker-content{font-size:11px}.site-header .header-actions{gap:7px!important}.site-header .header-actions>button{padding:0!important}.site-header .header-progress-copy,.site-header .header-divider{display:none}.site-header .header-progress-ring{width:32px;height:32px}.site-header .header-theme{width:30px;height:34px}.site-header .header-roadmap{display:none}}
+@media(max-width:370px){header.site-header{gap:5px;padding:0 8px!important}.site-header .header-brand-mark{display:none}.site-header .header-brand-title{max-width:135px}.site-header .header-actions{gap:4px!important}}
+
+/* =========================================
+   EXTERNAL CSS: ĐỊNH DẠNG TỪ KHÓA BÀI HỌC
+   ========================================= */
+
+/* Tên miền / Địa chỉ web mẫu */
+.web-domain {
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  font-size: 0.875em;
+  background-color: #f1f5f9;
+  color: #db2777; /* Hồng đậm */
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  border: 1px solid #e2e8f0;
+  text-indent: 0;
+  white-space: nowrap;
+  display: inline-block;
+}
+.dark .web-domain {
+  background-color: #1e293b;
+  color: #f472b6;
+  border-color: #334155;
+}
+
+/* Nút phím bấm Enter */
+.key-enter {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #475569;
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-bottom: 2px solid #94a3b8;
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.25rem;
+  vertical-align: baseline;
+  text-indent: 0;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.dark .key-enter {
+  color: #cbd5e1;
+  background-color: #1e293b;
+  border-color: #475569;
+  border-bottom-color: #64748b;
+}
+
+/* Khối nhãn (Badge) nền sáng, chữ màu nổi bật */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 700;
+  padding: 0.08rem 0.4rem;
+  border-radius: 0.375rem;
+  margin: 0 0.05rem;
+  font-size: 0.9em;
+  line-height: 1.35;
+  vertical-align: -0.1em;
+  text-indent: 0;
+  white-space: nowrap;
+}
+
+/* 1. Máy khách (Client) - Màu Xanh dương */
+.badge-client {
+  color: #1d4ed8;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+.dark .badge-client {
+  color: #60a5fa;
+  background-color: rgba(30, 58, 138, 0.4);
+  border-color: rgba(96, 165, 250, 0.3);
+}
+
+/* 2. Yêu cầu (Request) - Màu Cam hổ phách */
+.badge-request {
+  color: #b45309;
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+}
+.dark .badge-request {
+  color: #fbbf24;
+  background-color: rgba(120, 53, 15, 0.4);
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+/* 3. Máy chủ (Server) - Màu Tím */
+.badge-server {
+  color: #6d28d9;
+  background-color: #f5f3ff;
+  border: 1px solid #ddd6fe;
+}
+.dark .badge-server {
+  color: #c084fc;
+  background-color: rgba(88, 28, 135, 0.4);
+  border-color: rgba(192, 132, 252, 0.3);
+}
+
+/* 4. Phản hồi (Response) - Màu Xanh lục */
+.badge-response {
+  color: #047857;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+}
+.dark .badge-response {
+  color: #34d399;
+  background-color: rgba(6, 78, 59, 0.4);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+/* Màu công nghệ Web */
+.tech-html {
+  color: #ea580c; /* Cam HTML5 */
+  font-weight: 800;
+  text-indent: 0;
+}
+.dark .tech-html {
+  color: #fb923c;
+}
+
+.tech-css {
+  color: #0284c7; /* Xanh CSS3 */
+  font-weight: 800;
+  text-indent: 0;
+}
+.dark .tech-css {
+  color: #38bdf8;
+}
+
+.tech-js {
+  color: #d97706; /* Vàng hổ phách JavaScript */
+  font-weight: 800;
+  text-indent: 0;
+}
+.dark .tech-js {
+  color: #facc15;
+}
+
+/* Tô sáng kết quả hiển thị */
+.highlight-visual {
+  background-color: #fef08a; /* Vàng nhạt */
+  color: #0f172a;
+  font-weight: 700;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0.25rem;
+  text-indent: 0;
+}
+.dark .highlight-visual {
+  background-color: rgba(234, 179, 8, 0.25);
+  color: #fef08a;
+  border: 1px solid rgba(234, 179, 8, 0.4);
+}
+
+/* Thụt đầu dòng (First-line indent) & căn đều đoạn văn lý thuyết bài học */
+.theory-paragraphs p,
+.lesson-paragraph {
+  text-indent: 1.75em;
+  text-align: justify;
+  text-justify: inter-word;
+  line-height: 1.85;
+}
+
+/* Khử thụt đầu dòng kế thừa trên toàn bộ phần tử con */
+.theory-paragraphs p * {
+  text-indent: 0;
+}
+
+/* ============================================================
+   MÔ PHỎNG CƠ CHẾ HOẠT ĐỘNG CỦA WEB (WEB MECHANISM REDESIGN)
+   ============================================================ */
+
+@keyframes packet-dash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@keyframes pulse-glow-blue {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+  }
+}
+
+@keyframes pulse-glow-purple {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(147, 51, 234, 0);
+  }
+}
+
+@keyframes pulse-glow-amber {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+  }
+}
+
+@keyframes pulse-glow-emerald {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes led-blink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.85); }
+}
+
+@keyframes float-packet {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.anim-packet-float {
+  animation: float-packet 2s ease-in-out infinite;
+}
+
+.anim-blink {
+  animation: blink-cursor 1s steps(2, start) infinite;
+}
+
+.anim-led-1 {
+  animation: led-blink 0.8s ease-in-out infinite;
+}
+
+.anim-led-2 {
+  animation: led-blink 1.2s ease-in-out infinite 0.3s;
+}
+
+.anim-led-3 {
+  animation: led-blink 0.6s ease-in-out infinite 0.15s;
+}
+
+.glow-client {
+  animation: pulse-glow-blue 2.2s infinite;
+}
+
+.glow-dns {
+  animation: pulse-glow-purple 2.2s infinite;
+}
+
+.glow-server {
+  animation: pulse-glow-amber 2.2s infinite;
+}
+
+.glow-db {
+  animation: pulse-glow-emerald 2.2s infinite;
+}
+
+@keyframes speech-pop {
+  0% { transform: scale(0.96) translateY(3px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes laser-flow {
+  0% { stroke-dashoffset: 40; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes packet-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+.anim-speech-pop {
+  animation: speech-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.anim-laser {
+  stroke-dasharray: 8 6;
+  animation: laser-flow 0.9s linear infinite;
+}
+
+.anim-packet-pulse {
+  animation: packet-pulse 1.3s ease-in-out infinite;
+}
+
+
+
+
+
