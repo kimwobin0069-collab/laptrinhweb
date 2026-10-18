@@ -21,9 +21,6 @@ export const Footer: React.FC = () => {
               <span className="font-bold text-xs sm:text-sm text-slate-900 dark:text-slate-100 tracking-tight">
                 Học Lập Trình Web
               </span>
-              <span className="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-semibold text-blue-700 dark:bg-blue-950/80 dark:text-blue-300 border border-blue-200/80 dark:border-blue-800/80">
-                THPT Lê Thị Hồng Gấm
-              </span>
               <SeasonalAccent placement="footer" />
             </div>
           </div>
