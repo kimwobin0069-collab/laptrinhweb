@@ -17,6 +17,9 @@ import {
   IconInfo,
 } from './Icons';
 
+import { formatContent } from '../utils/contentFormatter';
+import { SupportDrink } from './SupportArtwork';
+
 interface LessonViewProps {
   lesson: Lesson;
   isCompleted: boolean;
@@ -24,9 +27,8 @@ interface LessonViewProps {
   prevLesson: Lesson | null;
   nextLesson: Lesson | null;
   onSelectLesson: (id: string) => void;
+  onOpenDonation?: () => void;
 }
-
-import { formatContent } from '../utils/contentFormatter';
 
 export const LessonView: React.FC<LessonViewProps> = ({
   lesson,
@@ -35,6 +37,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
   prevLesson,
   nextLesson,
   onSelectLesson,
+  onOpenDonation,
 }) => {
   const trackName =
     lesson.track === 'html'
@@ -331,6 +334,35 @@ export const LessonView: React.FC<LessonViewProps> = ({
             </button>
           </div>
 
+          {/* Coffee Donation Banner in Lesson */}
+          {onOpenDonation && (
+            <div className="my-6 rounded-2xl border border-amber-200/90 bg-gradient-to-r from-amber-50/90 via-orange-50/60 to-amber-50/80 p-4 sm:p-5 dark:border-amber-900/60 dark:from-amber-950/30 dark:via-orange-950/20 dark:to-amber-950/25 shadow-xs">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3.5">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-500/15 border border-amber-300/40 dark:border-amber-700/40 shadow-xs">
+                    <SupportDrink kind="coffee" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 dark:text-slate-100 text-sm flex items-center gap-1.5">
+                      <span>Bạn thấy bài học này bổ ích chứ?</span>
+                      <span className="text-xs">✨</span>
+                    </h4>
+                    <p className="text-slate-600 dark:text-slate-400 text-xs mt-1 leading-relaxed">
+                      Bao thầy Duy Khoa một ly cà phê để tiếp thêm năng lượng duy trì học liệu nhé!
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={onOpenDonation}
+                  className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-bold text-xs shadow-sm shadow-amber-500/25 hover:shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                >
+                  <SupportDrink kind="coffee" />
+                  <span>Bao tôi ly cà phê ☕</span>
+                </button>
+              </div>
+            </div>
+          )}
 
           {/* Previous / Next Lesson Buttons */}
           <div className="flex items-center justify-between gap-4">

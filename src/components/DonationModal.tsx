@@ -96,7 +96,6 @@ function DonationQr({ src, label }: { src: string; label: string }) {
 function DonationDialog({ onClose }: { onClose: () => void }) {
   const [selectedId, setSelectedId] = useState<DrinkKind | null>('coffee');
   const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle');
-  const dialog = useRef<HTMLDialogElement>(null);
   const copyTimer = useRef<ReturnType<typeof setTimeout>>();
 
   const selectedTier = DONATION_CONFIG.tiers.find((tier) => tier.id === selectedId);
@@ -104,20 +103,22 @@ function DonationDialog({ onClose }: { onClose: () => void }) {
   const qrUrl = buildDonationQrUrl(effectiveAmount);
 
   useEffect(() => {
-    const element = dialog.current;
-    if (!element) return;
     const previousFocus = document.activeElement as HTMLElement | null;
     const oldOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-    if (!element.open) element.showModal();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       clearTimeout(copyTimer.current);
-      if (element.open) element.close();
       document.body.style.overflow = oldOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
       if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true });
     };
-  }, []);
+  }, [onClose]);
 
   const copyAccount = async () => {
     clearTimeout(copyTimer.current);
@@ -135,20 +136,22 @@ function DonationDialog({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <dialog
-      ref={dialog}
-      className="support-dialog"
-      aria-labelledby="support-title"
-      aria-describedby="support-intro"
-      onCancel={(event) => {
-        event.preventDefault();
-        onClose();
-      }}
+    <div
+      className="support-dialog-overlay"
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
+      role="presentation"
     >
-      <div className="support-dialog-shell">
+      <div
+        className="support-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="support-title"
+        aria-describedby="support-intro"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="support-dialog-shell">
         {/* Header */}
         <header className="support-dialog-heading">
           <div className="support-coffee-heading">
@@ -350,7 +353,8 @@ function DonationDialog({ onClose }: { onClose: () => void }) {
           </button>
         </footer>
       </div>
-    </dialog>
+      </div>
+    </div>
   );
 }
 

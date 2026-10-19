@@ -240,6 +240,7 @@ export function App() {
               prevLesson={prevLesson}
               nextLesson={nextLesson}
               onSelectLesson={navigateToLesson}
+              onOpenDonation={() => setIsDonationOpen(true)}
             />
           )}
         </main>

@@ -394,7 +394,8 @@ export const htmlLessons: Lesson[] = [
         title: '3. Quy tắc xử lý khoảng trắng trong HTML',
         paragraphs: [
           'Trong tệp mã nguồn HTML, dù bạn gõ 10 dấu cách liên tiếp hoặc nhấn phím Enter xuống dòng 5 lần, trình duyệt cũng sẽ tự động rút gọn lại thành DUY NHẤT một dấu cách đơn.',
-          'Hiện tượng này gọi là "Whitespace Collapsing". Nếu muốn xuống dòng, bắt buộc phải dùng thẻ <br> hoặc gói nội dung trong thẻ <p> riêng biệt.'
+          'Hiện tượng này gọi là "Whitespace Collapsing". Nếu muốn xuống dòng, bắt buộc phải dùng thẻ <br> hoặc gói nội dung trong thẻ <p> riêng biệt.',
+          'Để tạo khoảng trắng thụt đầu dòng chủ đích trong HTML, bạn có thể dùng các ký tự thực thể như &nbsp; (1 dấu cách), &ensp; (khoảng cách 2 dấu cách), &emsp; (khoảng cách rộng 4 dấu cách).'
         ],
         callout: {
           type: 'tip',
@@ -405,34 +406,35 @@ export const htmlLessons: Lesson[] = [
     ],
     codeExamples: [
       {
-        id: 'vd-doan-van-va-tho',
-        title: 'So sánh đoạn văn và trình bày bài thơ với <br>',
-        description: 'Quan sát sự khác nhau giữa khoảng cách của thẻ <p> và ngắt dòng của thẻ <br>.',
+        id: 'vd-portfolio-doan-van',
+        title: 'Thực hành: Portfolio cá nhân, ngắt dòng & thơ với <pre>',
+        description: 'Quan sát sự kết hợp của thẻ p, ngắt dòng br, đường phân cách hr, khoảng cách thụt dòng &emsp; &ensp; &nbsp; và thẻ pre giữ nguyên cấu trúc thơ.',
         language: 'html',
         runnable: true,
         initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Ví dụ thẻ đoạn văn</title>
+  <title>Trang cá nhân & Đoạn văn HTML</title>
 </head>
 <body>
-  <h2>Đoạn văn tự sự</h2>
-  <p>Hôm nay là buổi học đầu tiên của môn Lập trình Web. Lớp học ai cũng hào hứng.</p>
-  <p>Mỗi bạn đều có một máy tính riêng để tự tay gõ mã lệnh.</p>
-
-  <hr>
-
-  <h2>Khổ thơ (dùng thẻ br để ngắt dòng)</h2>
-  <p>
-    Sóng bắt đầu từ gió<br>
-    Gió bắt đầu từ đâu?<br>
-    Em cũng không biết nữa<br>
-    Khi nào ta yêu nhau.
-  </p>
+    <h1>Chào mừng bạn ghé thăm portfolio</h1>
+    <p>Trang web này tự tay mình dệt nên.</p>
+    <br>
+    <p>Đây là đường đời bằng phẳng mà bạn ao ước...</p>
+    <hr>
+    <p>... cho đến khi<br>&emsp;&emsp;&emsp;
+        &ensp;&ensp;&nbsp;bạn sụp ổ gà :)</p>
+    <br>
+    <p>Khi sụp rồi thì bạn thường tìm đến những thứ self-help hoặc chữa lành.</p>
+    <h2>Một chiều ngược gió</h2>
+    <pre>Em ngược đường, ngược nắng để yêu anh
+    Ngược phố tan tầm, ngược chiều gió thổi
+Ngược lòng mình tìm về nông nổi
+    Lãng du đi vô định cánh chim trời.</pre>
 </body>
 </html>`,
-        explanation: 'Giữa hai đoạn văn trên có một khoảng trống rõ rệt. Trong khổ thơ, các câu thơ xuống dòng sát nhau nhờ thẻ <br>.'
+        explanation: 'Quan sát kết quả: Thẻ <p> tạo đoạn văn có khoảng cách trên dưới rõ rệt; thẻ <br> ngắt dòng sát cạnh; thẻ <hr> kẻ đường ngang phân tách nội dung; các thực thể &emsp;, &ensp;, &nbsp; tạo khoảng lùi thủ công; và thẻ <pre> bảo lưu hoàn hảo từng khoảng trống và thụt dòng của bài thơ.'
       }
     ],
     commonMistakes: [
