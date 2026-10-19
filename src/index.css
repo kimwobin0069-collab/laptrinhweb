@@ -21,6 +21,25 @@
   code, pre, kbd {
     font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
   }
+
+  /* Inline code default */
+  :not(pre) > code {
+    font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+    font-size: 0.88em;
+    font-weight: 600;
+    color: #1d4ed8;
+    background-color: #eff6ff;
+    border: 1px solid #dbeafe;
+    padding: 0.08rem 0.38rem;
+    border-radius: 0.35rem;
+    white-space: nowrap;
+    vertical-align: baseline;
+  }
+  .dark :not(pre) > code {
+    color: #60a5fa;
+    background-color: rgba(30, 58, 138, 0.3);
+    border-color: rgba(96, 165, 250, 0.3);
+  }
 }
 
 /* Custom scrollbar */
@@ -463,6 +482,186 @@ header.site-header .header-progress{display:flex;align-items:center;gap:9px;padd
   color: #fef08a;
   border: 1px solid rgba(234, 179, 8, 0.4);
 }
+
+/* ============================================================
+   ĐỊNH DẠNG TỪ KHÓA, MÃ NGUỒN & KHÁI NIỆM BÀI HỌC (KEYWORD STYLES)
+   ============================================================ */
+
+/* 1. Thẻ HTML (HTML Tags: <h1>, <p>, <a>, etc.) */
+.token-tag {
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  font-size: 0.88em;
+  font-weight: 700;
+  color: #e11d48;
+  background-color: #fff1f2;
+  border: 1px solid #fecdd3;
+  padding: 0.1rem 0.42rem;
+  border-radius: 0.375rem;
+  text-indent: 0;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: baseline;
+  box-shadow: 0 1px 2px rgba(225, 29, 72, 0.05);
+}
+.dark .token-tag {
+  color: #fda4af;
+  background-color: rgba(159, 18, 57, 0.25);
+  border-color: rgba(244, 63, 94, 0.35);
+  box-shadow: none;
+}
+
+/* 2. Thuộc tính HTML (Attributes: href, src, alt, class, etc.) */
+.token-attr {
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  font-size: 0.88em;
+  font-weight: 700;
+  color: #047857;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  padding: 0.08rem 0.4rem;
+  border-radius: 0.375rem;
+  text-indent: 0;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.dark .token-attr {
+  color: #34d399;
+  background-color: rgba(6, 78, 59, 0.35);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+
+/* 3. Thuộc tính CSS (CSS Properties: display, margin, padding, etc.) */
+.token-css {
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  font-size: 0.88em;
+  font-weight: 700;
+  color: #0284c7;
+  background-color: #f0f9ff;
+  border: 1px solid #bae6fd;
+  padding: 0.08rem 0.4rem;
+  border-radius: 0.375rem;
+  text-indent: 0;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.dark .token-css {
+  color: #38bdf8;
+  background-color: rgba(12, 74, 110, 0.35);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+/* 4. Từ khóa và hàm JavaScript (let, const, function, console.log, etc.) */
+.token-js {
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  font-size: 0.88em;
+  font-weight: 700;
+  color: #b45309;
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  padding: 0.08rem 0.4rem;
+  border-radius: 0.375rem;
+  text-indent: 0;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.dark .token-js {
+  color: #facc15;
+  background-color: rgba(120, 53, 15, 0.3);
+  border-color: rgba(250, 204, 21, 0.35);
+}
+
+/* 5. Khái niệm Web cốt lõi (Client, Server, Web tĩnh, Web động, DNS, DOM, etc.) */
+.token-concept {
+  font-weight: 750;
+  color: #1d4ed8;
+  background-color: #eff6ff;
+  border-bottom: 2px solid #3b82f6;
+  padding: 0.05rem 0.3rem;
+  border-radius: 0.25rem 0.25rem 0 0;
+  text-indent: 0;
+  display: inline-block;
+}
+.dark .token-concept {
+  color: #93c5fd;
+  background-color: rgba(30, 58, 138, 0.3);
+  border-bottom-color: #60a5fa;
+}
+
+/* 6. Phím bấm thao tác (Keyboard Chips: F12, Ctrl + S, Ctrl + K, etc.) */
+.token-kbd {
+  font-family: inherit;
+  font-size: 0.82em;
+  font-weight: 700;
+  color: #334155;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-bottom: 2.5px solid #94a3b8;
+  padding: 0.08rem 0.45rem;
+  border-radius: 0.35rem;
+  text-indent: 0;
+  display: inline-block;
+  white-space: nowrap;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+  vertical-align: baseline;
+  line-height: 1.25;
+}
+.dark .token-kbd {
+  color: #e2e8f0;
+  background-color: #1e293b;
+  border-color: #475569;
+  border-bottom-color: #64748b;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 7. Tệp tin và định dạng (.html, .css, .js, index.html) */
+.token-file {
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  font-size: 0.88em;
+  font-weight: 700;
+  color: #4338ca;
+  background-color: #eef2ff;
+  border: 1px solid #c7d2fe;
+  padding: 0.08rem 0.4rem;
+  border-radius: 0.375rem;
+  text-indent: 0;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+.dark .token-file {
+  color: #a5b4fc;
+  background-color: rgba(49, 46, 129, 0.3);
+  border-color: rgba(129, 140, 248, 0.35);
+}
+
+/* 8. Mã nguồn nội dòng thông thường (Markdown `code`) */
+.token-code {
+  font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+  font-size: 0.88em;
+  font-weight: 650;
+  color: #0f172a;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 0.08rem 0.38rem;
+  border-radius: 0.375rem;
+  text-indent: 0;
+  display: inline-block;
+  vertical-align: baseline;
+}
+.dark .token-code {
+  color: #f1f5f9;
+  background-color: #1e293b;
+  border-color: #334155;
+}
+
+/* In đậm nổi bật bài học */
+.kw-bold, strong {
+  font-weight: 750;
+}
+
 
 /* Thụt đầu dòng (First-line indent) & căn đều đoạn văn lý thuyết bài học */
 .theory-paragraphs p,

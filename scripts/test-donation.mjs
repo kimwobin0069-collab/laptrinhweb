@@ -14,15 +14,21 @@ try{
  assert.equal(free.searchParams.has('amount'),false,'Default QR must not fix an amount');
  assert.equal(free.searchParams.get('accountName'),DONATION_CONFIG.bank.accountName);
  assert.equal(free.pathname,'/image/'+DONATION_CONFIG.bank.bankCode+'-'+DONATION_CONFIG.bank.accountNumber+'-compact.png');
- const expected={coffee:40000,'milk-tea':55000,'black-tea':35000,'bac-xiu':45000};
- assert.equal(new Set(DONATION_CONFIG.tiers.map(t=>t.id)).size,4);
- assert.deepEqual(DONATION_CONFIG.tiers.map(t=>t.amount),[35000,40000,45000,55000]);
+ const expected = {
+  'bac-xiu': 30000,
+  'americano': 45000,
+  'coffee': 55000,
+  'cold-brew': 75000,
+  'flat-white': 100000
+ };
+ assert.equal(new Set(DONATION_CONFIG.tiers.map(t=>t.id)).size, 5);
+ assert.deepEqual(DONATION_CONFIG.tiers.map(t=>t.amount), [30000, 45000, 55000, 75000, 100000]);
  for(const tier of DONATION_CONFIG.tiers){
-  assert.equal(tier.amount,expected[tier.id]);
+  assert.equal(tier.amount, expected[tier.id]);
   const qr=new URL(buildDonationQrUrl(tier.amount));
-  assert.equal(qr.searchParams.get('amount'),String(tier.amount));
-  assert.equal(qr.pathname,free.pathname,'Changing a drink must preserve the recipient');
-  assert.equal(qr.searchParams.get('accountName'),free.searchParams.get('accountName'));
+  assert.equal(qr.searchParams.get('amount'), String(tier.amount));
+  assert.equal(qr.pathname, free.pathname, 'Changing a drink must preserve the recipient');
+  assert.equal(qr.searchParams.get('accountName'), free.searchParams.get('accountName'));
  }
  for(const invalid of [0,-100,NaN,Infinity,1.2])assert.equal(new URL(buildDonationQrUrl(invalid)).searchParams.has('amount'),false);
  assert.equal(new URL(buildDonationQrUrl()).searchParams.has('amount'),false,'Clearing a drink must restore the open QR');

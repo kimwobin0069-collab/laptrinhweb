@@ -26,7 +26,7 @@ interface LessonViewProps {
   onSelectLesson: (id: string) => void;
 }
 
-const hasRichFormatting = (text: string) => /<(span|strong|em|code|kbd|mark|b|i)\b[^>]*>/i.test(text);
+import { formatContent } from '../utils/contentFormatter';
 
 export const LessonView: React.FC<LessonViewProps> = ({
   lesson,
@@ -82,9 +82,10 @@ export const LessonView: React.FC<LessonViewProps> = ({
         </h1>
 
         {/* Short introduction paragraph */}
-        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 font-normal">
-          {lesson.description}
-        </p>
+        <p
+          className="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8 font-normal"
+          dangerouslySetInnerHTML={{ __html: formatContent(lesson.description) }}
+        />
 
         {/* 1. Learning Objectives Box */}
         <section id="muc-tieu" className="season-panel rounded-2xl border border-blue-200/80 bg-blue-50/60 p-5 dark:border-blue-900/50 dark:bg-blue-950/30 mb-10">
@@ -96,7 +97,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
             {lesson.objectives.map((obj, i) => (
               <li key={i} className="flex items-start gap-2.5">
                 <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400" />
-                <span className="leading-relaxed">{obj}</span>
+                <span className="leading-relaxed" dangerouslySetInnerHTML={{ __html: formatContent(obj) }} />
               </li>
             ))}
           </ul>
@@ -107,18 +108,15 @@ export const LessonView: React.FC<LessonViewProps> = ({
           {lesson.sections.map((section) => (
             <section key={section.id} id={`sec-${section.id}`} className="theory-section season-panel scroll-mt-20">
               <h2 className="season-title text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 pb-1 border-b border-slate-100 dark:border-slate-800">
-                {section.title}<SeasonalAccent placement="section" variant={lesson.sections.indexOf(section)}/>
+                <span dangerouslySetInnerHTML={{ __html: formatContent(section.title) }} />
+                <SeasonalAccent placement="section" variant={lesson.sections.indexOf(section)}/>
               </h2>
 
               {/* Paragraphs */}
               <div className="theory-paragraphs space-y-3 text-sm sm:text-base text-slate-700 dark:text-slate-300 leading-relaxed">
-                {section.paragraphs.map((p, idx) =>
-                  hasRichFormatting(p) ? (
-                    <p key={idx} dangerouslySetInnerHTML={{ __html: p }} />
-                  ) : (
-                    <p key={idx}>{p}</p>
-                  )
-                )}
+                {section.paragraphs.map((p, idx) => (
+                  <p key={idx} dangerouslySetInnerHTML={{ __html: formatContent(p) }} />
+                ))}
               </div>
 
               <LessonFigures lessonId={lesson.id} sectionId={section.id} />
@@ -126,20 +124,18 @@ export const LessonView: React.FC<LessonViewProps> = ({
               {section.illustration === 'web-mechanism' && <WebMechanism />}
               {section.subsections?.map(subsection => (
                 <div className="lesson-subsection" key={subsection.id} id={subsection.id}>
-                  <h3>{subsection.title}</h3>
+                  <h3 dangerouslySetInnerHTML={{ __html: formatContent(subsection.title) }} />
                   <div className="theory-paragraphs space-y-2">
-                    {subsection.paragraphs.map((p, i) =>
-                      hasRichFormatting(p) ? (
-                        <p key={i} dangerouslySetInnerHTML={{ __html: p }} />
-                      ) : (
-                        <p key={i}>{p}</p>
-                      )
-                    )}
+                    {subsection.paragraphs.map((p, i) => (
+                      <p key={i} dangerouslySetInnerHTML={{ __html: formatContent(p) }} />
+                    ))}
                   </div>
                   {subsection.codeSnippet && (
                     <figure>
                       <pre><code>{subsection.codeSnippet.code}</code></pre>
-                      {subsection.codeSnippet.caption && <figcaption>{subsection.codeSnippet.caption}</figcaption>}
+                      {subsection.codeSnippet.caption && (
+                        <figcaption dangerouslySetInnerHTML={{ __html: formatContent(subsection.codeSnippet.caption) }} />
+                      )}
                     </figure>
                   )}
                 </div>
@@ -148,9 +144,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
               {section.bulletPoints && section.bulletPoints.length > 0 && (
                 <ul className="my-4 space-y-2 text-sm sm:text-base text-slate-700 dark:text-slate-300 pl-4 border-l-2 border-slate-200 dark:border-slate-800">
                   {section.bulletPoints.map((item, idx) => (
-                    <li key={idx} className="leading-relaxed">
-                      {item}
-                    </li>
+                    <li key={idx} className="leading-relaxed" dangerouslySetInnerHTML={{ __html: formatContent(item) }} />
                   ))}
                 </ul>
               )}
@@ -160,7 +154,8 @@ export const LessonView: React.FC<LessonViewProps> = ({
                 <div className="season-table my-5 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
                   {section.table.caption && (
                     <div className="season-bar flex items-center gap-3 bg-slate-50 px-4 py-2 text-xs font-bold text-slate-700 dark:bg-slate-850 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
-                      {section.table.caption}<SeasonalAccent placement="bar" variant={lesson.sections.indexOf(section)+1}/>
+                      <span dangerouslySetInnerHTML={{ __html: formatContent(section.table.caption) }} />
+                      <SeasonalAccent placement="bar" variant={lesson.sections.indexOf(section)+1}/>
                     </div>
                   )}
                   <div className="overflow-x-auto">
@@ -168,9 +163,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
                       <thead className="border-b border-slate-200 bg-slate-100/70 text-slate-700 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300">
                         <tr>
                           {section.table.headers.map((h, i) => (
-                            <th key={i} className="px-4 py-3 font-semibold">
-                              {h}
-                            </th>
+                            <th key={i} className="px-4 py-3 font-semibold" dangerouslySetInnerHTML={{ __html: formatContent(h) }} />
                           ))}
                         </tr>
                       </thead>
@@ -186,9 +179,8 @@ export const LessonView: React.FC<LessonViewProps> = ({
                                 className={`px-4 py-3 text-slate-700 dark:text-slate-300 ${
                                   cIdx === 0 ? 'font-mono font-medium text-blue-600 dark:text-blue-400' : ''
                                 }`}
-                              >
-                                {cell}
-                              </td>
+                                dangerouslySetInnerHTML={{ __html: formatContent(cell) }}
+                              />
                             ))}
                           </tr>
                         ))}
@@ -221,8 +213,11 @@ export const LessonView: React.FC<LessonViewProps> = ({
                     )}
                   </div>
                   <div>
-                    <h3 className="flex items-center gap-3 font-bold mb-1 text-sm">{section.callout.title}<SeasonalAccent placement="bar" variant={lesson.sections.indexOf(section)+2}/></h3>
-                    <p className="whitespace-pre-line">{section.callout.content}</p>
+                    <h3 className="flex items-center gap-3 font-bold mb-1 text-sm">
+                      <span dangerouslySetInnerHTML={{ __html: formatContent(section.callout.title) }} />
+                      <SeasonalAccent placement="bar" variant={lesson.sections.indexOf(section)+2}/>
+                    </h3>
+                    <p className="whitespace-pre-line" dangerouslySetInnerHTML={{ __html: formatContent(section.callout.content) }} />
                   </div>
                 </div>
               )}
@@ -261,16 +256,16 @@ export const LessonView: React.FC<LessonViewProps> = ({
                   className="rounded-2xl border border-red-200/90 bg-red-50/50 p-4 dark:border-red-900/40 dark:bg-red-950/20"
                 >
                   <h3 className="font-bold text-red-800 dark:text-red-300 text-sm mb-2">
-                    Lỗi {idx + 1}: {item.mistake}
+                    Lỗi {idx + 1}: <span dangerouslySetInnerHTML={{ __html: formatContent(item.mistake) }} />
                   </h3>
                   <div className="space-y-1.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300">
                     <p>
                       <strong className="text-red-700 dark:text-red-400">• Nguyên nhân: </strong>
-                      {item.cause}
+                      <span dangerouslySetInnerHTML={{ __html: formatContent(item.cause) }} />
                     </p>
                     <p>
                       <strong className="text-emerald-700 dark:text-emerald-400">• Cách sửa đúng: </strong>
-                      {item.solution}
+                      <span dangerouslySetInnerHTML={{ __html: formatContent(item.solution) }} />
                     </p>
                   </div>
                 </div>
@@ -290,7 +285,7 @@ export const LessonView: React.FC<LessonViewProps> = ({
               {lesson.keyTakeaways.map((point, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
                   <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-500" />
-                  <span className="leading-relaxed">{point}</span>
+                  <span className="leading-relaxed" dangerouslySetInnerHTML={{ __html: formatContent(point) }} />
                 </li>
               ))}
             </ul>

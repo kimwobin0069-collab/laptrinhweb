@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { CodeExample } from '../types/lesson';
 import { IconCopy, IconCheck, IconCode } from './Icons';
 import { highlightW3Code } from '../utils/w3Highlighter';
+import { formatContent } from '../utils/contentFormatter';
 
 interface CodePlaygroundProps {
   example: CodeExample;
@@ -116,7 +117,7 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({ example }) => {
       {example.explanation && (
         <div className="mt-3.5 pt-3 border-t border-slate-200/80 dark:border-slate-800/80 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
           <strong className="text-emerald-700 dark:text-emerald-400">💡 Giải thích: </strong>
-          <span>{example.explanation}</span>
+          <span dangerouslySetInnerHTML={{ __html: formatContent(example.explanation) }} />
         </div>
       )}
     </div>
