@@ -181,7 +181,7 @@ function DonationDialog({ onClose }: { onClose: () => void }) {
               Trang web <strong>Học Lập Trình Web THPT</strong> được xây dựng hoàn toàn{' '}
               <strong>phi lợi nhuận</strong> nhằm mang kiến thức bổ ích đến gần hơn với
               học sinh. Mọi sự ủng hộ dù là một ly cà phê nhỏ hay lời chúc đều là nguồn động viên vô giá
-              giúp tôi duy trì máy chủ và phát triển thêm nhiều bài học hay!
+              giúp tôi duy trì trang web và phát triển thêm nhiều bài học hay!
             </p>
           </div>
         </div>
