@@ -240,13 +240,12 @@ export function App() {
               prevLesson={prevLesson}
               nextLesson={nextLesson}
               onSelectLesson={navigateToLesson}
-              onOpenDonation={() => setIsDonationOpen(true)}
             />
           )}
         </main>
       </div>
 
-      <Footer onOpenDonation={() => setIsDonationOpen(true)} />
+      <Footer />
       <SeasonPreview />
       {/* Search Modal */}
       <SearchModal
