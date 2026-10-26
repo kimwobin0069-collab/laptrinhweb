@@ -179,14 +179,26 @@ export function App() {
 
   // Standalone Tryit Editor Route (Full-Screen W3Schools Editor in new tab)
   if (tryitExampleId) {
-    const found = getExampleById(tryitExampleId);
+    let found = getExampleById(tryitExampleId);
+    if (!found) {
+      try {
+        const stored = sessionStorage.getItem(`tryit-custom-${tryitExampleId}`);
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          found = {
+            example: parsed,
+            lesson: currentLesson
+          };
+        }
+      } catch {}
+    }
     if (found) {
       return (
         <TryitEditor
           example={found.example}
           lesson={found.lesson}
           onBack={() => {
-            window.location.hash = `#/lesson/${found.lesson.id}`;
+            window.location.hash = `#/lesson/${found.lesson?.id || currentLesson.id}`;
           }}
         />
       );

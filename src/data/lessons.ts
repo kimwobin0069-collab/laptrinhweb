@@ -120,6 +120,48 @@ export function getExampleById(exampleId: string): { example: CodeExample; lesso
   for (const lesson of allLessons) {
     const example = lesson.codeExamples.find((e) => e.id === exampleId);
     if (example) return { example, lesson };
+
+    if (lesson.sections) {
+      for (const section of lesson.sections) {
+        const candidates = [
+          ...(section.example ? [section.example] : []),
+          ...(section.examples || []),
+          ...(section.subsections?.flatMap((s) => [
+            ...(s.example ? [s.example] : []),
+            ...(s.examples || [])
+          ]) || [])
+        ];
+        const match = candidates.find((c) => c.id === exampleId);
+        if (match) {
+          const fullHtml = match.code.includes('<!DOCTYPE html>') || match.code.includes('<body>')
+            ? match.code
+            : `<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>${match.title.replace(/<[^>]*>/g, '')}</title>
+</head>
+<body>
+
+${match.code}
+
+</body>
+</html>`;
+          return {
+            example: {
+              id: match.id || exampleId,
+              title: match.title.replace(/<[^>]*>/g, ''),
+              description: match.caption || '',
+              language: match.language || 'html',
+              initialCode: fullHtml,
+              runnable: true,
+              explanation: match.explanation || ''
+            },
+            lesson
+          };
+        }
+      }
+    }
   }
   const lesson = allLessons.find((l) => l.id === exampleId);
   if (lesson && lesson.codeExamples.length > 0) {

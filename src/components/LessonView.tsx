@@ -4,6 +4,7 @@ import { LessonFigures } from './LessonFigures';
 import { TechnologyLogo } from './TechnologyLogo';
 import { Lesson } from '../types/lesson';
 import { CodePlayground } from './CodePlayground';
+import { MiniExampleCard } from './MiniExampleCard';
 import { StaticDynamicDemo, WebMechanism } from './WebConcepts';
 import { TableOfContents } from './TableOfContents';
 import {
@@ -130,6 +131,78 @@ export const LessonView: React.FC<LessonViewProps> = ({
                       <p key={i} dangerouslySetInnerHTML={{ __html: formatContent(p) }} />
                     ))}
                   </div>
+                  {subsection.table && (
+                    <div className="season-table my-4 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                      {subsection.table.caption && (
+                        <div className="season-bar flex items-center gap-3 bg-slate-50 px-4 py-2.5 text-xs font-bold text-slate-700 dark:bg-slate-850 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
+                          <span dangerouslySetInnerHTML={{ __html: formatContent(subsection.table.caption) }} />
+                          <SeasonalAccent placement="bar" variant={2}/>
+                        </div>
+                      )}
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left text-xs sm:text-sm">
+                          <thead className="border-b border-slate-200 bg-slate-100/70 text-slate-700 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300">
+                            <tr>
+                              {subsection.table.headers.map((h, i) => (
+                                <th key={i} className="px-4 py-3 font-semibold" dangerouslySetInnerHTML={{ __html: formatContent(h) }} />
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80">
+                            {subsection.table.rows.map((row, rIdx) => (
+                              <tr key={rIdx} className="transition hover:bg-slate-50/80 dark:hover:bg-slate-800/40">
+                                {row.map((cell, cIdx) => (
+                                  <td
+                                    key={cIdx}
+                                    className={`px-4 py-3 text-slate-700 dark:text-slate-300 ${
+                                      cIdx === 0 ? 'font-mono font-medium text-blue-600 dark:text-blue-400' : ''
+                                    }`}
+                                    dangerouslySetInnerHTML={{ __html: formatContent(cell) }}
+                                  />
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  )}
+                  {subsection.tables && subsection.tables.map((tbl, tIdx) => (
+                    <div key={tIdx} className="season-table my-4 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                      {tbl.caption && (
+                        <div className="season-bar flex items-center gap-3 bg-slate-50 px-4 py-2.5 text-xs font-bold text-slate-700 dark:bg-slate-850 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
+                          <span dangerouslySetInnerHTML={{ __html: formatContent(tbl.caption) }} />
+                          <SeasonalAccent placement="bar" variant={tIdx + 1}/>
+                        </div>
+                      )}
+                      <div className="overflow-x-auto">
+                        <table className="w-full text-left text-xs sm:text-sm">
+                          <thead className="border-b border-slate-200 bg-slate-100/70 text-slate-700 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300">
+                            <tr>
+                              {tbl.headers.map((h, i) => (
+                                <th key={i} className="px-4 py-3 font-semibold" dangerouslySetInnerHTML={{ __html: formatContent(h) }} />
+                              ))}
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80">
+                            {tbl.rows.map((row, rIdx) => (
+                              <tr key={rIdx} className="transition hover:bg-slate-50/80 dark:hover:bg-slate-800/40">
+                                {row.map((cell, cIdx) => (
+                                  <td
+                                    key={cIdx}
+                                    className={`px-4 py-3 text-slate-700 dark:text-slate-300 ${
+                                      cIdx === 0 ? 'font-mono font-medium text-blue-600 dark:text-blue-400' : ''
+                                    }`}
+                                    dangerouslySetInnerHTML={{ __html: formatContent(cell) }}
+                                  />
+                                ))}
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  ))}
                   {subsection.codeSnippet && (
                     <figure>
                       <pre><code>{subsection.codeSnippet.code}</code></pre>
@@ -138,6 +211,10 @@ export const LessonView: React.FC<LessonViewProps> = ({
                       )}
                     </figure>
                   )}
+                  {subsection.example && <MiniExampleCard example={subsection.example} />}
+                  {subsection.examples && subsection.examples.map((ex, idx) => (
+                    <MiniExampleCard key={idx} example={ex} />
+                  ))}
                 </div>
               ))}
               {/* Bullet Points */}
@@ -149,11 +226,11 @@ export const LessonView: React.FC<LessonViewProps> = ({
                 </ul>
               )}
 
-              {/* Tables */}
+              {/* Single Table */}
               {section.table && (
                 <div className="season-table my-5 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
                   {section.table.caption && (
-                    <div className="season-bar flex items-center gap-3 bg-slate-50 px-4 py-2 text-xs font-bold text-slate-700 dark:bg-slate-850 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
+                    <div className="season-bar flex items-center gap-3 bg-slate-50 px-4 py-2.5 text-xs font-bold text-slate-700 dark:bg-slate-850 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
                       <span dangerouslySetInnerHTML={{ __html: formatContent(section.table.caption) }} />
                       <SeasonalAccent placement="bar" variant={lesson.sections.indexOf(section)+1}/>
                     </div>
@@ -189,6 +266,53 @@ export const LessonView: React.FC<LessonViewProps> = ({
                   </div>
                 </div>
               )}
+
+              {/* Multiple Tables */}
+              {section.tables && section.tables.map((tbl, tIdx) => (
+                <div key={tIdx} className="season-table my-5 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+                  {tbl.caption && (
+                    <div className="season-bar flex items-center gap-3 bg-slate-50 px-4 py-2.5 text-xs font-bold text-slate-700 dark:bg-slate-850 dark:text-slate-300 border-b border-slate-200 dark:border-slate-800">
+                      <span dangerouslySetInnerHTML={{ __html: formatContent(tbl.caption) }} />
+                      <SeasonalAccent placement="bar" variant={lesson.sections.indexOf(section) + tIdx + 1}/>
+                    </div>
+                  )}
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left text-xs sm:text-sm">
+                      <thead className="border-b border-slate-200 bg-slate-100/70 text-slate-700 dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300">
+                        <tr>
+                          {tbl.headers.map((h, i) => (
+                            <th key={i} className="px-4 py-3 font-semibold" dangerouslySetInnerHTML={{ __html: formatContent(h) }} />
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80">
+                        {tbl.rows.map((row, rIdx) => (
+                          <tr
+                            key={rIdx}
+                            className="transition hover:bg-slate-50/80 dark:hover:bg-slate-800/40"
+                          >
+                            {row.map((cell, cIdx) => (
+                              <td
+                                key={cIdx}
+                                className={`px-4 py-3 text-slate-700 dark:text-slate-300 ${
+                                  cIdx === 0 ? 'font-mono font-medium text-blue-600 dark:text-blue-400' : ''
+                                }`}
+                                dangerouslySetInnerHTML={{ __html: formatContent(cell) }}
+                              />
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))}
+
+              {/* Mini Examples */}
+              {section.example && <MiniExampleCard example={section.example} />}
+              {section.examples && section.examples.map((ex, idx) => (
+                <MiniExampleCard key={idx} example={ex} />
+              ))}
 
               {/* Callout Box */}
               {section.callout && (

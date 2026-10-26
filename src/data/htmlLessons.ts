@@ -359,63 +359,441 @@ export const htmlLessons: Lesson[] = [
     id: 'html-4',
     track: 'html',
     order: 4,
-    title: 'Tạo đoạn văn bản',
-    slug: 'tao-doan-van-ban',
-    description: 'Học cách sử dụng thẻ p, thẻ ngắt dòng br, đường kẻ ngang phân cách hr và hiểu quy tắc xử lý khoảng trắng trong HTML.',
-    estimatedMinutes: 15,
+    title: 'Tạo đoạn văn',
+    slug: 'tao-doan-van',
+    description: 'Học các phần tử HTML dùng để tạo đoạn văn bản (<p>), ngắt dòng (<br>), kẻ đường ngang (<hr>), chèn khoảng trắng (&nbsp;, &ensp;, &emsp;) và giữ nguyên định dạng (<pre>).',
+    estimatedMinutes: 20,
     objectives: [
-      'Sử dụng thành thạo thẻ <p> để chia nhỏ bài viết thành các đoạn văn mạch lạc.',
-      'Hiểu bản chất của thẻ xuống dòng <br> và đường kẻ ngang phân cách <hr>.',
-      'Nắm được quy tắc gộp khoảng trắng (whitespace collapsing) của trình duyệt web.'
+      'Sử dụng thành thạo thẻ <p> để tạo đoạn văn bản có khoảng đệm trên dưới rõ ràng.',
+      'Phân biệt cách ngắt dòng cùng đoạn bằng thẻ <br> và tạo đường kẻ ngang phân cách bằng thẻ <hr>.',
+      'Hiểu khái niệm thực thể ký tự và ứng dụng &nbsp;, &ensp;, &emsp; để tạo khoảng trắng có chủ đích.',
+      'Hiểu quy tắc gộp khoảng trắng của trình duyệt và dùng thẻ <pre> để giữ nguyên trọn vẹn định dạng mã lệnh.'
     ],
     sections: [
       {
-        id: 'the-p',
-        title: '1. Thẻ đoạn văn bản: <p>',
+        id: 'muc-dich-bai-hoc',
+        title: '1. Bốn nhu cầu cốt lõi khi trình bày văn bản trong HTML',
         paragraphs: [
-          'Thẻ <p> (viết tắt của Paragraph) được dùng để định nghĩa một đoạn văn bản.',
-          'Theo mặc định, trình duyệt sẽ tự động thêm một khoảng cách lề (margin) ở phía trên và phía dưới mỗi thẻ <p>, giúp bài viết rõ ràng, dễ đọc hơn thay vì dính liền vào nhau.'
-        ]
-      },
-      {
-        id: 'the-br-hr',
-        title: '2. Thẻ ngắt dòng <br> và đường phân cách <hr>',
-        paragraphs: [
-          'Trong nhiều trường hợp (như viết thơ, ghi lời bài hát, hoặc ghi địa chỉ liên hệ), bạn muốn xuống dòng nhưng KHÔNG muốn tạo ra khoảng cách lớn giữa hai đoạn. Khi đó, hãy sử dụng thẻ ngắt dòng <br> (break).',
-          'Thẻ <hr> (horizontal rule) tạo ra một đường kẻ ngang trên trang web, dùng để phân tách các chủ đề hoặc các phần nội dung khác nhau.'
+          'Khi xây dựng nội dung cho bất kỳ trang web nào, bạn sẽ liên tục gặp phải 4 nhu cầu cơ bản sau đây:'
         ],
         bulletPoints: [
-          '<br>: Xuống dòng ngay tại vị trí đặt thẻ, là thẻ rỗng không cần thẻ đóng.',
-          '<hr>: Đường phân cách chủ đề nằm ngang, cũng là thẻ rỗng.'
-        ]
+          '**Tạo đoạn văn bản (<p>):** Gom các câu chữ thành từng khối nội dung có khoảng đệm phân cách trên và dưới.',
+          '**Ngắt dòng (<br>) và Kẻ ngang (<hr>):** Xuống dòng ngay tại chỗ hoặc kẻ đường phân tách chủ đề.',
+          '**Chèn khoảng trắng (&nbsp;, &ensp;, &emsp;):** Vượt qua cơ chế tự động gộp khoảng cách của trình duyệt.',
+          '**Giữ nguyên định dạng (<pre>):** Bảo lưu chính xác từng dấu cách và phím Enter y hệt như lúc viết mã lệnh.'
+        ],
+        table: {
+          caption: 'Các phần tử dùng để tạo đoạn và ngắt dòng',
+          headers: ['Phần tử', 'Tên đầy đủ', 'Loại thẻ', 'Công dụng chính'],
+          rows: [
+            ['<p>', 'Paragraph', 'Cặp thẻ <p>...</p>', 'Tạo một đoạn văn bản, tự động xuống dòng và có khoảng trống trên/dưới'],
+            ['<br>', 'Line Break', 'Thẻ rỗng <br>', 'Ngắt dòng nhưng vẫn nằm cùng trong một đoạn văn bản'],
+            ['<hr>', 'Horizontal Rule', 'Thẻ rỗng <hr>', 'Tạo đường gạch ngang dài bằng độ rộng trang web để phân cách nội dung'],
+            ['<pre>', 'Preformatted Text', 'Cặp thẻ <pre>...</pre>', 'Giữ nguyên định dạng (khoảng trắng và ngắt dòng) như trong mã lệnh']
+          ]
+        }
       },
       {
-        id: 'khoang-trang-html',
-        title: '3. Quy tắc xử lý khoảng trắng trong HTML',
+        id: 'the-p-paragraph',
+        title: '2. Thẻ đoạn văn bản: <p>',
         paragraphs: [
-          'Trong tệp mã nguồn HTML, dù bạn gõ 10 dấu cách liên tiếp hoặc nhấn phím Enter xuống dòng 5 lần, trình duyệt cũng sẽ tự động rút gọn lại thành DUY NHẤT một dấu cách đơn.',
-          'Hiện tượng này gọi là "Whitespace Collapsing". Nếu muốn xuống dòng, bắt buộc phải dùng thẻ <br> hoặc gói nội dung trong thẻ <p> riêng biệt.',
-          'Để tạo khoảng trắng thụt đầu dòng chủ đích trong HTML, bạn có thể dùng các ký tự thực thể như &nbsp; (1 dấu cách), &ensp; (khoảng cách 2 dấu cách), &emsp; (khoảng cách rộng 4 dấu cách).'
+          'Phần tử <p> trong HTML dùng để định nghĩa một **đoạn văn bản**.',
+          'Một đoạn văn bản **luôn bắt đầu trên một dòng mới**, và trình duyệt sẽ **tự động thêm một khoảng trắng lề (margin)** ở phía trước và phía sau mỗi đoạn văn nhằm phân cách mạch lạc với các nội dung khác.',
+          'Khác với "đoạn" trong văn học, một đoạn trong HTML có thể chỉ gồm một vài từ hoặc một câu duy nhất.'
         ],
+        table: {
+          caption: 'Thông tin phần tử <p>',
+          headers: ['Phần tử', 'Cú pháp', 'Loại thẻ', 'Hành vi mặc định'],
+          rows: [
+            ['<p>', '<p>Nội dung đoạn văn</p>', 'Cặp thẻ mở/đóng', 'Xuống dòng mới, có khoảng đệm lề trên và dưới (margin)']
+          ]
+        },
+        example: {
+          id: 'mini-p-basic',
+          title: 'Ví dụ: Thẻ <p> tạo đoạn văn bản',
+          caption: 'Tâm trạng học sinh trước và sau 4 tiết học căng thẳng:',
+          code: `<p>Tiết 1 đầu tuần: Tràn đầy năng lượng, mắt sáng long lanh, hứa quyết tâm 10 điểm!</p>
+<p>Tiết 4 trưa nắng: Mắt nhắm nghiền, hồn bay theo đĩa cơm sườn ngoài cổng trường...</p>
+<p>Chỉ có tiếng chuông ra chơi mới đủ sức đánh thức được tôi!</p>`,
+          explanation: 'Mỗi thẻ <p> tự động tách thành một khối độc lập và tạo khoảng đệm lề trên/dưới — phân chia ranh giới rõ rệt giữa quyết tâm học tập và cơn buồn ngủ gục ngã!'
+        }
+      },
+      {
+        id: 'co-che-hien-thi-html',
+        title: '3. Cơ chế hiển thị & Bỏ qua dòng trống, khoảng trắng',
+        paragraphs: [
+          'Bạn không thể biết chắc trang web sẽ hiển thị thế nào nếu chỉ dựa vào kích thước màn hình của bạn. Màn hình lớn, màn hình điện thoại nhỏ, hoặc việc người dùng co giãn cửa sổ trình duyệt đều sẽ tạo ra kết quả dòng chữ co giãn khác nhau.',
+          'Đặc biệt, trong HTML, bạn **không thể** thay đổi cách hiển thị bằng cách gõ thêm nhiều dấu cách hoặc nhấn phím Enter xuống dòng nhiều lần trong tệp mã nguồn.',
+          'Trình duyệt sẽ **tự động loại bỏ và rút gọn** tất cả các khoảng trắng và dòng trống dư thừa này thành **duy nhất một dấu cách đơn** (quy tắc **Whitespace Collapsing**).'
+        ],
+        example: {
+          id: 'mini-whitespace-collapsing',
+          title: 'Ví dụ: Trình duyệt phũ phàng gộp dòng trống và dấu cách',
+          caption: 'Nhắn tin cầu cứu bài tập lúc nửa đêm và cái kết đắng lòng:',
+          code: `<p>
+  Tôi nhắn tin hỏi mượn vở đứa bạn:
+  Bạn             ơi             cứu             tao             với,
+  cho             tao             chép             nhờ             bài
+  tập             Toán             nha?
+</p>
+
+<p>
+  Đứa             bạn             học             giỏi             rep:
+  "Tự             làm             đi."             (Đã             xem             00:01)
+</p>`,
+          explanation: 'Dù bạn có gõ dấu cách dãn xa cả mét hay Enter xuống dòng cầu xin thiết tha, trình duyệt và đứa bạn đều chung một bài phũ: gộp tất cả lại thành đúng 1 dấu cách cụt ngủn!'
+        },
         callout: {
           type: 'tip',
-          title: 'Mẹo định dạng',
-          content: 'Nếu bạn muốn trình duyệt giữ nguyên từng dấu cách và ngắt dòng đúng y hệt như trong mã soạn thảo (ví dụ hiển thị thơ hoặc khối mã lệnh), hãy sử dụng thẻ <pre> (preformatted text).'
+          title: 'Làm thế nào để xuống dòng và tạo khoảng trắng?',
+          content: 'Để chủ động xuống dòng, ta phải dùng thẻ <br> hoặc gói nội dung trong thẻ <p> riêng. Để tạo khoảng trắng rộng hơn, ta dùng các thực thể ký tự như &nbsp;, &ensp;, &emsp; hoặc thẻ <pre>.'
+        }
+      },
+      {
+        id: 'the-br-line-break',
+        title: '4. Thẻ ngắt dòng: <br>',
+        paragraphs: [
+          'Phần tử <br> trong HTML định nghĩa một **điểm ngắt dòng** (line break).',
+          'Hãy sử dụng <br> nếu bạn muốn **xuống dòng mới** nhưng **KHÔNG muốn bắt đầu một đoạn văn bản mới** (nội dung tiếp theo vẫn nằm chung trong cùng một đoạn văn).',
+          'Thẻ <br> là một **thẻ rỗng** (empty tag / void element), điều đó có nghĩa là nó **không có thẻ đóng** (tuyệt đối không viết </br>).'
+        ],
+        table: {
+          caption: 'Thông tin phần tử ngắt dòng <br>',
+          headers: ['Phần tử', 'Cú pháp', 'Đặc điểm', 'Khi nào nên dùng?'],
+          rows: [
+            ['<br>', '<br>', 'Thẻ rỗng, không có thẻ đóng', 'Dùng khi viết lời bài hát, câu thơ, địa chỉ nhà hoặc thông tin liên hệ']
+          ]
+        },
+        example: {
+          id: 'mini-br-break',
+          title: 'Ví dụ: Thẻ <br> ngắt dòng trong cùng một đoạn văn',
+          caption: 'Cú sốc đầu giờ khi giáo viên lật sổ kiểm tra miệng:',
+          code: `<p>Thầy giáo: "Hôm nay thầy gọi ngẫu nhiên lên bảng kiểm tra miệng nha!"<br>
+Đứa bạn cùng bàn: "Mày thuộc bài không nhắc tao với?"<br>
+Tôi: "Tao còn chưa kịp mở vở ra xem hôm nay học môn gì..."<br>
+Não bộ lúc này: Đứng hình toàn tập, ngắt dòng tại chỗ!</p>`,
+          explanation: 'Thẻ <br> giúp bạn xuống dòng khẩn cấp tại chỗ trong cùng một đoạn văn — y hệt như nhịp tim tụt dốc không phanh khi nghe tiếng giáo viên lật từng trang sổ điểm!'
+        },
+        callout: {
+          type: 'warning',
+          title: 'Tránh lạm dụng <br> để chỉnh khoảng cách',
+          content: 'Không nên gõ liên tiếp nhiều thẻ <br><br><br> để đẩy các phần tử cách xa nhau. Khoảng cách bố cục nên được quản lý bằng CSS margin/padding.'
+        }
+      },
+      {
+        id: 'the-hr-horizontal-rule',
+        title: '5. Thẻ đường kẻ ngang: <hr>',
+        paragraphs: [
+          'Thẻ <hr> (Horizontal Rule) định nghĩa một **sự chuyển đổi chủ đề** (thematic break) trên trang web và hầu như luôn được hiển thị dưới dạng một **đường gạch ngang** dài bằng độ rộng trang.',
+          'Phần tử <hr> được dùng để phân tách các khối nội dung độc lập hoặc đánh dấu bước chuyển ý giữa các đề mục trong bài viết.',
+          'Tương tự như <br>, thẻ <hr> cũng là một **thẻ rỗng** (empty tag) và **không có thẻ đóng** (tuyệt đối không viết </hr>).'
+        ],
+        table: {
+          caption: 'Thông tin phần tử kẻ ngang <hr>',
+          headers: ['Phần tử', 'Cú pháp', 'Đặc điểm', 'Công dụng'],
+          rows: [
+            ['<hr>', '<hr>', 'Thẻ rỗng, không có thẻ đóng', 'Tạo đường gạch ngang phân định ranh giới giữa các chủ đề']
+          ]
+        },
+        example: {
+          id: 'mini-hr-rule',
+          title: 'Ví dụ: Thẻ <hr> phân cách các đề mục nội dung',
+          caption: 'Đường ranh giới phân định giữa Ảo tưởng và Thực tế khi đi thi:',
+          code: `<h2>Kỳ vọng trước giờ phát đề thi:</h2>
+<p>Tối qua ôn trúng tủ, tự tin 10 điểm tuyệt đối, chuẩn bị bước lên bục vinh quang!</p>
+<hr>
+<h2>Thực tế sau khi đọc xong Câu 1:</h2>
+<p>Hình như tủ này là tủ lạnh... Sao đề thi này nhìn lạ hoắc vậy thầy ơi?!</p>
+<hr>`,
+          explanation: 'Thẻ <hr> vẽ ra một đường kẻ ngang sắc lẹm — phân chia dứt khoát giữa sự tự tin ngút trời và hiện thực phũ phàng khi nhận đề thi!'
+        }
+      },
+      {
+        id: 'thuc-the-khoang-trang',
+        title: '6. Thực thể ký tự tạo khoảng trắng',
+        paragraphs: [
+          'Các ký tự đặc biệt bắt đầu bằng dấu & (ampersand) và kết thúc bằng dấu ; (semicolon) được gọi là **thực thể ký tự** (character entities).',
+          'Khi bạn muốn chủ động tạo thêm khoảng cách thụt dòng hoặc ngăn các từ không bị ngắt dòng rời rạc, hãy sử dụng các thực thể ký tự sau:'
+        ],
+        table: {
+          caption: 'Bảng các thực thể ký tự tạo khoảng trắng',
+          headers: ['Thực thể', 'Tên đầy đủ', 'Độ rộng', 'Công dụng chính'],
+          rows: [
+            ['&nbsp;', 'Non-breaking space', '1 khoảng trắng', 'Chèn 1 khoảng trắng tiêu chuẩn (không bị ngắt xuống dòng)'],
+            ['&ensp;', 'En space', '2 khoảng trắng', 'Chèn 2 khoảng trắng (bằng độ rộng chữ cái N in hoa)'],
+            ['&emsp;', 'Em space', '4 khoảng trắng', 'Chèn 4 khoảng trắng (bằng độ rộng chữ cái M in hoa, dùng thụt đầu dòng)']
+          ]
+        },
+        example: {
+          id: 'mini-space-entities',
+          title: 'Ví dụ: So sánh các cấp độ khoảng trắng',
+          caption: 'Dùng thực thể ký tự đo khoảng cách và tốc độ của học sinh:',
+          code: `<p>Khoảng cách từ nhà đến trường:&emsp;&emsp;&emsp;30km (Đi xe đạp điện hết pin)</p>
+<p>Khoảng cách từ cổng trường ra quán trà sữa:&ensp;&ensp;2 bước chân (Bay ra trong 1 nốt nhạc)</p>
+<p>Tốc độ khi nghe thầy cô giảng bài:&nbsp;0.25x (Mắt lim dim buồn ngủ)</p>
+<p>Tốc độ khi nghe tiếng chuông ra về:<br>&emsp;&emsp;&emsp;&emsp;&emsp;Vận tốc ánh sáng, không kịp nhìn thấy bóng dáng!</p>`,
+          explanation: '&ensp; rộng gấp 2 lần dấu cách thường, và &emsp; rộng gấp 4 lần. Dồn cả một dàn &emsp; ở dòng cuối để minh họa tốc độ phi nhanh như chớp khi chuông tan trường vừa điểm!'
+        },
+        callout: {
+          type: 'warning',
+          title: 'Bắt buộc phải có dấu chấm phẩy (;)',
+          content: 'Mọi thực thể ký tự đều phải kết thúc bằng dấu ; (chấm phẩy). Nếu viết thiếu (như &nbsp hay &emsp), trình duyệt sẽ hiển thị thành văn bản thô.'
+        }
+      },
+      {
+        id: 'van-de-bai-tho-va-the-pre',
+        title: '7. Vấn đề bài thơ và thẻ <pre>',
+        paragraphs: [
+          'Khi bạn muốn hiển thị một bài thơ hoặc lời bài hát bằng thẻ <p>, một vấn đề lớn sẽ nảy sinh:',
+          'Do cơ chế tự động gộp dòng của trình duyệt, **bài thơ sẽ bị hiển thị dồn lại trên một dòng duy nhất**, làm mất hoàn toàn cấu trúc khổ thơ và nhịp điệu bài thơ!'
+        ],
+        examples: [
+          {
+            id: 'mini-poem-p-problem',
+            title: 'Vấn đề: Bài thơ than thở học đường bị dẹp lép khi dùng thẻ <p>',
+            caption: 'Quan sát thảm họa hiển thị khi gói thơ vào thẻ <p> thông thường:',
+            code: `<p>
+  Đầu tuần hừng hực quyết tâm
+  Giữa tuần tụt dốc âm thầm mệt nhoài
+  Thứ Bảy deadline kề vai
+  Chủ Nhật thức trắng... vừa khóc vừa làm!
+</p>`,
+            explanation: 'Dù bạn đã cất công gieo vần xuống dòng từng câu thơ, trình duyệt vẫn ép dẹp lép toàn bộ bài thơ dính liền trên một hàng ngang mất hết cảm xúc!'
+          },
+          {
+            id: 'mini-poem-pre-solution',
+            title: 'Giải pháp: Thẻ <pre> giữ nguyên trọn vẹn nhịp thơ',
+            caption: 'Nội dung bên trong thẻ <pre> được bảo lưu 100% dòng ngắt và thụt lề:',
+            code: `<pre>
+Đầu tuần hừng hực quyết tâm
+    Giữa tuần tụt dốc âm thầm mệt nhoài
+Thứ Bảy deadline kề vai
+    Chủ Nhật thức trắng... vừa khóc vừa làm!
+            (Nhật ký học tập của học sinh chăm chỉ)
+</pre>`,
+            explanation: 'Bên trong <pre>...</pre>, từng phím Enter xuống dòng, khoảng thụt lề và lời than thở thức trắng đêm đều được bảo lưu nguyên vẹn 100% y như lúc soạn thảo!'
+          }
+        ],
+        table: {
+          caption: 'Thông tin phần tử <pre>',
+          headers: ['Phần tử', 'Cú pháp', 'Công dụng chính'],
+          rows: [
+            ['<pre>', '<pre>Văn bản định dạng sẵn</pre>', 'Bảo lưu trọn vẹn cả phím cách lẫn phím Enter y hệt trong mã lệnh']
+          ]
+        },
+        callout: {
+          type: 'info',
+          title: 'Khi nào nên dùng thẻ <pre>?',
+          content: 'Thẻ <pre> cực kỳ lý tưởng để trình bày các bài thơ, lời bài hát, tranh ký tự (ASCII art), hoặc trích dẫn các đoạn mã nguồn lập trình máy tính.'
         }
       }
     ],
     codeExamples: [
       {
-        id: 'vd-portfolio-doan-van',
-        title: 'Thực hành: Portfolio cá nhân, ngắt dòng & thơ với <pre>',
-        description: 'Quan sát sự kết hợp của thẻ p, ngắt dòng br, đường phân cách hr, khoảng cách thụt dòng &emsp; &ensp; &nbsp; và thẻ pre giữ nguyên cấu trúc thơ.',
+        id: 'vd-portfolio-1',
+        title: 'portfolio-1.html',
+        description: 'Đoạn mã từ dòng 11 đến 15 minh họa tạo đoạn văn bằng thẻ p, ngắt dòng với br, kẻ đường ngang hr và kết hợp các thực thể &emsp;, &ensp;, &nbsp; để thụt lề.',
         language: 'html',
         runnable: true,
         initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Trang cá nhân & Đoạn văn HTML</title>
+  <title>portfolio-1.html</title>
+</head>
+<body>
+  <h1>Chào mừng bạn ghé thăm portfolio</h1>
+  <p>Trang web này tự tay mình dệt nên.</p>
+  <br>
+  <p>Đây là đường đời bằng phẳng mà bạn ao ước...</p>
+  <hr>
+  <p>... cho đến khi<br>&emsp;&emsp;&emsp;&ensp;&ensp;&nbsp;bạn sụp ổ gà :)</p>
+</body>
+</html>`,
+        explanation: 'Phân tích mã nguồn:\n- <h1>: Tiêu đề chính của trang portfolio.\n- <p>: Tạo các đoạn văn bản độc lập, có khoảng đệm trên/dưới rõ ràng.\n- <br>: Xuống hàng ngay tại chỗ nhưng vẫn nằm cùng trong một đoạn văn.\n- <hr>: Tạo đường gạch ngang dài bằng độ rộng trang web để ngăn cách nội dung.\n- Thực thể khoảng trắng: &emsp;&emsp;&emsp; (3 × 4 = 12 khoảng trắng) + &ensp;&ensp; (2 × 2 = 4 khoảng trắng) + &nbsp; (1 khoảng trắng) = thụt lề đúng 17 khoảng trắng trước câu "bạn sụp ổ gà :)".'
+      },
+      {
+        id: 'vd-portfolio-2',
+        title: 'portfolio.html',
+        description: 'Đoạn mã từ dòng 16 đến 22 hiển thị bài thơ "Một chiều ngược gió" bằng thẻ pre, giữ nguyên trọn vẹn từng khoảng thụt lề và lần nhấn phím Enter.',
+        language: 'html',
+        runnable: true,
+        initialCode: `<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>portfolio.html</title>
+</head>
+<body>
+  <h1>Chào mừng bạn ghé thăm portfolio</h1>
+  <p>Trang web này tự tay mình dệt nên.</p>
+  <br>
+  <p>Đây là đường đời bằng phẳng mà bạn ao ước...</p>
+  <hr>
+  <p>... cho đến khi<br>&emsp;&emsp;&emsp;&ensp;&ensp;&nbsp;bạn sụp ổ gà :)</p>
+  <br>
+  <p>Khi sụp rồi thì bạn thường tìm đến những thứ self-help hoặc chữa lành.</p>
+
+  <h2>Một chiều ngược gió</h2>
+  <pre>Em ngược đường, ngược nắng để yêu anh
+    Ngược phố tan tầm, ngược chiều gió thổi
+Ngược lòng mình tìm về nông nổi
+    Lãng du đi vô định cánh chim trời.</pre>
+</body>
+</html>`,
+        explanation: 'So sánh trực quan hai cách:\n- Cách 1 (ở phần trên): Phải kết hợp thủ công các thẻ <p>, <br>, <hr> và các thực thể &emsp;, &ensp;, &nbsp; để tạo khoảng cách và ngắt dòng.\n- Cách 2 (ở phần bài thơ): Gói nội dung trong thẻ <pre>...</pre>. Toàn bộ bài thơ giữ nguyên từng khoảng thụt dòng và phím Enter đúng y như lúc bạn gõ trong tệp mã lệnh mà không cần thêm bất kỳ thẻ bổ trợ nào!'
+      }
+    ],
+    commonMistakes: [],
+    keyTakeaways: [
+      'Thẻ <p> dùng để tạo đoạn văn bản, tự động xuống dòng và có khoảng trống trên/dưới rõ ràng.',
+      'Thẻ <br> dùng để ngắt dòng trong cùng đoạn; thẻ <hr> kẻ đường gạch ngang phân cách toàn trang web.',
+      'Thực thể ký tự bắt đầu bằng & và kết thúc bằng ;: &nbsp; (1 khoảng trắng), &ensp; (2 khoảng trắng), &emsp; (4 khoảng trắng).',
+      'Thẻ <pre> giữ nguyên trọn vẹn 100% dòng trống và khoảng trắng như trong mã lệnh soạn thảo.'
+    ]
+  },
+  {
+    id: 'html-5',
+    track: 'html',
+    order: 5,
+    title: 'Định dạng nội dung văn bản',
+    slug: 'dinh-dang-noi-dung-van-ban',
+    description: 'Tìm hiểu các phần tử định dạng văn bản đặc biệt trong HTML: in đậm (<b>, <strong>), in nghiêng (<i>, <em>), đánh dấu dạ quang (<mark>), chữ nhỏ (<small>), gạch bỏ (<del>), chèn thêm (<ins>) và chỉ số trên/dưới (<sup>, <sub>).',
+    estimatedMinutes: 20,
+    objectives: [
+      'Phân biệt thẻ mang ý nghĩa ngữ nghĩa (<strong>, <em>) và thẻ chỉ định hình thức thuần túy (<b>, <i>).',
+      'Ứng dụng các thẻ <mark>, <small>, <del>, <ins>, <u> để trình bày văn bản sinh động, chuyên nghiệp.',
+      'Sử dụng <sub> và <sup> để viết công thức toán học và phương trình hóa học chuẩn xác.'
+    ],
+    sections: [
+      {
+        id: 'tong-quan-dinh-dang',
+        title: '1. Các phần tử định dạng văn bản đặc biệt',
+        paragraphs: [
+          'Trong HTML, các phần tử định dạng (Formatting Elements) được thiết kế chuyên biệt để biểu diễn các dạng văn bản đặc biệt như in đậm, in nghiêng, đánh dấu nổi bật, chữ nhỏ hay các chỉ số trên và dưới.',
+          'Bảng dưới đây liệt kê 10 phần tử định dạng văn bản cốt lõi theo chuẩn W3Schools:'
+        ],
+        table: {
+          caption: 'Bảng tra cứu các phần tử định dạng văn bản trong HTML',
+          headers: ['Phần tử', 'Tên đầy đủ', 'Hiển thị mặc định', 'Ý nghĩa & Công dụng'],
+          rows: [
+            ['<b>', 'Bold text', 'In đậm', 'Định dạng chữ in đậm thuần túy về hình thức (không mang ý nghĩa quan trọng)'],
+            ['<strong>', 'Important text', 'In đậm', 'Nhấn mạnh văn bản quan trọng (công cụ đọc màn hình và máy tìm kiếm sẽ chú ý)'],
+            ['<i>', 'Italic text', 'In nghiêng', 'Định dạng chữ in nghiêng (dùng cho thuật ngữ, từ tiếng nước ngoài, tên sách/tàu thuyền, ý nghĩ)'],
+            ['<em>', 'Emphasized text', 'In nghiêng', 'Nhấn mạnh sắc thái câu nói (máy đọc màn hình Screen Reader sẽ phát âm nhấn giọng)'],
+            ['<mark>', 'Marked text', 'Nền vàng dạ quang', 'Tô màu nền nổi bật để đánh dấu từ khóa cần chú ý'],
+            ['<small>', 'Smaller text', 'Cỡ chữ nhỏ hơn', 'Hiển thị văn bản cỡ nhỏ hơn thông thường (dùng cho bản quyền, chú thích phụ)'],
+            ['<del>', 'Deleted text', 'Gạch ngang thân chữ', 'Đánh dấu văn bản đã bị xóa bỏ hoặc giá gốc cũ'],
+            ['<ins>', 'Inserted text', 'Gạch chân dưới chữ', 'Đánh dấu văn bản được chèn thêm mới hoặc giá mới sau khuyến mãi'],
+            ['<sub>', 'Subscript text', 'Nhỏ, hạ thấp xuống', 'Tạo chỉ số dưới (dùng cho công thức hóa học như H₂O, CO₂)'],
+            ['<sup>', 'Superscript text', 'Nhỏ, nhô lên cao', 'Tạo chỉ số trên (dùng cho lũy thừa toán học như x², số mũ, chú thích)']
+          ]
+        }
+      },
+      {
+        id: 'the-b-va-strong',
+        title: '2. Thẻ in đậm: <b> và <strong>',
+        paragraphs: [
+          'Cả hai thẻ <b> và <strong> đều làm văn bản hiển thị in đậm trên màn hình, nhưng có sự khác biệt cốt lõi về **ý nghĩa ngữ nghĩa (Semantic HTML)**:',
+          'Thẻ <b> (bold): Định dạng chữ in đậm về mặt thị giác đơn thuần, không làm tăng mức độ quan trọng của nội dung.',
+          'Thẻ <strong> (strong importance): Định nghĩa văn bản có tầm quan trọng đặc biệt. Công cụ tìm kiếm (SEO) sẽ đánh giá cao từ khóa này, và phần mềm đọc màn hình sẽ nhấn mạnh giọng khi đọc.'
+        ],
+        example: {
+          id: 'mini-b-strong',
+          title: 'Ví dụ: So sánh thẻ <b> và <strong>',
+          caption: 'Cuộc chiến sinh tử giữa Lý trí học tập và Tiếng gọi chiếc giường:',
+          code: `<p>Tối nay phải <b>làm xong bài tập</b> rồi mới đi ngủ.</p>
+<p>Giấc ngủ là điều <strong>quan trọng nhất</strong> của đời người, tắt đèn đi ngủ ngay!</p>
+<p>Deadline có thể làm lại, nhưng giấc ngủ thanh xuân thì <strong>chỉ có một lần!</strong></p>`,
+          explanation: 'Thẻ <b> chỉ in đậm nhẹ nhàng lời khuyên lý trí; nhưng thẻ <strong> mới thể hiện tầm quan trọng tối cao của chiếc giường êm ấm!'
+        }
+      },
+      {
+        id: 'the-i-va-em',
+        title: '3. Thẻ in nghiêng: <i> và <em>',
+        paragraphs: [
+          'Cả hai thẻ <i> và <em> đều làm văn bản hiển thị in nghiêng, nhưng phục vụ ngữ cảnh sử dụng khác nhau:',
+          'Thẻ <i> (italic): Định dạng chữ in nghiêng về mặt hình thức. Thẻ này thường dùng cho thuật ngữ kỹ thuật, từ mượn tiếng nước ngoài, tên tác phẩm nghệ thuật, hoặc một suy nghĩ thầm kín.',
+          'Thẻ <em> (emphasized): Định nghĩa đoạn văn bản được nhấn mạnh sắc thái. Trình đọc màn hình (Screen Reader) sẽ phát âm từ ngữ trong thẻ <em> với âm điệu nhấn mạnh bằng giọng nói.'
+        ],
+        example: {
+          id: 'mini-i-em',
+          title: 'Ví dụ: So sánh thẻ <i> và <em>',
+          caption: 'Kế hoạch ôn thi nghiêm túc vs Thực tế lướt mạng xã hội:',
+          code: `<p>Mình đang <i>tập trung cao độ</i> để ôn thi...</p>
+<p><em>Ủa drama gì mới trên mạng vậy trời, phải vào hóng ngay!</em></p>
+<p>Thôi mệt quá, để <i>ngày mai</i> học tiếp...</p>
+<p><em>Mai của ngày mai nữa nha!</em></p>`,
+          explanation: 'Thẻ <i> biểu thị lời tự nhủ yếu ớt khi tự lừa bản thân; còn thẻ <em> nhấn mạnh sự hào hứng tột độ khi hóng chuyện trên mạng!'
+        }
+      },
+      {
+        id: 'the-small-va-mark',
+        title: '4. Thẻ chữ nhỏ <small> và Thẻ dạ quang <mark>',
+        paragraphs: [
+          'Thẻ <small>: Làm cho kích thước chữ nhỏ hơn một cỡ so với văn bản xung quanh. Rất phù hợp cho các dòng bản quyền chân trang, điều khoản dịch vụ hoặc thông tin ghi chú phụ.',
+          'Thẻ <mark>: Đánh dấu đoạn văn bản cần làm nổi bật bằng một lớp nền màu vàng dạ quang (tương tự như khi bạn dùng bút dạ quang tô lên dòng chữ trong sách).'
+        ],
+        example: {
+          id: 'mini-small-mark',
+          title: 'Ví dụ: Thẻ <mark> tô sáng và thẻ <small> chữ nhỏ',
+          caption: 'Bút dạ quang highlight đúng thứ cần thiết và thu nhỏ điều không muốn nghe:',
+          code: `<p>Sách dày 200 trang nhưng tôi chỉ đọc dòng: <mark>Phần này được giảm tải, không thi</mark>!</p>
+<p><small>(Nhớ ôn kỹ lý thuyết từ chương 1 đến chương 10, chữ nhỏ quá không ai nhớ)</small></p>
+<p><mark>Ngày mai cả lớp được nghỉ tiết đầu!</mark></p>
+<p><small>(Vui mừng khôn xiết nhưng phải giả vờ tiếc nuối vì không được học :))</small></p>`,
+          explanation: 'Thẻ <mark> như cây bút dạ quang tô sáng rực rỡ những tin vui chấn động; còn thẻ <small> thu bé tí những lời nhắc nhở học bài dài lê thê!'
+        }
+      },
+      {
+        id: 'the-del-va-ins',
+        title: '5. Thẻ xóa bỏ <del> và Thẻ chèn thêm <ins>',
+        paragraphs: [
+          'Thẻ <del> (deleted text): Đại diện cho phần văn bản đã bị xóa bỏ hoặc chỉnh sửa trong tài liệu. Trình duyệt sẽ hiển thị một đường kẻ gạch ngang thân chữ.',
+          'Thẻ <ins> (inserted text): Đại diện cho phần văn bản mới được thêm vào tài liệu. Trình duyệt sẽ hiển thị đường gạch chân dưới chữ.',
+          'Trong thương mại điện tử, cặp thẻ <del> và <ins> thường xuyên được kết hợp cùng nhau để thể hiện giá cũ bị gạch bỏ và giá mới khuyến mãi.'
+        ],
+        example: {
+          id: 'mini-del-ins',
+          title: 'Ví dụ: Kết hợp thẻ <del> và <ins>',
+          caption: 'Cú quay xe thế kỷ giữa Kế hoạch lý tưởng và Thực tế trần trụi:',
+          code: `<p><del>5:30 dậy chạy bộ, học từ vựng tiếng Anh</del> <ins>6:45 giật mình cuống cuồng chạy đến lớp</ins>.</p>
+<p><del>Quyết tâm trở thành học sinh chăm ngoan gương mẫu</del> <ins>Cố gắng không ngủ gật trong giờ là may lắm rồi</ins>.</p>
+<p>Tiền ăn sáng: <del>50.000đ</del>, thực tế còn <ins>0đ vì lỡ bao đứa bạn ly trà sữa</ins>!</p>`,
+          explanation: 'Thẻ <del> gạch phăng đi những lời thề non hẹn biển đầu năm; nhường chỗ cho thẻ <ins> gạch chân đón nhận hiện thực dở khóc dở cười!'
+        }
+      },
+      {
+        id: 'the-sub-va-sup',
+        title: '6. Chỉ số dưới <sub> và Chỉ số trên <sup>',
+        paragraphs: [
+          'Thẻ <sub> (subscript): Hiển thị chữ có kích thước nhỏ hơn và hạ thấp xuống nửa dòng ký tự. Thường dùng trong các công thức hóa học (như H₂O, CO₂, H₂SO₄) hoặc chỉ số biến số.',
+          'Thẻ <sup> (superscript): Hiển thị chữ có kích thước nhỏ hơn và nhô lên cao nửa dòng ký tự. Thường dùng cho số mũ lũy thừa toán học (như x², y³), công thức vật lý hoặc số đánh dấu chú thích chân trang (footnote).'
+        ],
+        example: {
+          id: 'mini-sub-sup',
+          title: 'Ví dụ: Công thức hóa học và toán học với <sub> và <sup>',
+          caption: 'Vận dụng Toán, Lý, Hóa để giải thích các hiện tượng học đường:',
+          code: `<p>Hóa học buổi sáng: C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub> (Cafein) + H<sub>2</sub>O = Năng lượng duy trì sự tỉnh táo!</p>
+<p>Định luật bảo toàn điểm số: Tổng điểm cả bàn luôn là hằng số (Đứa này 9<sup>đ</sup> thì đứa kia 1<sup>đ</sup>).</p>
+<p>Chỉ số áp lực mùa thi cử: Áp suất P = 10<sup>99</sup> N/m<sup>2</sup> (Nổ tung đầu óc)!</p>
+<p>Vận tốc phi vào canteen khi nghe chuông: v = 3 &times; 10<sup>8</sup> m/s (Bằng tốc độ ánh sáng)!</p>`,
+          explanation: 'Dùng thẻ <sub> biểu diễn các công thức hóa học cafein và nước; dùng thẻ <sup> nâng lũy thừa áp lực thi cử và tốc độ bay vào canteen lên tầm vũ trụ!'
+        }
+      }
+    ],
+    codeExamples: [
+      {
+        id: 'vd-portfolio-dinh-dang',
+        title: 'portfolio.html',
+        description: 'Tiếp nối tệp portfolio.html từ Bài 4, vận dụng các thẻ em, strong, small, mark, u, sub và sup để trình bày định luật bảo toàn năng lượng.',
+        language: 'html',
+        runnable: true,
+        initialCode: `<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>portfolio.html</title>
 </head>
 <body>
     <h1>Chào mừng bạn ghé thăm portfolio</h1>
@@ -432,118 +810,28 @@ export const htmlLessons: Lesson[] = [
     Ngược phố tan tầm, ngược chiều gió thổi
 Ngược lòng mình tìm về nông nổi
     Lãng du đi vô định cánh chim trời.</pre>
+    <br>
+    <p>Một cách <em>chữa lành</em> tốt là hãy <em>"tựa"</em> vào khoa học.</p>
+    <p><strong>The law of conservation of energy</strong> states that 
+        <em>energy cannot be created <small>or</small> destroyed, 
+        <mark>only transformed from one form to another 
+        or transferred from one system to another</mark>, 
+        <small>but</small> the total energy of the system 
+        <u>remains constant</u></em>.</p>
+    <p>For example,</p>
+    <p>E<sub>total</sub> = E<sub>kinetic</sub> + E<sub>gravitational</sub> =
+        1/2mv<sup>2</sup> + mgh</p> 
 </body>
 </html>`,
-        explanation: 'Quan sát kết quả: Thẻ <p> tạo đoạn văn có khoảng cách trên dưới rõ rệt; thẻ <br> ngắt dòng sát cạnh; thẻ <hr> kẻ đường ngang phân tách nội dung; các thực thể &emsp;, &ensp;, &nbsp; tạo khoảng lùi thủ công; và thẻ <pre> bảo lưu hoàn hảo từng khoảng trống và thụt dòng của bài thơ.'
+        explanation: 'Phân tích chi tiết các thẻ định dạng được kết hợp trong tệp portfolio.html:\n- Thẻ <em>: Nhấn mạnh sắc thái của từ "chữa lành" và từ "tựa".\n- Thẻ <strong>: Nhấn mạnh tên định luật "The law of conservation of energy" là kiến thức cốt lõi.\n- Thẻ <mark>: Tô sáng dạ quang màu vàng cho mệnh đề chuyển hóa năng lượng quan trọng nhất.\n- Thẻ <small>: Thu nhỏ kích thước hai liên từ "or" và "but" tạo độ tương phản thị giác thú vị.\n- Thẻ <u>: Gạch chân khẳng định kết luận "remains constant" (không đổi).\n- Thẻ <sub> & <sup>: Trình bày công thức vật lý chuẩn xác: các chỉ số E_total, E_kinetic, E_gravitational và số mũ vận tốc v^2.'
       }
     ],
-    commonMistakes: [
-      {
-        mistake: 'Lạm dụng liên tiếp nhiều thẻ <br><br><br> để tạo khoảng cách lớn giữa các phần tử.',
-        cause: 'Muốn đẩy nội dung xuống dưới nhanh chóng.',
-        solution: 'Không nên dùng <br> để chỉnh khoảng cách bố cục. Hãy để dành nhiệm vụ căn lề (margin/padding) cho CSS.'
-      },
-      {
-        mistake: 'Quên đóng thẻ </p> khiến cấu trúc HTML bị lồng ghép sai.',
-        cause: 'Bất cẩn khi soạn thảo nhiều đoạn văn.',
-        solution: 'Luôn kiểm tra thẻ đóng </p> ở cuối mỗi đoạn văn.'
-      }
-    ],
+    commonMistakes: [],
     keyTakeaways: [
-      'Thẻ <p> tạo đoạn văn có khoảng cách trên dưới mặc định hợp lý.',
-      'Thẻ <br> dùng để xuống dòng đơn lẻ bên trong cùng một đoạn văn bản.',
-      'Trình duyệt luôn gộp nhiều phím cách và phím Enter liên tiếp thành một phím cách duy nhất.'
-    ]
-  },
-  {
-    id: 'html-5',
-    track: 'html',
-    order: 5,
-    title: 'Định dạng nội dung văn bản',
-    slug: 'dinh-dang-noi-dung-van-ban',
-    description: 'Làm quen các thẻ định dạng văn bản: in đậm (strong, b), in nghiêng (em, i), đánh dấu dạ quang (mark), chỉ số trên/dưới (sup, sub) và thẻ code.',
-    estimatedMinutes: 20,
-    objectives: [
-      'Phân biệt thẻ mang ý nghĩa ngữ nghĩa (strong, em) và thẻ chỉ định hình thức thuần túy (b, i).',
-      'Ứng dụng được các thẻ <mark>, <u>, <del>, <ins> để biểu diễn văn bản sinh động.',
-      'Sử dụng <sup> và <sub> để viết công thức toán học và hóa học chuẩn xác.'
-    ],
-    sections: [
-      {
-        id: 'in-dam-in-nghieng',
-        title: '1. Thẻ in đậm và in nghiêng: Ý nghĩa ngữ nghĩa vs Hình thức',
-        paragraphs: [
-          'Trình duyệt cung cấp hai nhóm thẻ để in đậm và in nghiêng:',
-          'Tại sao lại chia làm 2 loại? Các công cụ hỗ trợ người khiếm thị đọc màn hình (Screen Readers) sẽ nhấn mạnh cao độ giọng đọc khi gặp thẻ <strong> hoặc <em>, trong khi thẻ <b> và <i> chỉ đổi hình thức chữ mà không làm thay đổi giọng đọc.'
-        ],
-        bulletPoints: [
-          '<strong>: In đậm VÀ mang ý nghĩa "nội dung này cực kỳ quan trọng, cần đặc biệt lưu ý".',
-          '<b> (bold): Chỉ in đậm về mặt thị giác đơn thuần, không mang ý nghĩa nhấn mạnh đặc biệt.',
-          '<em> (emphasize): In nghiêng VÀ mang ý nghĩa "nhấn mạnh sắc thái câu nói".',
-          '<i> (italic): Chỉ in nghiêng về mặt hình thức (thường dùng cho thuật ngữ kỹ thuật, tên khoa học hoặc từ tiếng nước ngoài).'
-        ]
-      },
-      {
-        id: 'cac-the-dinh-dang-khac',
-        title: '2. Các thẻ định dạng văn bản phổ biến khác',
-        paragraphs: [
-          'Dưới đây là các thẻ vô cùng tiện lợi khi bạn cần trình bày nội dung bài học, tài liệu hoặc công thức:'
-        ],
-        table: {
-          caption: 'Bảng các thẻ định dạng văn bản thường dùng',
-          headers: ['Thẻ', 'Ý nghĩa', 'Hiển thị mặc định', 'Ví dụ sử dụng'],
-          rows: [
-            ['<mark>', 'Bút dạ quang đánh dấu', 'Nền vàng nổi bật', '<mark>từ khóa</mark>'],
-            ['<del>', 'Nội dung bị xóa bỏ / giá cũ', 'Gạch ngang thân chữ', 'Giá cũ: <del>50.000đ</del>'],
-            ['<ins>', 'Nội dung được bổ sung / giá mới', 'Gạch chân dưới chữ', 'Giá mới: <ins>35.000đ</ins>'],
-            ['<sub>', 'Chỉ số dưới (Subscript)', 'Chữ nhỏ nằm thấp xuống', 'Công thức nước: H<sub>2</sub>O'],
-            ['<sup>', 'Chỉ số trên (Superscript)', 'Chữ nhỏ nhô lên cao', 'Phương trình: x<sup>2</sup> + y = 0'],
-            ['<code>', 'Đoạn mã lập trình inline', 'Font chữ đơn cách monospace', 'Dùng lệnh <code>console.log()</code>']
-          ]
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-dinh-dang-van-ban',
-        title: 'Ví dụ tổng hợp định dạng văn bản',
-        description: 'Áp dụng các thẻ định dạng trong bài viết giới thiệu môn Hóa và Toán học.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>Ví dụ định dạng văn bản</title>
-</head>
-<body>
-  <h2>Thông báo học tập</h2>
-  <p>Học sinh <strong>bắt buộc</strong> phải nộp bài tập trước <mark>22h00 tối nay</mark>.</p>
-  <p>Công thức hóa học của Axit Sunfuric là: <b>H<sub>2</sub>SO<sub>4</sub></b>.</p>
-  <p>Định lý Pytago trong tam giác vuông: <i>a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup></i>.</p>
-  <p>Ưu đãi sách giáo khoa: Giá gốc <del>120.000đ</del> giảm còn <ins>90.000đ</ins>.</p>
-  <p>Để in ra màn hình, học sinh gõ thẻ <code>&lt;p&gt;</code> trong file HTML.</p>
-</body>
-</html>`,
-        explanation: 'Nhìn vào kết quả xem thử: Bạn sẽ thấy thẻ mark có nền vàng, H2SO4 có các số 2 và 4 nhỏ nằm dưới, a2 + b2 có số 2 nhô lên trên rất đẹp mắt.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Viết công thức H2O thành H<sup>2</sup>O thay vì H<sub>2</sub>O.',
-        cause: 'Nhầm lẫn giữa <sup> (superior - trên) và <sub> (subordinate - dưới).',
-        solution: 'Mẹo nhớ: sub nghĩa là ở dưới (như submarine - tàu ngầm lặn dưới nước).'
-      },
-      {
-        mistake: 'Lạm dụng thẻ <mark> tô vàng gần như toàn bộ đoạn văn.',
-        cause: 'Muốn người đọc chú ý nhưng tô quá nhiều.',
-        solution: 'Chỉ đánh dấu 1-3 từ khóa trọng tâm nhất để giữ độ tương phản tốt.'
-      }
-    ],
-    keyTakeaways: [
-      'Ưu tiên dùng <strong> và <em> để bảo đảm ý nghĩa ngữ nghĩa (Semantic HTML).',
-      'Thẻ <sub> dùng cho chỉ số dưới (H₂O), thẻ <sup> dùng cho lũy thừa (x²).',
-      'Thẻ <del> và <ins> rất hữu ích khi trình bày giá khuyến mãi hoặc lịch sửa đổi.'
+      '<b> và <i> chỉ thay đổi hình thức chữ; <strong> và <em> mang ý nghĩa ngữ nghĩa (Semantic HTML) được các công cụ tìm kiếm và máy đọc màn hình đánh giá cao.',
+      '<mark> dùng để tô sáng dạ quang màu vàng; <small> dùng cho văn bản kích thước nhỏ như bản quyền hay điều khoản.',
+      '<del> vẽ đường gạch ngang thân chữ (nội dung bị xóa/giá cũ) và <ins> gạch chân chữ (nội dung thêm mới/giá khuyến mãi).',
+      '<sub> dùng cho chỉ số dưới (công thức hóa học H₂O); <sup> dùng cho chỉ số trên (số mũ lũy thừa x²).'
     ]
   },
   {

@@ -27,15 +27,16 @@ interface Candidate {
 export function formatContent(input: string | undefined | null): string {
   if (!input || typeof input !== 'string') return '';
 
-  // 1. Phân tách input thành các phần HTML hợp lệ có sẵn và các đoạn văn bản thuần.
-  // Các thẻ HTML hợp lệ được giữ nguyên:
+  // 1. Phân tách input thành các phần HTML hợp lệ có sẵn (phải là cặp thẻ đóng mở hoàn chỉnh)
+  // và các đoạn văn bản thuần. Các thẻ HTML hoàn chỉnh được giữ nguyên:
   // - Liên kết chuẩn: <a href=...>...</a>
   // - Nhãn / span tùy biến: <span ...>...</span>
-  // - In đậm / nghiêng: <strong>, <em>, <b>, <i>
-  // - Phím / mã: <kbd ...>, <code ...>
-  // - Highlight: <mark>
-  // - Ngắt dòng: <br>, <hr>
-  const realTagRegex = /<\/?(strong|em|mark|b|i)\b[^>]*>|<\/?(span|kbd|code)\b[^>]*>|<a\s+href=[^>]*>|<\/a>|<(br|hr)\s*\/?>/gi;
+  // - In đậm / nghiêng hoàn chỉnh: <strong>...</strong>, <em>...</em>, <b>...</b>, <i>...</i>
+  // - Phím / mã hoàn chỉnh: <kbd ...>...</kbd>, <code ...>...</code>
+  // - Highlight hoàn chỉnh: <mark>...</mark>
+  // Chú ý: Các thẻ đơn lẻ không có thẻ đóng (như `<mark>`, `<strong>`, `<p>`) là tên thẻ
+  // đang được đề cập trong bài giảng, sẽ được xử lý thành các huy hiệu mã nguồn (token tag).
+  const realTagRegex = /<(span|kbd|code|a|strong|em|b|i|mark|u|del|ins|sub|sup|small)\b[^>]*>.*?<\/\1>/gis;
 
   const chunks: Array<{ type: 'html' | 'text'; content: string }> = [];
   let lastIndex = 0;
@@ -77,6 +78,11 @@ export function formatContent(input: string | undefined | null): string {
 
     // 2. Markdown bold: **text**
     addMatch(/\*\*([^*]+)\*\*/g, (m) => `<strong class="kw-bold">${escapeHtml(m[1])}</strong>`, 95);
+
+    // 2.5. Thực thể ký tự HTML (&nbsp;, &ensp;, &emsp;, v.v.)
+    addMatch(/&(?:nbsp|ensp|emsp|amp|lt|gt|quot|apos|copy|reg|trade|#[0-9]{1,6});/gi, (m) => {
+      return `<code class="token-code token-entity">${escapeHtml(m[0])}</code>`;
+    }, 92);
 
     // 3. Các thẻ HTML được đề cập trong bài giảng (ví dụ <h1>, <p>, <a>, <img>, <!DOCTYPE html>, v.v.)
     addMatch(/<\/?([a-zA-Z0-9]+)(?:\s+[^>]*)?\/?>|<!DOCTYPE\s+html>/gi, (m) => {

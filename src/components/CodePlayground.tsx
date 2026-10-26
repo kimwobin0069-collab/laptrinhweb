@@ -63,7 +63,7 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({ example }) => {
           </div>
           <div>
             <h3 className="font-extrabold text-base sm:text-lg text-slate-900 dark:text-white leading-tight">
-              Ví dụ: {example.title}
+              {example.title}
             </h3>
             <span className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400 font-semibold">
               Ngôn ngữ: {example.language}

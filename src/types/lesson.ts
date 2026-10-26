@@ -12,6 +12,16 @@ export interface TableData {
   caption?: string;
 }
 
+export interface MiniExample {
+  id?: string;
+  title: string;
+  code: string;
+  language?: 'html' | 'css' | 'javascript';
+  caption?: string;
+  preview?: boolean;
+  explanation?: string;
+}
+
 export interface LessonSection {
   illustration?: 'static-dynamic' | 'web-mechanism';
   id: string;
@@ -19,14 +29,21 @@ export interface LessonSection {
   paragraphs: string[];
   bulletPoints?: string[];
   table?: TableData;
+  tables?: TableData[];
   callout?: CalloutBox;
+  example?: MiniExample;
+  examples?: MiniExample[];
   subsections?: {
     id: string;
     title: string;
     paragraphs: string[];
+    table?: TableData;
+    tables?: TableData[];
+    example?: MiniExample;
+    examples?: MiniExample[];
     codeSnippet?: {
       code: string;
-      language: string;
+      language?: string;
       caption?: string;
     };
   }[];
