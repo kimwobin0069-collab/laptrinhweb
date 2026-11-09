@@ -26,13 +26,15 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({ example }) => {
   }, []);
 
 
+  const codeToDisplay = example.displayCode || example.initialCode;
+
   const handleCopy = async () => {
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(example.initialCode);
+        await navigator.clipboard.writeText(codeToDisplay);
       } else {
         const textarea = document.createElement('textarea');
-        textarea.value = example.initialCode;
+        textarea.value = codeToDisplay;
         document.body.appendChild(textarea);
         textarea.select();
         document.execCommand('copy');
@@ -50,7 +52,7 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({ example }) => {
     window.open(`#/tryit/${example.id}`, '_blank');
   };
 
-  const highlightedHtml = highlightW3Code(example.initialCode, !isDark);
+  const highlightedHtml = highlightW3Code(codeToDisplay, !isDark);
 
   return (
     <div className="w3-example-box my-7 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100/90 p-4 sm:p-5 shadow-sm dark:border-slate-800 dark:bg-slate-850 transition-all">
@@ -68,6 +70,11 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({ example }) => {
             <span className="text-[11px] font-mono uppercase text-slate-500 dark:text-slate-400 font-semibold">
               Ngôn ngữ: {example.language}
             </span>
+            {example.displayCode && (
+              <span className="ml-2 inline-flex items-center rounded-md bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-700/10 dark:bg-emerald-900/30 dark:text-emerald-300 dark:ring-emerald-400/20">
+                Trích đoạn trọng tâm
+              </span>
+            )}
           </div>
         </div>
 
@@ -102,7 +109,7 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({ example }) => {
       </div>
 
       {/* 3. Action Row with Signature W3Schools Green Button: Try it Yourself » */}
-      <div className="mt-4">
+      <div className="mt-4 flex flex-wrap items-center gap-3">
         <button
           type="button"
           onClick={handleOpenTryit}
@@ -111,6 +118,11 @@ export const CodePlayground: React.FC<CodePlaygroundProps> = ({ example }) => {
         >
           <span>Try it Yourself »</span>
         </button>
+        {example.displayCode && (
+          <span className="text-xs text-slate-500 dark:text-slate-400 italic">
+            (Bấm để mở trình soạn thảo và chạy thử toàn bộ tệp {example.title})
+          </span>
+        )}
       </div>
 
       {/* 4. Explanation Footer */}

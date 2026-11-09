@@ -840,12 +840,13 @@ Ngược lòng mình tìm về nông nổi
     order: 6,
     title: 'Tạo đề mục và danh sách',
     slug: 'tao-de-muc-va-danh-sach',
-    description: 'Phân cấp tài liệu khoa học bằng 6 cấp độ tiêu đề h1 đến h6; tạo danh sách có thứ tự ol, không thứ tự ul và lồng danh sách.',
-    estimatedMinutes: 20,
+    description: 'Phân cấp tài liệu khoa học bằng 6 cấp độ tiêu đề h1 đến h6; tạo danh sách không thứ tự ul, có thứ tự ol, danh sách mô tả dl và lồng danh sách.',
+    estimatedMinutes: 25,
     objectives: [
       'Hiểu thứ bậc phân cấp từ <h1> đến <h6> và quy tắc chỉ dùng duy nhất một thẻ <h1> trên mỗi trang.',
-      'Tạo danh sách gạch đầu dòng với <ul> và danh sách đánh số với <ol>.',
-      'Tùy biến thuộc tính type, start và kỹ thuật lồng danh sách nhiều cấp.'
+      'Tạo danh sách không thứ tự với <ul>, danh sách có thứ tự với <ol> và danh sách mô tả với <dl>.',
+      'Tùy biến thuộc tính type, start và kỹ thuật lồng danh sách nhiều cấp.',
+      'Sử dụng danh sách mô tả <dl> với các thẻ <dt> (thuật ngữ) và <dd> (mô tả) để trình bày thuật ngữ kèm giải thích.'
     ],
     sections: [
       {
@@ -868,65 +869,258 @@ Ngược lòng mình tìm về nông nổi
         }
       },
       {
-        id: 'danh-sach-ul-ol',
-        title: '2. Danh sách không thứ tự (<ul>) và có thứ tự (<ol>)',
+        id: 'danh-sach-ul',
+        title: '2. Danh sách không thứ tự (<ul>)',
         paragraphs: [
-          'Để liệt kê các mục, HTML cung cấp hai loại danh sách chính. Cả hai đều chứa các phần tử con là thẻ <li> (List Item):'
+          'Danh sách không thứ tự bắt đầu bằng thẻ <ul> (Unordered List). Mỗi mục trong danh sách được đặt trong thẻ <li> (List Item).',
+          'Các mục trong danh sách sẽ được đánh dấu bằng các dấu chấm tròn nhỏ (bullets) theo mặc định. Danh sách không thứ tự phù hợp khi thứ tự liệt kê các mục không quan trọng (ví dụ: danh sách đồ dùng học tập, danh sách nguyên liệu nấu ăn).',
+          'Thuộc tính CSS list-style-type cho phép thay đổi kiểu ký hiệu đánh dấu đầu dòng của danh sách không thứ tự:'
+        ],
+        table: {
+          headers: ['Giá trị', 'Mô tả'],
+          rows: [
+            ['disc', 'Đánh dấu bằng chấm tròn đặc (●) — mặc định'],
+            ['circle', 'Đánh dấu bằng vòng tròn rỗng (○)'],
+            ['square', 'Đánh dấu bằng hình vuông đặc (■)'],
+            ['none', 'Không hiển thị ký hiệu đánh dấu']
+          ]
+        },
+        example: {
+          id: 'mini-ul',
+          title: 'Ví dụ: Danh sách không thứ tự <ul> với các kiểu đánh dấu',
+          caption: 'So sánh 4 kiểu list-style-type cho danh sách <ul>:',
+          code: `<!-- Kiểu mặc định: disc (chấm tròn đặc) -->
+<ul style="list-style-type: disc;">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<!-- Kiểu circle (vòng tròn rỗng) -->
+<ul style="list-style-type: circle;">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<!-- Kiểu square (hình vuông) -->
+<ul style="list-style-type: square;">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>
+
+<!-- Kiểu none (ẩn ký hiệu) -->
+<ul style="list-style-type: none;">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ul>`,
+          explanation: 'Thuộc tính CSS list-style-type thay đổi ký hiệu đầu dòng: disc (●) là mặc định, circle (○) là vòng tròn rỗng, square (■) là hình vuông, none sẽ ẩn hoàn toàn ký hiệu.'
+        }
+      },
+      {
+        id: 'danh-sach-ol',
+        title: '3. Danh sách có thứ tự (<ol>)',
+        paragraphs: [
+          'Danh sách có thứ tự bắt đầu bằng thẻ <ol> (Ordered List). Mỗi mục trong danh sách cũng được đặt trong thẻ <li>.',
+          'Các mục sẽ được đánh số thứ tự 1, 2, 3... theo mặc định. Danh sách có thứ tự phù hợp khi trình tự các bước có ý nghĩa quan trọng (ví dụ: các bước cài đặt phần mềm, công thức nấu ăn).',
+          'Thuộc tính type của thẻ <ol> hoặc CSS list-style-type cho phép thay đổi kiểu đánh số thứ tự:'
         ],
         bulletPoints: [
-          '<ul> (Unordered List): Danh sách dạng dấu chấm tròn hoặc gạch đầu dòng. Thứ tự các mục không quan trọng (ví dụ: danh sách đồ dùng học tập).',
-          '<ol> (Ordered List): Danh sách được đánh số thứ tự 1, 2, 3... Thứ tự các bước có ý nghĩa quan trọng (ví dụ: các bước cài đặt phần mềm).',
-          'Thuộc tính type của <ol>: Có thể đổi kiểu đánh số: type="1" (số 1, 2, 3), type="A" (chữ hoa A, B, C), type="a" (chữ thường a, b, c), type="I" (số La Mã I, II, III).',
+          'type="1" — Đánh số bằng chữ số (1, 2, 3...) — mặc định.',
+          'type="A" — Đánh thứ tự bằng chữ cái in hoa (A, B, C...).',
+          'type="a" — Đánh thứ tự bằng chữ cái in thường (a, b, c...).',
+          'type="I" — Đánh thứ tự bằng số La Mã in hoa (I, II, III...).',
+          'type="i" — Đánh thứ tự bằng số La Mã in thường (i, ii, iii...).',
           'Thuộc tính start của <ol>: Quy định số bắt đầu (ví dụ: start="5" sẽ bắt đầu đếm từ số 5).'
-        ]
+        ],
+        table: {
+          headers: ['Thuộc tính type', 'Mô tả'],
+          rows: [
+            ['type="1"', 'Đánh số bằng chữ số: 1, 2, 3... (mặc định)'],
+            ['type="A"', 'Đánh thứ tự bằng chữ cái in hoa: A, B, C...'],
+            ['type="a"', 'Đánh thứ tự bằng chữ cái in thường: a, b, c...'],
+            ['type="I"', 'Đánh thứ tự bằng số La Mã in hoa: I, II, III...'],
+            ['type="i"', 'Đánh thứ tự bằng số La Mã in thường: i, ii, iii...']
+          ]
+        },
+        example: {
+          id: 'mini-ol',
+          title: 'Ví dụ: Danh sách có thứ tự <ol> với các kiểu đánh số',
+          caption: 'So sánh các kiểu đánh số cho danh sách <ol>:',
+          code: `<!-- Kiểu mặc định: số 1, 2, 3 -->
+<ol type="1">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<!-- Kiểu chữ hoa A, B, C -->
+<ol type="A">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<!-- Kiểu số La Mã I, II, III -->
+<ol type="I">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>
+
+<!-- Bắt đầu từ số 5 -->
+<ol type="1" start="5">
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+</ol>`,
+          explanation: 'Thuộc tính type thay đổi kiểu đánh số: "1" dùng chữ số, "A" dùng chữ cái in hoa, "I" dùng số La Mã. Thuộc tính start="5" khiến danh sách bắt đầu đếm từ số 5 (hiển thị 5, 6, 7).'
+        }
+      },
+      {
+        id: 'danh-sach-dl',
+        title: '4. Danh sách mô tả (<dl>)',
+        paragraphs: [
+          'Ngoài <ul> và <ol>, HTML còn có một loại danh sách đặc biệt gọi là danh sách mô tả (Description List), dùng để định nghĩa các thuật ngữ kèm phần giải thích.',
+          'Danh sách mô tả được tạo bởi 3 thẻ phối hợp:',
+        ],
+        bulletPoints: [
+          '<dl> (Description List): Thẻ bao bọc toàn bộ danh sách mô tả.',
+          '<dt> (Description Term): Định nghĩa thuật ngữ hoặc tên mục cần giải thích.',
+          '<dd> (Description Details): Mô tả, giải thích chi tiết cho thuật ngữ <dt> ngay phía trên.'
+        ],
+        example: {
+          id: 'mini-dl',
+          title: 'Ví dụ: Danh sách mô tả <dl>',
+          caption: 'Dùng danh sách mô tả để giải thích thuật ngữ đồ uống:',
+          code: `<dl>
+  <dt>Coffee</dt>
+  <dd>- black hot drink</dd>
+  <dt>Milk</dt>
+  <dd>- white cold drink</dd>
+</dl>`,
+          explanation: 'Thẻ <dt> đặt tên thuật ngữ (Coffee, Milk), thẻ <dd> nằm ngay bên dưới để mô tả thuật ngữ đó. Trình duyệt tự động thụt lề phần <dd> vào trong để phân biệt với <dt>.'
+        }
       },
       {
         id: 'danh-sach-long-nhau',
-        title: '3. Danh sách lồng nhau (Nested Lists)',
+        title: '5. Danh sách lồng nhau (Nested Lists)',
         paragraphs: [
           'Bạn hoàn toàn có thể đặt một danh sách <ul> hoặc <ol> mới bên trong một thẻ <li> của danh sách cha để tạo ra mục lục phân cấp nhiều tầng.'
         ]
+      },
+      {
+        id: 'bang-tong-hop-the-danh-sach',
+        title: '6. Bảng tổng hợp các thẻ danh sách HTML',
+        paragraphs: [
+          'Dưới đây là bảng tổng hợp tất cả các thẻ HTML dùng để tạo danh sách:'
+        ],
+        table: {
+          headers: ['Thẻ', 'Mô tả'],
+          rows: [
+            ['<ul>', 'Định nghĩa danh sách không thứ tự (Unordered List)'],
+            ['<ol>', 'Định nghĩa danh sách có thứ tự (Ordered List)'],
+            ['<li>', 'Định nghĩa một mục trong danh sách (List Item)'],
+            ['<dl>', 'Định nghĩa danh sách mô tả (Description List)'],
+            ['<dt>', 'Định nghĩa thuật ngữ trong danh sách mô tả (Description Term)'],
+            ['<dd>', 'Mô tả chi tiết cho thuật ngữ trong danh sách mô tả (Description Details)']
+          ]
+        }
       }
     ],
     codeExamples: [
       {
-        id: 'vd-de-muc-va-danh-sach',
-        title: 'Tổ chức bài viết với đề mục và danh sách lồng nhau',
-        description: 'Tài liệu hướng dẫn kế hoạch ôn tập học kỳ của học sinh THPT.',
+        id: 'vd-portfolio-danh-sach',
+        title: 'portfolio.html',
+        description: 'Tiếp nối tệp portfolio.html từ Bài 5, vận dụng danh sách có thứ tự <ol>, danh sách không thứ tự <ul> và danh sách lồng nhau.',
         language: 'html',
         runnable: true,
+        displayCode: `<h2>Những môn thể thao mà mình yêu thích từ nhiều nhất đến ít nhất</h2>
+<ol>
+    <li>Bóng đá</li>
+    <li>Bóng rổ</li>
+    <li>Võ thuật</li>
+    <li>Nhảy dây</li>
+    <li>Búng thun</li>
+</ol>`,
         initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Kế hoạch học tập</title>
+  <title>portfolio.html</title>
 </head>
 <body>
-  <h1>KẾ HOẠCH ÔN TẬP TIN HỌC 12</h1>
+    <h1>Chào mừng bạn ghé thăm portfolio</h1>
+    <p>Trang web này tự tay mình dệt nên.</p>
+    <br>
+    <p>Đây là đường đời bằng phẳng mà bạn ao ước...</p>
+    <hr>
+    <p>... cho đến khi<br>&emsp;&emsp;&emsp;
+        &ensp;&ensp;&nbsp;bạn sụp ổ gà :)</p>
+    <br>
+    <p>Khi sụp rồi thì bạn thường tìm đến những thứ self-help hoặc chữa lành.</p>
+    <h2>Một chiều ngược gió</h2>
+    <pre>Em ngược đường, ngược nắng để yêu anh
+    Ngược phố tan tầm, ngược chiều gió thổi
+Ngược lòng mình tìm về nông nổi
+    Lãng du đi vô định cánh chim trời.</pre>
+    <br>
+    <p>Một cách <em>chữa lành</em> tốt là hãy <em>"tựa"</em> vào khoa học.</p>
+    <p><strong>The law of conservation of energy</strong> states that 
+        <em>energy cannot be created <small>or</small> destroyed, 
+        <mark>only transformed from one form to another 
+        or transferred from one system to another</mark>, 
+        <small>but</small> the total energy of the system 
+        <u>remains constant</u></em>.</p>
+    <p>For example,</p>
+    <p>E<sub>total</sub> = E<sub>kinetic</sub> + E<sub>gravitational</sub> =
+        1/2mv<sup>2</sup> + mgh</p>
 
-  <h2>1. Dụng cụ cần chuẩn bị</h2>
-  <ul>
-    <li>Vở ghi chép tóm tắt lý thuyết</li>
-    <li>Máy tính cá nhân có cài đặt VS Code</li>
-    <li>USB sao lưu bài tập thực hành</li>
-  </ul>
+    <h2>Kỷ nguyên Trí tuệ nhân tạo</h2>
+    <ol>
+        <li>Thời đại Máy học (Machine Learning)
+            <ol type="a">
+                <li>Sự trỗi dậy của Mạng nơron (Neural Networks)
+                    <ol type="i">
+                        <li>Kiến trúc Học sâu (Deep Learning)
+                            <ul>
+                                <li>Mô hình Ngôn ngữ lớn (Large Language Models), một ứng dụng Deep Learning
+                                    <ul>
+                                        <li>Transformer và Attention, kỹ thuật quan trọng trong Mô hình Ngôn ngữ lớn</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
+    </ol>
 
-  <h2>2. Lộ trình học lập trình Web</h2>
-  <ol type="A">
-    <li>
-      Học HTML cơ bản
-      <ol type="1">
-        <li>Cấu trúc trang web</li>
-        <li>Tạo bảng và danh sách</li>
-        <li>Tạo biểu mẫu liên hệ</li>
-      </ol>
-    </li>
-    <li>Học CSS định dạng giao diện</li>
-    <li>Học JavaScript tạo tương tác</li>
-  </ol>
+    <h2>Những ngôn ngữ giúp mình giỏi hơn trong môn... bơi lội</h2>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Javascript</li>
+        <li>PHP</li>
+        <li>Python</li>
+        <li>C#</li>
+        <li>Typescript</li>
+    </ul>
+
+    <h2>Những môn thể thao mà mình yêu thích từ nhiều nhất đến ít nhất</h2>
+    <ol>
+        <li>Bóng đá</li>
+        <li>Bóng rổ</li>
+        <li>Võ thuật</li>
+        <li>Nhảy dây</li>
+        <li>Búng thun</li>
+    </ol>
 </body>
 </html>`,
-        explanation: 'Thẻ <ol type="A"> đánh thứ tự A, B, C; danh sách lồng bên trong dùng <ol type="1"> đánh số 1, 2, 3 rõ ràng.'
+        explanation: 'Thẻ <ol> tạo danh sách có thứ tự đánh số 1, 2, 3, 4, 5 — phù hợp để xếp hạng mức độ yêu thích giảm dần. Khi bấm "Try it Yourself »", bạn sẽ được quan sát và chạy thử toàn bộ mã nguồn của trang portfolio.html hoàn chỉnh với đầy đủ các đề mục, đoạn văn, thơ, định dạng và các danh sách lồng nhau.'
       }
     ],
     commonMistakes: [
@@ -939,12 +1133,19 @@ Ngược lòng mình tìm về nông nổi
         mistake: 'Dùng nhiều thẻ <h1> trong cùng một bài viết.',
         cause: 'Thấy thẻ <h1> chữ to đẹp nên dùng ở mọi tiêu đề con.',
         solution: 'Mỗi trang web chỉ có 1 thẻ <h1> duy nhất đại diện cho tiêu đề trang. Các tiêu đề con dùng <h2>, <h3>.'
+      },
+      {
+        mistake: 'Nhầm lẫn giữa <li> và <dd> khi dùng danh sách mô tả <dl>.',
+        cause: 'Viết <dl><li>...</li></dl> thay vì dùng <dt> và <dd>.',
+        solution: 'Danh sách mô tả <dl> không dùng thẻ <li>. Phải dùng <dt> cho thuật ngữ và <dd> cho phần mô tả.'
       }
     ],
     keyTakeaways: [
       'Mỗi trang web chỉ có duy nhất 1 thẻ <h1>, sau đó chia nhỏ theo <h2>, <h3>.',
       '<ul> dùng cho danh sách không quan trọng thứ tự, <ol> dùng cho danh sách có thứ tự các bước.',
-      'Các mục con trong danh sách luôn phải được gói trong cặp thẻ <li>...</li>.'
+      '<dl> dùng cho danh sách mô tả: <dt> đặt tên thuật ngữ, <dd> giải thích thuật ngữ đó.',
+      'Các mục con trong danh sách <ul> và <ol> luôn phải được gói trong cặp thẻ <li>...</li>.',
+      'Có thể lồng danh sách bên trong thẻ <li> để tạo danh sách phân cấp nhiều tầng.'
     ]
   },
   {
@@ -953,139 +1154,250 @@ Ngược lòng mình tìm về nông nổi
     order: 7,
     title: 'Tạo bảng',
     slug: 'tao-bang',
-    description: 'Xây dựng bảng dữ liệu chuẩn chỉnh với table, tr, th, td, caption, nhóm thead/tbody/tfoot và kỹ thuật gộp ô rowspan, colspan.',
+    description: 'Xây dựng bảng dữ liệu chuẩn chỉnh với table, tr, th, td; quy tắc hộp trong hộp; đường viền border="1"; phân cấp thead/tbody/tfoot/caption/colgroup và các thuộc tính gộp ô colspan, rowspan.',
     estimatedMinutes: 25,
     objectives: [
-      'Nắm chắc vai trò của các thẻ cơ bản: <table>, <tr>, <th>, <td> và <caption>.',
-      'Sử dụng các thẻ phân nhóm ngữ nghĩa: <thead>, <tbody>, <tfoot>.',
-      'Làm chủ kỹ thuật gộp ô: colspan (gộp cột) và rowspan (gộp hàng).'
+      'Nắm vững quy tắc hộp trong hộp và vai trò của 4 phần tử cơ bản: <table>, <tr>, <th>, <td>.',
+      'Hiển thị đường viền cho bảng bằng thuộc tính border="1" và hiểu vai trò của CSS trong định dạng bảng.',
+      'Sử dụng các phần tử phân cấp nâng cao: <thead>, <tbody>, <tfoot>, <caption>, <colgroup>, <col>.',
+      'Làm chủ các thuộc tính của bảng: cellspacing, cellpadding, gộp ô colspan, rowspan, căn lề và kích thước.'
     ],
     sections: [
       {
         id: 'cac-the-bang-co-ban',
-        title: '1. Cấu trúc bảng cơ bản trong HTML',
+        title: '1. Phần tử tạo bảng cơ bản & Quy tắc "Hộp trong hộp"',
         paragraphs: [
-          'Bảng (Table) được dùng để hiển thị dữ liệu dạng lưới 2 chiều gồm các hàng và cột (ví dụ: thời khóa biểu, bảng điểm, bảng báo giá).',
-          'Các thẻ cấu thành bảng bao gồm:'
+          'Bảng (Table) trong HTML được dùng để trình bày dữ liệu dạng lưới 2 chiều gồm các hàng và cột (ví dụ: danh sách liên hệ, thời khóa biểu, bảng báo giá).',
+          'Để tạo nên một bảng hoàn chỉnh, ta sử dụng 4 phần tử cốt lõi phối hợp chặt chẽ theo cấu trúc phân cấp:'
         ],
+        table: {
+          headers: ['Phần tử', 'Tên đầy đủ', 'Công dụng'],
+          rows: [
+            ['<table>', 'Table', 'Tạo bảng và đóng vai trò là khung chứa ngoài cùng'],
+            ['<tr>', 'Table Row', 'Tạo một hàng mới trong bảng'],
+            ['<th>', 'Table Header', 'Tạo ô của hàng tiêu đề (mặc định chữ tự động in đậm và căn giữa)'],
+            ['<td>', 'Table Data', 'Tạo ô của hàng dữ liệu thông thường (các hàng còn lại, chữ căn lề trái)']
+          ]
+        },
         bulletPoints: [
-          '<table>: Thẻ bao bọc toàn bộ bảng.',
-          '<caption>: Tiêu đề hoặc chú thích cho bảng, luôn đặt ngay sau thẻ mở <table>.',
-          '<tr> (Table Row): Tạo ra một hàng mới trong bảng.',
-          '<th> (Table Header): Ô tiêu đề cột, chữ tự động in đậm và căn giữa.',
-          '<td> (Table Data): Ô chứa dữ liệu thông thường, chữ căn lề trái.'
-        ]
+          '<table> là phần khung bao bọc ngoài cùng của toàn bộ bảng.',
+          '<tr> (table row) là từng hàng một nằm bên trong <table>.',
+          '<th> hoặc <td> là các ô nằm bên trong hàng đó.',
+          'Quy tắc vàng: Không thể có một cái ô (<td> hoặc <th>) nếu chưa có một cái hàng (<tr>)!'
+        ],
+        callout: {
+          type: 'info',
+          title: 'Đường viền của bảng (border="1")',
+          content: 'Theo mặc định, bảng HTML không hiển thị đường viền. Để nhìn thấy rõ các đường kẻ phân chia hàng và cột, ta thêm thuộc tính border="1" vào thẻ mở <table>. Nếu muốn đường viền thanh mảnh, đẹp mắt và hiện đại hơn, ta sẽ nhờ đến CSS (được học ở các bài sau).'
+        }
       },
       {
         id: 'nhom-ngu-nghia-bang',
-        title: '2. Nhóm ngữ nghĩa: <thead>, <tbody>, <tfoot>',
+        title: '2. Các phần tử phân cấp cấu trúc bảng nâng cao',
         paragraphs: [
-          'Để bảng có cấu trúc chuẩn mực cho trình duyệt xử lý và in ấn, người ta chia bảng thành 3 phần rõ rệt:',
-          '1. <thead>: Chứa các hàng tiêu đề cột của bảng.',
-          '2. <tbody>: Chứa toàn bộ nội dung dữ liệu chính của bảng.',
-          '3. <tfoot>: Chứa hàng tổng kết cuối bảng (ví dụ: hàng tính tổng điểm, tổng tiền).'
-        ]
+          'Ngoài các phần tử cơ bản trên, các phần tử tạo bảng dưới đây giúp phân cấp cấu trúc rõ ràng hơn và tối ưu cho trình duyệt xử lý, in ấn cũng như các cỗ máy tìm kiếm (SEO):'
+        ],
+        table: {
+          headers: ['Phần tử', 'Công dụng', 'Vị trí trong bảng'],
+          rows: [
+            ['<thead>', 'Gom nhóm các hàng tiêu đề (table head)', 'Bao bọc các <tr> tiêu đề ở đầu bảng'],
+            ['<tbody>', 'Gom nhóm các hàng dữ liệu chính (table body)', 'Bao bọc các <tr> dữ liệu ở giữa bảng'],
+            ['<tfoot>', 'Gom nhóm các hàng tổng kết ở cuối bảng (table foot)', 'Bao bọc các <tr> tổng kết ở chân bảng'],
+            ['<caption>', 'Tạo tiêu đề hoặc chú thích cho bảng', 'Nằm ngay dưới thẻ mở <table>'],
+            ['<colgroup>', 'Gom nhóm nhiều cột để định dạng phong cách chung', 'Bao bọc các thẻ <col>, nằm trước <thead>/<tbody>'],
+            ['<col>', 'Thiết lập thuộc tính cho từng cột riêng biệt', 'Nằm bên trong <colgroup>']
+          ]
+        }
       },
       {
-        id: 'gop-o-colspan-rowspan',
-        title: '3. Kỹ thuật gộp ô với colspan và rowspan',
+        id: 'thuoc-tinh-cua-bang',
+        title: '3. Thuộc tính của bảng (Table Attributes)',
         paragraphs: [
-          'Giống như tính năng Merge Cells trong Microsoft Excel, HTML cho phép bạn gộp nhiều ô lại với nhau:',
-          'colspan="n": Gộp n ô nằm trên CÙNG MỘT HÀNG (mở rộng theo chiều ngang sang phải).',
-          'rowspan="n": Gộp n ô nằm trên CÙNG MỘT CỘT (kéo dài theo chiều dọc xuống các hàng dưới).'
+          'Để thêm phần "linh hoạt" khi thiết lập bảng trực tiếp trong HTML, ta có thể sử dụng các thuộc tính sau:'
         ],
+        table: {
+          headers: ['Thuộc tính', 'Ý nghĩa & Công dụng', 'Ví dụ'],
+          rows: [
+            ['border="1"', 'Đường viền của bảng', 'border="1" (đường viền dày 1 pixel)'],
+            ['cellspacing="n"', 'Khoảng cách giữa các ô', 'cellspacing="0" (các ô dính sát nhau)'],
+            ['cellpadding="n"', 'Khoảng cách từ nội dung đến các đường viền của ô', 'cellpadding="8" (cách lề 8px)'],
+            ['colspan="n"', 'Số ô gộp vào trên cùng một hàng (chiều ngang)', 'colspan="4" (gộp 4 ô lại thành 1)'],
+            ['rowspan="n"', 'Số ô gộp trên cùng một cột (chiều dọc)', 'rowspan="2" (gộp 2 ô của 2 hàng)'],
+            ['width="n"', 'Chiều rộng của bảng hoặc ô', 'width="75%" hoặc width="500px"'],
+            ['height="n"', 'Chiều cao của bảng hoặc ô', 'height="50px"'],
+            ['bgcolor="color"', 'Màu nền cho bảng, hàng hoặc ô', 'bgcolor="#f1f5f9"'],
+            ['align="value"', 'Căn lề bảng với trang hoặc căn lề nội dung bên trong hàng/ô', 'align="center"']
+          ]
+        },
         callout: {
-          type: 'tip',
-          title: 'Mẹo tính số ô khi gộp',
-          content: 'Khi một ô dùng colspan="2", hàng đó đã có thêm 1 ô ảo, nên bạn phải bớt đi 1 thẻ <td> ở cùng hàng. Nếu dùng rowspan="2", hàng liền kề phía dưới phải bỏ bớt 1 thẻ <td> để tránh vỡ bố cục.'
+          type: 'warning',
+          title: 'Lưu ý về phong cách lập trình hiện đại',
+          content: 'Các thuộc tính trên giúp định dạng nhanh trong HTML thuần. Nhưng để làm cho bảng tinh tế, linh hoạt trên màn hình điện thoại (responsive) và chuẩn SEO hơn, ta nên sử dụng CSS (như border, padding, border-collapse, background-color).'
         }
       }
     ],
     codeExamples: [
       {
-        id: 'vd-thoi-khoa-bieu',
-        title: 'Thời khóa biểu có gộp ô và phân nhóm thead/tbody',
-        description: 'Bảng thời khóa biểu học tập với các ngày trong tuần và gộp ô môn thực hành.',
+        id: 'vd-portfolio-bang',
+        title: 'portfolio.html',
+        description: 'Tiếp nối tệp portfolio.html từ Bài 6, tạo bảng danh sách "Một vài bạn bè thân thiết" gồm 1 hàng tiêu đề, 3 hàng dữ liệu và 4 cột bằng thẻ table, tr, th, td có border="1".',
         language: 'html',
         runnable: true,
+        displayCode: `<h2>Một vài bạn bè thân thiết</h2>
+<table border="1">
+    <tr>
+        <th>Hạng</th>
+        <th>Tên</th>
+        <th>Nguồn gốc</th>
+        <th>Tài sản</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>Bernard Arnault</td>
+        <td>LVMH</td>
+        <td>$211 B</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>Elon Musk</td>
+        <td>Tesla, SpaceX</td>
+        <td>$180 B</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>Bill Gates</td>
+        <td>Microsoft</td>
+        <td>$104 B</td>
+    </tr>
+</table>`,
         initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Bảng Thời Khóa Biểu</title>
-  <style>
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border: 1px solid #94a3b8; padding: 8px 12px; text-align: center; }
-    th { background-color: #2563eb; color: white; }
-    caption { font-weight: bold; font-size: 1.2rem; margin-bottom: 8px; }
-    tfoot td { background-color: #f1f5f9; font-weight: bold; }
-  </style>
+  <title>portfolio.html</title>
 </head>
 <body>
-  <table>
-    <caption>THỜI KHÓA BIỂU BUỔI SÁNG - LỚP 12A1</caption>
-    <thead>
-      <tr>
-        <th>Tiết</th>
-        <th>Thứ Hai</th>
-        <th>Thứ Ba</th>
-        <th>Thứ Tư</th>
-        <th>Thứ Năm</th>
-        <th>Thứ Sáu</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1</td>
-        <td>Chào cờ</td>
-        <td>Toán</td>
-        <td>Hóa học</td>
-        <td>Ngữ văn</td>
-        <td>Lịch sử</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Sinh hoạt</td>
-        <td>Toán</td>
-        <td>Vật lý</td>
-        <td>Ngữ văn</td>
-        <td>Địa lý</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td colspan="2">Tin học (Thực hành 2 tiết)</td>
-        <td>Tiếng Anh</td>
-        <td>Toán</td>
-        <td>GDCD</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="6">Ghi chú: Tiết thực hành Tin học học tại Phòng máy 2</td>
-      </tr>
-    </tfoot>
-  </table>
+    <h1>Chào mừng bạn ghé thăm portfolio</h1>
+    <p>Trang web này tự tay mình dệt nên.</p>
+    <br>
+    <p>Đây là đường đời bằng phẳng mà bạn ao ước...</p>
+    <hr>
+    <p>... cho đến khi<br>&emsp;&emsp;&emsp;
+        &ensp;&ensp;&nbsp;bạn sụp ổ gà :)</p>
+    <br>
+    <p>Khi sụp rồi thì bạn thường tìm đến những thứ self-help hoặc chữa lành.</p>
+    <h2>Một chiều ngược gió</h2>
+    <pre>Em ngược đường, ngược nắng để yêu anh
+    Ngược phố tan tầm, ngược chiều gió thổi
+Ngược lòng mình tìm về nông nổi
+    Lãng du đi vô định cánh chim trời.</pre>
+    <br>
+    <p>Một cách <em>chữa lành</em> tốt là hãy <em>"tựa"</em> vào khoa học.</p>
+    <p><strong>The law of conservation of energy</strong> states that 
+        <em>energy cannot be created <small>or</small> destroyed, 
+        <mark>only transformed from one form to another 
+        or transferred from one system to another</mark>, 
+        <small>but</small> the total energy of the system 
+        <u>remains constant</u></em>.</p>
+    <p>For example,</p>
+    <p>E<sub>total</sub> = E<sub>kinetic</sub> + E<sub>gravitational</sub> =
+        1/2mv<sup>2</sup> + mgh</p>
+
+    <h2>Kỷ nguyên Trí tuệ nhân tạo</h2>
+    <ol>
+        <li>Thời đại Máy học (Machine Learning)
+            <ol type="a">
+                <li>Sự trỗi dậy của Mạng nơron (Neural Networks)
+                    <ol type="i">
+                        <li>Kiến trúc Học sâu (Deep Learning)
+                            <ul>
+                                <li>Mô hình Ngôn ngữ lớn (Large Language Models), một ứng dụng Deep Learning
+                                    <ul>
+                                        <li>Transformer và Attention, kỹ thuật quan trọng trong Mô hình Ngôn ngữ lớn</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
+    </ol>
+
+    <h2>Những ngôn ngữ giúp mình giỏi hơn trong môn... bơi lội</h2>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Javascript</li>
+        <li>PHP</li>
+        <li>Python</li>
+        <li>C#</li>
+        <li>Typescript</li>
+    </ul>
+
+    <h2>Những môn thể thao mà mình yêu thích từ nhiều nhất đến ít nhất</h2>
+    <ol>
+        <li>Bóng đá</li>
+        <li>Bóng rổ</li>
+        <li>Võ thuật</li>
+        <li>Nhảy dây</li>
+        <li>Búng thun</li>
+    </ol>
+
+    <h2>Một vài bạn bè thân thiết</h2>
+    <table border="1">
+        <tr>
+            <th>Hạng</th>
+            <th>Tên</th>
+            <th>Nguồn gốc</th>
+            <th>Tài sản</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Bernard Arnault</td>
+            <td>LVMH</td>
+            <td>$211 B</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Elon Musk</td>
+            <td>Tesla, SpaceX</td>
+            <td>$180 B</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Bill Gates</td>
+            <td>Microsoft</td>
+            <td>$104 B</td>
+        </tr>
+    </table>
 </body>
 </html>`,
-        explanation: 'Quan sát ô "Tin học (Thực hành 2 tiết)": dùng colspan="2" nên một ô đã chiếm trọn không gian của cả Thứ Hai và Thứ Ba.'
+        explanation: 'Phân tích mã nguồn bảng:\n- Thẻ <table>: Khung bao ngoài cùng với thuộc tính border="1" giúp hiển thị các đường kẻ ô rõ ràng.\n- Hàng đầu tiên (<tr>): Chứa 4 ô tiêu đề (<th>) "Hạng", "Tên", "Nguồn gốc", "Tài sản" tự động in đậm và căn giữa.\n- 3 hàng tiếp theo (<tr>): Mỗi hàng chứa 4 ô dữ liệu (<td>) tương ứng với 4 cột thông tin của các bạn bè tỷ phú.\n- Khi bấm "Try it Yourself »", bạn sẽ thấy toàn bộ tệp portfolio.html hoàn chỉnh tích lũy từ các bài trước.'
       }
     ],
     commonMistakes: [
+      {
+        mistake: 'Đặt văn bản hoặc thẻ <td> trực tiếp trong <table> mà không bọc trong thẻ <tr>.',
+        cause: 'Viết <table><td>Dữ liệu</td></table> vi phạm quy tắc hộp trong hộp.',
+        solution: 'Luôn luôn tạo hàng <tr> trước, sau đó mới đặt các ô <td> hoặc <th> vào bên trong hàng đó.'
+      },
       {
         mistake: 'Quên trừ bớt thẻ <td> ở hàng sau khi đã dùng rowspan ở hàng trước.',
         cause: 'Quên rằng ô gộp từ hàng trên đã chiếm sẵn một vị trí ở hàng dưới.',
         solution: 'Đếm tổng số cột thực tế trên mỗi hàng để đảm bảo mọi hàng đều có cùng tổng số cột.'
       },
       {
-        mistake: 'Dùng bảng <table> để chia cột và căn bố cục toàn bộ trang web.',
-        cause: 'Cách làm lỗi thời từ những năm 2000.',
-        solution: 'Bảng chỉ dùng để trình bày dữ liệu dạng bảng. Để chia cột bố cục trang web, ta dùng CSS Flexbox hoặc Grid.'
+        mistake: 'Lạm dụng các thuộc tính cũ như bgcolor, cellpadding thay vì sử dụng CSS.',
+        cause: 'Dùng thuộc tính định dạng nhanh của HTML cho toàn bộ dự án lớn.',
+        solution: 'Nên dùng CSS (padding, background-color, border-collapse) để bảng hiển thị đẹp và chuẩn mực trên mọi kích thước màn hình.'
       }
     ],
     keyTakeaways: [
-      'Cấu trúc bảng: <table> chứa <tr>, bên trong <tr> chứa <th> (tiêu đề) hoặc <td> (dữ liệu).',
-      'Phân nhóm <thead>, <tbody>, <tfoot> giúp bảng rõ ràng và dễ bảo trì.',
-      'Sử dụng colspan để gộp cột (chiều ngang) và rowspan để gộp hàng (chiều dọc).'
+      'Quy tắc hộp trong hộp: <table> chứa <tr>, bên trong <tr> chứa <th> (tiêu đề) hoặc <td> (dữ liệu). Không thể có ô nếu chưa có hàng.',
+      'Mặc định bảng HTML không có đường viền; thêm border="1" vào thẻ <table> để hiển thị đường viền cơ bản.',
+      'Phân nhóm cấu trúc bằng <thead>, <tbody>, <tfoot> và chú thích <caption> giúp bảng chuẩn ngữ nghĩa và tối ưu SEO.',
+      'Các thuộc tính colspan (gộp cột ngang) và rowspan (gộp hàng dọc) giúp kết hợp các ô dữ liệu một cách linh hoạt.'
     ]
   },
   {

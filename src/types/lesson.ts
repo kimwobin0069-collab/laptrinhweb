@@ -55,6 +55,7 @@ export interface CodeExample {
   description: string;
   language: 'html' | 'css' | 'javascript';
   initialCode: string;
+  displayCode?: string; // Đoạn mã rút gọn chỉ hiển thị trong bài học (chạy thử vẫn chạy toàn bộ initialCode)
   runnable: boolean;
   explanation: string;
   previewHeight?: number;
