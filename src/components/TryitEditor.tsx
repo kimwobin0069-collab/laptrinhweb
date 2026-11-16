@@ -295,7 +295,7 @@ export const TryitEditor: React.FC<TryitEditorProps> = ({ example, lesson, onBac
           <div className="flex-1 p-2 sm:p-3 overflow-hidden bg-white">
             <iframe
               title={`Kết quả: ${example.title}`}
-              sandbox="allow-scripts"
+              sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
               srcDoc={renderedCode}
               className="h-full w-full rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-700"
             />

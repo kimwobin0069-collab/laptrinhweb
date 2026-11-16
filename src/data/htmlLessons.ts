@@ -1406,79 +1406,337 @@ Ngược lòng mình tìm về nông nổi
     order: 8,
     title: 'Tạo siêu liên kết',
     slug: 'tao-sieu-lien-ket',
-    description: 'Tạo liên kết với thẻ a, phân biệt đường dẫn tuyệt đối vs tương đối, liên kết neo #id trong trang, mở tab mới và liên kết email/điện thoại.',
-    estimatedMinutes: 20,
+    description: 'Tạo liên kết với thẻ a, phân biệt đường dẫn tuyệt đối vs tương đối, mở liên kết trong tab mới với target="_blank", liên kết neo #id trong trang và liên kết email/điện thoại.',
+    estimatedMinutes: 25,
     objectives: [
-      'Sử dụng thẻ <a> cùng thuộc tính href để liên kết các trang web lại với nhau.',
+      'Sử dụng thẻ <a> cùng thuộc tính href và title để liên kết các trang web lại với nhau.',
       'Phân biệt rõ ràng đường dẫn tuyệt đối (Absolute URL) và đường dẫn tương đối (Relative URL).',
-      'Tạo liên kết neo (Anchor Link) cuộn đến một vị trí cụ thể trong trang bằng thuộc tính id.'
+      'Thiết lập mở liên kết ở tab mới bằng target="_blank" đi kèm rel="noopener noreferrer".',
+      'Tạo liên kết neo (Anchor Link) cuộn đến vị trí cụ thể trong trang bằng #id và liên kết mailto:/tel:.'
     ],
     sections: [
       {
         id: 'the-a-va-href',
         title: '1. Thẻ <a> và thuộc tính cốt lõi href',
         paragraphs: [
-          'Siêu liên kết (Hyperlink) chính là linh hồn của mạng World Wide Web, cho phép người dùng nhấp chuột để chuyển từ trang này sang trang khác một cách tức thì.',
-          'Thẻ <a> (viết tắt của Anchor) được dùng để tạo liên kết. Thuộc tính quan trọng nhất là href (Hypertext Reference), chứa địa chỉ đích cần dẫn đến.'
-        ]
+          'Siêu liên kết (Hyperlink) chính là linh hồn của mạng World Wide Web, cho phép người dùng nhấp chuột để chuyển từ trang này sang trang khác hoặc truy cập tài nguyên khác một cách tức thì.',
+          'Thẻ <a> (viết tắt của Anchor — mỏ neo) dùng để tạo liên kết theo cú pháp: <code class="token-code">&lt;a href="địa_chỉ_đích"&gt;Nội dung hiển thị&lt;/a&gt;</code>. Trong đó, thuộc tính quan trọng nhất là href (Hypertext Reference), chứa địa chỉ đích cần dẫn đến.',
+          'Theo mặc định, văn bản trong thẻ <a> có màu xanh dương và gạch chân (chuyển sang màu tím nếu đã từng bấm vào), đồng thời con trỏ chuột biến thành hình bàn tay khi rê qua. Thẻ <a> có thể bọc văn bản trong đoạn <p>, danh sách <li> hoặc ngay bên trong các ô dữ liệu <td> của bảng.'
+        ],
+        table: {
+          caption: 'Các thành phần cơ bản khi tạo siêu liên kết',
+          headers: ['Thành phần', 'Ý nghĩa & Công dụng', 'Ví dụ'],
+          rows: [
+            ['<code class="token-tag">&lt;a&gt;...&lt;/a&gt;</code>', 'Cặp thẻ tạo siêu liên kết, bao bọc phần nội dung có thể nhấp chuột', '<code class="token-code">&lt;a href="https://vi.wikipedia.org"&gt;Wikipedia&lt;/a&gt;</code>'],
+            ['href', 'Khai báo địa chỉ URL hoặc vị trí đích mà liên kết sẽ dẫn đến', '<code class="token-code">href="https://www.forbes.com"</code>'],
+            ['title', 'Hiển thị chú thích nhỏ (tooltip) khi người dùng rê chuột lên liên kết', '<code class="token-code">title="Mở trang Forbes"</code>']
+          ]
+        },
+        example: {
+          id: 'mini-a-href',
+          title: 'Ví dụ: Tạo siêu liên kết cơ bản với thẻ <a>, href và title',
+          caption: 'Gắn siêu liên kết vào câu văn và hiển thị gợi ý khi rê chuột qua:',
+          code: `<p>
+  Tra cứu kiến thức lập trình web trên
+  <a href="https://vi.wikipedia.org" title="Bách khoa toàn thư mở Wikipedia">Wikipedia tiếng Việt</a>.
+</p>
+<p>
+  Đọc tài liệu chuẩn HTML tại
+  <a href="https://developer.mozilla.org/vi/" title="Tài liệu học Web MDN">MDN Web Docs</a>.
+</p>`,
+          explanation: 'Thuộc tính href quy định địa chỉ trang web đích khi người dùng bấm vào dòng chữ xanh gạch chân. Rê chuột lên liên kết vài giây sẽ thấy chú thích từ thuộc tính title hiện ra.'
+        }
       },
       {
         id: 'duong-dan-tuyet-doi-tuong-doi',
         title: '2. Phân biệt đường dẫn tuyệt đối và tương đối',
         paragraphs: [
-          'Đây là kiến thức cực kỳ quan trọng mà học sinh rất hay nhầm lẫn khi làm bài tập thực hành:',
-          '1. Đường dẫn tuyệt đối (Absolute URL): Là địa chỉ đầy đủ bắt đầu bằng giao thức http:// hoặc https:// dẫn đến một trang web bên ngoài Internet. Ví dụ: https://vnexpress.net.',
-          '2. Đường dẫn tương đối (Relative URL): Dẫn đến một tệp nằm ngay trong cùng thư mục dự án của bạn:',
-          '- Cùng thư mục: href="gioi-thieu.html"',
-          '- Vào thư mục con: href="bai-viet/bai-1.html"',
-          '- Lên thư mục cha: href="../index.html"'
-        ]
+          'Đây là kiến thức cực kỳ quan trọng mà học sinh rất hay nhầm lẫn khi làm bài tập thực hành nhiều trang:',
+          '1. Đường dẫn tuyệt đối (Absolute URL): Là địa chỉ đầy đủ trên Internet, bắt đầu bằng giao thức `http://` hoặc `https://` kèm tên miền. Dùng khi liên kết tới một trang web bên ngoài dự án (ví dụ: `https://vnexpress.net` hoặc `https://www.forbes.com/profile/elon-musk/`).',
+          '2. Đường dẫn tương đối (Relative URL): Là đường dẫn ngắn gọn tính từ vị trí tệp HTML hiện tại, dùng để liên kết các trang nội bộ nằm trong cùng thư mục dự án của bạn.'
+        ],
+        table: {
+          caption: 'So sánh đường dẫn tuyệt đối và đường dẫn tương đối',
+          headers: ['Loại đường dẫn', 'Cú pháp mẫu', 'Ý nghĩa & Trường hợp sử dụng'],
+          rows: [
+            ['Tuyệt đối (Absolute)', 'href="https://vnexpress.net"', 'Dẫn đến website bên ngoài trên Internet (luôn có `https://` hoặc `http://`)'],
+            ['Tương đối — Cùng thư mục', 'href="gioi-thieu.html"', 'Mở tệp `gioi-thieu.html` nằm cùng thư mục với tệp hiện tại'],
+            ['Tương đối — Thư mục con', 'href="bai-viet/bai-1.html"', 'Đi vào thư mục con `bai-viet` để mở tệp `bai-1.html`'],
+            ['Tương đối — Thư mục cha', 'href="../index.html"', 'Dùng `../` để lùi ra 1 cấp thư mục cha rồi mở `index.html`']
+          ]
+        },
+        example: {
+          id: 'mini-duong-dan-url',
+          title: 'Ví dụ: Đường dẫn tuyệt đối vs Đường dẫn tương đối',
+          caption: 'Phân biệt cách ghi href khi liên kết ra trang web ngoài Internet và khi chuyển trang nội bộ:',
+          code: `<!-- 1. Đường dẫn tuyệt đối: dẫn ra website bên ngoài -->
+<h3>Website tham khảo (Đường dẫn tuyệt đối)</h3>
+<p>
+  Xem bảng xếp hạng tỷ phú trên
+  <a href="https://www.forbes.com/" target="_blank" rel="noopener noreferrer">Tạp chí Forbes</a>.
+</p>
+
+<!-- 2. Đường dẫn tương đối: dẫn tới các tệp trong cùng dự án -->
+<!-- Giả sử dự án có: index.html, gioi-thieu.html và bai-viet/bai-1.html -->
+<h3>Điều hướng nội bộ (Đường dẫn tương đối)</h3>
+<ul>
+  <li>Cùng thư mục: <a href="gioi-thieu.html">Trang Giới thiệu</a></li>
+  <li>Vào thư mục con: <a href="bai-viet/bai-1.html">Bài viết số 1</a></li>
+  <li>Lùi lên thư mục cha: <a href="../index.html">Quay lại Trang chủ</a></li>
+</ul>`,
+          explanation: 'Khi liên kết nhiều trang trong cùng bài tập (như portfolio.html sang gioi-thieu.html), luôn dùng đường dẫn tương đối để dự án chạy đúng trên mọi máy tính. (Trong khung chạy thử đơn tệp này chưa có các file .html phụ nên bấm vào link tương đối sẽ không mở được trang con.)'
+        },
+        callout: {
+          type: 'warning',
+          title: 'Không bao giờ dùng đường dẫn ổ cứng máy tính',
+          content: 'Tuyệt đối không viết đường dẫn kiểu `C:\\Users\\TenBan\\Desktop\\gioi-thieu.html` vào href. Khi gửi bài cho thầy cô hoặc đưa lên mạng, máy khác không có đường dẫn ổ C đó nên liên kết sẽ hỏng hoàn toàn!'
+        }
+      },
+      {
+        id: 'thuoc-tinh-target',
+        title: '3. Thuộc tính target và mở liên kết trong tab mới',
+        paragraphs: [
+          'Theo mặc định, khi bấm vào thẻ <a>, trình duyệt sẽ mở trang đích đè lên ngay tab hiện tại (`target="_self"`). Cách này phù hợp khi chuyển giữa các trang trong cùng một website.',
+          'Tuy nhiên, khi liên kết dẫn ra trang web bên ngoài (ví dụ: bấm vào tên nhân vật trong bảng portfolio để xem hồ sơ Forbes), bạn nên dùng thuộc tính target="_blank" để mở trang đích ở một tab mới, giúp người xem không bị thoát khỏi trang web của bạn.',
+          'Khi dùng target="_blank", nên đi kèm thuộc tính `rel="noopener noreferrer"` để tăng cường bảo mật cho trình duyệt.'
+        ],
+        table: {
+          caption: 'Các giá trị phổ biến của thuộc tính target',
+          headers: ['Giá trị', 'Hành vi của trình duyệt', 'Khi nào nên dùng?'],
+          rows: [
+            ['target="_self"', 'Mở trang đích ngay tại tab hiện tại (mặc định)', 'Chuyển trang nội bộ trong cùng dự án web'],
+            ['target="_blank"', 'Mở trang đích trong một tab trình duyệt mới', 'Liên kết dẫn ra website bên ngoài hoặc tài liệu tham khảo']
+          ]
+        },
+        example: {
+          id: 'mini-target-blank',
+          title: 'Ví dụ: So sánh mở cùng tab (_self) và mở tab mới (_blank)',
+          caption: 'Sử dụng target="_blank" để giữ nguyên trang web gốc khi mở liên kết ngoài:',
+          code: `<p>
+  1. Mở ở tab hiện tại (mặc định):
+  <a href="https://vi.wikipedia.org" target="_self">Wikipedia (_self)</a>
+</p>
+<p>
+  2. Mở sang một tab trình duyệt mới:
+  <a href="https://www.forbes.com/profile/elon-musk/" target="_blank" rel="noopener noreferrer">
+    Hồ sơ Elon Musk trên Forbes (_blank)
+  </a>
+</p>`,
+          explanation: 'Nhấp vào liên kết thứ hai sẽ mở hồ sơ Elon Musk sang một tab mới hoàn toàn, trong khi trang gốc của bạn vẫn được giữ nguyên.'
+        }
       },
       {
         id: 'mo-tab-moi-va-anchor',
-        title: '3. Mở tab mới và liên kết neo trong trang (Anchor)',
+        title: '4. Liên kết neo cuộn trong trang (Anchor Link với #id)',
         paragraphs: [
-          'Các tính năng nâng cao thông dụng của thẻ <a>:',
-          'Mở trong tab mới: Thêm thuộc tính target="_blank". Luôn đi kèm rel="noopener noreferrer" để bảo mật trình duyệt.',
-          'Liên kết neo cuộn trong trang: Dùng dấu thăng # kèm theo id của phần tử đích (ví dụ: href="#chuong-2" sẽ cuộn màn hình đến phần tử có id="chuong-2").',
-          'Liên kết gửi email & gọi điện: href="mailto:thpt@edu.vn" hoặc href="tel:0912345678".'
-        ]
+          'Với những trang web dài nhiều mục, bạn có thể tạo "nút nhảy nhanh" cuộn thẳng tới một phần cụ thể trên cùng trang mà không cần tải lại trang. Kỹ thuật này gọi là **liên kết neo (Anchor Link)**.',
+          'Cách thực hiện gồm 2 bước đơn giản:'
+        ],
+        bulletPoints: [
+          'Bước 1 — Đánh dấu vị trí đích: Gắn thuộc tính `id="ten-muc"` (viết liền không dấu, duy nhất trên trang) cho phần tử đích, ví dụ `<h3 id="chuong-2">Chương 2</h3>`.',
+          'Bước 2 — Tạo liên kết nhảy tới: Dùng dấu thăng `#` trước tên id trong href, ví dụ href="#chuong-2".',
+          'Mẹo tạo nút lên đầu trang: Đặt `id="dau-trang"` ở phần đầu trang, sau đó ở cuối trang đặt <code class="token-code">&lt;a href="#dau-trang"&gt;Lên đầu trang ↑&lt;/a&gt;</code>.'
+        ],
+        example: {
+          id: 'mini-anchor-id',
+          title: 'Ví dụ: Menu điều hướng nhanh bằng liên kết neo (#id)',
+          caption: 'Bấm "Try it Yourself »" rồi nhấp vào các liên kết mục lục để quan sát trang tự động cuộn:',
+          code: `<h2 id="dau-trang">Mục lục điều hướng nhanh</h2>
+<p>
+  <a href="#muc-1">1. Giới thiệu</a> |
+  <a href="#muc-2">2. Kỹ năng</a> |
+  <a href="#muc-3">3. Dự án</a>
+</p>
+
+<hr>
+
+<div style="margin-bottom: 320px;">
+  <h3 id="muc-1">1. Giới thiệu</h3>
+  <p>Xin chào! Đây là phần giới thiệu bản thân.</p>
+</div>
+
+<div style="margin-bottom: 320px;">
+  <h3 id="muc-2">2. Kỹ năng</h3>
+  <p>HTML, CSS và JavaScript cơ bản.</p>
+</div>
+
+<div style="margin-bottom: 120px;">
+  <h3 id="muc-3">3. Dự án</h3>
+  <p>Trang portfolio cá nhân tự tay thiết kế.</p>
+  <p><a href="#dau-trang">↑ Quay lại đầu trang</a></p>
+</div>`,
+          explanation: 'Khi nhấp vào "2. Kỹ năng" hay "3. Dự án", trình duyệt tìm phần tử có id="muc-2" hoặc id="muc-3" và cuộn thẳng đến đúng vị trí đó. (Khoảng trống margin-bottom giúp bạn thấy rõ thao tác cuộn trang trong khung xem trước.)'
+        }
+      },
+      {
+        id: 'lien-ket-dac-biet',
+        title: '5. Liên kết gửi Email (mailto:) và gọi điện (tel:)',
+        paragraphs: [
+          'Ngoài liên kết tới trang web hay đề mục trong trang, thuộc tính href còn hỗ trợ các giao thức đặc biệt giúp người dùng liên hệ nhanh chóng:'
+        ],
+        bulletPoints: [
+          'Gửi Email (`mailto:`): Dùng `href="mailto:email@example.com"`. Khi nhấp vào, trình duyệt mở sẵn ứng dụng gửi email với địa chỉ người nhận đã điền sẵn (có thể kèm `?subject=...` để điền trước tiêu đề thư).',
+          'Gọi điện thoại (`tel:`): Dùng `href="tel:0912345678"`. Khi mở trên điện thoại di động, bấm vào liên kết sẽ bật ngay màn hình quay số gọi điện.'
+        ],
+        example: {
+          id: 'mini-mailto-tel',
+          title: 'Ví dụ: Liên kết gửi Email (mailto:) và gọi điện (tel:)',
+          caption: 'Tạo khối thông tin liên hệ nhanh cho trang cá nhân hoặc câu lạc bộ:',
+          code: `<h3>Thông tin liên hệ</h3>
+<ul>
+  <li>
+    Gửi Email cho cố vấn học tập:
+    <a href="mailto:giaovien@school.edu.vn?subject=Hoi%20bai%20HTML">
+      giaovien@school.edu.vn
+    </a>
+  </li>
+  <li>
+    Số điện thoại hỗ trợ:
+    <a href="tel:0912345678">0912 345 678</a>
+  </li>
+</ul>`,
+          explanation: 'Tiền tố `mailto:` mở ứng dụng email mặc định (kèm tiêu đề mẫu qua `?subject=...`), còn tiền tố `tel:` giúp gọi điện nhanh khi người dùng xem trang trên điện thoại.'
+        }
       }
     ],
     codeExamples: [
       {
-        id: 'vd-sieu-lien-ket',
-        title: 'Ví dụ các kiểu siêu liên kết thường dùng',
-        description: 'Thực hành tạo liên kết ngoài, liên kết mở tab mới và liên kết neo cuộn trang.',
+        id: 'vd-portfolio-lien-ket',
+        title: 'portfolio.html',
+        description: 'Tiếp nối tệp portfolio.html từ Bài 7, nâng cấp bảng "Một vài bạn bè thân thiết" bằng cách gắn siêu liên kết <a> cùng target="_blank" vào tên từng nhân vật để mở hồ sơ Forbes ở tab mới.',
         language: 'html',
         runnable: true,
+        displayCode: `<h2>Một vài bạn bè thân thiết</h2>
+<table border="1">
+    <tr>
+        <th>Hạng</th>
+        <th>Tên</th>
+        <th>Nguồn gốc</th>
+        <th>Tài sản</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td><a href="https://www.forbes.com/profile/bernard-arnault/" target="_blank">Bernard Arnault</a></td>
+        <td>LVMH</td>
+        <td>$211 B</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td><a href="https://www.forbes.com/profile/elon-musk/" target="_blank">Elon Musk</a></td>
+        <td>Tesla, SpaceX</td>
+        <td>$180 B</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td><a href="https://www.forbes.com/profile/bill-gates/" target="_blank">Bill Gates</a></td>
+        <td>Microsoft</td>
+        <td>$104 B</td>
+    </tr>
+</table>`,
         initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Ví dụ siêu liên kết</title>
+  <title>portfolio.html</title>
 </head>
 <body>
-  <h2>Menu điều hướng nhanh</h2>
-  <p>
-    <a href="#phan-1">Đến Phần 1</a> |
-    <a href="#phan-2">Đến Phần 2</a> |
-    <a href="https://vi.wikipedia.org" target="_blank" rel="noopener noreferrer">Mở Wikipedia (Tab mới)</a>
-  </p>
+    <h1>Chào mừng bạn ghé thăm portfolio</h1>
+    <p>Trang web này tự tay mình dệt nên.</p>
+    <br>
+    <p>Đây là đường đời bằng phẳng mà bạn ao ước...</p>
+    <hr>
+    <p>... cho đến khi<br>&emsp;&emsp;&emsp;
+        &ensp;&ensp;&nbsp;bạn sụp ổ gà :)</p>
+    <br>
+    <p>Khi sụp rồi thì bạn thường tìm đến những thứ self-help hoặc chữa lành.</p>
+    <h2>Một chiều ngược gió</h2>
+    <pre>Em ngược đường, ngược nắng để yêu anh
+    Ngược phố tan tầm, ngược chiều gió thổi
+Ngược lòng mình tìm về nông nổi
+    Lãng du đi vô định cánh chim trời.</pre>
+    <br>
+    <p>Một cách <em>chữa lành</em> tốt là hãy <em>"tựa"</em> vào khoa học.</p>
+    <p><strong>The law of conservation of energy</strong> states that 
+        <em>energy cannot be created <small>or</small> destroyed, 
+        <mark>only transformed from one form to another 
+        or transferred from one system to another</mark>, 
+        <small>but</small> the total energy of the system 
+        <u>remains constant</u></em>.</p>
+    <p>For example,</p>
+    <p>E<sub>total</sub> = E<sub>kinetic</sub> + E<sub>gravitational</sub> =
+        1/2mv<sup>2</sup> + mgh</p>
 
-  <hr>
+    <h2>Kỷ nguyên Trí tuệ nhân tạo</h2>
+    <ol>
+        <li>Thời đại Máy học (Machine Learning)
+            <ol type="a">
+                <li>Sự trỗi dậy của Mạng nơron (Neural Networks)
+                    <ol type="i">
+                        <li>Kiến trúc Học sâu (Deep Learning)
+                            <ul>
+                                <li>Mô hình Ngôn ngữ lớn (Large Language Models), một ứng dụng Deep Learning
+                                    <ul>
+                                        <li>Transformer và Attention, kỹ thuật quan trọng trong Mô hình Ngôn ngữ lớn</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ol>
+                </li>
+            </ol>
+        </li>
+    </ol>
 
-  <h3 id="phan-1">Phần 1: Giới thiệu chung</h3>
-  <p>Đây là nội dung của phần 1. Thẻ neo giúp học sinh cuộn nhanh đến mục này.</p>
+    <h2>Những ngôn ngữ giúp mình giỏi hơn trong môn... bơi lội</h2>
+    <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Javascript</li>
+        <li>PHP</li>
+        <li>Python</li>
+        <li>C#</li>
+        <li>Typescript</li>
+    </ul>
 
-  <h3 id="phan-2">Phần 2: Thông tin liên hệ</h3>
-  <p>
-    Liên hệ cố vấn học tập: 
-    <a href="mailto:giaovien@school.edu.vn">Gửi Email cho Thầy Cô</a>
-  </p>
+    <h2>Những môn thể thao mà mình yêu thích từ nhiều nhất đến ít nhất</h2>
+    <ol>
+        <li>Bóng đá</li>
+        <li>Bóng rổ</li>
+        <li>Võ thuật</li>
+        <li>Nhảy dây</li>
+        <li>Búng thun</li>
+    </ol>
+
+    <h2>Một vài bạn bè thân thiết</h2>
+    <table border="1">
+        <tr>
+            <th>Hạng</th>
+            <th>Tên</th>
+            <th>Nguồn gốc</th>
+            <th>Tài sản</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><a href="https://www.forbes.com/profile/bernard-arnault/" target="_blank">Bernard Arnault</a></td>
+            <td>LVMH</td>
+            <td>$211 B</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td><a href="https://www.forbes.com/profile/elon-musk/" target="_blank">Elon Musk</a></td>
+            <td>Tesla, SpaceX</td>
+            <td>$180 B</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td><a href="https://www.forbes.com/profile/bill-gates/" target="_blank">Bill Gates</a></td>
+            <td>Microsoft</td>
+            <td>$104 B</td>
+        </tr>
+    </table>
 </body>
 </html>`,
-        explanation: 'Nhấp vào "Đến Phần 1" hoặc "Đến Phần 2" để thấy trang web tự động nhảy đến đúng tiêu đề tương ứng nhờ thuộc tính id.'
+        explanation: 'Phân tích phần nâng cấp tiếp nối từ Bài 7:\n- Ở Bài 7, tên của 3 nhân vật trong bảng "Một vài bạn bè thân thiết" mới chỉ là chữ thuần nằm trong ô <td>.\n- Sang Bài 8, mỗi cái tên được bọc trong thẻ <a> (<code class="token-code">&lt;a href="..." target="_blank"&gt;...&lt;/a&gt;</code>) với đường dẫn tuyệt đối trỏ thẳng tới hồ sơ Forbes của từng người.\n- Thuộc tính target="_blank" giúp khi người dùng nhấp vào Bernard Arnault, Elon Musk hoặc Bill Gates, trang Forbes sẽ mở ra ở tab mới mà không làm mất trang portfolio.html.\n- Khi bấm "Try it Yourself »", bạn sẽ thấy và chạy thử toàn bộ tệp portfolio.html hoàn chỉnh tích lũy từ Bài 4 đến Bài 8.'
       }
     ],
     commonMistakes: [
@@ -1488,15 +1746,21 @@ Ngược lòng mình tìm về nông nổi
         solution: 'Khi nộp bài cho thầy cô hoặc đưa lên mạng, máy người khác không có ổ C:\\Users\\Admin đó nên link sẽ chết hoàn toàn! Luôn dùng đường dẫn tương đối như href="gioi-thieu.html".'
       },
       {
+        mistake: 'Quên giao thức `https://` ở đầu liên kết ngoài (viết `href="www.forbes.com"` thay vì `href="https://www.forbes.com"`).',
+        cause: 'Trình duyệt sẽ hiểu nhầm `www.forbes.com` là một tệp hoặc thư mục nằm trên máy của bạn theo đường dẫn tương đối.',
+        solution: 'Mọi đường dẫn tuyệt đối ra trang web bên ngoài bắt buộc phải bắt đầu bằng `https://` hoặc `http://`.'
+      },
+      {
         mistake: 'Quên ký tự # trong liên kết neo (viết href="phan-1" thay vì href="#phan-1").',
         cause: 'Trình duyệt sẽ hiểu nhầm đó là một file có tên phan-1 và báo lỗi 404 Not Found.',
         solution: 'Luôn bắt đầu bằng dấu # khi liên kết đến id trong cùng trang.'
       }
     ],
     keyTakeaways: [
-      'Thẻ <a> dùng thuộc tính href để khai báo đích đến của liên kết.',
-      'Tuyệt đối không dùng đường dẫn ổ cứng cục bộ (C:\\...) trong dự án web.',
-      'Dùng target="_blank" để mở trang trong tab mới và dùng href="#id" để cuộn trong trang.'
+      'Thẻ <a> dùng thuộc tính href để khai báo đích đến và có thể đặt trực tiếp bên trong đoạn văn, danh sách hoặc ô bảng <td>.',
+      'Phân biệt đường dẫn tuyệt đối (bắt đầu bằng `https://`) với đường dẫn tương đối (`gioi-thieu.html`, `../index.html`); tuyệt đối không dùng đường dẫn ổ cứng (`C:\\...`).',
+      'Dùng target="_blank" (nên kèm `rel="noopener noreferrer"`) để mở liên kết ngoài trong một tab mới.',
+      'Dùng href="#id" để tạo liên kết neo cuộn trong trang và dùng `mailto:`, `tel:` để gửi email hoặc gọi điện nhanh.'
     ]
   },
   {
