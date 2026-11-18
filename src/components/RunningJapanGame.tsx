@@ -9,7 +9,6 @@ import {
 import {
   IconCheckCircle,
   IconArrowLeft,
-  IconLightbulb,
   IconCopy,
   IconCheck,
   IconExternalLink,
@@ -92,7 +91,6 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
   const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
   const [isAnsweredCorrect, setIsAnsweredCorrect] = useState<Record<string, boolean>>({});
   const [showExplanation, setShowExplanation] = useState<Record<string, boolean>>({});
-  const [showHint, setShowHint] = useState<Record<string, boolean>>({});
   const [currentInput, setCurrentInput] = useState<string>('');
   const [inputFeedback, setInputFeedback] = useState<{ type: 'idle' | 'success' | 'error'; message: string }>({
     type: 'idle',
@@ -194,7 +192,6 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
     setUserAnswers({});
     setIsAnsweredCorrect({});
     setShowExplanation({});
-    setShowHint({});
     setCurrentInput('');
     setInputFeedback({ type: 'idle', message: '' });
     setTimeLeft(GAME_DURATION_SECONDS);
@@ -563,7 +560,7 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
             </div>
           )}
 
-          {/* Quick Tools Row: Google Dịch & Google Lens */}
+          {/* Quick Tools Row: Google Dịch */}
           <div className="flex flex-wrap items-center gap-3 pt-1">
             <button
               type="button"
@@ -573,24 +570,7 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
               <span>🌐</span>
               <span>Mở Google Dịch (Đã gắn sẵn nội dung) »</span>
             </button>
-
-            <button
-              type="button"
-              onClick={() => setShowHint((prev) => ({ ...prev, [currentQuestion.id]: !prev[currentQuestion.id] }))}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-amber-300 bg-amber-50 hover:bg-amber-100 px-3.5 py-2.5 text-xs sm:text-sm font-semibold text-amber-800 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-300 transition"
-            >
-              <IconLightbulb size={16} />
-              <span>{showHint[currentQuestion.id] ? 'Ẩn gợi ý' : 'Xem gợi ý (+0đ)'}</span>
-            </button>
           </div>
-
-          {/* Gợi ý nếu học sinh bật */}
-          {showHint[currentQuestion.id] && (
-            <div className="rounded-xl border border-amber-200 bg-amber-50/70 p-3.5 text-xs text-amber-800 dark:border-amber-900/50 dark:bg-amber-950/30 dark:text-amber-300 animate-fadeIn">
-              <strong>💡 Gợi ý từ thầy cô: </strong>
-              <span>{currentQuestion.hint}</span>
-            </div>
-          )}
 
           {/* Form Nhập Đáp Án */}
           <form onSubmit={handleCheckAnswer} className="pt-2">
@@ -611,7 +591,7 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
                 placeholder={
                   isAnsweredCorrect[currentQuestion.id]
                     ? `Đã trả lời đúng: ${currentQuestion.displayAnswer}`
-                    : 'Ví dụ: Hoa tử đằng, Sushi, Conan, Ame...'
+                    : 'Nhập câu trả lời của bạn tại đây...'
                 }
                 className={`flex-1 rounded-xl border px-4 py-3 text-sm font-medium shadow-inner transition outline-none ${
                   isAnsweredCorrect[currentQuestion.id]
