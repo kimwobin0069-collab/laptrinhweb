@@ -11,6 +11,7 @@ import { SearchModal } from './components/SearchModal';
 import { ProgressModal } from './components/ProgressModal';
 import { DonationModal } from './components/DonationModal';
 import { TryitEditor } from './components/TryitEditor';
+import { RunningJapanGame } from './components/RunningJapanGame';
 import {
   getLessonById,
   getAdjacentLessons,
@@ -46,6 +47,7 @@ export function App() {
   // Navigation state (lesson ID or null for overview)
   const [currentLessonId, setCurrentLessonId] = useState<string>('html-1');
   const [isOverview, setIsOverview] = useState<boolean>(true);
+  const [isGameRunningJapan, setIsGameRunningJapan] = useState<boolean>(false);
   const [tryitExampleId, setTryitExampleId] = useState<string | null>(null);
 
   // Modals state
@@ -99,6 +101,7 @@ export function App() {
       const hash = window.location.hash;
       if (!hash || hash === '#' || hash === '#/' || hash === '#/overview') {
         setIsOverview(true);
+        setIsGameRunningJapan(false);
         setTryitExampleId(null);
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
@@ -112,12 +115,23 @@ export function App() {
       }
       setTryitExampleId(null);
 
+      // Check for Game: #/running-japan or #/game/running-japan
+      if (hash === '#/running-japan' || hash === '#/game/running-japan') {
+        setIsGameRunningJapan(true);
+        setIsOverview(false);
+        setTryitExampleId(null);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      setIsGameRunningJapan(false);
+
       const match = hash.match(/^#\/lesson\/([a-z0-9-]+)$/i);
       if (match && match[1]) {
         const found = getLessonById(match[1]);
         if (found) {
           setCurrentLessonId(found.id);
           setIsOverview(false);
+          setIsGameRunningJapan(false);
           window.scrollTo({ top: 0, behavior: 'smooth' });
           return;
         }
@@ -125,6 +139,7 @@ export function App() {
 
       // Default fallback
       setIsOverview(true);
+      setIsGameRunningJapan(false);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -145,12 +160,23 @@ export function App() {
     window.location.hash = `#/lesson/${lessonId}`;
     setCurrentLessonId(lessonId);
     setIsOverview(false);
+    setIsGameRunningJapan(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const navigateToOverview = () => {
     window.location.hash = '#/overview';
     setIsOverview(true);
+    setIsGameRunningJapan(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToGame = (_gameId: string = 'running-japan') => {
+    window.location.hash = '#/game/running-japan';
+    setIsGameRunningJapan(true);
+    setIsOverview(false);
+    setTryitExampleId(null);
+    setIsMobileSidebarOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -230,6 +256,8 @@ export function App() {
           onSelectLesson={navigateToLesson}
           onSelectOverview={navigateToOverview}
           isOverviewSelected={isOverview}
+          isGameSelected={isGameRunningJapan}
+          onSelectGame={navigateToGame}
           progress={progress}
           isOpenMobile={isMobileSidebarOpen}
           isHiddenDesktop={isSidebarHidden}
@@ -239,7 +267,9 @@ export function App() {
 
         {/* Content Canvas */}
         <main className="flex-1 min-w-0">
-          {isOverview ? (
+          {isGameRunningJapan ? (
+            <RunningJapanGame onBackHome={navigateToOverview} />
+          ) : isOverview ? (
             <OverviewView
               onStartTrack={handleStartTrack}
               progress={progress}

@@ -18,6 +18,8 @@ interface SidebarProps {
   onSelectLesson: (lessonId: string) => void;
   onSelectOverview: () => void;
   isOverviewSelected: boolean;
+  isGameSelected?: boolean;
+  onSelectGame?: (gameId: string) => void;
   progress: UserProgress;
   isHiddenDesktop: boolean;
   onHideDesktop?: () => void;
@@ -62,6 +64,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onSelectLesson,
   onSelectOverview,
   isOverviewSelected,
+  isGameSelected,
+  onSelectGame,
   progress,
   isHiddenDesktop,
   isOpenMobile,
@@ -221,6 +225,51 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </div>
           );
         })}
+
+        {/* Hoạt động trải nghiệm Lớp 10: Running Japan! */}
+        <div className="pt-2">
+          <div className="rounded-2xl border-2 border-rose-300/80 bg-gradient-to-br from-rose-50 via-white to-amber-50/70 p-3 shadow-sm dark:border-rose-900/60 dark:from-rose-950/40 dark:via-slate-900 dark:to-amber-950/20">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-black uppercase tracking-wider text-rose-600 dark:text-rose-400 flex items-center gap-1.5">
+                <span>🇯🇵</span>
+                <span>Hoạt động Lớp 10</span>
+              </span>
+              <span className="rounded-full bg-rose-600 px-2 py-0.5 text-[9px] font-bold text-white shadow-xs animate-pulse">
+                9 Phút
+              </span>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => {
+                if (onSelectGame) {
+                  onSelectGame('running-japan');
+                } else {
+                  window.location.hash = '#/game/running-japan';
+                }
+                onCloseMobile();
+              }}
+              className={`group flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2.5 text-left text-xs font-bold transition shadow-sm ${
+                isGameSelected
+                  ? 'bg-gradient-to-r from-red-600 to-rose-600 text-white shadow-rose-500/30'
+                  : 'bg-white text-slate-800 hover:bg-rose-50 hover:text-rose-700 dark:bg-slate-800 dark:text-slate-100 dark:hover:bg-slate-750 dark:hover:text-rose-300 border border-slate-200/90 dark:border-slate-700'
+              }`}
+            >
+              <div className="flex items-center gap-2.5">
+                <span className="text-xl group-hover:scale-115 transition-transform">🏃‍♂️</span>
+                <div>
+                  <span className="block font-black text-xs leading-tight">Running Japan!</span>
+                  <span className={`block text-[10px] font-medium leading-tight ${isGameSelected ? 'text-rose-100' : 'text-slate-500 dark:text-slate-400'}`}>
+                    Google Dịch & Google Lens
+                  </span>
+                </div>
+              </div>
+              <span className={`text-xs font-extrabold ${isGameSelected ? 'text-white' : 'text-rose-600 dark:text-rose-400'}`}>
+                ➔
+              </span>
+            </button>
+          </div>
+        </div>
       </nav>
     </div>
   );
