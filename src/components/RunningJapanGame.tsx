@@ -11,7 +11,6 @@ import {
   IconArrowLeft,
   IconCopy,
   IconCheck,
-  IconExternalLink,
   IconRotateCcw,
 } from './Icons';
 
@@ -208,17 +207,6 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
     } catch {
       alert('Không thể tự động chép, bạn hãy bôi đen dòng chữ và bấm Ctrl + C nhé!');
     }
-  };
-
-  // Mở Google Dịch trong tab mới
-  const handleOpenGoogleTranslate = () => {
-    const text = encodeURIComponent(currentQuestion?.japaneseContent || '');
-    window.open(`https://translate.google.com/?sl=ja&tl=vi&text=${text}&op=translate`, '_blank');
-  };
-
-  // Mở Google Lens / Tìm kiếm ảnh
-  const handleOpenGoogleImages = () => {
-    window.open('https://images.google.com/', '_blank');
   };
 
   // Định dạng thời gian mm:ss
@@ -523,19 +511,11 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
           {/* Nếu là câu hỏi hình ảnh hoa (Vòng 3 - Tử Đằng) */}
           {currentQuestion.image && (
             <div className="rounded-2xl border border-purple-200 bg-purple-50/50 p-4 dark:border-purple-900/40 dark:bg-purple-950/20">
-              <div className="flex items-center justify-between mb-3">
+              <div className="mb-3">
                 <span className="text-xs font-bold text-purple-800 dark:text-purple-300 flex items-center gap-1.5">
                   <span>📸</span>
-                  <span>Hình ảnh tra cứu bằng Google Lens:</span>
+                  <span>Hình ảnh cần tra cứu & nhận diện:</span>
                 </span>
-                <button
-                  type="button"
-                  onClick={handleOpenGoogleImages}
-                  className="inline-flex items-center gap-1 text-xs font-bold text-purple-700 hover:text-purple-800 dark:text-purple-300 underline"
-                >
-                  <IconExternalLink size={14} />
-                  <span>Mở Google Images</span>
-                </button>
               </div>
 
               <div className="relative group overflow-hidden rounded-xl border border-purple-200 dark:border-purple-800 bg-black flex items-center justify-center max-h-96">
@@ -551,18 +531,6 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
               </div>
             </div>
           )}
-
-          {/* Quick Tools Row: Google Dịch */}
-          <div className="flex flex-wrap items-center gap-3 pt-1">
-            <button
-              type="button"
-              onClick={handleOpenGoogleTranslate}
-              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 px-4 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md shadow-blue-500/20 transition active:scale-95"
-            >
-              <span>🌐</span>
-              <span>Mở Google Dịch (Đã gắn sẵn nội dung) »</span>
-            </button>
-          </div>
 
           {/* Form Nhập Đáp Án */}
           <form onSubmit={handleCheckAnswer} className="pt-2">
