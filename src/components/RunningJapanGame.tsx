@@ -180,7 +180,7 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
       playSound('wrong');
       setInputFeedback({
         type: 'error',
-        message: '❌ Chưa chính xác rồi! Hãy sao chép văn bản vào Google Dịch hoặc dùng Gợi ý để kiểm tra lại nhé!',
+        message: '❌ Chưa chính xác rồi! Hãy kiểm tra kỹ lại bản dịch hoặc kết quả tìm kiếm nhé!',
       });
     }
   };
@@ -487,9 +487,6 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
             <h2 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white leading-snug">
               {currentQuestion.title}
             </h2>
-            <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-              👉 {currentQuestion.instruction}
-            </p>
           </div>
 
           {/* Hộp nội dung tiếng Nhật cần dịch */}
@@ -552,11 +549,6 @@ export const RunningJapanGame: React.FC<RunningJapanGameProps> = ({ onBackHome }
                   className="w-full h-auto object-cover max-h-96 transition duration-300 group-hover:scale-102"
                 />
               </div>
-
-              <p className="mt-2.5 text-xs text-purple-700 dark:text-purple-300 text-center italic">
-                💡 <strong>Mẹo thám tử:</strong> Nhấp chuột phải trực tiếp vào ảnh trên $\rightarrow$ chọn{' '}
-                <span className="font-bold underline">"Tìm hình ảnh bằng Google"</span> (Search image with Google) trên trình duyệt Chrome/Edge!
-              </p>
             </div>
           )}
 
