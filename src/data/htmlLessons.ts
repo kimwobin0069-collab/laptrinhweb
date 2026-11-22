@@ -1878,7 +1878,7 @@ Ngược lòng mình tìm về nông nổi
           'Hai thuộc tính quan trọng nhất của thẻ <img> là:'
         ],
         bulletPoints: [
-          'src (Source): Đường dẫn đến tệp hình ảnh (có thể là đường dẫn tương đối trong dự án hoặc link ảnh trên mạng).',
+          'src (Source): Đường dẫn đến tệp hình ảnh (có thể là đường dẫn tương đối trong thư mục media/ hoặc link ảnh trên mạng).',
           'alt (Alternative Text): Văn bản thay thế mô tả nội dung bức ảnh.',
           'width & height: Thiết lập chiều rộng và chiều cao ảnh (khuyên dùng để trình duyệt giữ sẵn chỗ trước khi ảnh tải xong, chống giật khung hình Layout Shift).'
         ],
@@ -1886,6 +1886,17 @@ Ngược lòng mình tìm về nông nổi
           type: 'note',
           title: 'Tại sao thuộc tính alt lại BẮT BUỘC?',
           content: '1. Khi đường link ảnh bị hỏng hoặc mạng yếu, nội dung alt sẽ hiển thị để người dùng vẫn biết bức ảnh chụp gì.\n2. Người khiếm thị dùng phần mềm đọc màn hình sẽ dựa vào alt để "nghe" bức ảnh.\n3. Công cụ tìm kiếm Google dùng alt để hiểu nội dung ảnh và hiển thị trên Google Hình ảnh.'
+        },
+        example: {
+          id: 'mini-img-20-11',
+          title: 'Ví dụ: Chèn ảnh kỷ niệm 20-11',
+          caption: 'Ảnh tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm:',
+          code: `<img 
+  src="media/20-11-le-thi-hong-gam.jpg" 
+  alt="Tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm chào mừng Ngày Nhà giáo Việt Nam 20-11" 
+  width="600"
+>`,
+          explanation: 'Thẻ <img> sử dụng đường dẫn tương đối trong thư mục media, có thuộc tính alt đầy đủ ý nghĩa.'
         }
       },
       {
@@ -1894,22 +1905,49 @@ Ngược lòng mình tìm về nông nổi
         paragraphs: [
           'HTML5 cung cấp thẻ <audio> chuẩn để phát nhạc hoặc bài giảng âm thanh mà không cần cài thêm plugin ngoài.',
           'Các thuộc tính chính: controls (hiển thị thanh điều khiển phát/dừng, âm lượng), autoplay (tự động phát - hầu hết trình duyệt chặn tính năng này nếu chưa có tương tác người dùng), loop (lặp lại vô tận).'
-        ]
+        ],
+        example: {
+          id: 'mini-audio-tayduki',
+          title: 'Ví dụ: Phát âm thanh Happy New Year và Tây Du Ký',
+          caption: 'Bộ phát nhạc HTML5 với controls:',
+          code: `<p>Nhạc Happy New Year:</p>
+<audio controls>
+  <source src="media/happy-new-year.mp3" type="audio/mpeg">
+  Trình duyệt không hỗ trợ thẻ audio.
+</audio>
+
+<p>Nhạc phim Tây Du Ký:</p>
+<audio controls>
+  <source src="media/Tayduki.m4a" type="audio/mp4">
+  Trình duyệt không hỗ trợ thẻ audio.
+</audio>`,
+          explanation: 'Thẻ <audio> với thuộc tính controls cho phép học sinh bấm Play, tua nhanh và chỉnh âm lượng.'
+        }
       },
       {
         id: 'the-video',
         title: '3. Chèn video với thẻ <video>',
         paragraphs: [
           'Thẻ <video> cho phép phát video trực tiếp. Bên trong thẻ <video>, ta thường dùng nhiều thẻ con <source> với các định dạng khác nhau (.mp4, .webm) để đảm bảo trình duyệt nào cũng xem được.',
-          'Thuộc tính poster="anh-bia.jpg" dùng để hiển thị bức ảnh bìa trước khi người dùng bấm nút Play.'
-        ]
+          'Thuộc tính poster="media/20-11-le-thi-hong-gam.jpg" dùng để hiển thị bức ảnh bìa trước khi người dùng bấm nút Play.'
+        ],
+        example: {
+          id: 'mini-video-your-name',
+          title: 'Ví dụ: Phát video phim Your Name',
+          caption: 'Khung video có ảnh bìa poster:',
+          code: `<video width="600" controls poster="media/20-11-le-thi-hong-gam.jpg">
+  <source src="media/your-name.mp4" type="video/mp4">
+  Trình duyệt không hỗ trợ phát video.
+</video>`,
+          explanation: 'Thẻ <video> có thuộc tính poster để hiển thị ảnh bìa trước khi bấm xem video.'
+        }
       }
     ],
     codeExamples: [
       {
         id: 'vd-da-phuong-tien',
-        title: 'Ví dụ chèn hình ảnh SVG và thẻ video điều khiển',
-        description: 'Trình bày hình ảnh logo và khung phát đa phương tiện tự hoạt động.',
+        title: 'Ví dụ chèn hình ảnh 20-11, âm thanh và video',
+        description: 'Chèn ảnh trường THCS & THPT Lê Thị Hồng Gấm, phát nhạc Happy New Year, Tây Du Ký và video phim Your Name.',
         language: 'html',
         runnable: true,
         initialCode: `<!DOCTYPE html>
@@ -1919,31 +1957,35 @@ Ngược lòng mình tìm về nông nổi
   <title>Ví dụ đa phương tiện</title>
 </head>
 <body>
-  <h2>1. Chèn hình ảnh minh họa (có thuộc tính alt)</h2>
-  <!-- Sử dụng ảnh vector SVG nhúng trực tiếp an toàn, không sợ link ngoài bị chết -->
+  <h2>1. Chèn hình ảnh kỷ niệm 20-11 (thẻ img)</h2>
   <img 
-    src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><rect width='100' height='100' fill='%232563eb' rx='15'/><text x='50' y='60' font-size='35' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>WEB</text></svg>" 
-    alt="Logo minh họa câu lạc bộ Lập trình Web" 
-    width="120" 
-    height="120"
+    src="media/20-11-le-thi-hong-gam.jpg" 
+    alt="Tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm chào mừng Ngày Nhà giáo Việt Nam 20-11" 
+    width="640"
+    style="max-width: 100%; height: auto; border-radius: 8px;"
   >
 
   <h2>2. Phát âm thanh với thẻ audio</h2>
-  <p>Bộ điều khiển âm thanh HTML5 tiêu chuẩn:</p>
+  <p><strong>Bài hát 1:</strong> Happy New Year (ABBA)</p>
   <audio controls>
-    <!-- Trình duyệt sẽ phát nguồn hợp lệ nếu có tệp mp3 -->
-    <source src="audio-sample.mp3" type="audio/mpeg">
+    <source src="media/happy-new-year.mp3" type="audio/mpeg">
     Trình duyệt của bạn không hỗ trợ thẻ audio.
   </audio>
 
-  <h2>3. Phát video với thẻ video</h2>
-  <video width="320" height="180" controls poster="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='180'><rect width='100%25' height='100%25' fill='%23334155'/><text x='50%25' y='50%25' fill='white' font-size='18' text-anchor='middle' dy='.3em'>Bấm để xem video</text></svg>">
-    <source src="movie.mp4" type="video/mp4">
+  <p><strong>Bài hát 2:</strong> Nhạc phim Tây Du Ký</p>
+  <audio controls>
+    <source src="media/Tayduki.m4a" type="audio/mp4">
+    Trình duyệt của bạn không hỗ trợ thẻ audio.
+  </audio>
+
+  <h2>3. Phát video phim Your Name (thẻ video)</h2>
+  <video width="640" controls poster="media/20-11-le-thi-hong-gam.jpg" style="max-width: 100%; height: auto; border-radius: 8px;">
+    <source src="media/your-name.mp4" type="video/mp4">
     Trình duyệt không hỗ trợ phát video.
   </video>
 </body>
 </html>`,
-        explanation: 'Thẻ <img> có đủ alt, width, height. Thẻ audio và video có thuộc tính controls để người dùng chủ động bấm phát, tạm dừng hoặc kéo thanh thời gian.'
+        explanation: 'Thẻ <img> sử dụng đường dẫn tương đối "media/20-11-le-thi-hong-gam.jpg" kèm thuộc tính alt mô tả rõ ràng. Thẻ <audio> phát bài hát Happy New Year (định dạng mp3) và nhạc phim Tây Du Ký (định dạng m4a) có thuộc tính controls. Thẻ <video> phát phim Your Name kèm ảnh bìa poster trường 20-11.'
       }
     ],
     commonMistakes: [
