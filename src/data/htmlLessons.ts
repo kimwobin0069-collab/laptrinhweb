@@ -1908,15 +1908,9 @@ Ngược lòng mình tìm về nông nổi
         ],
         example: {
           id: 'mini-audio-tayduki',
-          title: 'Ví dụ: Phát âm thanh Happy New Year và Tây Du Ký',
+          title: 'Ví dụ: Nhạc phim tôi yêu thích',
           caption: 'Bộ phát nhạc HTML5 với controls:',
-          code: `<p>Nhạc Happy New Year:</p>
-<audio controls>
-  <source src="media/happy-new-year.mp3" type="audio/mpeg">
-  Trình duyệt không hỗ trợ thẻ audio.
-</audio>
-
-<p>Nhạc phim Tây Du Ký:</p>
+          code: `<p>Nhạc phim tôi yêu thích:</p>
 <audio controls>
   <source src="media/Tayduki.m4a" type="audio/mp4">
   Trình duyệt không hỗ trợ thẻ audio.
@@ -1933,10 +1927,12 @@ Ngược lòng mình tìm về nông nổi
         ],
         example: {
           id: 'mini-video-your-name',
-          title: 'Ví dụ: Phát video phim Your Name',
+          title: 'Ví dụ: Bộ phim mà tôi yêu thích',
           caption: 'Khung video có ảnh bìa poster:',
-          code: `<video width="600" controls poster="media/20-11-le-thi-hong-gam.jpg">
-  <source src="media/your-name.mp4" type="video/mp4">
+          code: `<p>Bộ phim mà tôi yêu thích:</p>
+<video width="600" controls poster="media/20-11-le-thi-hong-gam.jpg">
+  <source src="media/Titanic.mp4" type="video/mp4">
+  <source src="media/Tinanic.mp4" type="video/mp4">
   Trình duyệt không hỗ trợ phát video.
 </video>`,
           explanation: 'Thẻ <video> có thuộc tính poster để hiển thị ảnh bìa trước khi bấm xem video.'
@@ -1946,8 +1942,8 @@ Ngược lòng mình tìm về nông nổi
     codeExamples: [
       {
         id: 'vd-da-phuong-tien',
-        title: 'Ví dụ chèn hình ảnh 20-11, âm thanh và video',
-        description: 'Chèn ảnh trường THCS & THPT Lê Thị Hồng Gấm, phát nhạc Happy New Year, Tây Du Ký và video phim Your Name.',
+        title: 'Ví dụ chèn hình ảnh, âm thanh và video',
+        description: 'Chèn ảnh trường THCS & THPT Lê Thị Hồng Gấm, phát nhạc phim tôi yêu thích và bộ phim mà tôi yêu thích.',
         language: 'html',
         runnable: true,
         initialCode: `<!DOCTYPE html>
@@ -1965,27 +1961,21 @@ Ngược lòng mình tìm về nông nổi
     style="max-width: 100%; height: auto; border-radius: 8px;"
   >
 
-  <h2>2. Phát âm thanh với thẻ audio</h2>
-  <p><strong>Bài hát 1:</strong> Happy New Year (ABBA)</p>
-  <audio controls>
-    <source src="media/happy-new-year.mp3" type="audio/mpeg">
-    Trình duyệt của bạn không hỗ trợ thẻ audio.
-  </audio>
-
-  <p><strong>Bài hát 2:</strong> Nhạc phim Tây Du Ký</p>
+  <h2>2. Nhạc phim tôi yêu thích (thẻ audio)</h2>
   <audio controls>
     <source src="media/Tayduki.m4a" type="audio/mp4">
     Trình duyệt của bạn không hỗ trợ thẻ audio.
   </audio>
 
-  <h2>3. Phát video phim Your Name (thẻ video)</h2>
+  <h2>3. Bộ phim mà tôi yêu thích (thẻ video)</h2>
   <video width="640" controls poster="media/20-11-le-thi-hong-gam.jpg" style="max-width: 100%; height: auto; border-radius: 8px;">
-    <source src="media/your-name.mp4" type="video/mp4">
+    <source src="media/Titanic.mp4" type="video/mp4">
+    <source src="media/Tinanic.mp4" type="video/mp4">
     Trình duyệt không hỗ trợ phát video.
   </video>
 </body>
 </html>`,
-        explanation: 'Thẻ <img> sử dụng đường dẫn tương đối "media/20-11-le-thi-hong-gam.jpg" kèm thuộc tính alt mô tả rõ ràng. Thẻ <audio> phát bài hát Happy New Year (định dạng mp3) và nhạc phim Tây Du Ký (định dạng m4a) có thuộc tính controls. Thẻ <video> phát phim Your Name kèm ảnh bìa poster trường 20-11.'
+        explanation: 'Thẻ <img> sử dụng đường dẫn tương đối "media/20-11-le-thi-hong-gam.jpg" có thuộc tính alt. Thẻ <audio> phát đoạn nhạc phim tôi yêu thích (tệp media/Tayduki.m4a). Thẻ <video> phát bộ phim mà tôi yêu thích (tệp media/Titanic.mp4) có gắn ảnh bìa poster.'
       }
     ],
     commonMistakes: [
