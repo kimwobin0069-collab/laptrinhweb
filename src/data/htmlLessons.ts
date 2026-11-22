@@ -1875,13 +1875,18 @@ Ngược lòng mình tìm về nông nổi
                 title: '1. Chèn hình ảnh với thẻ <img>',
                 paragraphs: [
                     'Thẻ <img> là thẻ rỗng (không có thẻ đóng), dùng để nhúng hình ảnh vào trang web.',
-                    'Hai thuộc tính quan trọng nhất của thẻ <img> là:'
+                    'Bảng các thuộc tính quan trọng của thẻ <img>:'
                 ],
-                bulletPoints: [
-                    'src (Source): Đường dẫn đến tệp hình ảnh (có thể là đường dẫn tương đối trong thư mục media/ hoặc link ảnh trên mạng).',
-                    'alt (Alternative Text): Văn bản thay thế mô tả nội dung bức ảnh.',
-                    'width & height: Thiết lập chiều rộng và chiều cao ảnh (khuyên dùng để trình duyệt giữ sẵn chỗ trước khi ảnh tải xong, chống giật khung hình Layout Shift).'
-                ],
+                table: {
+                    headers: ['Thuộc tính', 'Ý nghĩa'],
+                    rows: [
+                        ['`src`', 'URL của tập tin hình'],
+                        ['`width`', 'Độ rộng hiển thị của hình'],
+                        ['`height`', 'Độ cao hiển thị của hình'],
+                        ['`alt` (alternative text)', 'Nội dung sẽ hiển thị để thay thế nếu hình không hiển thị được'],
+                        ['`title`', 'Nội dung sẽ hiển thị khi rê chuột lên hình']
+                    ]
+                },
                 callout: {
                     type: 'note',
                     title: 'Tại sao thuộc tính alt lại BẮT BUỘC?',
@@ -1894,9 +1899,10 @@ Ngược lòng mình tìm về nông nổi
                     code: `<img 
   src="media/20-11-le-thi-hong-gam.jpg" 
   alt="Tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm chào mừng Ngày Nhà giáo Việt Nam 20-11" 
+  title="Tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm"
   width="600"
 >`,
-                    explanation: 'Thẻ <img> sử dụng đường dẫn tương đối trong thư mục media, có thuộc tính alt đầy đủ ý nghĩa.'
+                    explanation: 'Thẻ <img> sử dụng đường dẫn tương đối trong thư mục media, có thuộc tính alt đầy đủ ý nghĩa và thuộc tính title hiển thị khi rê chuột lên ảnh.'
                 }
             },
             {
@@ -1956,6 +1962,7 @@ Ngược lòng mình tìm về nông nổi
   <img 
     src="media/20-11-le-thi-hong-gam.jpg" 
     alt="Tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm chào mừng Ngày Nhà giáo Việt Nam 20-11" 
+    title="Tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm"
     width="640"
     style="max-width: 100%; height: auto; border-radius: 8px;"
   >
@@ -1973,7 +1980,7 @@ Ngược lòng mình tìm về nông nổi
   </video>
 </body>
 </html>`,
-                explanation: 'Thẻ <img> sử dụng đường dẫn tương đối "media/20-11-le-thi-hong-gam.jpg" có thuộc tính alt. Thẻ <audio> phát đoạn nhạc phim tôi yêu thích (tệp media/Tayduki.m4a). Thẻ <video> phát bộ phim mà tôi yêu thích (tệp media/Titanic.mp4) kèm poster phim "media/Titanic-2-01.jpeg".'
+                explanation: 'Thẻ <img> sử dụng đường dẫn tương đối "media/20-11-le-thi-hong-gam.jpg" có đầy đủ thuộc tính alt, title, width. Thẻ <audio> phát đoạn nhạc phim tôi yêu thích (tệp media/Tayduki.m4a). Thẻ <video> phát bộ phim mà tôi yêu thích (tệp media/Titanic.mp4) kèm poster phim "media/Titanic-2-01.jpeg".'
             }
         ],
         commonMistakes: [
@@ -1989,9 +1996,9 @@ Ngược lòng mình tìm về nông nổi
             }
         ],
         keyTakeaways: [
-            'Thẻ <img> là thẻ rỗng, bắt buộc phải có thuộc tính src và alt.',
+            'Thẻ <img> là thẻ rỗng, có các thuộc tính quan trọng: src, width, height, alt (văn bản thay thế) và title (chú thích khi rê chuột).',
             'Thẻ <audio> và <video> cần thuộc tính controls để hiển thị nút bật/tắt âm thanh và thanh thời gian.',
-            'Sử dụng nhiều thẻ con <source> bên trong <video> để tương thích nhiều trình duyệt.'
+            'Thẻ <video> hỗ trợ thuộc tính poster để hiển thị ảnh bìa phim trước khi người dùng bấm phát.'
         ]
     },
     {

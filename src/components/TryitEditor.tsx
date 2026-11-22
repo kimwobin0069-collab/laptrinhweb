@@ -28,6 +28,22 @@ export const TryitEditor: React.FC<TryitEditorProps> = ({ example, lesson, onBac
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const gutterRef = useRef<HTMLDivElement>(null);
 
+  const preparedSrcDoc = React.useMemo(() => {
+    if (!renderedCode) return '';
+    if (!renderedCode.includes('<base')) {
+      let baseHref = window.location.href.split('#')[0];
+      if (!baseHref.endsWith('/')) {
+        baseHref = baseHref.substring(0, baseHref.lastIndexOf('/') + 1);
+      }
+      const baseTag = `<base href="${baseHref}">`;
+      if (renderedCode.includes('<head>')) {
+        return renderedCode.replace('<head>', `<head>\n  ${baseTag}`);
+      }
+      return `${baseTag}\n${renderedCode}`;
+    }
+    return renderedCode;
+  }, [renderedCode]);
+
   const toggleTheme = () => {
     const next = theme === 'light' ? 'dark' : 'light';
     setTheme(next);
@@ -295,8 +311,8 @@ export const TryitEditor: React.FC<TryitEditorProps> = ({ example, lesson, onBac
           <div className="flex-1 p-2 sm:p-3 overflow-hidden bg-white">
             <iframe
               title={`Kết quả: ${example.title}`}
-              sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox"
-              srcDoc={renderedCode}
+              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+              srcDoc={preparedSrcDoc}
               className="h-full w-full rounded-lg border border-slate-200 bg-white shadow-sm dark:border-slate-700"
             />
           </div>
