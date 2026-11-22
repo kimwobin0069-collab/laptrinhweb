@@ -1,141 +1,141 @@
 import { Lesson } from '../types/lesson';
 
 export const htmlLessons: Lesson[] = [
-  {
-    id: 'html-1',
-    track: 'html',
-    order: 1,
-    title: 'Khái quát về HTML và web',
-    slug: 'khai-quat-ve-html-va-web',
-    description: 'Tìm hiểu bản chất của World Wide Web, vai trò của bộ ba HTML - CSS - JavaScript và cách trình duyệt hiển thị một trang web.',
-    estimatedMinutes: 25,
-    objectives: [
-      'Giải thích luồng trình duyệt, DNS, máy chủ web và cơ sở dữ liệu.',
-      'Phân biệt web tĩnh và web động phía máy chủ qua ví dụ thực tế.',
-      'Phân biệt rõ ràng vai trò của HTML (bộ khung), CSS (trang điểm) và JavaScript (hành vi).',
-      'Nắm vững khái niệm HTML là ngôn ngữ đánh dấu siêu văn bản, không phải ngôn ngữ lập trình thuật toán.'
-    ],
-    sections: [
-      {
-        id: 'web-la-gi',
-        title: '1. Mạng lưới toàn cầu (World Wide Web) hoạt động ra sao?',
-        paragraphs: [
-          'Khi bạn gõ <strong>địa chỉ một trang web</strong> <em>(ví dụ: <code class="web-domain">google.com</code> hay <code class="web-domain">dantri.com.vn</code>)</em> vào trình duyệt và nhấn <kbd class="key-enter">Enter</kbd>, máy tính của bạn (đóng vai trò là <span class="badge badge-client">💻 Máy khách – Client</span>) sẽ gửi một <span class="badge badge-request">📤 Yêu cầu (Request)</span> qua <strong>Internet</strong> đến <span class="badge badge-server">🖥️ Máy chủ (Server)</span> lưu trữ trang web đó.',
-          '<strong>Máy chủ</strong> sẽ <span class="badge badge-response">📥 Phản hồi (Response)</span> bằng cách gửi về các tệp tin chứa <strong>mã lệnh văn bản</strong> gồm <span class="tech-html">HTML</span>, <span class="tech-css">CSS</span>, <span class="tech-js">JavaScript</span> cùng các tệp <strong>hình ảnh, âm thanh</strong>. <strong>Trình duyệt web</strong> <em>(như Google Chrome, Microsoft Edge, Firefox)</em> có nhiệm vụ <strong>đọc, phân tích và "vẽ" lại</strong> <em>(render)</em> các mã lệnh đó thành <span class="highlight-visual">giao diện trực quan</span> cho bạn đọc.'
-        ]
-      },
-{
-  "id": "web-tinh-web-dong",
-  "title": "2. Web tĩnh và web động khác nhau thế nào?",
-  "illustration": "static-dynamic",
-  "paragraphs": [
-    "Web tĩnh: máy chủ gửi các tệp đã chuẩn bị sẵn (HTML, CSS, JavaScript, hình ảnh) cho trình duyệt. Ví dụ: trang giới thiệu trường hoặc trang tài liệu. Khi muốn thay đổi nội dung đã xuất bản, người quản trị thường sửa nguồn rồi xuất bản lại.",
-    "Web động phía máy chủ: ứng dụng xử lý yêu cầu và tạo nội dung hoặc dữ liệu phản hồi tại thời điểm truy cập. Kết quả có thể phụ thuộc tài khoản, từ khóa tìm kiếm hoặc dữ liệu hiện tại. Ví dụ: cổng xem điểm sau khi đăng nhập."
-  ],
-  "table": {
-    "headers": [
-      "Tiêu chí",
-      "Web tĩnh",
-      "Web động phía máy chủ"
-    ],
-    "rows": [
-      [
-        "Cách phục vụ",
-        "Gửi tệp có sẵn",
-        "Xử lý yêu cầu rồi tạo phản hồi"
-      ],
-      [
-        "Dữ liệu",
-        "Nội dung được xuất bản sẵn",
-        "Có thể đọc/ghi cơ sở dữ liệu hoặc gọi dịch vụ khác"
-      ],
-      [
-        "Ví dụ",
-        "Trang giới thiệu câu lạc bộ",
-        "Cổng xem điểm, cửa hàng có tài khoản và đơn hàng"
-      ],
-      [
-        "Cập nhật",
-        "Thường sửa nguồn và xuất bản lại",
-        "Có thể cập nhật dữ liệu qua trang quản trị"
-      ]
-    ]
-  },
-  "callout": {
-    "type": "note",
-    "title": "Có animation chưa có nghĩa là web động phía máy chủ",
-    "content": "Trang tĩnh vẫn có thể dùng JavaScript để làm menu, animation, tìm kiếm trong dữ liệu có sẵn hoặc lưu tiến độ trên trình duyệt. Web động không bắt buộc có cơ sở dữ liệu; một website cũng có thể kết hợp phần tĩnh và API động."
-  }
-},
-{
-  "id": "co-che-hoat-dong-web",
-  "title": "3. Từ tên miền đến trang web trên màn hình",
-  "illustration": "web-mechanism",
-  "paragraphs": [
-    "Ví dụ bạn mở https://truong.example/diem. Trình duyệt cần tìm địa chỉ IP của máy chủ qua hệ thống DNS (hoặc dùng kết quả còn lưu trong bộ nhớ đệm), rồi mới gửi yêu cầu đến máy chủ. DNS giúp tìm địa chỉ, không chuyển tiếp toàn bộ nội dung trang web.",
-    "Với HTTPS, trình duyệt thiết lập kết nối được bảo vệ bằng TLS. Máy chủ web có thể trả tệp tĩnh ngay hoặc chuyển yêu cầu cho ứng dụng phía máy chủ. Ứng dụng có thể kiểm tra quyền truy cập và truy vấn cơ sở dữ liệu trước khi trả kết quả."
-  ],
-  "bulletPoints": [
-    "Người dùng (User): nhập địa chỉ, nhấp liên kết hoặc gửi biểu mẫu.",
-    "Trình duyệt (Client): gửi yêu cầu HTTP(S), nhận tài nguyên và hiển thị trang.",
-    "DNS (Domain Name System): phân giải tên miền sang địa chỉ IP; kết quả thường được lưu đệm.",
-    "Web Server (Web SV): nhận yêu cầu và gửi phản hồi; có thể phối hợp với ứng dụng phía máy chủ.",
-    "Database (DB): lưu dữ liệu như tài khoản, bài viết hoặc điểm. Trong mô hình thông thường, trình duyệt gọi máy chủ/API thay vì kết nối trực tiếp đến DB."
-  ],
-  "callout": {
-    "type": "info",
-    "title": "Sơ đồ là mô hình rút gọn",
-    "content": "Một trang thực tế thường cần nhiều yêu cầu để tải HTML, CSS, JavaScript, ảnh và dữ liệu. Cache, CDN, proxy hoặc máy chủ ứng dụng có thể tham gia; không phải mọi lượt truy cập đều hỏi DNS hay truy vấn DB."
-  }
-},
-      {
-        id: 'bo-ba-cong-nghe',
-        title: '4. Bộ ba công nghệ cốt lõi của website',
-        paragraphs: [
-          'Một trang web hoàn chỉnh giống như một ngôi nhà hoặc một con người, được tạo nên từ 3 thành phần chính:',
-          'Mỗi công nghệ giữ một nhiệm vụ chuyên biệt và không thể thay thế cho nhau. Bạn bắt buộc phải học HTML trước tiên để xây dựng nên phần khung cốt lõi.'
+    {
+        id: 'html-1',
+        track: 'html',
+        order: 1,
+        title: 'Khái quát về HTML và web',
+        slug: 'khai-quat-ve-html-va-web',
+        description: 'Tìm hiểu bản chất của World Wide Web, vai trò của bộ ba HTML - CSS - JavaScript và cách trình duyệt hiển thị một trang web.',
+        estimatedMinutes: 25,
+        objectives: [
+            'Giải thích luồng trình duyệt, DNS, máy chủ web và cơ sở dữ liệu.',
+            'Phân biệt web tĩnh và web động phía máy chủ qua ví dụ thực tế.',
+            'Phân biệt rõ ràng vai trò của HTML (bộ khung), CSS (trang điểm) và JavaScript (hành vi).',
+            'Nắm vững khái niệm HTML là ngôn ngữ đánh dấu siêu văn bản, không phải ngôn ngữ lập trình thuật toán.'
         ],
-        bulletPoints: [
-          'HTML (HyperText Markup Language): Bộ khung xương của ngôi nhà, xác định vị trí phòng khách, cửa sổ, cột nhà (tiêu đề, đoạn văn, hình ảnh, bảng biểu).',
-          'CSS (Cascading Style Sheets): Sơn tường, nội thất, ánh sáng làm cho ngôi nhà đẹp mắt, hài hòa và hiện đại (màu sắc, phông chữ, khoảng cách, bố cục).',
-          'JavaScript: Hệ thống điện thông minh, cửa tự động, cảm biến (tương tác bấm nút, hiệu ứng chuyển động, xử lý dữ liệu người dùng).'
+        sections: [
+            {
+                id: 'web-la-gi',
+                title: '1. Mạng lưới toàn cầu (World Wide Web) hoạt động ra sao?',
+                paragraphs: [
+                    'Khi bạn gõ <strong>địa chỉ một trang web</strong> <em>(ví dụ: <code class="web-domain">google.com</code> hay <code class="web-domain">dantri.com.vn</code>)</em> vào trình duyệt và nhấn <kbd class="key-enter">Enter</kbd>, máy tính của bạn (đóng vai trò là <span class="badge badge-client">💻 Máy khách – Client</span>) sẽ gửi một <span class="badge badge-request">📤 Yêu cầu (Request)</span> qua <strong>Internet</strong> đến <span class="badge badge-server">🖥️ Máy chủ (Server)</span> lưu trữ trang web đó.',
+                    '<strong>Máy chủ</strong> sẽ <span class="badge badge-response">📥 Phản hồi (Response)</span> bằng cách gửi về các tệp tin chứa <strong>mã lệnh văn bản</strong> gồm <span class="tech-html">HTML</span>, <span class="tech-css">CSS</span>, <span class="tech-js">JavaScript</span> cùng các tệp <strong>hình ảnh, âm thanh</strong>. <strong>Trình duyệt web</strong> <em>(như Google Chrome, Microsoft Edge, Firefox)</em> có nhiệm vụ <strong>đọc, phân tích và "vẽ" lại</strong> <em>(render)</em> các mã lệnh đó thành <span class="highlight-visual">giao diện trực quan</span> cho bạn đọc.'
+                ]
+            },
+            {
+                "id": "web-tinh-web-dong",
+                "title": "2. Web tĩnh và web động khác nhau thế nào?",
+                "illustration": "static-dynamic",
+                "paragraphs": [
+                    "Web tĩnh: máy chủ gửi các tệp đã chuẩn bị sẵn (HTML, CSS, JavaScript, hình ảnh) cho trình duyệt. Ví dụ: trang giới thiệu trường hoặc trang tài liệu. Khi muốn thay đổi nội dung đã xuất bản, người quản trị thường sửa nguồn rồi xuất bản lại.",
+                    "Web động phía máy chủ: ứng dụng xử lý yêu cầu và tạo nội dung hoặc dữ liệu phản hồi tại thời điểm truy cập. Kết quả có thể phụ thuộc tài khoản, từ khóa tìm kiếm hoặc dữ liệu hiện tại. Ví dụ: cổng xem điểm sau khi đăng nhập."
+                ],
+                "table": {
+                    "headers": [
+                        "Tiêu chí",
+                        "Web tĩnh",
+                        "Web động phía máy chủ"
+                    ],
+                    "rows": [
+                        [
+                            "Cách phục vụ",
+                            "Gửi tệp có sẵn",
+                            "Xử lý yêu cầu rồi tạo phản hồi"
+                        ],
+                        [
+                            "Dữ liệu",
+                            "Nội dung được xuất bản sẵn",
+                            "Có thể đọc/ghi cơ sở dữ liệu hoặc gọi dịch vụ khác"
+                        ],
+                        [
+                            "Ví dụ",
+                            "Trang giới thiệu câu lạc bộ",
+                            "Cổng xem điểm, cửa hàng có tài khoản và đơn hàng"
+                        ],
+                        [
+                            "Cập nhật",
+                            "Thường sửa nguồn và xuất bản lại",
+                            "Có thể cập nhật dữ liệu qua trang quản trị"
+                        ]
+                    ]
+                },
+                "callout": {
+                    "type": "note",
+                    "title": "Có animation chưa có nghĩa là web động phía máy chủ",
+                    "content": "Trang tĩnh vẫn có thể dùng JavaScript để làm menu, animation, tìm kiếm trong dữ liệu có sẵn hoặc lưu tiến độ trên trình duyệt. Web động không bắt buộc có cơ sở dữ liệu; một website cũng có thể kết hợp phần tĩnh và API động."
+                }
+            },
+            {
+                "id": "co-che-hoat-dong-web",
+                "title": "3. Từ tên miền đến trang web trên màn hình",
+                "illustration": "web-mechanism",
+                "paragraphs": [
+                    "Ví dụ bạn mở https://truong.example/diem. Trình duyệt cần tìm địa chỉ IP của máy chủ qua hệ thống DNS (hoặc dùng kết quả còn lưu trong bộ nhớ đệm), rồi mới gửi yêu cầu đến máy chủ. DNS giúp tìm địa chỉ, không chuyển tiếp toàn bộ nội dung trang web.",
+                    "Với HTTPS, trình duyệt thiết lập kết nối được bảo vệ bằng TLS. Máy chủ web có thể trả tệp tĩnh ngay hoặc chuyển yêu cầu cho ứng dụng phía máy chủ. Ứng dụng có thể kiểm tra quyền truy cập và truy vấn cơ sở dữ liệu trước khi trả kết quả."
+                ],
+                "bulletPoints": [
+                    "Người dùng (User): nhập địa chỉ, nhấp liên kết hoặc gửi biểu mẫu.",
+                    "Trình duyệt (Client): gửi yêu cầu HTTP(S), nhận tài nguyên và hiển thị trang.",
+                    "DNS (Domain Name System): phân giải tên miền sang địa chỉ IP; kết quả thường được lưu đệm.",
+                    "Web Server (Web SV): nhận yêu cầu và gửi phản hồi; có thể phối hợp với ứng dụng phía máy chủ.",
+                    "Database (DB): lưu dữ liệu như tài khoản, bài viết hoặc điểm. Trong mô hình thông thường, trình duyệt gọi máy chủ/API thay vì kết nối trực tiếp đến DB."
+                ],
+                "callout": {
+                    "type": "info",
+                    "title": "Sơ đồ là mô hình rút gọn",
+                    "content": "Một trang thực tế thường cần nhiều yêu cầu để tải HTML, CSS, JavaScript, ảnh và dữ liệu. Cache, CDN, proxy hoặc máy chủ ứng dụng có thể tham gia; không phải mọi lượt truy cập đều hỏi DNS hay truy vấn DB."
+                }
+            },
+            {
+                id: 'bo-ba-cong-nghe',
+                title: '4. Bộ ba công nghệ cốt lõi của website',
+                paragraphs: [
+                    'Một trang web hoàn chỉnh giống như một ngôi nhà hoặc một con người, được tạo nên từ 3 thành phần chính:',
+                    'Mỗi công nghệ giữ một nhiệm vụ chuyên biệt và không thể thay thế cho nhau. Bạn bắt buộc phải học HTML trước tiên để xây dựng nên phần khung cốt lõi.'
+                ],
+                bulletPoints: [
+                    'HTML (HyperText Markup Language): Bộ khung xương của ngôi nhà, xác định vị trí phòng khách, cửa sổ, cột nhà (tiêu đề, đoạn văn, hình ảnh, bảng biểu).',
+                    'CSS (Cascading Style Sheets): Sơn tường, nội thất, ánh sáng làm cho ngôi nhà đẹp mắt, hài hòa và hiện đại (màu sắc, phông chữ, khoảng cách, bố cục).',
+                    'JavaScript: Hệ thống điện thông minh, cửa tự động, cảm biến (tương tác bấm nút, hiệu ứng chuyển động, xử lý dữ liệu người dùng).'
+                ],
+                table: {
+                    caption: 'So sánh vai trò của HTML, CSS và JavaScript',
+                    headers: ['Công nghệ', 'Tên đầy đủ', 'Vai trò chính', 'Ví dụ thực tế'],
+                    rows: [
+                        ['HTML', 'HyperText Markup Language', 'Xác định cấu trúc & nội dung', 'Tạo ra nút bấm có chữ "Đăng nhập"'],
+                        ['CSS', 'Cascading Style Sheets', 'Định dạng giao diện & thẩm mỹ', 'Đổi màu nút thành xanh lam, bo góc tròn'],
+                        ['JavaScript', 'JavaScript', 'Xử lý logic & tương tác động', 'Khi bấm nút, kiểm tra tài khoản và mật khẩu']
+                    ]
+                }
+            },
+            {
+                id: 'html-la-gi',
+                title: '5. Bản chất của HTML: Ngôn ngữ đánh dấu siêu văn bản',
+                paragraphs: [
+                    'HTML viết tắt của cụm từ HyperText Markup Language:',
+                    'Đặc biệt, HTML không có biến, vòng lặp hay câu lệnh rẽ nhánh tính toán như Pascal, C++ hay Python. Bạn không thể dùng HTML thuần túy để giải phương trình bậc 2 hay tính dãy Fibonacci. HTML chỉ dùng để "đánh dấu" cho trình duyệt biết từng khối nội dung có ý nghĩa gì.'
+                ],
+                bulletPoints: [
+                    'HyperText (Siêu văn bản): Văn bản có chứa liên kết (link) dẫn đến các văn bản, trang web hoặc tệp tài nguyên khác.',
+                    'Markup Language (Ngôn ngữ đánh dấu): Sử dụng các "thẻ" (tags) quy ước đặc biệt (đặt trong dấu ngoặc nhọn <...>) để đánh dấu ý nghĩa cho từng mẩu nội dung.'
+                ],
+                callout: {
+                    type: 'note',
+                    title: 'Khái niệm quan trọng',
+                    content: 'HTML là ngôn ngữ đánh dấu (Markup Language), hoàn toàn không phải là ngôn ngữ lập trình (Programming Language).'
+                }
+            }
         ],
-        table: {
-          caption: 'So sánh vai trò của HTML, CSS và JavaScript',
-          headers: ['Công nghệ', 'Tên đầy đủ', 'Vai trò chính', 'Ví dụ thực tế'],
-          rows: [
-            ['HTML', 'HyperText Markup Language', 'Xác định cấu trúc & nội dung', 'Tạo ra nút bấm có chữ "Đăng nhập"'],
-            ['CSS', 'Cascading Style Sheets', 'Định dạng giao diện & thẩm mỹ', 'Đổi màu nút thành xanh lam, bo góc tròn'],
-            ['JavaScript', 'JavaScript', 'Xử lý logic & tương tác động', 'Khi bấm nút, kiểm tra tài khoản và mật khẩu']
-          ]
-        }
-      },
-      {
-        id: 'html-la-gi',
-        title: '5. Bản chất của HTML: Ngôn ngữ đánh dấu siêu văn bản',
-        paragraphs: [
-          'HTML viết tắt của cụm từ HyperText Markup Language:',
-          'Đặc biệt, HTML không có biến, vòng lặp hay câu lệnh rẽ nhánh tính toán như Pascal, C++ hay Python. Bạn không thể dùng HTML thuần túy để giải phương trình bậc 2 hay tính dãy Fibonacci. HTML chỉ dùng để "đánh dấu" cho trình duyệt biết từng khối nội dung có ý nghĩa gì.'
-        ],
-        bulletPoints: [
-          'HyperText (Siêu văn bản): Văn bản có chứa liên kết (link) dẫn đến các văn bản, trang web hoặc tệp tài nguyên khác.',
-          'Markup Language (Ngôn ngữ đánh dấu): Sử dụng các "thẻ" (tags) quy ước đặc biệt (đặt trong dấu ngoặc nhọn <...>) để đánh dấu ý nghĩa cho từng mẩu nội dung.'
-        ],
-        callout: {
-          type: 'note',
-          title: 'Khái niệm quan trọng',
-          content: 'HTML là ngôn ngữ đánh dấu (Markup Language), hoàn toàn không phải là ngôn ngữ lập trình (Programming Language).'
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-html-co-ban',
-        title: 'Ví dụ: Trang web HTML đầu tiên',
-        description: 'Đoạn mã HTML đơn giản hiển thị một tiêu đề lớn và một đoạn văn giới thiệu.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
+        codeExamples: [
+            {
+                id: 'vd-html-co-ban',
+                title: 'Ví dụ: Trang web HTML đầu tiên',
+                description: 'Đoạn mã HTML đơn giản hiển thị một tiêu đề lớn và một đoạn văn giới thiệu.',
+                language: 'html',
+                runnable: true,
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8">
@@ -147,93 +147,93 @@ export const htmlLessons: Lesson[] = [
     <p>Học lập trình web giúp tôi tự tay tạo ra sản phẩm thực tế.</p>
   </body>
 </html>`,
-        explanation: 'Thẻ <h1> định nghĩa tiêu đề chính quan trọng nhất, thẻ <p> định nghĩa một đoạn văn bản. Trình duyệt tự động hiển thị chữ <h1> to và đậm hơn bình thường.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Xem HTML là ngôn ngữ lập trình và cố tìm câu lệnh vòng lặp for hay rẽ nhánh if.',
-        cause: 'Hiểu nhầm thuật ngữ "ngôn ngữ đánh dấu" thành "ngôn ngữ lập trình".',
-        solution: 'Ghi nhớ HTML chỉ chịu trách nhiệm đánh dấu cấu trúc văn bản. Để viết thuật ngữ logic rẽ nhánh, ta sẽ học ở phần JavaScript.'
-      },
-      {
-        mistake: 'Lưu file với định dạng tệp .txt thay vì .html.',
-        cause: 'Dùng Notepad thông thường và để mặc định lưu dạng văn bản thuần .txt.',
-        solution: 'Luôn lưu tệp với phần mở rộng .html (ví dụ: index.html).'
-      }
-    ],
-    keyTakeaways: [
-      'Trình duyệt đọc mã nguồn HTML từ máy chủ để dựng thành giao diện trang web.',
-      'Bộ ba Web: HTML xây khung nội dung, CSS làm đẹp giao diện, JavaScript tạo tương tác thông minh.',
-      'HTML là ngôn ngữ đánh dấu siêu văn bản, sử dụng các cặp thẻ mở và đóng để quy định ý nghĩa dữ liệu.'
-    ]
-  },
-  {
-    id: 'html-2',
-    track: 'html',
-    order: 2,
-    title: 'Công cụ viết mã lệnh',
-    slug: 'cong-cu-viet-ma-lenh',
-    description: 'Tìm hiểu trình soạn thảo mã nguồn VS Code, trình duyệt web, công cụ DevTools và cách tạo, lưu và mở một tệp HTML chuẩn xác.',
-    estimatedMinutes: 20,
-    objectives: [
-      'Lựa chọn và cài đặt trình soạn thảo mã nguồn phù hợp (Visual Studio Code).',
-      'Biết cách mở Developer Tools (F12) trên trình duyệt để kiểm tra cấu trúc trang.',
-      'Nắm vững thao tác tạo thư mục dự án, tạo file .html và mở xem kết quả.'
-    ],
-    sections: [
-      {
-        id: 'trinh-soan-thao',
-        title: '1. Trình soạn thảo mã nguồn (Code Editor)',
-        paragraphs: [
-          'Bạn tuyệt đối không dùng Microsoft Word hoặc Google Docs để viết code, vì các phần mềm này tự động chèn thêm nhiều định dạng ẩn khiến trình duyệt không đọc được mã.',
-          'Công cụ tiêu chuẩn công nghiệp hiện nay là Visual Studio Code (VS Code) do Microsoft phát triển: hoàn toàn miễn phí, hỗ trợ tô màu mã lệnh, tự động gợi ý cú pháp và có kho tiện ích mở rộng (Extensions) vô cùng phong phú.'
+                explanation: 'Thẻ <h1> định nghĩa tiêu đề chính quan trọng nhất, thẻ <p> định nghĩa một đoạn văn bản. Trình duyệt tự động hiển thị chữ <h1> to và đậm hơn bình thường.'
+            }
         ],
-        bulletPoints: [
-          'Visual Studio Code: Khuyên dùng cho tất cả học sinh THPT.',
-          'Notepad++ / Sublime Text: Lựa chọn thay thế nhẹ nhàng cho máy tính cấu hình khiêm tốn.',
-          'Tiện ích mở rộng Live Server trong VS Code: Tự động tải lại trang ngay khi bạn nhấn Ctrl + S lưu file.'
+        commonMistakes: [
+            {
+                mistake: 'Xem HTML là ngôn ngữ lập trình và cố tìm câu lệnh vòng lặp for hay rẽ nhánh if.',
+                cause: 'Hiểu nhầm thuật ngữ "ngôn ngữ đánh dấu" thành "ngôn ngữ lập trình".',
+                solution: 'Ghi nhớ HTML chỉ chịu trách nhiệm đánh dấu cấu trúc văn bản. Để viết thuật ngữ logic rẽ nhánh, ta sẽ học ở phần JavaScript.'
+            },
+            {
+                mistake: 'Lưu file với định dạng tệp .txt thay vì .html.',
+                cause: 'Dùng Notepad thông thường và để mặc định lưu dạng văn bản thuần .txt.',
+                solution: 'Luôn lưu tệp với phần mở rộng .html (ví dụ: index.html).'
+            }
+        ],
+        keyTakeaways: [
+            'Trình duyệt đọc mã nguồn HTML từ máy chủ để dựng thành giao diện trang web.',
+            'Bộ ba Web: HTML xây khung nội dung, CSS làm đẹp giao diện, JavaScript tạo tương tác thông minh.',
+            'HTML là ngôn ngữ đánh dấu siêu văn bản, sử dụng các cặp thẻ mở và đóng để quy định ý nghĩa dữ liệu.'
         ]
-      },
-      {
-        id: 'trinh-duyet-devtools',
-        title: '2. Trình duyệt web và công cụ Developer Tools',
-        paragraphs: [
-          'Mọi trình duyệt hiện đại (Google Chrome, Microsoft Edge, Firefox, Brave) đều tích hợp sẵn một bộ công cụ dành cho lập trình viên mang tên Developer Tools (gọi tắt là DevTools).',
-          'Để bật DevTools, bạn nhấn phím F12 (hoặc chuột phải vào trang web và chọn "Kiểm tra" / "Inspect").'
+    },
+    {
+        id: 'html-2',
+        track: 'html',
+        order: 2,
+        title: 'Công cụ viết mã lệnh',
+        slug: 'cong-cu-viet-ma-lenh',
+        description: 'Tìm hiểu trình soạn thảo mã nguồn VS Code, trình duyệt web, công cụ DevTools và cách tạo, lưu và mở một tệp HTML chuẩn xác.',
+        estimatedMinutes: 20,
+        objectives: [
+            'Lựa chọn và cài đặt trình soạn thảo mã nguồn phù hợp (Visual Studio Code).',
+            'Biết cách mở Developer Tools (F12) trên trình duyệt để kiểm tra cấu trúc trang.',
+            'Nắm vững thao tác tạo thư mục dự án, tạo file .html và mở xem kết quả.'
         ],
-        bulletPoints: [
-          'Tab Elements: Cho phép bạn soi trực tiếp từng thẻ HTML và kiểu dáng CSS trên trang.',
-          'Tab Console: Nơi hiển thị các thông báo lỗi và chạy các câu lệnh JavaScript thử nghiệm.',
-          'Chế độ Device Toolbar (Ctrl + Shift + M): Giả lập màn hình điện thoại để kiểm tra độ tương thích giao diện.'
+        sections: [
+            {
+                id: 'trinh-soan-thao',
+                title: '1. Trình soạn thảo mã nguồn (Code Editor)',
+                paragraphs: [
+                    'Bạn tuyệt đối không dùng Microsoft Word hoặc Google Docs để viết code, vì các phần mềm này tự động chèn thêm nhiều định dạng ẩn khiến trình duyệt không đọc được mã.',
+                    'Công cụ tiêu chuẩn công nghiệp hiện nay là Visual Studio Code (VS Code) do Microsoft phát triển: hoàn toàn miễn phí, hỗ trợ tô màu mã lệnh, tự động gợi ý cú pháp và có kho tiện ích mở rộng (Extensions) vô cùng phong phú.'
+                ],
+                bulletPoints: [
+                    'Visual Studio Code: Khuyên dùng cho tất cả học sinh THPT.',
+                    'Notepad++ / Sublime Text: Lựa chọn thay thế nhẹ nhàng cho máy tính cấu hình khiêm tốn.',
+                    'Tiện ích mở rộng Live Server trong VS Code: Tự động tải lại trang ngay khi bạn nhấn Ctrl + S lưu file.'
+                ]
+            },
+            {
+                id: 'trinh-duyet-devtools',
+                title: '2. Trình duyệt web và công cụ Developer Tools',
+                paragraphs: [
+                    'Mọi trình duyệt hiện đại (Google Chrome, Microsoft Edge, Firefox, Brave) đều tích hợp sẵn một bộ công cụ dành cho lập trình viên mang tên Developer Tools (gọi tắt là DevTools).',
+                    'Để bật DevTools, bạn nhấn phím F12 (hoặc chuột phải vào trang web và chọn "Kiểm tra" / "Inspect").'
+                ],
+                bulletPoints: [
+                    'Tab Elements: Cho phép bạn soi trực tiếp từng thẻ HTML và kiểu dáng CSS trên trang.',
+                    'Tab Console: Nơi hiển thị các thông báo lỗi và chạy các câu lệnh JavaScript thử nghiệm.',
+                    'Chế độ Device Toolbar (Ctrl + Shift + M): Giả lập màn hình điện thoại để kiểm tra độ tương thích giao diện.'
+                ],
+                callout: {
+                    type: 'tip',
+                    title: 'Mẹo cho học sinh',
+                    content: 'Phím tắt F12 là trợ thủ đắc lực nhất của mọi lập trình viên web. Hãy tập thói quen mở F12 để quan sát lỗi khi trang web không chạy như ý muốn.'
+                }
+            },
+            {
+                id: 'quy-trinh-tao-file',
+                title: '3. Quy trình tạo và mở một tệp HTML trên máy tính',
+                paragraphs: [
+                    'Để bắt đầu dự án web, hãy tuân theo quy trình chuẩn sau:',
+                    '1. Tạo một thư mục riêng trên máy tính (ví dụ: D:\\LapTrinhWeb\\BaiTap1). Không đặt tên thư mục có dấu tiếng Việt hoặc khoảng trắng.',
+                    '2. Mở thư mục đó bằng VS Code (File -> Open Folder...).',
+                    '3. Tạo file mới có tên là index.html (trang chủ mặc định luôn đặt tên là index.html).',
+                    '4. Soạn thảo mã HTML và nhấn Ctrl + S để lưu lại.',
+                    '5. Nhấp đúp chuột vào file index.html trên máy tính để mở bằng trình duyệt.'
+                ]
+            }
         ],
-        callout: {
-          type: 'tip',
-          title: 'Mẹo cho học sinh',
-          content: 'Phím tắt F12 là trợ thủ đắc lực nhất của mọi lập trình viên web. Hãy tập thói quen mở F12 để quan sát lỗi khi trang web không chạy như ý muốn.'
-        }
-      },
-      {
-        id: 'quy-trinh-tao-file',
-        title: '3. Quy trình tạo và mở một tệp HTML trên máy tính',
-        paragraphs: [
-          'Để bắt đầu dự án web, hãy tuân theo quy trình chuẩn sau:',
-          '1. Tạo một thư mục riêng trên máy tính (ví dụ: D:\\LapTrinhWeb\\BaiTap1). Không đặt tên thư mục có dấu tiếng Việt hoặc khoảng trắng.',
-          '2. Mở thư mục đó bằng VS Code (File -> Open Folder...).',
-          '3. Tạo file mới có tên là index.html (trang chủ mặc định luôn đặt tên là index.html).',
-          '4. Soạn thảo mã HTML và nhấn Ctrl + S để lưu lại.',
-          '5. Nhấp đúp chuột vào file index.html trên máy tính để mở bằng trình duyệt.'
-        ]
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-file-html-co-ban',
-        title: 'Mã mẫu chuẩn trong file index.html',
-        description: 'Cấu trúc tối thiểu nhưng đầy đủ để thử nghiệm mở trực tiếp trên trình duyệt.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
+        codeExamples: [
+            {
+                id: 'vd-file-html-co-ban',
+                title: 'Mã mẫu chuẩn trong file index.html',
+                description: 'Cấu trúc tối thiểu nhưng đầy đủ để thử nghiệm mở trực tiếp trên trình duyệt.',
+                language: 'html',
+                runnable: true,
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -244,85 +244,85 @@ export const htmlLessons: Lesson[] = [
   <p>File này được lưu và mở trực tiếp bằng trình duyệt Google Chrome/Microsoft Edge.</p>
 </body>
 </html>`,
-        explanation: 'Nhấn nút "Chạy thử" phía trên để quan sát kết quả trình duyệt hiển thị.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Windows ẩn phần mở rộng tệp tin khiến file bị đặt tên là index.html.txt.',
-        cause: 'Chế độ ẩn đuôi file mặc định "Hide extensions for known file types" của hệ điều hành Windows.',
-        solution: 'Trong File Explorer của Windows, vào mục View -> tích chọn "File name extensions" để thấy rõ đuôi tệp và đổi lại thành .html.'
-      },
-      {
-        mistake: 'Đặt tên file hoặc tên thư mục chứa dấu cách và tiếng Việt có dấu (ví dụ: bài tập 1.html).',
-        cause: 'Thói quen đặt tên văn bản tiếng Việt.',
-        solution: 'Luôn dùng chữ thường không dấu, nối nhau bằng dấu gạch ngang (ví dụ: bai-tap-1.html).'
-      }
-    ],
-    keyTakeaways: [
-      'Sử dụng VS Code kết hợp với trình duyệt Google Chrome hoặc Edge để lập trình web.',
-      'Sử dụng phím tắt F12 để kiểm tra lỗi và xem cấu trúc thẻ HTML trong DevTools.',
-      'File trang chủ của một website luôn được đặt tên chuẩn là index.html.'
-    ]
-  },
-  {
-    id: 'html-3',
-    track: 'html',
-    order: 3,
-    title: 'Cấu trúc trang web',
-    slug: 'cau-truc-trang-web',
-    description: 'Mổ xẻ từng dòng trong cấu trúc tệp HTML chuẩn: DOCTYPE, html, head, meta UTF-8, viewport, title, body và quy ước thẻ mở/đóng/rỗng.',
-    estimatedMinutes: 25,
-    objectives: [
-      'Giải thích được ý nghĩa từng dòng trong bộ khung tài liệu HTML5 tiêu chuẩn.',
-      'Hiểu rõ sự khác biệt giữa phần đầu (<head>) và phần thân (<body>).',
-      'Nắm chắc khái niệm: thẻ mở, thẻ đóng, phần tử, thuộc tính và phần tử rỗng (void elements).'
-    ],
-    sections: [
-      {
-        id: 'bo-khung-chuan',
-        title: '1. Bộ khung tài liệu HTML5 chuẩn',
-        paragraphs: [
-          'Mọi trang web hiện đại trên thế giới đều bắt đầu bằng một bộ khung xương thống nhất. Dưới đây là ý nghĩa chi tiết của từng thành phần:'
+                explanation: 'Nhấn nút "Chạy thử" phía trên để quan sát kết quả trình duyệt hiển thị.'
+            }
         ],
-        bulletPoints: [
-          '<!DOCTYPE html>: Khai báo cho trình duyệt biết đây là tài liệu viết theo chuẩn HTML5 mới nhất.',
-          '<html lang="vi">: Phần tử gốc chứa toàn bộ trang web. Thuộc tính lang="vi" báo hiệu ngôn ngữ chính là tiếng Việt.',
-          '<head>: Chứa các thông tin cấu hình (Metadata) dành cho trình duyệt và máy tìm kiếm, KHÔNG hiển thị trực tiếp lên mặt trang.',
-          '<meta charset="UTF-8">: Khai báo bảng mã ký tự UTF-8, giúp hiển thị tiếng Việt có dấu hoàn hảo mà không bị lỗi chữ vuông hay ký tự lạ.',
-          '<meta name="viewport" content="width=device-width, initial-scale=1.0">: Thiết lập tỉ lệ hiển thị vừa vặn với kích thước màn hình điện thoại di động.',
-          '<title>: Đặt tiêu đề hiển thị trên thanh tiêu đề hoặc tab của trình duyệt.',
-          '<body>: Chứa toàn bộ nội dung hiển thị cho người xem: văn bản, hình ảnh, video, nút bấm,...'
+        commonMistakes: [
+            {
+                mistake: 'Windows ẩn phần mở rộng tệp tin khiến file bị đặt tên là index.html.txt.',
+                cause: 'Chế độ ẩn đuôi file mặc định "Hide extensions for known file types" của hệ điều hành Windows.',
+                solution: 'Trong File Explorer của Windows, vào mục View -> tích chọn "File name extensions" để thấy rõ đuôi tệp và đổi lại thành .html.'
+            },
+            {
+                mistake: 'Đặt tên file hoặc tên thư mục chứa dấu cách và tiếng Việt có dấu (ví dụ: bài tập 1.html).',
+                cause: 'Thói quen đặt tên văn bản tiếng Việt.',
+                solution: 'Luôn dùng chữ thường không dấu, nối nhau bằng dấu gạch ngang (ví dụ: bai-tap-1.html).'
+            }
+        ],
+        keyTakeaways: [
+            'Sử dụng VS Code kết hợp với trình duyệt Google Chrome hoặc Edge để lập trình web.',
+            'Sử dụng phím tắt F12 để kiểm tra lỗi và xem cấu trúc thẻ HTML trong DevTools.',
+            'File trang chủ của một website luôn được đặt tên chuẩn là index.html.'
         ]
-      },
-      {
-        id: 'khai-niem-the-thuoc-tinh',
-        title: '2. Thẻ (Tag), Phần tử (Element) và Thuộc tính (Attribute)',
-        paragraphs: [
-          'Một phần tử HTML đầy đủ thường được cấu thành từ 3 phần:',
-          '1. Thẻ mở (Opening Tag): <ten_the>',
-          '2. Nội dung bên trong (Content): Đoạn chữ hoặc các thẻ con lồng bên trong.',
-          '3. Thẻ đóng (Closing Tag): </ten_the> (có dấu gạch chéo / phía trước tên thẻ).'
+    },
+    {
+        id: 'html-3',
+        track: 'html',
+        order: 3,
+        title: 'Cấu trúc trang web',
+        slug: 'cau-truc-trang-web',
+        description: 'Mổ xẻ từng dòng trong cấu trúc tệp HTML chuẩn: DOCTYPE, html, head, meta UTF-8, viewport, title, body và quy ước thẻ mở/đóng/rỗng.',
+        estimatedMinutes: 25,
+        objectives: [
+            'Giải thích được ý nghĩa từng dòng trong bộ khung tài liệu HTML5 tiêu chuẩn.',
+            'Hiểu rõ sự khác biệt giữa phần đầu (<head>) và phần thân (<body>).',
+            'Nắm chắc khái niệm: thẻ mở, thẻ đóng, phần tử, thuộc tính và phần tử rỗng (void elements).'
         ],
-        bulletPoints: [
-          'Thuộc tính (Attributes): Cung cấp thông tin bổ sung cho thẻ, luôn nằm trong thẻ mở theo cú pháp: ten_thuoc_tinh="gia_tri". Ví dụ: <html lang="vi">.',
-          'Phần tử rỗng (Void elements / Self-closing tags): Các thẻ không chứa nội dung văn bản và không có thẻ đóng, ví dụ: <img>, <br>, <hr>, <meta>, <input>.'
+        sections: [
+            {
+                id: 'bo-khung-chuan',
+                title: '1. Bộ khung tài liệu HTML5 chuẩn',
+                paragraphs: [
+                    'Mọi trang web hiện đại trên thế giới đều bắt đầu bằng một bộ khung xương thống nhất. Dưới đây là ý nghĩa chi tiết của từng thành phần:'
+                ],
+                bulletPoints: [
+                    '<!DOCTYPE html>: Khai báo cho trình duyệt biết đây là tài liệu viết theo chuẩn HTML5 mới nhất.',
+                    '<html lang="vi">: Phần tử gốc chứa toàn bộ trang web. Thuộc tính lang="vi" báo hiệu ngôn ngữ chính là tiếng Việt.',
+                    '<head>: Chứa các thông tin cấu hình (Metadata) dành cho trình duyệt và máy tìm kiếm, KHÔNG hiển thị trực tiếp lên mặt trang.',
+                    '<meta charset="UTF-8">: Khai báo bảng mã ký tự UTF-8, giúp hiển thị tiếng Việt có dấu hoàn hảo mà không bị lỗi chữ vuông hay ký tự lạ.',
+                    '<meta name="viewport" content="width=device-width, initial-scale=1.0">: Thiết lập tỉ lệ hiển thị vừa vặn với kích thước màn hình điện thoại di động.',
+                    '<title>: Đặt tiêu đề hiển thị trên thanh tiêu đề hoặc tab của trình duyệt.',
+                    '<body>: Chứa toàn bộ nội dung hiển thị cho người xem: văn bản, hình ảnh, video, nút bấm,...'
+                ]
+            },
+            {
+                id: 'khai-niem-the-thuoc-tinh',
+                title: '2. Thẻ (Tag), Phần tử (Element) và Thuộc tính (Attribute)',
+                paragraphs: [
+                    'Một phần tử HTML đầy đủ thường được cấu thành từ 3 phần:',
+                    '1. Thẻ mở (Opening Tag): <ten_the>',
+                    '2. Nội dung bên trong (Content): Đoạn chữ hoặc các thẻ con lồng bên trong.',
+                    '3. Thẻ đóng (Closing Tag): </ten_the> (có dấu gạch chéo / phía trước tên thẻ).'
+                ],
+                bulletPoints: [
+                    'Thuộc tính (Attributes): Cung cấp thông tin bổ sung cho thẻ, luôn nằm trong thẻ mở theo cú pháp: ten_thuoc_tinh="gia_tri". Ví dụ: <html lang="vi">.',
+                    'Phần tử rỗng (Void elements / Self-closing tags): Các thẻ không chứa nội dung văn bản và không có thẻ đóng, ví dụ: <img>, <br>, <hr>, <meta>, <input>.'
+                ],
+                callout: {
+                    type: 'warning',
+                    title: 'Lưu ý về chữ hoa và chữ thường',
+                    content: 'Mặc dù trình duyệt không phân biệt <p> hay <P>, theo quy chuẩn quốc tế W3C hiện đại, bạn PHẢI luôn viết tên thẻ và tên thuộc tính bằng chữ thường (lowercase).'
+                }
+            }
         ],
-        callout: {
-          type: 'warning',
-          title: 'Lưu ý về chữ hoa và chữ thường',
-          content: 'Mặc dù trình duyệt không phân biệt <p> hay <P>, theo quy chuẩn quốc tế W3C hiện đại, bạn PHẢI luôn viết tên thẻ và tên thuộc tính bằng chữ thường (lowercase).'
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-cau-truc-chuan',
-        title: 'Bộ khung HTML5 hoàn chỉnh',
-        description: 'Cấu trúc khung tài liệu chuẩn mà mọi trang web đều phải có.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
+        codeExamples: [
+            {
+                id: 'vd-cau-truc-chuan',
+                title: 'Bộ khung HTML5 hoàn chỉnh',
+                description: 'Cấu trúc khung tài liệu chuẩn mà mọi trang web đều phải có.',
+                language: 'html',
+                runnable: true,
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
   <head>
     <meta charset="UTF-8">
@@ -334,103 +334,103 @@ export const htmlLessons: Lesson[] = [
     <p>Trang web câu lạc bộ Tin học và Lập trình ứng dụng.</p>
   </body>
 </html>`,
-        explanation: 'Nhìn vào mã nguồn: phần <head> chứa tiêu đề tab và mã hóa ký tự UTF-8; phần <body> chứa tiêu đề <h1> và đoạn văn <p> hiển thị ra màn hình.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Quên khai báo thẻ <meta charset="UTF-8">.',
-        cause: 'Nghĩ rằng không cần thiết.',
-        solution: 'Nếu thiếu dòng này, các chữ có dấu như "đ", "ê", "ơ" có thể bị lỗi thành các ký tự rác như , &atilde; khi mở trên một số hệ điều hành.'
-      },
-      {
-        mistake: 'Đặt nội dung muốn hiển thị ra màn hình vào trong thẻ <head>.',
-        cause: 'Nhầm lẫn giữa phần đầu và phần thân của trang web.',
-        solution: 'Chỉ đặt nội dung hiển thị trong thẻ <body>. Thẻ <head> chỉ dành cho tiêu đề tab, liên kết file CSS và thẻ meta.'
-      }
-    ],
-    keyTakeaways: [
-      'Một trang HTML luôn có 2 phần tách biệt: <head> (thông tin cấu hình) và <body> (nội dung hiển thị).',
-      '<meta charset="UTF-8"> là cứu cánh bắt buộc để hiển thị tiếng Việt chính xác.',
-      'Thẻ rỗng (như <img>, <br>, <meta>) không có nội dung và không có thẻ đóng.'
-    ]
-  },
-  {
-    id: 'html-4',
-    track: 'html',
-    order: 4,
-    title: 'Tạo đoạn văn',
-    slug: 'tao-doan-van',
-    description: 'Học các phần tử HTML dùng để tạo đoạn văn bản (<p>), ngắt dòng (<br>), kẻ đường ngang (<hr>), chèn khoảng trắng (&nbsp;, &ensp;, &emsp;) và giữ nguyên định dạng (<pre>).',
-    estimatedMinutes: 20,
-    objectives: [
-      'Sử dụng thành thạo thẻ <p> để tạo đoạn văn bản có khoảng đệm trên dưới rõ ràng.',
-      'Phân biệt cách ngắt dòng cùng đoạn bằng thẻ <br> và tạo đường kẻ ngang phân cách bằng thẻ <hr>.',
-      'Hiểu khái niệm thực thể ký tự và ứng dụng &nbsp;, &ensp;, &emsp; để tạo khoảng trắng có chủ đích.',
-      'Hiểu quy tắc gộp khoảng trắng của trình duyệt và dùng thẻ <pre> để giữ nguyên trọn vẹn định dạng mã lệnh.'
-    ],
-    sections: [
-      {
-        id: 'muc-dich-bai-hoc',
-        title: '1. Bốn nhu cầu cốt lõi khi trình bày văn bản trong HTML',
-        paragraphs: [
-          'Khi xây dựng nội dung cho bất kỳ trang web nào, bạn sẽ liên tục gặp phải 4 nhu cầu cơ bản sau đây:'
+                explanation: 'Nhìn vào mã nguồn: phần <head> chứa tiêu đề tab và mã hóa ký tự UTF-8; phần <body> chứa tiêu đề <h1> và đoạn văn <p> hiển thị ra màn hình.'
+            }
         ],
-        bulletPoints: [
-          '**Tạo đoạn văn bản (<p>):** Gom các câu chữ thành từng khối nội dung có khoảng đệm phân cách trên và dưới.',
-          '**Ngắt dòng (<br>) và Kẻ ngang (<hr>):** Xuống dòng ngay tại chỗ hoặc kẻ đường phân tách chủ đề.',
-          '**Chèn khoảng trắng (&nbsp;, &ensp;, &emsp;):** Vượt qua cơ chế tự động gộp khoảng cách của trình duyệt.',
-          '**Giữ nguyên định dạng (<pre>):** Bảo lưu chính xác từng dấu cách và phím Enter y hệt như lúc viết mã lệnh.'
+        commonMistakes: [
+            {
+                mistake: 'Quên khai báo thẻ <meta charset="UTF-8">.',
+                cause: 'Nghĩ rằng không cần thiết.',
+                solution: 'Nếu thiếu dòng này, các chữ có dấu như "đ", "ê", "ơ" có thể bị lỗi thành các ký tự rác như , &atilde; khi mở trên một số hệ điều hành.'
+            },
+            {
+                mistake: 'Đặt nội dung muốn hiển thị ra màn hình vào trong thẻ <head>.',
+                cause: 'Nhầm lẫn giữa phần đầu và phần thân của trang web.',
+                solution: 'Chỉ đặt nội dung hiển thị trong thẻ <body>. Thẻ <head> chỉ dành cho tiêu đề tab, liên kết file CSS và thẻ meta.'
+            }
         ],
-        table: {
-          caption: 'Các phần tử dùng để tạo đoạn và ngắt dòng',
-          headers: ['Phần tử', 'Tên đầy đủ', 'Loại thẻ', 'Công dụng chính'],
-          rows: [
-            ['<p>', 'Paragraph', 'Cặp thẻ <p>...</p>', 'Tạo một đoạn văn bản, tự động xuống dòng và có khoảng trống trên/dưới'],
-            ['<br>', 'Line Break', 'Thẻ rỗng <br>', 'Ngắt dòng nhưng vẫn nằm cùng trong một đoạn văn bản'],
-            ['<hr>', 'Horizontal Rule', 'Thẻ rỗng <hr>', 'Tạo đường gạch ngang dài bằng độ rộng trang web để phân cách nội dung'],
-            ['<pre>', 'Preformatted Text', 'Cặp thẻ <pre>...</pre>', 'Giữ nguyên định dạng (khoảng trắng và ngắt dòng) như trong mã lệnh']
-          ]
-        }
-      },
-      {
-        id: 'the-p-paragraph',
-        title: '2. Thẻ đoạn văn bản: <p>',
-        paragraphs: [
-          'Phần tử <p> trong HTML dùng để định nghĩa một **đoạn văn bản**.',
-          'Một đoạn văn bản **luôn bắt đầu trên một dòng mới**, và trình duyệt sẽ **tự động thêm một khoảng trắng lề (margin)** ở phía trước và phía sau mỗi đoạn văn nhằm phân cách mạch lạc với các nội dung khác.',
-          'Khác với "đoạn" trong văn học, một đoạn trong HTML có thể chỉ gồm một vài từ hoặc một câu duy nhất.'
+        keyTakeaways: [
+            'Một trang HTML luôn có 2 phần tách biệt: <head> (thông tin cấu hình) và <body> (nội dung hiển thị).',
+            '<meta charset="UTF-8"> là cứu cánh bắt buộc để hiển thị tiếng Việt chính xác.',
+            'Thẻ rỗng (như <img>, <br>, <meta>) không có nội dung và không có thẻ đóng.'
+        ]
+    },
+    {
+        id: 'html-4',
+        track: 'html',
+        order: 4,
+        title: 'Tạo đoạn văn',
+        slug: 'tao-doan-van',
+        description: 'Học các phần tử HTML dùng để tạo đoạn văn bản (<p>), ngắt dòng (<br>), kẻ đường ngang (<hr>), chèn khoảng trắng (&nbsp;, &ensp;, &emsp;) và giữ nguyên định dạng (<pre>).',
+        estimatedMinutes: 20,
+        objectives: [
+            'Sử dụng thành thạo thẻ <p> để tạo đoạn văn bản có khoảng đệm trên dưới rõ ràng.',
+            'Phân biệt cách ngắt dòng cùng đoạn bằng thẻ <br> và tạo đường kẻ ngang phân cách bằng thẻ <hr>.',
+            'Hiểu khái niệm thực thể ký tự và ứng dụng &nbsp;, &ensp;, &emsp; để tạo khoảng trắng có chủ đích.',
+            'Hiểu quy tắc gộp khoảng trắng của trình duyệt và dùng thẻ <pre> để giữ nguyên trọn vẹn định dạng mã lệnh.'
         ],
-        table: {
-          caption: 'Thông tin phần tử <p>',
-          headers: ['Phần tử', 'Cú pháp', 'Loại thẻ', 'Hành vi mặc định'],
-          rows: [
-            ['<p>', '<p>Nội dung đoạn văn</p>', 'Cặp thẻ mở/đóng', 'Xuống dòng mới, có khoảng đệm lề trên và dưới (margin)']
-          ]
-        },
-        example: {
-          id: 'mini-p-basic',
-          title: 'Ví dụ: Thẻ <p> tạo đoạn văn bản',
-          caption: 'Tâm trạng học sinh trước và sau 4 tiết học căng thẳng:',
-          code: `<p>Tiết 1 đầu tuần: Tràn đầy năng lượng, mắt sáng long lanh, hứa quyết tâm 10 điểm!</p>
+        sections: [
+            {
+                id: 'muc-dich-bai-hoc',
+                title: '1. Bốn nhu cầu cốt lõi khi trình bày văn bản trong HTML',
+                paragraphs: [
+                    'Khi xây dựng nội dung cho bất kỳ trang web nào, bạn sẽ liên tục gặp phải 4 nhu cầu cơ bản sau đây:'
+                ],
+                bulletPoints: [
+                    '**Tạo đoạn văn bản (<p>):** Gom các câu chữ thành từng khối nội dung có khoảng đệm phân cách trên và dưới.',
+                    '**Ngắt dòng (<br>) và Kẻ ngang (<hr>):** Xuống dòng ngay tại chỗ hoặc kẻ đường phân tách chủ đề.',
+                    '**Chèn khoảng trắng (&nbsp;, &ensp;, &emsp;):** Vượt qua cơ chế tự động gộp khoảng cách của trình duyệt.',
+                    '**Giữ nguyên định dạng (<pre>):** Bảo lưu chính xác từng dấu cách và phím Enter y hệt như lúc viết mã lệnh.'
+                ],
+                table: {
+                    caption: 'Các phần tử dùng để tạo đoạn và ngắt dòng',
+                    headers: ['Phần tử', 'Tên đầy đủ', 'Loại thẻ', 'Công dụng chính'],
+                    rows: [
+                        ['<p>', 'Paragraph', 'Cặp thẻ <p>...</p>', 'Tạo một đoạn văn bản, tự động xuống dòng và có khoảng trống trên/dưới'],
+                        ['<br>', 'Line Break', 'Thẻ rỗng <br>', 'Ngắt dòng nhưng vẫn nằm cùng trong một đoạn văn bản'],
+                        ['<hr>', 'Horizontal Rule', 'Thẻ rỗng <hr>', 'Tạo đường gạch ngang dài bằng độ rộng trang web để phân cách nội dung'],
+                        ['<pre>', 'Preformatted Text', 'Cặp thẻ <pre>...</pre>', 'Giữ nguyên định dạng (khoảng trắng và ngắt dòng) như trong mã lệnh']
+                    ]
+                }
+            },
+            {
+                id: 'the-p-paragraph',
+                title: '2. Thẻ đoạn văn bản: <p>',
+                paragraphs: [
+                    'Phần tử <p> trong HTML dùng để định nghĩa một **đoạn văn bản**.',
+                    'Một đoạn văn bản **luôn bắt đầu trên một dòng mới**, và trình duyệt sẽ **tự động thêm một khoảng trắng lề (margin)** ở phía trước và phía sau mỗi đoạn văn nhằm phân cách mạch lạc với các nội dung khác.',
+                    'Khác với "đoạn" trong văn học, một đoạn trong HTML có thể chỉ gồm một vài từ hoặc một câu duy nhất.'
+                ],
+                table: {
+                    caption: 'Thông tin phần tử <p>',
+                    headers: ['Phần tử', 'Cú pháp', 'Loại thẻ', 'Hành vi mặc định'],
+                    rows: [
+                        ['<p>', '<p>Nội dung đoạn văn</p>', 'Cặp thẻ mở/đóng', 'Xuống dòng mới, có khoảng đệm lề trên và dưới (margin)']
+                    ]
+                },
+                example: {
+                    id: 'mini-p-basic',
+                    title: 'Ví dụ: Thẻ <p> tạo đoạn văn bản',
+                    caption: 'Tâm trạng học sinh trước và sau 4 tiết học căng thẳng:',
+                    code: `<p>Tiết 1 đầu tuần: Tràn đầy năng lượng, mắt sáng long lanh, hứa quyết tâm 10 điểm!</p>
 <p>Tiết 4 trưa nắng: Mắt nhắm nghiền, hồn bay theo đĩa cơm sườn ngoài cổng trường...</p>
 <p>Chỉ có tiếng chuông ra chơi mới đủ sức đánh thức được tôi!</p>`,
-          explanation: 'Mỗi thẻ <p> tự động tách thành một khối độc lập và tạo khoảng đệm lề trên/dưới — phân chia ranh giới rõ rệt giữa quyết tâm học tập và cơn buồn ngủ gục ngã!'
-        }
-      },
-      {
-        id: 'co-che-hien-thi-html',
-        title: '3. Cơ chế hiển thị & Bỏ qua dòng trống, khoảng trắng',
-        paragraphs: [
-          'Bạn không thể biết chắc trang web sẽ hiển thị thế nào nếu chỉ dựa vào kích thước màn hình của bạn. Màn hình lớn, màn hình điện thoại nhỏ, hoặc việc người dùng co giãn cửa sổ trình duyệt đều sẽ tạo ra kết quả dòng chữ co giãn khác nhau.',
-          'Đặc biệt, trong HTML, bạn **không thể** thay đổi cách hiển thị bằng cách gõ thêm nhiều dấu cách hoặc nhấn phím Enter xuống dòng nhiều lần trong tệp mã nguồn.',
-          'Trình duyệt sẽ **tự động loại bỏ và rút gọn** tất cả các khoảng trắng và dòng trống dư thừa này thành **duy nhất một dấu cách đơn** (quy tắc **Whitespace Collapsing**).'
-        ],
-        example: {
-          id: 'mini-whitespace-collapsing',
-          title: 'Ví dụ: Trình duyệt phũ phàng gộp dòng trống và dấu cách',
-          caption: 'Nhắn tin cầu cứu bài tập lúc nửa đêm và cái kết đắng lòng:',
-          code: `<p>
+                    explanation: 'Mỗi thẻ <p> tự động tách thành một khối độc lập và tạo khoảng đệm lề trên/dưới — phân chia ranh giới rõ rệt giữa quyết tâm học tập và cơn buồn ngủ gục ngã!'
+                }
+            },
+            {
+                id: 'co-che-hien-thi-html',
+                title: '3. Cơ chế hiển thị & Bỏ qua dòng trống, khoảng trắng',
+                paragraphs: [
+                    'Bạn không thể biết chắc trang web sẽ hiển thị thế nào nếu chỉ dựa vào kích thước màn hình của bạn. Màn hình lớn, màn hình điện thoại nhỏ, hoặc việc người dùng co giãn cửa sổ trình duyệt đều sẽ tạo ra kết quả dòng chữ co giãn khác nhau.',
+                    'Đặc biệt, trong HTML, bạn **không thể** thay đổi cách hiển thị bằng cách gõ thêm nhiều dấu cách hoặc nhấn phím Enter xuống dòng nhiều lần trong tệp mã nguồn.',
+                    'Trình duyệt sẽ **tự động loại bỏ và rút gọn** tất cả các khoảng trắng và dòng trống dư thừa này thành **duy nhất một dấu cách đơn** (quy tắc **Whitespace Collapsing**).'
+                ],
+                example: {
+                    id: 'mini-whitespace-collapsing',
+                    title: 'Ví dụ: Trình duyệt phũ phàng gộp dòng trống và dấu cách',
+                    caption: 'Nhắn tin cầu cứu bài tập lúc nửa đêm và cái kết đắng lòng:',
+                    code: `<p>
   Tôi nhắn tin hỏi mượn vở đứa bạn:
   Bạn             ơi             cứu             tao             với,
   cho             tao             chép             nhờ             bài
@@ -441,161 +441,161 @@ export const htmlLessons: Lesson[] = [
   Đứa             bạn             học             giỏi             rep:
   "Tự             làm             đi."             (Đã             xem             00:01)
 </p>`,
-          explanation: 'Dù bạn có gõ dấu cách dãn xa cả mét hay Enter xuống dòng cầu xin thiết tha, trình duyệt và đứa bạn đều chung một bài phũ: gộp tất cả lại thành đúng 1 dấu cách cụt ngủn!'
-        },
-        callout: {
-          type: 'tip',
-          title: 'Làm thế nào để xuống dòng và tạo khoảng trắng?',
-          content: 'Để chủ động xuống dòng, ta phải dùng thẻ <br> hoặc gói nội dung trong thẻ <p> riêng. Để tạo khoảng trắng rộng hơn, ta dùng các thực thể ký tự như &nbsp;, &ensp;, &emsp; hoặc thẻ <pre>.'
-        }
-      },
-      {
-        id: 'the-br-line-break',
-        title: '4. Thẻ ngắt dòng: <br>',
-        paragraphs: [
-          'Phần tử <br> trong HTML định nghĩa một **điểm ngắt dòng** (line break).',
-          'Hãy sử dụng <br> nếu bạn muốn **xuống dòng mới** nhưng **KHÔNG muốn bắt đầu một đoạn văn bản mới** (nội dung tiếp theo vẫn nằm chung trong cùng một đoạn văn).',
-          'Thẻ <br> là một **thẻ rỗng** (empty tag / void element), điều đó có nghĩa là nó **không có thẻ đóng** (tuyệt đối không viết </br>).'
-        ],
-        table: {
-          caption: 'Thông tin phần tử ngắt dòng <br>',
-          headers: ['Phần tử', 'Cú pháp', 'Đặc điểm', 'Khi nào nên dùng?'],
-          rows: [
-            ['<br>', '<br>', 'Thẻ rỗng, không có thẻ đóng', 'Dùng khi viết lời bài hát, câu thơ, địa chỉ nhà hoặc thông tin liên hệ']
-          ]
-        },
-        example: {
-          id: 'mini-br-break',
-          title: 'Ví dụ: Thẻ <br> ngắt dòng trong cùng một đoạn văn',
-          caption: 'Cú sốc đầu giờ khi giáo viên lật sổ kiểm tra miệng:',
-          code: `<p>Thầy giáo: "Hôm nay thầy gọi ngẫu nhiên lên bảng kiểm tra miệng nha!"<br>
+                    explanation: 'Dù bạn có gõ dấu cách dãn xa cả mét hay Enter xuống dòng cầu xin thiết tha, trình duyệt và đứa bạn đều chung một bài phũ: gộp tất cả lại thành đúng 1 dấu cách cụt ngủn!'
+                },
+                callout: {
+                    type: 'tip',
+                    title: 'Làm thế nào để xuống dòng và tạo khoảng trắng?',
+                    content: 'Để chủ động xuống dòng, ta phải dùng thẻ <br> hoặc gói nội dung trong thẻ <p> riêng. Để tạo khoảng trắng rộng hơn, ta dùng các thực thể ký tự như &nbsp;, &ensp;, &emsp; hoặc thẻ <pre>.'
+                }
+            },
+            {
+                id: 'the-br-line-break',
+                title: '4. Thẻ ngắt dòng: <br>',
+                paragraphs: [
+                    'Phần tử <br> trong HTML định nghĩa một **điểm ngắt dòng** (line break).',
+                    'Hãy sử dụng <br> nếu bạn muốn **xuống dòng mới** nhưng **KHÔNG muốn bắt đầu một đoạn văn bản mới** (nội dung tiếp theo vẫn nằm chung trong cùng một đoạn văn).',
+                    'Thẻ <br> là một **thẻ rỗng** (empty tag / void element), điều đó có nghĩa là nó **không có thẻ đóng** (tuyệt đối không viết </br>).'
+                ],
+                table: {
+                    caption: 'Thông tin phần tử ngắt dòng <br>',
+                    headers: ['Phần tử', 'Cú pháp', 'Đặc điểm', 'Khi nào nên dùng?'],
+                    rows: [
+                        ['<br>', '<br>', 'Thẻ rỗng, không có thẻ đóng', 'Dùng khi viết lời bài hát, câu thơ, địa chỉ nhà hoặc thông tin liên hệ']
+                    ]
+                },
+                example: {
+                    id: 'mini-br-break',
+                    title: 'Ví dụ: Thẻ <br> ngắt dòng trong cùng một đoạn văn',
+                    caption: 'Cú sốc đầu giờ khi giáo viên lật sổ kiểm tra miệng:',
+                    code: `<p>Thầy giáo: "Hôm nay thầy gọi ngẫu nhiên lên bảng kiểm tra miệng nha!"<br>
 Đứa bạn cùng bàn: "Mày thuộc bài không nhắc tao với?"<br>
 Tôi: "Tao còn chưa kịp mở vở ra xem hôm nay học môn gì..."<br>
 Não bộ lúc này: Đứng hình toàn tập, ngắt dòng tại chỗ!</p>`,
-          explanation: 'Thẻ <br> giúp bạn xuống dòng khẩn cấp tại chỗ trong cùng một đoạn văn — y hệt như nhịp tim tụt dốc không phanh khi nghe tiếng giáo viên lật từng trang sổ điểm!'
-        },
-        callout: {
-          type: 'warning',
-          title: 'Tránh lạm dụng <br> để chỉnh khoảng cách',
-          content: 'Không nên gõ liên tiếp nhiều thẻ <br><br><br> để đẩy các phần tử cách xa nhau. Khoảng cách bố cục nên được quản lý bằng CSS margin/padding.'
-        }
-      },
-      {
-        id: 'the-hr-horizontal-rule',
-        title: '5. Thẻ đường kẻ ngang: <hr>',
-        paragraphs: [
-          'Thẻ <hr> (Horizontal Rule) định nghĩa một **sự chuyển đổi chủ đề** (thematic break) trên trang web và hầu như luôn được hiển thị dưới dạng một **đường gạch ngang** dài bằng độ rộng trang.',
-          'Phần tử <hr> được dùng để phân tách các khối nội dung độc lập hoặc đánh dấu bước chuyển ý giữa các đề mục trong bài viết.',
-          'Tương tự như <br>, thẻ <hr> cũng là một **thẻ rỗng** (empty tag) và **không có thẻ đóng** (tuyệt đối không viết </hr>).'
-        ],
-        table: {
-          caption: 'Thông tin phần tử kẻ ngang <hr>',
-          headers: ['Phần tử', 'Cú pháp', 'Đặc điểm', 'Công dụng'],
-          rows: [
-            ['<hr>', '<hr>', 'Thẻ rỗng, không có thẻ đóng', 'Tạo đường gạch ngang phân định ranh giới giữa các chủ đề']
-          ]
-        },
-        example: {
-          id: 'mini-hr-rule',
-          title: 'Ví dụ: Thẻ <hr> phân cách các đề mục nội dung',
-          caption: 'Đường ranh giới phân định giữa Ảo tưởng và Thực tế khi đi thi:',
-          code: `<h2>Kỳ vọng trước giờ phát đề thi:</h2>
+                    explanation: 'Thẻ <br> giúp bạn xuống dòng khẩn cấp tại chỗ trong cùng một đoạn văn — y hệt như nhịp tim tụt dốc không phanh khi nghe tiếng giáo viên lật từng trang sổ điểm!'
+                },
+                callout: {
+                    type: 'warning',
+                    title: 'Tránh lạm dụng <br> để chỉnh khoảng cách',
+                    content: 'Không nên gõ liên tiếp nhiều thẻ <br><br><br> để đẩy các phần tử cách xa nhau. Khoảng cách bố cục nên được quản lý bằng CSS margin/padding.'
+                }
+            },
+            {
+                id: 'the-hr-horizontal-rule',
+                title: '5. Thẻ đường kẻ ngang: <hr>',
+                paragraphs: [
+                    'Thẻ <hr> (Horizontal Rule) định nghĩa một **sự chuyển đổi chủ đề** (thematic break) trên trang web và hầu như luôn được hiển thị dưới dạng một **đường gạch ngang** dài bằng độ rộng trang.',
+                    'Phần tử <hr> được dùng để phân tách các khối nội dung độc lập hoặc đánh dấu bước chuyển ý giữa các đề mục trong bài viết.',
+                    'Tương tự như <br>, thẻ <hr> cũng là một **thẻ rỗng** (empty tag) và **không có thẻ đóng** (tuyệt đối không viết </hr>).'
+                ],
+                table: {
+                    caption: 'Thông tin phần tử kẻ ngang <hr>',
+                    headers: ['Phần tử', 'Cú pháp', 'Đặc điểm', 'Công dụng'],
+                    rows: [
+                        ['<hr>', '<hr>', 'Thẻ rỗng, không có thẻ đóng', 'Tạo đường gạch ngang phân định ranh giới giữa các chủ đề']
+                    ]
+                },
+                example: {
+                    id: 'mini-hr-rule',
+                    title: 'Ví dụ: Thẻ <hr> phân cách các đề mục nội dung',
+                    caption: 'Đường ranh giới phân định giữa Ảo tưởng và Thực tế khi đi thi:',
+                    code: `<h2>Kỳ vọng trước giờ phát đề thi:</h2>
 <p>Tối qua ôn trúng tủ, tự tin 10 điểm tuyệt đối, chuẩn bị bước lên bục vinh quang!</p>
 <hr>
 <h2>Thực tế sau khi đọc xong Câu 1:</h2>
 <p>Hình như tủ này là tủ lạnh... Sao đề thi này nhìn lạ hoắc vậy thầy ơi?!</p>
 <hr>`,
-          explanation: 'Thẻ <hr> vẽ ra một đường kẻ ngang sắc lẹm — phân chia dứt khoát giữa sự tự tin ngút trời và hiện thực phũ phàng khi nhận đề thi!'
-        }
-      },
-      {
-        id: 'thuc-the-khoang-trang',
-        title: '6. Thực thể ký tự tạo khoảng trắng',
-        paragraphs: [
-          'Các ký tự đặc biệt bắt đầu bằng dấu & (ampersand) và kết thúc bằng dấu ; (semicolon) được gọi là **thực thể ký tự** (character entities).',
-          'Khi bạn muốn chủ động tạo thêm khoảng cách thụt dòng hoặc ngăn các từ không bị ngắt dòng rời rạc, hãy sử dụng các thực thể ký tự sau:'
-        ],
-        table: {
-          caption: 'Bảng các thực thể ký tự tạo khoảng trắng',
-          headers: ['Thực thể', 'Tên đầy đủ', 'Độ rộng', 'Công dụng chính'],
-          rows: [
-            ['&nbsp;', 'Non-breaking space', '1 khoảng trắng', 'Chèn 1 khoảng trắng tiêu chuẩn (không bị ngắt xuống dòng)'],
-            ['&ensp;', 'En space', '2 khoảng trắng', 'Chèn 2 khoảng trắng (bằng độ rộng chữ cái N in hoa)'],
-            ['&emsp;', 'Em space', '4 khoảng trắng', 'Chèn 4 khoảng trắng (bằng độ rộng chữ cái M in hoa, dùng thụt đầu dòng)']
-          ]
-        },
-        example: {
-          id: 'mini-space-entities',
-          title: 'Ví dụ: So sánh các cấp độ khoảng trắng',
-          caption: 'Dùng thực thể ký tự đo khoảng cách và tốc độ của học sinh:',
-          code: `<p>Khoảng cách từ nhà đến trường:&emsp;&emsp;&emsp;30km (Đi xe đạp điện hết pin)</p>
+                    explanation: 'Thẻ <hr> vẽ ra một đường kẻ ngang sắc lẹm — phân chia dứt khoát giữa sự tự tin ngút trời và hiện thực phũ phàng khi nhận đề thi!'
+                }
+            },
+            {
+                id: 'thuc-the-khoang-trang',
+                title: '6. Thực thể ký tự tạo khoảng trắng',
+                paragraphs: [
+                    'Các ký tự đặc biệt bắt đầu bằng dấu & (ampersand) và kết thúc bằng dấu ; (semicolon) được gọi là **thực thể ký tự** (character entities).',
+                    'Khi bạn muốn chủ động tạo thêm khoảng cách thụt dòng hoặc ngăn các từ không bị ngắt dòng rời rạc, hãy sử dụng các thực thể ký tự sau:'
+                ],
+                table: {
+                    caption: 'Bảng các thực thể ký tự tạo khoảng trắng',
+                    headers: ['Thực thể', 'Tên đầy đủ', 'Độ rộng', 'Công dụng chính'],
+                    rows: [
+                        ['&nbsp;', 'Non-breaking space', '1 khoảng trắng', 'Chèn 1 khoảng trắng tiêu chuẩn (không bị ngắt xuống dòng)'],
+                        ['&ensp;', 'En space', '2 khoảng trắng', 'Chèn 2 khoảng trắng (bằng độ rộng chữ cái N in hoa)'],
+                        ['&emsp;', 'Em space', '4 khoảng trắng', 'Chèn 4 khoảng trắng (bằng độ rộng chữ cái M in hoa, dùng thụt đầu dòng)']
+                    ]
+                },
+                example: {
+                    id: 'mini-space-entities',
+                    title: 'Ví dụ: So sánh các cấp độ khoảng trắng',
+                    caption: 'Dùng thực thể ký tự đo khoảng cách và tốc độ của học sinh:',
+                    code: `<p>Khoảng cách từ nhà đến trường:&emsp;&emsp;&emsp;30km (Đi xe đạp điện hết pin)</p>
 <p>Khoảng cách từ cổng trường ra quán trà sữa:&ensp;&ensp;2 bước chân (Bay ra trong 1 nốt nhạc)</p>
 <p>Tốc độ khi nghe thầy cô giảng bài:&nbsp;0.25x (Mắt lim dim buồn ngủ)</p>
 <p>Tốc độ khi nghe tiếng chuông ra về:<br>&emsp;&emsp;&emsp;&emsp;&emsp;Vận tốc ánh sáng, không kịp nhìn thấy bóng dáng!</p>`,
-          explanation: '&ensp; rộng gấp 2 lần dấu cách thường, và &emsp; rộng gấp 4 lần. Dồn cả một dàn &emsp; ở dòng cuối để minh họa tốc độ phi nhanh như chớp khi chuông tan trường vừa điểm!'
-        },
-        callout: {
-          type: 'warning',
-          title: 'Bắt buộc phải có dấu chấm phẩy (;)',
-          content: 'Mọi thực thể ký tự đều phải kết thúc bằng dấu ; (chấm phẩy). Nếu viết thiếu (như &nbsp hay &emsp), trình duyệt sẽ hiển thị thành văn bản thô.'
-        }
-      },
-      {
-        id: 'van-de-bai-tho-va-the-pre',
-        title: '7. Vấn đề bài thơ và thẻ <pre>',
-        paragraphs: [
-          'Khi bạn muốn hiển thị một bài thơ hoặc lời bài hát bằng thẻ <p>, một vấn đề lớn sẽ nảy sinh:',
-          'Do cơ chế tự động gộp dòng của trình duyệt, **bài thơ sẽ bị hiển thị dồn lại trên một dòng duy nhất**, làm mất hoàn toàn cấu trúc khổ thơ và nhịp điệu bài thơ!'
-        ],
-        examples: [
-          {
-            id: 'mini-poem-p-problem',
-            title: 'Vấn đề: Bài thơ than thở học đường bị dẹp lép khi dùng thẻ <p>',
-            caption: 'Quan sát thảm họa hiển thị khi gói thơ vào thẻ <p> thông thường:',
-            code: `<p>
+                    explanation: '&ensp; rộng gấp 2 lần dấu cách thường, và &emsp; rộng gấp 4 lần. Dồn cả một dàn &emsp; ở dòng cuối để minh họa tốc độ phi nhanh như chớp khi chuông tan trường vừa điểm!'
+                },
+                callout: {
+                    type: 'warning',
+                    title: 'Bắt buộc phải có dấu chấm phẩy (;)',
+                    content: 'Mọi thực thể ký tự đều phải kết thúc bằng dấu ; (chấm phẩy). Nếu viết thiếu (như &nbsp hay &emsp), trình duyệt sẽ hiển thị thành văn bản thô.'
+                }
+            },
+            {
+                id: 'van-de-bai-tho-va-the-pre',
+                title: '7. Vấn đề bài thơ và thẻ <pre>',
+                paragraphs: [
+                    'Khi bạn muốn hiển thị một bài thơ hoặc lời bài hát bằng thẻ <p>, một vấn đề lớn sẽ nảy sinh:',
+                    'Do cơ chế tự động gộp dòng của trình duyệt, **bài thơ sẽ bị hiển thị dồn lại trên một dòng duy nhất**, làm mất hoàn toàn cấu trúc khổ thơ và nhịp điệu bài thơ!'
+                ],
+                examples: [
+                    {
+                        id: 'mini-poem-p-problem',
+                        title: 'Vấn đề: Bài thơ than thở học đường bị dẹp lép khi dùng thẻ <p>',
+                        caption: 'Quan sát thảm họa hiển thị khi gói thơ vào thẻ <p> thông thường:',
+                        code: `<p>
   Đầu tuần hừng hực quyết tâm
   Giữa tuần tụt dốc âm thầm mệt nhoài
   Thứ Bảy deadline kề vai
   Chủ Nhật thức trắng... vừa khóc vừa làm!
 </p>`,
-            explanation: 'Dù bạn đã cất công gieo vần xuống dòng từng câu thơ, trình duyệt vẫn ép dẹp lép toàn bộ bài thơ dính liền trên một hàng ngang mất hết cảm xúc!'
-          },
-          {
-            id: 'mini-poem-pre-solution',
-            title: 'Giải pháp: Thẻ <pre> giữ nguyên trọn vẹn nhịp thơ',
-            caption: 'Nội dung bên trong thẻ <pre> được bảo lưu 100% dòng ngắt và thụt lề:',
-            code: `<pre>
+                        explanation: 'Dù bạn đã cất công gieo vần xuống dòng từng câu thơ, trình duyệt vẫn ép dẹp lép toàn bộ bài thơ dính liền trên một hàng ngang mất hết cảm xúc!'
+                    },
+                    {
+                        id: 'mini-poem-pre-solution',
+                        title: 'Giải pháp: Thẻ <pre> giữ nguyên trọn vẹn nhịp thơ',
+                        caption: 'Nội dung bên trong thẻ <pre> được bảo lưu 100% dòng ngắt và thụt lề:',
+                        code: `<pre>
 Đầu tuần hừng hực quyết tâm
     Giữa tuần tụt dốc âm thầm mệt nhoài
 Thứ Bảy deadline kề vai
     Chủ Nhật thức trắng... vừa khóc vừa làm!
             (Nhật ký học tập của học sinh chăm chỉ)
 </pre>`,
-            explanation: 'Bên trong <pre>...</pre>, từng phím Enter xuống dòng, khoảng thụt lề và lời than thở thức trắng đêm đều được bảo lưu nguyên vẹn 100% y như lúc soạn thảo!'
-          }
+                        explanation: 'Bên trong <pre>...</pre>, từng phím Enter xuống dòng, khoảng thụt lề và lời than thở thức trắng đêm đều được bảo lưu nguyên vẹn 100% y như lúc soạn thảo!'
+                    }
+                ],
+                table: {
+                    caption: 'Thông tin phần tử <pre>',
+                    headers: ['Phần tử', 'Cú pháp', 'Công dụng chính'],
+                    rows: [
+                        ['<pre>', '<pre>Văn bản định dạng sẵn</pre>', 'Bảo lưu trọn vẹn cả phím cách lẫn phím Enter y hệt trong mã lệnh']
+                    ]
+                },
+                callout: {
+                    type: 'info',
+                    title: 'Khi nào nên dùng thẻ <pre>?',
+                    content: 'Thẻ <pre> cực kỳ lý tưởng để trình bày các bài thơ, lời bài hát, tranh ký tự (ASCII art), hoặc trích dẫn các đoạn mã nguồn lập trình máy tính.'
+                }
+            }
         ],
-        table: {
-          caption: 'Thông tin phần tử <pre>',
-          headers: ['Phần tử', 'Cú pháp', 'Công dụng chính'],
-          rows: [
-            ['<pre>', '<pre>Văn bản định dạng sẵn</pre>', 'Bảo lưu trọn vẹn cả phím cách lẫn phím Enter y hệt trong mã lệnh']
-          ]
-        },
-        callout: {
-          type: 'info',
-          title: 'Khi nào nên dùng thẻ <pre>?',
-          content: 'Thẻ <pre> cực kỳ lý tưởng để trình bày các bài thơ, lời bài hát, tranh ký tự (ASCII art), hoặc trích dẫn các đoạn mã nguồn lập trình máy tính.'
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-portfolio-1',
-        title: 'portfolio-1.html',
-        description: 'Đoạn mã từ dòng 11 đến 15 minh họa tạo đoạn văn bằng thẻ p, ngắt dòng với br, kẻ đường ngang hr và kết hợp các thực thể &emsp;, &ensp;, &nbsp; để thụt lề.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
+        codeExamples: [
+            {
+                id: 'vd-portfolio-1',
+                title: 'portfolio-1.html',
+                description: 'Đoạn mã từ dòng 11 đến 15 minh họa tạo đoạn văn bằng thẻ p, ngắt dòng với br, kẻ đường ngang hr và kết hợp các thực thể &emsp;, &ensp;, &nbsp; để thụt lề.',
+                language: 'html',
+                runnable: true,
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -610,15 +610,15 @@ Thứ Bảy deadline kề vai
   <p>... cho đến khi<br>&emsp;&emsp;&emsp;&ensp;&ensp;&nbsp;bạn sụp ổ gà :)</p>
 </body>
 </html>`,
-        explanation: 'Phân tích mã nguồn:\n- <h1>: Tiêu đề chính của trang portfolio.\n- <p>: Tạo các đoạn văn bản độc lập, có khoảng đệm trên/dưới rõ ràng.\n- <br>: Xuống hàng ngay tại chỗ nhưng vẫn nằm cùng trong một đoạn văn.\n- <hr>: Tạo đường gạch ngang dài bằng độ rộng trang web để ngăn cách nội dung.\n- Thực thể khoảng trắng: &emsp;&emsp;&emsp; (3 × 4 = 12 khoảng trắng) + &ensp;&ensp; (2 × 2 = 4 khoảng trắng) + &nbsp; (1 khoảng trắng) = thụt lề đúng 17 khoảng trắng trước câu "bạn sụp ổ gà :)".'
-      },
-      {
-        id: 'vd-portfolio-2',
-        title: 'portfolio.html',
-        description: 'Đoạn mã từ dòng 16 đến 22 hiển thị bài thơ "Một chiều ngược gió" bằng thẻ pre, giữ nguyên trọn vẹn từng khoảng thụt lề và lần nhấn phím Enter.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
+                explanation: 'Phân tích mã nguồn:\n- <h1>: Tiêu đề chính của trang portfolio.\n- <p>: Tạo các đoạn văn bản độc lập, có khoảng đệm trên/dưới rõ ràng.\n- <br>: Xuống hàng ngay tại chỗ nhưng vẫn nằm cùng trong một đoạn văn.\n- <hr>: Tạo đường gạch ngang dài bằng độ rộng trang web để ngăn cách nội dung.\n- Thực thể khoảng trắng: &emsp;&emsp;&emsp; (3 × 4 = 12 khoảng trắng) + &ensp;&ensp; (2 × 2 = 4 khoảng trắng) + &nbsp; (1 khoảng trắng) = thụt lề đúng 17 khoảng trắng trước câu "bạn sụp ổ gà :)".'
+            },
+            {
+                id: 'vd-portfolio-2',
+                title: 'portfolio.html',
+                description: 'Đoạn mã từ dòng 16 đến 22 hiển thị bài thơ "Một chiều ngược gió" bằng thẻ pre, giữ nguyên trọn vẹn từng khoảng thụt lề và lần nhấn phím Enter.',
+                language: 'html',
+                runnable: true,
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -641,155 +641,155 @@ Ngược lòng mình tìm về nông nổi
     Lãng du đi vô định cánh chim trời.</pre>
 </body>
 </html>`,
-        explanation: 'So sánh trực quan hai cách:\n- Cách 1 (ở phần trên): Phải kết hợp thủ công các thẻ <p>, <br>, <hr> và các thực thể &emsp;, &ensp;, &nbsp; để tạo khoảng cách và ngắt dòng.\n- Cách 2 (ở phần bài thơ): Gói nội dung trong thẻ <pre>...</pre>. Toàn bộ bài thơ giữ nguyên từng khoảng thụt dòng và phím Enter đúng y như lúc bạn gõ trong tệp mã lệnh mà không cần thêm bất kỳ thẻ bổ trợ nào!'
-      }
-    ],
-    commonMistakes: [],
-    keyTakeaways: [
-      'Thẻ <p> dùng để tạo đoạn văn bản, tự động xuống dòng và có khoảng trống trên/dưới rõ ràng.',
-      'Thẻ <br> dùng để ngắt dòng trong cùng đoạn; thẻ <hr> kẻ đường gạch ngang phân cách toàn trang web.',
-      'Thực thể ký tự bắt đầu bằng & và kết thúc bằng ;: &nbsp; (1 khoảng trắng), &ensp; (2 khoảng trắng), &emsp; (4 khoảng trắng).',
-      'Thẻ <pre> giữ nguyên trọn vẹn 100% dòng trống và khoảng trắng như trong mã lệnh soạn thảo.'
-    ]
-  },
-  {
-    id: 'html-5',
-    track: 'html',
-    order: 5,
-    title: 'Định dạng nội dung văn bản',
-    slug: 'dinh-dang-noi-dung-van-ban',
-    description: 'Tìm hiểu các phần tử định dạng văn bản đặc biệt trong HTML: in đậm (<b>, <strong>), in nghiêng (<i>, <em>), đánh dấu dạ quang (<mark>), chữ nhỏ (<small>), gạch bỏ (<del>), chèn thêm (<ins>) và chỉ số trên/dưới (<sup>, <sub>).',
-    estimatedMinutes: 20,
-    objectives: [
-      'Phân biệt thẻ mang ý nghĩa ngữ nghĩa (<strong>, <em>) và thẻ chỉ định hình thức thuần túy (<b>, <i>).',
-      'Ứng dụng các thẻ <mark>, <small>, <del>, <ins>, <u> để trình bày văn bản sinh động, chuyên nghiệp.',
-      'Sử dụng <sub> và <sup> để viết công thức toán học và phương trình hóa học chuẩn xác.'
-    ],
-    sections: [
-      {
-        id: 'tong-quan-dinh-dang',
-        title: '1. Các phần tử định dạng văn bản đặc biệt',
-        paragraphs: [
-          'Trong HTML, các phần tử định dạng (Formatting Elements) được thiết kế chuyên biệt để biểu diễn các dạng văn bản đặc biệt như in đậm, in nghiêng, đánh dấu nổi bật, chữ nhỏ hay các chỉ số trên và dưới.',
-          'Bảng dưới đây liệt kê 10 phần tử định dạng văn bản cốt lõi theo chuẩn W3Schools:'
+                explanation: 'So sánh trực quan hai cách:\n- Cách 1 (ở phần trên): Phải kết hợp thủ công các thẻ <p>, <br>, <hr> và các thực thể &emsp;, &ensp;, &nbsp; để tạo khoảng cách và ngắt dòng.\n- Cách 2 (ở phần bài thơ): Gói nội dung trong thẻ <pre>...</pre>. Toàn bộ bài thơ giữ nguyên từng khoảng thụt dòng và phím Enter đúng y như lúc bạn gõ trong tệp mã lệnh mà không cần thêm bất kỳ thẻ bổ trợ nào!'
+            }
         ],
-        table: {
-          caption: 'Bảng tra cứu các phần tử định dạng văn bản trong HTML',
-          headers: ['Phần tử', 'Tên đầy đủ', 'Hiển thị mặc định', 'Ý nghĩa & Công dụng'],
-          rows: [
-            ['<b>', 'Bold text', 'In đậm', 'Định dạng chữ in đậm thuần túy về hình thức (không mang ý nghĩa quan trọng)'],
-            ['<strong>', 'Important text', 'In đậm', 'Nhấn mạnh văn bản quan trọng (công cụ đọc màn hình và máy tìm kiếm sẽ chú ý)'],
-            ['<i>', 'Italic text', 'In nghiêng', 'Định dạng chữ in nghiêng (dùng cho thuật ngữ, từ tiếng nước ngoài, tên sách/tàu thuyền, ý nghĩ)'],
-            ['<em>', 'Emphasized text', 'In nghiêng', 'Nhấn mạnh sắc thái câu nói (máy đọc màn hình Screen Reader sẽ phát âm nhấn giọng)'],
-            ['<mark>', 'Marked text', 'Nền vàng dạ quang', 'Tô màu nền nổi bật để đánh dấu từ khóa cần chú ý'],
-            ['<small>', 'Smaller text', 'Cỡ chữ nhỏ hơn', 'Hiển thị văn bản cỡ nhỏ hơn thông thường (dùng cho bản quyền, chú thích phụ)'],
-            ['<del>', 'Deleted text', 'Gạch ngang thân chữ', 'Đánh dấu văn bản đã bị xóa bỏ hoặc giá gốc cũ'],
-            ['<ins>', 'Inserted text', 'Gạch chân dưới chữ', 'Đánh dấu văn bản được chèn thêm mới hoặc giá mới sau khuyến mãi'],
-            ['<sub>', 'Subscript text', 'Nhỏ, hạ thấp xuống', 'Tạo chỉ số dưới (dùng cho công thức hóa học như H₂O, CO₂)'],
-            ['<sup>', 'Superscript text', 'Nhỏ, nhô lên cao', 'Tạo chỉ số trên (dùng cho lũy thừa toán học như x², số mũ, chú thích)']
-          ]
-        }
-      },
-      {
-        id: 'the-b-va-strong',
-        title: '2. Thẻ in đậm: <b> và <strong>',
-        paragraphs: [
-          'Cả hai thẻ <b> và <strong> đều làm văn bản hiển thị in đậm trên màn hình, nhưng có sự khác biệt cốt lõi về **ý nghĩa ngữ nghĩa (Semantic HTML)**:',
-          'Thẻ <b> (bold): Định dạng chữ in đậm về mặt thị giác đơn thuần, không làm tăng mức độ quan trọng của nội dung.',
-          'Thẻ <strong> (strong importance): Định nghĩa văn bản có tầm quan trọng đặc biệt. Công cụ tìm kiếm (SEO) sẽ đánh giá cao từ khóa này, và phần mềm đọc màn hình sẽ nhấn mạnh giọng khi đọc.'
+        commonMistakes: [],
+        keyTakeaways: [
+            'Thẻ <p> dùng để tạo đoạn văn bản, tự động xuống dòng và có khoảng trống trên/dưới rõ ràng.',
+            'Thẻ <br> dùng để ngắt dòng trong cùng đoạn; thẻ <hr> kẻ đường gạch ngang phân cách toàn trang web.',
+            'Thực thể ký tự bắt đầu bằng & và kết thúc bằng ;: &nbsp; (1 khoảng trắng), &ensp; (2 khoảng trắng), &emsp; (4 khoảng trắng).',
+            'Thẻ <pre> giữ nguyên trọn vẹn 100% dòng trống và khoảng trắng như trong mã lệnh soạn thảo.'
+        ]
+    },
+    {
+        id: 'html-5',
+        track: 'html',
+        order: 5,
+        title: 'Định dạng nội dung văn bản',
+        slug: 'dinh-dang-noi-dung-van-ban',
+        description: 'Tìm hiểu các phần tử định dạng văn bản đặc biệt trong HTML: in đậm (<b>, <strong>), in nghiêng (<i>, <em>), đánh dấu dạ quang (<mark>), chữ nhỏ (<small>), gạch bỏ (<del>), chèn thêm (<ins>) và chỉ số trên/dưới (<sup>, <sub>).',
+        estimatedMinutes: 20,
+        objectives: [
+            'Phân biệt thẻ mang ý nghĩa ngữ nghĩa (<strong>, <em>) và thẻ chỉ định hình thức thuần túy (<b>, <i>).',
+            'Ứng dụng các thẻ <mark>, <small>, <del>, <ins>, <u> để trình bày văn bản sinh động, chuyên nghiệp.',
+            'Sử dụng <sub> và <sup> để viết công thức toán học và phương trình hóa học chuẩn xác.'
         ],
-        example: {
-          id: 'mini-b-strong',
-          title: 'Ví dụ: So sánh thẻ <b> và <strong>',
-          caption: 'Cuộc chiến sinh tử giữa Lý trí học tập và Tiếng gọi chiếc giường:',
-          code: `<p>Tối nay phải <b>làm xong bài tập</b> rồi mới đi ngủ.</p>
+        sections: [
+            {
+                id: 'tong-quan-dinh-dang',
+                title: '1. Các phần tử định dạng văn bản đặc biệt',
+                paragraphs: [
+                    'Trong HTML, các phần tử định dạng (Formatting Elements) được thiết kế chuyên biệt để biểu diễn các dạng văn bản đặc biệt như in đậm, in nghiêng, đánh dấu nổi bật, chữ nhỏ hay các chỉ số trên và dưới.',
+                    'Bảng dưới đây liệt kê 10 phần tử định dạng văn bản cốt lõi theo chuẩn W3Schools:'
+                ],
+                table: {
+                    caption: 'Bảng tra cứu các phần tử định dạng văn bản trong HTML',
+                    headers: ['Phần tử', 'Tên đầy đủ', 'Hiển thị mặc định', 'Ý nghĩa & Công dụng'],
+                    rows: [
+                        ['<b>', 'Bold text', 'In đậm', 'Định dạng chữ in đậm thuần túy về hình thức (không mang ý nghĩa quan trọng)'],
+                        ['<strong>', 'Important text', 'In đậm', 'Nhấn mạnh văn bản quan trọng (công cụ đọc màn hình và máy tìm kiếm sẽ chú ý)'],
+                        ['<i>', 'Italic text', 'In nghiêng', 'Định dạng chữ in nghiêng (dùng cho thuật ngữ, từ tiếng nước ngoài, tên sách/tàu thuyền, ý nghĩ)'],
+                        ['<em>', 'Emphasized text', 'In nghiêng', 'Nhấn mạnh sắc thái câu nói (máy đọc màn hình Screen Reader sẽ phát âm nhấn giọng)'],
+                        ['<mark>', 'Marked text', 'Nền vàng dạ quang', 'Tô màu nền nổi bật để đánh dấu từ khóa cần chú ý'],
+                        ['<small>', 'Smaller text', 'Cỡ chữ nhỏ hơn', 'Hiển thị văn bản cỡ nhỏ hơn thông thường (dùng cho bản quyền, chú thích phụ)'],
+                        ['<del>', 'Deleted text', 'Gạch ngang thân chữ', 'Đánh dấu văn bản đã bị xóa bỏ hoặc giá gốc cũ'],
+                        ['<ins>', 'Inserted text', 'Gạch chân dưới chữ', 'Đánh dấu văn bản được chèn thêm mới hoặc giá mới sau khuyến mãi'],
+                        ['<sub>', 'Subscript text', 'Nhỏ, hạ thấp xuống', 'Tạo chỉ số dưới (dùng cho công thức hóa học như H₂O, CO₂)'],
+                        ['<sup>', 'Superscript text', 'Nhỏ, nhô lên cao', 'Tạo chỉ số trên (dùng cho lũy thừa toán học như x², số mũ, chú thích)']
+                    ]
+                }
+            },
+            {
+                id: 'the-b-va-strong',
+                title: '2. Thẻ in đậm: <b> và <strong>',
+                paragraphs: [
+                    'Cả hai thẻ <b> và <strong> đều làm văn bản hiển thị in đậm trên màn hình, nhưng có sự khác biệt cốt lõi về **ý nghĩa ngữ nghĩa (Semantic HTML)**:',
+                    'Thẻ <b> (bold): Định dạng chữ in đậm về mặt thị giác đơn thuần, không làm tăng mức độ quan trọng của nội dung.',
+                    'Thẻ <strong> (strong importance): Định nghĩa văn bản có tầm quan trọng đặc biệt. Công cụ tìm kiếm (SEO) sẽ đánh giá cao từ khóa này, và phần mềm đọc màn hình sẽ nhấn mạnh giọng khi đọc.'
+                ],
+                example: {
+                    id: 'mini-b-strong',
+                    title: 'Ví dụ: So sánh thẻ <b> và <strong>',
+                    caption: 'Cuộc chiến sinh tử giữa Lý trí học tập và Tiếng gọi chiếc giường:',
+                    code: `<p>Tối nay phải <b>làm xong bài tập</b> rồi mới đi ngủ.</p>
 <p>Giấc ngủ là điều <strong>quan trọng nhất</strong> của đời người, tắt đèn đi ngủ ngay!</p>
 <p>Deadline có thể làm lại, nhưng giấc ngủ thanh xuân thì <strong>chỉ có một lần!</strong></p>`,
-          explanation: 'Thẻ <b> chỉ in đậm nhẹ nhàng lời khuyên lý trí; nhưng thẻ <strong> mới thể hiện tầm quan trọng tối cao của chiếc giường êm ấm!'
-        }
-      },
-      {
-        id: 'the-i-va-em',
-        title: '3. Thẻ in nghiêng: <i> và <em>',
-        paragraphs: [
-          'Cả hai thẻ <i> và <em> đều làm văn bản hiển thị in nghiêng, nhưng phục vụ ngữ cảnh sử dụng khác nhau:',
-          'Thẻ <i> (italic): Định dạng chữ in nghiêng về mặt hình thức. Thẻ này thường dùng cho thuật ngữ kỹ thuật, từ mượn tiếng nước ngoài, tên tác phẩm nghệ thuật, hoặc một suy nghĩ thầm kín.',
-          'Thẻ <em> (emphasized): Định nghĩa đoạn văn bản được nhấn mạnh sắc thái. Trình đọc màn hình (Screen Reader) sẽ phát âm từ ngữ trong thẻ <em> với âm điệu nhấn mạnh bằng giọng nói.'
-        ],
-        example: {
-          id: 'mini-i-em',
-          title: 'Ví dụ: So sánh thẻ <i> và <em>',
-          caption: 'Kế hoạch ôn thi nghiêm túc vs Thực tế lướt mạng xã hội:',
-          code: `<p>Mình đang <i>tập trung cao độ</i> để ôn thi...</p>
+                    explanation: 'Thẻ <b> chỉ in đậm nhẹ nhàng lời khuyên lý trí; nhưng thẻ <strong> mới thể hiện tầm quan trọng tối cao của chiếc giường êm ấm!'
+                }
+            },
+            {
+                id: 'the-i-va-em',
+                title: '3. Thẻ in nghiêng: <i> và <em>',
+                paragraphs: [
+                    'Cả hai thẻ <i> và <em> đều làm văn bản hiển thị in nghiêng, nhưng phục vụ ngữ cảnh sử dụng khác nhau:',
+                    'Thẻ <i> (italic): Định dạng chữ in nghiêng về mặt hình thức. Thẻ này thường dùng cho thuật ngữ kỹ thuật, từ mượn tiếng nước ngoài, tên tác phẩm nghệ thuật, hoặc một suy nghĩ thầm kín.',
+                    'Thẻ <em> (emphasized): Định nghĩa đoạn văn bản được nhấn mạnh sắc thái. Trình đọc màn hình (Screen Reader) sẽ phát âm từ ngữ trong thẻ <em> với âm điệu nhấn mạnh bằng giọng nói.'
+                ],
+                example: {
+                    id: 'mini-i-em',
+                    title: 'Ví dụ: So sánh thẻ <i> và <em>',
+                    caption: 'Kế hoạch ôn thi nghiêm túc vs Thực tế lướt mạng xã hội:',
+                    code: `<p>Mình đang <i>tập trung cao độ</i> để ôn thi...</p>
 <p><em>Ủa drama gì mới trên mạng vậy trời, phải vào hóng ngay!</em></p>
 <p>Thôi mệt quá, để <i>ngày mai</i> học tiếp...</p>
 <p><em>Mai của ngày mai nữa nha!</em></p>`,
-          explanation: 'Thẻ <i> biểu thị lời tự nhủ yếu ớt khi tự lừa bản thân; còn thẻ <em> nhấn mạnh sự hào hứng tột độ khi hóng chuyện trên mạng!'
-        }
-      },
-      {
-        id: 'the-small-va-mark',
-        title: '4. Thẻ chữ nhỏ <small> và Thẻ dạ quang <mark>',
-        paragraphs: [
-          'Thẻ <small>: Làm cho kích thước chữ nhỏ hơn một cỡ so với văn bản xung quanh. Rất phù hợp cho các dòng bản quyền chân trang, điều khoản dịch vụ hoặc thông tin ghi chú phụ.',
-          'Thẻ <mark>: Đánh dấu đoạn văn bản cần làm nổi bật bằng một lớp nền màu vàng dạ quang (tương tự như khi bạn dùng bút dạ quang tô lên dòng chữ trong sách).'
-        ],
-        example: {
-          id: 'mini-small-mark',
-          title: 'Ví dụ: Thẻ <mark> tô sáng và thẻ <small> chữ nhỏ',
-          caption: 'Bút dạ quang highlight đúng thứ cần thiết và thu nhỏ điều không muốn nghe:',
-          code: `<p>Sách dày 200 trang nhưng tôi chỉ đọc dòng: <mark>Phần này được giảm tải, không thi</mark>!</p>
+                    explanation: 'Thẻ <i> biểu thị lời tự nhủ yếu ớt khi tự lừa bản thân; còn thẻ <em> nhấn mạnh sự hào hứng tột độ khi hóng chuyện trên mạng!'
+                }
+            },
+            {
+                id: 'the-small-va-mark',
+                title: '4. Thẻ chữ nhỏ <small> và Thẻ dạ quang <mark>',
+                paragraphs: [
+                    'Thẻ <small>: Làm cho kích thước chữ nhỏ hơn một cỡ so với văn bản xung quanh. Rất phù hợp cho các dòng bản quyền chân trang, điều khoản dịch vụ hoặc thông tin ghi chú phụ.',
+                    'Thẻ <mark>: Đánh dấu đoạn văn bản cần làm nổi bật bằng một lớp nền màu vàng dạ quang (tương tự như khi bạn dùng bút dạ quang tô lên dòng chữ trong sách).'
+                ],
+                example: {
+                    id: 'mini-small-mark',
+                    title: 'Ví dụ: Thẻ <mark> tô sáng và thẻ <small> chữ nhỏ',
+                    caption: 'Bút dạ quang highlight đúng thứ cần thiết và thu nhỏ điều không muốn nghe:',
+                    code: `<p>Sách dày 200 trang nhưng tôi chỉ đọc dòng: <mark>Phần này được giảm tải, không thi</mark>!</p>
 <p><small>(Nhớ ôn kỹ lý thuyết từ chương 1 đến chương 10, chữ nhỏ quá không ai nhớ)</small></p>
 <p><mark>Ngày mai cả lớp được nghỉ tiết đầu!</mark></p>
 <p><small>(Vui mừng khôn xiết nhưng phải giả vờ tiếc nuối vì không được học :))</small></p>`,
-          explanation: 'Thẻ <mark> như cây bút dạ quang tô sáng rực rỡ những tin vui chấn động; còn thẻ <small> thu bé tí những lời nhắc nhở học bài dài lê thê!'
-        }
-      },
-      {
-        id: 'the-del-va-ins',
-        title: '5. Thẻ xóa bỏ <del> và Thẻ chèn thêm <ins>',
-        paragraphs: [
-          'Thẻ <del> (deleted text): Đại diện cho phần văn bản đã bị xóa bỏ hoặc chỉnh sửa trong tài liệu. Trình duyệt sẽ hiển thị một đường kẻ gạch ngang thân chữ.',
-          'Thẻ <ins> (inserted text): Đại diện cho phần văn bản mới được thêm vào tài liệu. Trình duyệt sẽ hiển thị đường gạch chân dưới chữ.',
-          'Trong thương mại điện tử, cặp thẻ <del> và <ins> thường xuyên được kết hợp cùng nhau để thể hiện giá cũ bị gạch bỏ và giá mới khuyến mãi.'
-        ],
-        example: {
-          id: 'mini-del-ins',
-          title: 'Ví dụ: Kết hợp thẻ <del> và <ins>',
-          caption: 'Cú quay xe thế kỷ giữa Kế hoạch lý tưởng và Thực tế trần trụi:',
-          code: `<p><del>5:30 dậy chạy bộ, học từ vựng tiếng Anh</del> <ins>6:45 giật mình cuống cuồng chạy đến lớp</ins>.</p>
+                    explanation: 'Thẻ <mark> như cây bút dạ quang tô sáng rực rỡ những tin vui chấn động; còn thẻ <small> thu bé tí những lời nhắc nhở học bài dài lê thê!'
+                }
+            },
+            {
+                id: 'the-del-va-ins',
+                title: '5. Thẻ xóa bỏ <del> và Thẻ chèn thêm <ins>',
+                paragraphs: [
+                    'Thẻ <del> (deleted text): Đại diện cho phần văn bản đã bị xóa bỏ hoặc chỉnh sửa trong tài liệu. Trình duyệt sẽ hiển thị một đường kẻ gạch ngang thân chữ.',
+                    'Thẻ <ins> (inserted text): Đại diện cho phần văn bản mới được thêm vào tài liệu. Trình duyệt sẽ hiển thị đường gạch chân dưới chữ.',
+                    'Trong thương mại điện tử, cặp thẻ <del> và <ins> thường xuyên được kết hợp cùng nhau để thể hiện giá cũ bị gạch bỏ và giá mới khuyến mãi.'
+                ],
+                example: {
+                    id: 'mini-del-ins',
+                    title: 'Ví dụ: Kết hợp thẻ <del> và <ins>',
+                    caption: 'Cú quay xe thế kỷ giữa Kế hoạch lý tưởng và Thực tế trần trụi:',
+                    code: `<p><del>5:30 dậy chạy bộ, học từ vựng tiếng Anh</del> <ins>6:45 giật mình cuống cuồng chạy đến lớp</ins>.</p>
 <p><del>Quyết tâm trở thành học sinh chăm ngoan gương mẫu</del> <ins>Cố gắng không ngủ gật trong giờ là may lắm rồi</ins>.</p>
 <p>Tiền ăn sáng: <del>50.000đ</del>, thực tế còn <ins>0đ vì lỡ bao đứa bạn ly trà sữa</ins>!</p>`,
-          explanation: 'Thẻ <del> gạch phăng đi những lời thề non hẹn biển đầu năm; nhường chỗ cho thẻ <ins> gạch chân đón nhận hiện thực dở khóc dở cười!'
-        }
-      },
-      {
-        id: 'the-sub-va-sup',
-        title: '6. Chỉ số dưới <sub> và Chỉ số trên <sup>',
-        paragraphs: [
-          'Thẻ <sub> (subscript): Hiển thị chữ có kích thước nhỏ hơn và hạ thấp xuống nửa dòng ký tự. Thường dùng trong các công thức hóa học (như H₂O, CO₂, H₂SO₄) hoặc chỉ số biến số.',
-          'Thẻ <sup> (superscript): Hiển thị chữ có kích thước nhỏ hơn và nhô lên cao nửa dòng ký tự. Thường dùng cho số mũ lũy thừa toán học (như x², y³), công thức vật lý hoặc số đánh dấu chú thích chân trang (footnote).'
-        ],
-        example: {
-          id: 'mini-sub-sup',
-          title: 'Ví dụ: Công thức hóa học và toán học với <sub> và <sup>',
-          caption: 'Vận dụng Toán, Lý, Hóa để giải thích các hiện tượng học đường:',
-          code: `<p>Hóa học buổi sáng: C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub> (Cafein) + H<sub>2</sub>O = Năng lượng duy trì sự tỉnh táo!</p>
+                    explanation: 'Thẻ <del> gạch phăng đi những lời thề non hẹn biển đầu năm; nhường chỗ cho thẻ <ins> gạch chân đón nhận hiện thực dở khóc dở cười!'
+                }
+            },
+            {
+                id: 'the-sub-va-sup',
+                title: '6. Chỉ số dưới <sub> và Chỉ số trên <sup>',
+                paragraphs: [
+                    'Thẻ <sub> (subscript): Hiển thị chữ có kích thước nhỏ hơn và hạ thấp xuống nửa dòng ký tự. Thường dùng trong các công thức hóa học (như H₂O, CO₂, H₂SO₄) hoặc chỉ số biến số.',
+                    'Thẻ <sup> (superscript): Hiển thị chữ có kích thước nhỏ hơn và nhô lên cao nửa dòng ký tự. Thường dùng cho số mũ lũy thừa toán học (như x², y³), công thức vật lý hoặc số đánh dấu chú thích chân trang (footnote).'
+                ],
+                example: {
+                    id: 'mini-sub-sup',
+                    title: 'Ví dụ: Công thức hóa học và toán học với <sub> và <sup>',
+                    caption: 'Vận dụng Toán, Lý, Hóa để giải thích các hiện tượng học đường:',
+                    code: `<p>Hóa học buổi sáng: C<sub>8</sub>H<sub>10</sub>N<sub>4</sub>O<sub>2</sub> (Cafein) + H<sub>2</sub>O = Năng lượng duy trì sự tỉnh táo!</p>
 <p>Định luật bảo toàn điểm số: Tổng điểm cả bàn luôn là hằng số (Đứa này 9<sup>đ</sup> thì đứa kia 1<sup>đ</sup>).</p>
 <p>Chỉ số áp lực mùa thi cử: Áp suất P = 10<sup>99</sup> N/m<sup>2</sup> (Nổ tung đầu óc)!</p>
 <p>Vận tốc phi vào canteen khi nghe chuông: v = 3 &times; 10<sup>8</sup> m/s (Bằng tốc độ ánh sáng)!</p>`,
-          explanation: 'Dùng thẻ <sub> biểu diễn các công thức hóa học cafein và nước; dùng thẻ <sup> nâng lũy thừa áp lực thi cử và tốc độ bay vào canteen lên tầm vũ trụ!'
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-portfolio-dinh-dang',
-        title: 'portfolio.html',
-        description: 'Tiếp nối tệp portfolio.html từ Bài 4, vận dụng các thẻ em, strong, small, mark, u, sub và sup để trình bày định luật bảo toàn năng lượng.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
+                    explanation: 'Dùng thẻ <sub> biểu diễn các công thức hóa học cafein và nước; dùng thẻ <sup> nâng lũy thừa áp lực thi cử và tốc độ bay vào canteen lên tầm vũ trụ!'
+                }
+            }
+        ],
+        codeExamples: [
+            {
+                id: 'vd-portfolio-dinh-dang',
+                title: 'portfolio.html',
+                description: 'Tiếp nối tệp portfolio.html từ Bài 4, vận dụng các thẻ em, strong, small, mark, u, sub và sup để trình bày định luật bảo toàn năng lượng.',
+                language: 'html',
+                runnable: true,
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -823,73 +823,73 @@ Ngược lòng mình tìm về nông nổi
         1/2mv<sup>2</sup> + mgh</p> 
 </body>
 </html>`,
-        explanation: 'Phân tích chi tiết các thẻ định dạng được kết hợp trong tệp portfolio.html:\n- Thẻ <em>: Nhấn mạnh sắc thái của từ "chữa lành" và từ "tựa".\n- Thẻ <strong>: Nhấn mạnh tên định luật "The law of conservation of energy" là kiến thức cốt lõi.\n- Thẻ <mark>: Tô sáng dạ quang màu vàng cho mệnh đề chuyển hóa năng lượng quan trọng nhất.\n- Thẻ <small>: Thu nhỏ kích thước hai liên từ "or" và "but" tạo độ tương phản thị giác thú vị.\n- Thẻ <u>: Gạch chân khẳng định kết luận "remains constant" (không đổi).\n- Thẻ <sub> & <sup>: Trình bày công thức vật lý chuẩn xác: các chỉ số E_total, E_kinetic, E_gravitational và số mũ vận tốc v^2.'
-      }
-    ],
-    commonMistakes: [],
-    keyTakeaways: [
-      '<b> và <i> chỉ thay đổi hình thức chữ; <strong> và <em> mang ý nghĩa ngữ nghĩa (Semantic HTML) được các công cụ tìm kiếm và máy đọc màn hình đánh giá cao.',
-      '<mark> dùng để tô sáng dạ quang màu vàng; <small> dùng cho văn bản kích thước nhỏ như bản quyền hay điều khoản.',
-      '<del> vẽ đường gạch ngang thân chữ (nội dung bị xóa/giá cũ) và <ins> gạch chân chữ (nội dung thêm mới/giá khuyến mãi).',
-      '<sub> dùng cho chỉ số dưới (công thức hóa học H₂O); <sup> dùng cho chỉ số trên (số mũ lũy thừa x²).'
-    ]
-  },
-  {
-    id: 'html-6',
-    track: 'html',
-    order: 6,
-    title: 'Tạo đề mục và danh sách',
-    slug: 'tao-de-muc-va-danh-sach',
-    description: 'Phân cấp tài liệu khoa học bằng 6 cấp độ tiêu đề h1 đến h6; tạo danh sách không thứ tự ul, có thứ tự ol, danh sách mô tả dl và lồng danh sách.',
-    estimatedMinutes: 25,
-    objectives: [
-      'Hiểu thứ bậc phân cấp từ <h1> đến <h6> và quy tắc chỉ dùng duy nhất một thẻ <h1> trên mỗi trang.',
-      'Tạo danh sách không thứ tự với <ul>, danh sách có thứ tự với <ol> và danh sách mô tả với <dl>.',
-      'Tùy biến thuộc tính type, start và kỹ thuật lồng danh sách nhiều cấp.',
-      'Sử dụng danh sách mô tả <dl> với các thẻ <dt> (thuật ngữ) và <dd> (mô tả) để trình bày thuật ngữ kèm giải thích.'
-    ],
-    sections: [
-      {
-        id: 'cac-cap-de-muc',
-        title: '1. Sáu cấp độ đề mục: từ <h1> đến <h6>',
-        paragraphs: [
-          'HTML cung cấp 6 cấp độ đề mục giảm dần từ <h1> (lớn nhất, quan trọng nhất) đến <h6> (nhỏ nhất).',
-          'Đề mục giúp tạo ra mục lục tự nhiên cho trang web, hỗ trợ người đọc quét nhanh thông tin và giúp các công cụ tìm kiếm hiểu rõ cấu trúc bài viết.'
+                explanation: 'Phân tích chi tiết các thẻ định dạng được kết hợp trong tệp portfolio.html:\n- Thẻ <em>: Nhấn mạnh sắc thái của từ "chữa lành" và từ "tựa".\n- Thẻ <strong>: Nhấn mạnh tên định luật "The law of conservation of energy" là kiến thức cốt lõi.\n- Thẻ <mark>: Tô sáng dạ quang màu vàng cho mệnh đề chuyển hóa năng lượng quan trọng nhất.\n- Thẻ <small>: Thu nhỏ kích thước hai liên từ "or" và "but" tạo độ tương phản thị giác thú vị.\n- Thẻ <u>: Gạch chân khẳng định kết luận "remains constant" (không đổi).\n- Thẻ <sub> & <sup>: Trình bày công thức vật lý chuẩn xác: các chỉ số E_total, E_kinetic, E_gravitational và số mũ vận tốc v^2.'
+            }
         ],
-        bulletPoints: [
-          '<h1>: Tiêu đề chính của toàn bộ trang (mỗi trang web chỉ nên có đúng MỘT thẻ <h1>).',
-          '<h2>: Tiêu đề các chương, các phần lớn.',
-          '<h3>: Tiêu đề các mục con bên trong <h2>.',
-          '<h4>, <h5>, <h6>: Các mục con chi tiết hơn (ít khi cần dùng đến).'
+        commonMistakes: [],
+        keyTakeaways: [
+            '<b> và <i> chỉ thay đổi hình thức chữ; <strong> và <em> mang ý nghĩa ngữ nghĩa (Semantic HTML) được các công cụ tìm kiếm và máy đọc màn hình đánh giá cao.',
+            '<mark> dùng để tô sáng dạ quang màu vàng; <small> dùng cho văn bản kích thước nhỏ như bản quyền hay điều khoản.',
+            '<del> vẽ đường gạch ngang thân chữ (nội dung bị xóa/giá cũ) và <ins> gạch chân chữ (nội dung thêm mới/giá khuyến mãi).',
+            '<sub> dùng cho chỉ số dưới (công thức hóa học H₂O); <sup> dùng cho chỉ số trên (số mũ lũy thừa x²).'
+        ]
+    },
+    {
+        id: 'html-6',
+        track: 'html',
+        order: 6,
+        title: 'Tạo đề mục và danh sách',
+        slug: 'tao-de-muc-va-danh-sach',
+        description: 'Phân cấp tài liệu khoa học bằng 6 cấp độ tiêu đề h1 đến h6; tạo danh sách không thứ tự ul, có thứ tự ol, danh sách mô tả dl và lồng danh sách.',
+        estimatedMinutes: 25,
+        objectives: [
+            'Hiểu thứ bậc phân cấp từ <h1> đến <h6> và quy tắc chỉ dùng duy nhất một thẻ <h1> trên mỗi trang.',
+            'Tạo danh sách không thứ tự với <ul>, danh sách có thứ tự với <ol> và danh sách mô tả với <dl>.',
+            'Tùy biến thuộc tính type, start và kỹ thuật lồng danh sách nhiều cấp.',
+            'Sử dụng danh sách mô tả <dl> với các thẻ <dt> (thuật ngữ) và <dd> (mô tả) để trình bày thuật ngữ kèm giải thích.'
         ],
-        callout: {
-          type: 'warning',
-          title: 'Quy tắc ngữ nghĩa đề mục',
-          content: 'Không được chọn thẻ chỉ vì muốn chữ to hay nhỏ. Muốn chữ to hơn hãy dùng CSS font-size. Đề mục phải tuân thủ thứ bậc: Không bao giờ nhảy cóc từ <h1> thẳng xuống <h3> mà bỏ qua <h2>.'
-        }
-      },
-      {
-        id: 'danh-sach-ul',
-        title: '2. Danh sách không thứ tự (<ul>)',
-        paragraphs: [
-          'Danh sách không thứ tự bắt đầu bằng thẻ <ul> (Unordered List). Mỗi mục trong danh sách được đặt trong thẻ <li> (List Item).',
-          'Các mục trong danh sách sẽ được đánh dấu bằng các dấu chấm tròn nhỏ (bullets) theo mặc định. Danh sách không thứ tự phù hợp khi thứ tự liệt kê các mục không quan trọng (ví dụ: danh sách đồ dùng học tập, danh sách nguyên liệu nấu ăn).',
-          'Thuộc tính CSS list-style-type cho phép thay đổi kiểu ký hiệu đánh dấu đầu dòng của danh sách không thứ tự:'
-        ],
-        table: {
-          headers: ['Giá trị', 'Mô tả'],
-          rows: [
-            ['disc', 'Đánh dấu bằng chấm tròn đặc (●) — mặc định'],
-            ['circle', 'Đánh dấu bằng vòng tròn rỗng (○)'],
-            ['square', 'Đánh dấu bằng hình vuông đặc (■)'],
-            ['none', 'Không hiển thị ký hiệu đánh dấu']
-          ]
-        },
-        example: {
-          id: 'mini-ul',
-          title: 'Ví dụ: Danh sách không thứ tự <ul> với các kiểu đánh dấu',
-          caption: 'So sánh 4 kiểu list-style-type cho danh sách <ul>:',
-          code: `<!-- Kiểu mặc định: disc (chấm tròn đặc) -->
+        sections: [
+            {
+                id: 'cac-cap-de-muc',
+                title: '1. Sáu cấp độ đề mục: từ <h1> đến <h6>',
+                paragraphs: [
+                    'HTML cung cấp 6 cấp độ đề mục giảm dần từ <h1> (lớn nhất, quan trọng nhất) đến <h6> (nhỏ nhất).',
+                    'Đề mục giúp tạo ra mục lục tự nhiên cho trang web, hỗ trợ người đọc quét nhanh thông tin và giúp các công cụ tìm kiếm hiểu rõ cấu trúc bài viết.'
+                ],
+                bulletPoints: [
+                    '<h1>: Tiêu đề chính của toàn bộ trang (mỗi trang web chỉ nên có đúng MỘT thẻ <h1>).',
+                    '<h2>: Tiêu đề các chương, các phần lớn.',
+                    '<h3>: Tiêu đề các mục con bên trong <h2>.',
+                    '<h4>, <h5>, <h6>: Các mục con chi tiết hơn (ít khi cần dùng đến).'
+                ],
+                callout: {
+                    type: 'warning',
+                    title: 'Quy tắc ngữ nghĩa đề mục',
+                    content: 'Không được chọn thẻ chỉ vì muốn chữ to hay nhỏ. Muốn chữ to hơn hãy dùng CSS font-size. Đề mục phải tuân thủ thứ bậc: Không bao giờ nhảy cóc từ <h1> thẳng xuống <h3> mà bỏ qua <h2>.'
+                }
+            },
+            {
+                id: 'danh-sach-ul',
+                title: '2. Danh sách không thứ tự (<ul>)',
+                paragraphs: [
+                    'Danh sách không thứ tự bắt đầu bằng thẻ <ul> (Unordered List). Mỗi mục trong danh sách được đặt trong thẻ <li> (List Item).',
+                    'Các mục trong danh sách sẽ được đánh dấu bằng các dấu chấm tròn nhỏ (bullets) theo mặc định. Danh sách không thứ tự phù hợp khi thứ tự liệt kê các mục không quan trọng (ví dụ: danh sách đồ dùng học tập, danh sách nguyên liệu nấu ăn).',
+                    'Thuộc tính CSS list-style-type cho phép thay đổi kiểu ký hiệu đánh dấu đầu dòng của danh sách không thứ tự:'
+                ],
+                table: {
+                    headers: ['Giá trị', 'Mô tả'],
+                    rows: [
+                        ['disc', 'Đánh dấu bằng chấm tròn đặc (●) — mặc định'],
+                        ['circle', 'Đánh dấu bằng vòng tròn rỗng (○)'],
+                        ['square', 'Đánh dấu bằng hình vuông đặc (■)'],
+                        ['none', 'Không hiển thị ký hiệu đánh dấu']
+                    ]
+                },
+                example: {
+                    id: 'mini-ul',
+                    title: 'Ví dụ: Danh sách không thứ tự <ul> với các kiểu đánh dấu',
+                    caption: 'So sánh 4 kiểu list-style-type cho danh sách <ul>:',
+                    code: `<!-- Kiểu mặc định: disc (chấm tròn đặc) -->
 <ul style="list-style-type: disc;">
   <li>Coffee</li>
   <li>Tea</li>
@@ -916,40 +916,40 @@ Ngược lòng mình tìm về nông nổi
   <li>Tea</li>
   <li>Milk</li>
 </ul>`,
-          explanation: 'Thuộc tính CSS list-style-type thay đổi ký hiệu đầu dòng: disc (●) là mặc định, circle (○) là vòng tròn rỗng, square (■) là hình vuông, none sẽ ẩn hoàn toàn ký hiệu.'
-        }
-      },
-      {
-        id: 'danh-sach-ol',
-        title: '3. Danh sách có thứ tự (<ol>)',
-        paragraphs: [
-          'Danh sách có thứ tự bắt đầu bằng thẻ <ol> (Ordered List). Mỗi mục trong danh sách cũng được đặt trong thẻ <li>.',
-          'Các mục sẽ được đánh số thứ tự 1, 2, 3... theo mặc định. Danh sách có thứ tự phù hợp khi trình tự các bước có ý nghĩa quan trọng (ví dụ: các bước cài đặt phần mềm, công thức nấu ăn).',
-          'Thuộc tính type của thẻ <ol> hoặc CSS list-style-type cho phép thay đổi kiểu đánh số thứ tự:'
-        ],
-        bulletPoints: [
-          'type="1" — Đánh số bằng chữ số (1, 2, 3...) — mặc định.',
-          'type="A" — Đánh thứ tự bằng chữ cái in hoa (A, B, C...).',
-          'type="a" — Đánh thứ tự bằng chữ cái in thường (a, b, c...).',
-          'type="I" — Đánh thứ tự bằng số La Mã in hoa (I, II, III...).',
-          'type="i" — Đánh thứ tự bằng số La Mã in thường (i, ii, iii...).',
-          'Thuộc tính start của <ol>: Quy định số bắt đầu (ví dụ: start="5" sẽ bắt đầu đếm từ số 5).'
-        ],
-        table: {
-          headers: ['Thuộc tính type', 'Mô tả'],
-          rows: [
-            ['type="1"', 'Đánh số bằng chữ số: 1, 2, 3... (mặc định)'],
-            ['type="A"', 'Đánh thứ tự bằng chữ cái in hoa: A, B, C...'],
-            ['type="a"', 'Đánh thứ tự bằng chữ cái in thường: a, b, c...'],
-            ['type="I"', 'Đánh thứ tự bằng số La Mã in hoa: I, II, III...'],
-            ['type="i"', 'Đánh thứ tự bằng số La Mã in thường: i, ii, iii...']
-          ]
-        },
-        example: {
-          id: 'mini-ol',
-          title: 'Ví dụ: Danh sách có thứ tự <ol> với các kiểu đánh số',
-          caption: 'So sánh các kiểu đánh số cho danh sách <ol>:',
-          code: `<!-- Kiểu mặc định: số 1, 2, 3 -->
+                    explanation: 'Thuộc tính CSS list-style-type thay đổi ký hiệu đầu dòng: disc (●) là mặc định, circle (○) là vòng tròn rỗng, square (■) là hình vuông, none sẽ ẩn hoàn toàn ký hiệu.'
+                }
+            },
+            {
+                id: 'danh-sach-ol',
+                title: '3. Danh sách có thứ tự (<ol>)',
+                paragraphs: [
+                    'Danh sách có thứ tự bắt đầu bằng thẻ <ol> (Ordered List). Mỗi mục trong danh sách cũng được đặt trong thẻ <li>.',
+                    'Các mục sẽ được đánh số thứ tự 1, 2, 3... theo mặc định. Danh sách có thứ tự phù hợp khi trình tự các bước có ý nghĩa quan trọng (ví dụ: các bước cài đặt phần mềm, công thức nấu ăn).',
+                    'Thuộc tính type của thẻ <ol> hoặc CSS list-style-type cho phép thay đổi kiểu đánh số thứ tự:'
+                ],
+                bulletPoints: [
+                    'type="1" — Đánh số bằng chữ số (1, 2, 3...) — mặc định.',
+                    'type="A" — Đánh thứ tự bằng chữ cái in hoa (A, B, C...).',
+                    'type="a" — Đánh thứ tự bằng chữ cái in thường (a, b, c...).',
+                    'type="I" — Đánh thứ tự bằng số La Mã in hoa (I, II, III...).',
+                    'type="i" — Đánh thứ tự bằng số La Mã in thường (i, ii, iii...).',
+                    'Thuộc tính start của <ol>: Quy định số bắt đầu (ví dụ: start="5" sẽ bắt đầu đếm từ số 5).'
+                ],
+                table: {
+                    headers: ['Thuộc tính type', 'Mô tả'],
+                    rows: [
+                        ['type="1"', 'Đánh số bằng chữ số: 1, 2, 3... (mặc định)'],
+                        ['type="A"', 'Đánh thứ tự bằng chữ cái in hoa: A, B, C...'],
+                        ['type="a"', 'Đánh thứ tự bằng chữ cái in thường: a, b, c...'],
+                        ['type="I"', 'Đánh thứ tự bằng số La Mã in hoa: I, II, III...'],
+                        ['type="i"', 'Đánh thứ tự bằng số La Mã in thường: i, ii, iii...']
+                    ]
+                },
+                example: {
+                    id: 'mini-ol',
+                    title: 'Ví dụ: Danh sách có thứ tự <ol> với các kiểu đánh số',
+                    caption: 'So sánh các kiểu đánh số cho danh sách <ol>:',
+                    code: `<!-- Kiểu mặc định: số 1, 2, 3 -->
 <ol type="1">
   <li>Coffee</li>
   <li>Tea</li>
@@ -976,68 +976,68 @@ Ngược lòng mình tìm về nông nổi
   <li>Tea</li>
   <li>Milk</li>
 </ol>`,
-          explanation: 'Thuộc tính type thay đổi kiểu đánh số: "1" dùng chữ số, "A" dùng chữ cái in hoa, "I" dùng số La Mã. Thuộc tính start="5" khiến danh sách bắt đầu đếm từ số 5 (hiển thị 5, 6, 7).'
-        }
-      },
-      {
-        id: 'danh-sach-dl',
-        title: '4. Danh sách mô tả (<dl>)',
-        paragraphs: [
-          'Ngoài <ul> và <ol>, HTML còn có một loại danh sách đặc biệt gọi là danh sách mô tả (Description List), dùng để định nghĩa các thuật ngữ kèm phần giải thích.',
-          'Danh sách mô tả được tạo bởi 3 thẻ phối hợp:',
-        ],
-        bulletPoints: [
-          '<dl> (Description List): Thẻ bao bọc toàn bộ danh sách mô tả.',
-          '<dt> (Description Term): Định nghĩa thuật ngữ hoặc tên mục cần giải thích.',
-          '<dd> (Description Details): Mô tả, giải thích chi tiết cho thuật ngữ <dt> ngay phía trên.'
-        ],
-        example: {
-          id: 'mini-dl',
-          title: 'Ví dụ: Danh sách mô tả <dl>',
-          caption: 'Dùng danh sách mô tả để giải thích thuật ngữ đồ uống:',
-          code: `<dl>
+                    explanation: 'Thuộc tính type thay đổi kiểu đánh số: "1" dùng chữ số, "A" dùng chữ cái in hoa, "I" dùng số La Mã. Thuộc tính start="5" khiến danh sách bắt đầu đếm từ số 5 (hiển thị 5, 6, 7).'
+                }
+            },
+            {
+                id: 'danh-sach-dl',
+                title: '4. Danh sách mô tả (<dl>)',
+                paragraphs: [
+                    'Ngoài <ul> và <ol>, HTML còn có một loại danh sách đặc biệt gọi là danh sách mô tả (Description List), dùng để định nghĩa các thuật ngữ kèm phần giải thích.',
+                    'Danh sách mô tả được tạo bởi 3 thẻ phối hợp:',
+                ],
+                bulletPoints: [
+                    '<dl> (Description List): Thẻ bao bọc toàn bộ danh sách mô tả.',
+                    '<dt> (Description Term): Định nghĩa thuật ngữ hoặc tên mục cần giải thích.',
+                    '<dd> (Description Details): Mô tả, giải thích chi tiết cho thuật ngữ <dt> ngay phía trên.'
+                ],
+                example: {
+                    id: 'mini-dl',
+                    title: 'Ví dụ: Danh sách mô tả <dl>',
+                    caption: 'Dùng danh sách mô tả để giải thích thuật ngữ đồ uống:',
+                    code: `<dl>
   <dt>Coffee</dt>
   <dd>- black hot drink</dd>
   <dt>Milk</dt>
   <dd>- white cold drink</dd>
 </dl>`,
-          explanation: 'Thẻ <dt> đặt tên thuật ngữ (Coffee, Milk), thẻ <dd> nằm ngay bên dưới để mô tả thuật ngữ đó. Trình duyệt tự động thụt lề phần <dd> vào trong để phân biệt với <dt>.'
-        }
-      },
-      {
-        id: 'danh-sach-long-nhau',
-        title: '5. Danh sách lồng nhau (Nested Lists)',
-        paragraphs: [
-          'Bạn hoàn toàn có thể đặt một danh sách <ul> hoặc <ol> mới bên trong một thẻ <li> của danh sách cha để tạo ra mục lục phân cấp nhiều tầng.'
-        ]
-      },
-      {
-        id: 'bang-tong-hop-the-danh-sach',
-        title: '6. Bảng tổng hợp các thẻ danh sách HTML',
-        paragraphs: [
-          'Dưới đây là bảng tổng hợp tất cả các thẻ HTML dùng để tạo danh sách:'
+                    explanation: 'Thẻ <dt> đặt tên thuật ngữ (Coffee, Milk), thẻ <dd> nằm ngay bên dưới để mô tả thuật ngữ đó. Trình duyệt tự động thụt lề phần <dd> vào trong để phân biệt với <dt>.'
+                }
+            },
+            {
+                id: 'danh-sach-long-nhau',
+                title: '5. Danh sách lồng nhau (Nested Lists)',
+                paragraphs: [
+                    'Bạn hoàn toàn có thể đặt một danh sách <ul> hoặc <ol> mới bên trong một thẻ <li> của danh sách cha để tạo ra mục lục phân cấp nhiều tầng.'
+                ]
+            },
+            {
+                id: 'bang-tong-hop-the-danh-sach',
+                title: '6. Bảng tổng hợp các thẻ danh sách HTML',
+                paragraphs: [
+                    'Dưới đây là bảng tổng hợp tất cả các thẻ HTML dùng để tạo danh sách:'
+                ],
+                table: {
+                    headers: ['Thẻ', 'Mô tả'],
+                    rows: [
+                        ['<ul>', 'Định nghĩa danh sách không thứ tự (Unordered List)'],
+                        ['<ol>', 'Định nghĩa danh sách có thứ tự (Ordered List)'],
+                        ['<li>', 'Định nghĩa một mục trong danh sách (List Item)'],
+                        ['<dl>', 'Định nghĩa danh sách mô tả (Description List)'],
+                        ['<dt>', 'Định nghĩa thuật ngữ trong danh sách mô tả (Description Term)'],
+                        ['<dd>', 'Mô tả chi tiết cho thuật ngữ trong danh sách mô tả (Description Details)']
+                    ]
+                }
+            }
         ],
-        table: {
-          headers: ['Thẻ', 'Mô tả'],
-          rows: [
-            ['<ul>', 'Định nghĩa danh sách không thứ tự (Unordered List)'],
-            ['<ol>', 'Định nghĩa danh sách có thứ tự (Ordered List)'],
-            ['<li>', 'Định nghĩa một mục trong danh sách (List Item)'],
-            ['<dl>', 'Định nghĩa danh sách mô tả (Description List)'],
-            ['<dt>', 'Định nghĩa thuật ngữ trong danh sách mô tả (Description Term)'],
-            ['<dd>', 'Mô tả chi tiết cho thuật ngữ trong danh sách mô tả (Description Details)']
-          ]
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-portfolio-danh-sach',
-        title: 'portfolio.html',
-        description: 'Tiếp nối tệp portfolio.html từ Bài 5, vận dụng danh sách có thứ tự <ol>, danh sách không thứ tự <ul> và danh sách lồng nhau.',
-        language: 'html',
-        runnable: true,
-        displayCode: `<h2>Những môn thể thao mà mình yêu thích từ nhiều nhất đến ít nhất</h2>
+        codeExamples: [
+            {
+                id: 'vd-portfolio-danh-sach',
+                title: 'portfolio.html',
+                description: 'Tiếp nối tệp portfolio.html từ Bài 5, vận dụng danh sách có thứ tự <ol>, danh sách không thứ tự <ul> và danh sách lồng nhau.',
+                language: 'html',
+                runnable: true,
+                displayCode: `<h2>Những môn thể thao mà mình yêu thích từ nhiều nhất đến ít nhất</h2>
 <ol>
     <li>Bóng đá</li>
     <li>Bóng rổ</li>
@@ -1045,7 +1045,7 @@ Ngược lòng mình tìm về nông nổi
     <li>Nhảy dây</li>
     <li>Búng thun</li>
 </ol>`,
-        initialCode: `<!DOCTYPE html>
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -1120,130 +1120,130 @@ Ngược lòng mình tìm về nông nổi
     </ol>
 </body>
 </html>`,
-        explanation: 'Thẻ <ol> tạo danh sách có thứ tự đánh số 1, 2, 3, 4, 5 — phù hợp để xếp hạng mức độ yêu thích giảm dần. Khi bấm "Try it Yourself »", bạn sẽ được quan sát và chạy thử toàn bộ mã nguồn của trang portfolio.html hoàn chỉnh với đầy đủ các đề mục, đoạn văn, thơ, định dạng và các danh sách lồng nhau.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Đặt văn bản trực tiếp trong <ul> hoặc <ol> mà không bọc trong thẻ <li>.',
-        cause: 'Viết thẳng <ul>Văn bản</ul>.',
-        solution: 'Con trực tiếp duy nhất hợp lệ của <ul> và <ol> bắt buộc phải là thẻ <li>.'
-      },
-      {
-        mistake: 'Dùng nhiều thẻ <h1> trong cùng một bài viết.',
-        cause: 'Thấy thẻ <h1> chữ to đẹp nên dùng ở mọi tiêu đề con.',
-        solution: 'Mỗi trang web chỉ có 1 thẻ <h1> duy nhất đại diện cho tiêu đề trang. Các tiêu đề con dùng <h2>, <h3>.'
-      },
-      {
-        mistake: 'Nhầm lẫn giữa <li> và <dd> khi dùng danh sách mô tả <dl>.',
-        cause: 'Viết <dl><li>...</li></dl> thay vì dùng <dt> và <dd>.',
-        solution: 'Danh sách mô tả <dl> không dùng thẻ <li>. Phải dùng <dt> cho thuật ngữ và <dd> cho phần mô tả.'
-      }
-    ],
-    keyTakeaways: [
-      'Mỗi trang web chỉ có duy nhất 1 thẻ <h1>, sau đó chia nhỏ theo <h2>, <h3>.',
-      '<ul> dùng cho danh sách không quan trọng thứ tự, <ol> dùng cho danh sách có thứ tự các bước.',
-      '<dl> dùng cho danh sách mô tả: <dt> đặt tên thuật ngữ, <dd> giải thích thuật ngữ đó.',
-      'Các mục con trong danh sách <ul> và <ol> luôn phải được gói trong cặp thẻ <li>...</li>.',
-      'Có thể lồng danh sách bên trong thẻ <li> để tạo danh sách phân cấp nhiều tầng.'
-    ]
-  },
-  {
-    id: 'html-7',
-    track: 'html',
-    order: 7,
-    title: 'Tạo bảng',
-    slug: 'tao-bang',
-    description: 'Xây dựng bảng dữ liệu chuẩn chỉnh với table, tr, th, td; quy tắc hộp trong hộp; đường viền border="1"; phân cấp thead/tbody/tfoot/caption/colgroup và các thuộc tính gộp ô colspan, rowspan.',
-    estimatedMinutes: 25,
-    objectives: [
-      'Nắm vững quy tắc hộp trong hộp và vai trò của 4 phần tử cơ bản: <table>, <tr>, <th>, <td>.',
-      'Hiển thị đường viền cho bảng bằng thuộc tính border="1" và hiểu vai trò của CSS trong định dạng bảng.',
-      'Sử dụng các phần tử phân cấp nâng cao: <thead>, <tbody>, <tfoot>, <caption>, <colgroup>, <col>.',
-      'Làm chủ các thuộc tính của bảng: cellspacing, cellpadding, gộp ô colspan, rowspan, căn lề và kích thước.'
-    ],
-    sections: [
-      {
-        id: 'cac-the-bang-co-ban',
-        title: '1. Phần tử tạo bảng cơ bản & Quy tắc "Hộp trong hộp"',
-        paragraphs: [
-          'Bảng (Table) trong HTML được dùng để trình bày dữ liệu dạng lưới 2 chiều gồm các hàng và cột (ví dụ: danh sách liên hệ, thời khóa biểu, bảng báo giá).',
-          'Để tạo nên một bảng hoàn chỉnh, ta sử dụng 4 phần tử cốt lõi phối hợp chặt chẽ theo cấu trúc phân cấp:'
+                explanation: 'Thẻ <ol> tạo danh sách có thứ tự đánh số 1, 2, 3, 4, 5 — phù hợp để xếp hạng mức độ yêu thích giảm dần. Khi bấm "Try it Yourself »", bạn sẽ được quan sát và chạy thử toàn bộ mã nguồn của trang portfolio.html hoàn chỉnh với đầy đủ các đề mục, đoạn văn, thơ, định dạng và các danh sách lồng nhau.'
+            }
         ],
-        table: {
-          headers: ['Phần tử', 'Tên đầy đủ', 'Công dụng'],
-          rows: [
-            ['<table>', 'Table', 'Tạo bảng và đóng vai trò là khung chứa ngoài cùng'],
-            ['<tr>', 'Table Row', 'Tạo một hàng mới trong bảng'],
-            ['<th>', 'Table Header', 'Tạo ô của hàng tiêu đề (mặc định chữ tự động in đậm và căn giữa)'],
-            ['<td>', 'Table Data', 'Tạo ô của hàng dữ liệu thông thường (các hàng còn lại, chữ căn lề trái)']
-          ]
-        },
-        bulletPoints: [
-          '<table> là phần khung bao bọc ngoài cùng của toàn bộ bảng.',
-          '<tr> (table row) là từng hàng một nằm bên trong <table>.',
-          '<th> hoặc <td> là các ô nằm bên trong hàng đó.',
-          'Quy tắc vàng: Không thể có một cái ô (<td> hoặc <th>) nếu chưa có một cái hàng (<tr>)!'
+        commonMistakes: [
+            {
+                mistake: 'Đặt văn bản trực tiếp trong <ul> hoặc <ol> mà không bọc trong thẻ <li>.',
+                cause: 'Viết thẳng <ul>Văn bản</ul>.',
+                solution: 'Con trực tiếp duy nhất hợp lệ của <ul> và <ol> bắt buộc phải là thẻ <li>.'
+            },
+            {
+                mistake: 'Dùng nhiều thẻ <h1> trong cùng một bài viết.',
+                cause: 'Thấy thẻ <h1> chữ to đẹp nên dùng ở mọi tiêu đề con.',
+                solution: 'Mỗi trang web chỉ có 1 thẻ <h1> duy nhất đại diện cho tiêu đề trang. Các tiêu đề con dùng <h2>, <h3>.'
+            },
+            {
+                mistake: 'Nhầm lẫn giữa <li> và <dd> khi dùng danh sách mô tả <dl>.',
+                cause: 'Viết <dl><li>...</li></dl> thay vì dùng <dt> và <dd>.',
+                solution: 'Danh sách mô tả <dl> không dùng thẻ <li>. Phải dùng <dt> cho thuật ngữ và <dd> cho phần mô tả.'
+            }
         ],
-        callout: {
-          type: 'info',
-          title: 'Đường viền của bảng (border="1")',
-          content: 'Theo mặc định, bảng HTML không hiển thị đường viền. Để nhìn thấy rõ các đường kẻ phân chia hàng và cột, ta thêm thuộc tính border="1" vào thẻ mở <table>. Nếu muốn đường viền thanh mảnh, đẹp mắt và hiện đại hơn, ta sẽ nhờ đến CSS (được học ở các bài sau).'
-        }
-      },
-      {
-        id: 'nhom-ngu-nghia-bang',
-        title: '2. Các phần tử phân cấp cấu trúc bảng nâng cao',
-        paragraphs: [
-          'Ngoài các phần tử cơ bản trên, các phần tử tạo bảng dưới đây giúp phân cấp cấu trúc rõ ràng hơn và tối ưu cho trình duyệt xử lý, in ấn cũng như các cỗ máy tìm kiếm (SEO):'
+        keyTakeaways: [
+            'Mỗi trang web chỉ có duy nhất 1 thẻ <h1>, sau đó chia nhỏ theo <h2>, <h3>.',
+            '<ul> dùng cho danh sách không quan trọng thứ tự, <ol> dùng cho danh sách có thứ tự các bước.',
+            '<dl> dùng cho danh sách mô tả: <dt> đặt tên thuật ngữ, <dd> giải thích thuật ngữ đó.',
+            'Các mục con trong danh sách <ul> và <ol> luôn phải được gói trong cặp thẻ <li>...</li>.',
+            'Có thể lồng danh sách bên trong thẻ <li> để tạo danh sách phân cấp nhiều tầng.'
+        ]
+    },
+    {
+        id: 'html-7',
+        track: 'html',
+        order: 7,
+        title: 'Tạo bảng',
+        slug: 'tao-bang',
+        description: 'Xây dựng bảng dữ liệu chuẩn chỉnh với table, tr, th, td; quy tắc hộp trong hộp; đường viền border="1"; phân cấp thead/tbody/tfoot/caption/colgroup và các thuộc tính gộp ô colspan, rowspan.',
+        estimatedMinutes: 25,
+        objectives: [
+            'Nắm vững quy tắc hộp trong hộp và vai trò của 4 phần tử cơ bản: <table>, <tr>, <th>, <td>.',
+            'Hiển thị đường viền cho bảng bằng thuộc tính border="1" và hiểu vai trò của CSS trong định dạng bảng.',
+            'Sử dụng các phần tử phân cấp nâng cao: <thead>, <tbody>, <tfoot>, <caption>, <colgroup>, <col>.',
+            'Làm chủ các thuộc tính của bảng: cellspacing, cellpadding, gộp ô colspan, rowspan, căn lề và kích thước.'
         ],
-        table: {
-          headers: ['Phần tử', 'Công dụng', 'Vị trí trong bảng'],
-          rows: [
-            ['<thead>', 'Gom nhóm các hàng tiêu đề (table head)', 'Bao bọc các <tr> tiêu đề ở đầu bảng'],
-            ['<tbody>', 'Gom nhóm các hàng dữ liệu chính (table body)', 'Bao bọc các <tr> dữ liệu ở giữa bảng'],
-            ['<tfoot>', 'Gom nhóm các hàng tổng kết ở cuối bảng (table foot)', 'Bao bọc các <tr> tổng kết ở chân bảng'],
-            ['<caption>', 'Tạo tiêu đề hoặc chú thích cho bảng', 'Nằm ngay dưới thẻ mở <table>'],
-            ['<colgroup>', 'Gom nhóm nhiều cột để định dạng phong cách chung', 'Bao bọc các thẻ <col>, nằm trước <thead>/<tbody>'],
-            ['<col>', 'Thiết lập thuộc tính cho từng cột riêng biệt', 'Nằm bên trong <colgroup>']
-          ]
-        }
-      },
-      {
-        id: 'thuoc-tinh-cua-bang',
-        title: '3. Thuộc tính của bảng (Table Attributes)',
-        paragraphs: [
-          'Để thêm phần "linh hoạt" khi thiết lập bảng trực tiếp trong HTML, ta có thể sử dụng các thuộc tính sau:'
+        sections: [
+            {
+                id: 'cac-the-bang-co-ban',
+                title: '1. Phần tử tạo bảng cơ bản & Quy tắc "Hộp trong hộp"',
+                paragraphs: [
+                    'Bảng (Table) trong HTML được dùng để trình bày dữ liệu dạng lưới 2 chiều gồm các hàng và cột (ví dụ: danh sách liên hệ, thời khóa biểu, bảng báo giá).',
+                    'Để tạo nên một bảng hoàn chỉnh, ta sử dụng 4 phần tử cốt lõi phối hợp chặt chẽ theo cấu trúc phân cấp:'
+                ],
+                table: {
+                    headers: ['Phần tử', 'Tên đầy đủ', 'Công dụng'],
+                    rows: [
+                        ['<table>', 'Table', 'Tạo bảng và đóng vai trò là khung chứa ngoài cùng'],
+                        ['<tr>', 'Table Row', 'Tạo một hàng mới trong bảng'],
+                        ['<th>', 'Table Header', 'Tạo ô của hàng tiêu đề (mặc định chữ tự động in đậm và căn giữa)'],
+                        ['<td>', 'Table Data', 'Tạo ô của hàng dữ liệu thông thường (các hàng còn lại, chữ căn lề trái)']
+                    ]
+                },
+                bulletPoints: [
+                    '<table> là phần khung bao bọc ngoài cùng của toàn bộ bảng.',
+                    '<tr> (table row) là từng hàng một nằm bên trong <table>.',
+                    '<th> hoặc <td> là các ô nằm bên trong hàng đó.',
+                    'Quy tắc vàng: Không thể có một cái ô (<td> hoặc <th>) nếu chưa có một cái hàng (<tr>)!'
+                ],
+                callout: {
+                    type: 'info',
+                    title: 'Đường viền của bảng (border="1")',
+                    content: 'Theo mặc định, bảng HTML không hiển thị đường viền. Để nhìn thấy rõ các đường kẻ phân chia hàng và cột, ta thêm thuộc tính border="1" vào thẻ mở <table>. Nếu muốn đường viền thanh mảnh, đẹp mắt và hiện đại hơn, ta sẽ nhờ đến CSS (được học ở các bài sau).'
+                }
+            },
+            {
+                id: 'nhom-ngu-nghia-bang',
+                title: '2. Các phần tử phân cấp cấu trúc bảng nâng cao',
+                paragraphs: [
+                    'Ngoài các phần tử cơ bản trên, các phần tử tạo bảng dưới đây giúp phân cấp cấu trúc rõ ràng hơn và tối ưu cho trình duyệt xử lý, in ấn cũng như các cỗ máy tìm kiếm (SEO):'
+                ],
+                table: {
+                    headers: ['Phần tử', 'Công dụng', 'Vị trí trong bảng'],
+                    rows: [
+                        ['<thead>', 'Gom nhóm các hàng tiêu đề (table head)', 'Bao bọc các <tr> tiêu đề ở đầu bảng'],
+                        ['<tbody>', 'Gom nhóm các hàng dữ liệu chính (table body)', 'Bao bọc các <tr> dữ liệu ở giữa bảng'],
+                        ['<tfoot>', 'Gom nhóm các hàng tổng kết ở cuối bảng (table foot)', 'Bao bọc các <tr> tổng kết ở chân bảng'],
+                        ['<caption>', 'Tạo tiêu đề hoặc chú thích cho bảng', 'Nằm ngay dưới thẻ mở <table>'],
+                        ['<colgroup>', 'Gom nhóm nhiều cột để định dạng phong cách chung', 'Bao bọc các thẻ <col>, nằm trước <thead>/<tbody>'],
+                        ['<col>', 'Thiết lập thuộc tính cho từng cột riêng biệt', 'Nằm bên trong <colgroup>']
+                    ]
+                }
+            },
+            {
+                id: 'thuoc-tinh-cua-bang',
+                title: '3. Thuộc tính của bảng (Table Attributes)',
+                paragraphs: [
+                    'Để thêm phần "linh hoạt" khi thiết lập bảng trực tiếp trong HTML, ta có thể sử dụng các thuộc tính sau:'
+                ],
+                table: {
+                    headers: ['Thuộc tính', 'Ý nghĩa & Công dụng', 'Ví dụ'],
+                    rows: [
+                        ['border="1"', 'Đường viền của bảng', 'border="1" (đường viền dày 1 pixel)'],
+                        ['cellspacing="n"', 'Khoảng cách giữa các ô', 'cellspacing="0" (các ô dính sát nhau)'],
+                        ['cellpadding="n"', 'Khoảng cách từ nội dung đến các đường viền của ô', 'cellpadding="8" (cách lề 8px)'],
+                        ['colspan="n"', 'Số ô gộp vào trên cùng một hàng (chiều ngang)', 'colspan="4" (gộp 4 ô lại thành 1)'],
+                        ['rowspan="n"', 'Số ô gộp trên cùng một cột (chiều dọc)', 'rowspan="2" (gộp 2 ô của 2 hàng)'],
+                        ['width="n"', 'Chiều rộng của bảng hoặc ô', 'width="75%" hoặc width="500px"'],
+                        ['height="n"', 'Chiều cao của bảng hoặc ô', 'height="50px"'],
+                        ['bgcolor="color"', 'Màu nền cho bảng, hàng hoặc ô', 'bgcolor="#f1f5f9"'],
+                        ['align="value"', 'Căn lề bảng với trang hoặc căn lề nội dung bên trong hàng/ô', 'align="center"']
+                    ]
+                },
+                callout: {
+                    type: 'warning',
+                    title: 'Lưu ý về phong cách lập trình hiện đại',
+                    content: 'Các thuộc tính trên giúp định dạng nhanh trong HTML thuần. Nhưng để làm cho bảng tinh tế, linh hoạt trên màn hình điện thoại (responsive) và chuẩn SEO hơn, ta nên sử dụng CSS (như border, padding, border-collapse, background-color).'
+                }
+            }
         ],
-        table: {
-          headers: ['Thuộc tính', 'Ý nghĩa & Công dụng', 'Ví dụ'],
-          rows: [
-            ['border="1"', 'Đường viền của bảng', 'border="1" (đường viền dày 1 pixel)'],
-            ['cellspacing="n"', 'Khoảng cách giữa các ô', 'cellspacing="0" (các ô dính sát nhau)'],
-            ['cellpadding="n"', 'Khoảng cách từ nội dung đến các đường viền của ô', 'cellpadding="8" (cách lề 8px)'],
-            ['colspan="n"', 'Số ô gộp vào trên cùng một hàng (chiều ngang)', 'colspan="4" (gộp 4 ô lại thành 1)'],
-            ['rowspan="n"', 'Số ô gộp trên cùng một cột (chiều dọc)', 'rowspan="2" (gộp 2 ô của 2 hàng)'],
-            ['width="n"', 'Chiều rộng của bảng hoặc ô', 'width="75%" hoặc width="500px"'],
-            ['height="n"', 'Chiều cao của bảng hoặc ô', 'height="50px"'],
-            ['bgcolor="color"', 'Màu nền cho bảng, hàng hoặc ô', 'bgcolor="#f1f5f9"'],
-            ['align="value"', 'Căn lề bảng với trang hoặc căn lề nội dung bên trong hàng/ô', 'align="center"']
-          ]
-        },
-        callout: {
-          type: 'warning',
-          title: 'Lưu ý về phong cách lập trình hiện đại',
-          content: 'Các thuộc tính trên giúp định dạng nhanh trong HTML thuần. Nhưng để làm cho bảng tinh tế, linh hoạt trên màn hình điện thoại (responsive) và chuẩn SEO hơn, ta nên sử dụng CSS (như border, padding, border-collapse, background-color).'
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-portfolio-bang',
-        title: 'portfolio.html',
-        description: 'Tiếp nối tệp portfolio.html từ Bài 6, tạo bảng danh sách "Một vài bạn bè thân thiết" gồm 1 hàng tiêu đề, 3 hàng dữ liệu và 4 cột bằng thẻ table, tr, th, td có border="1".',
-        language: 'html',
-        runnable: true,
-        displayCode: `<h2>Một vài bạn bè thân thiết</h2>
+        codeExamples: [
+            {
+                id: 'vd-portfolio-bang',
+                title: 'portfolio.html',
+                description: 'Tiếp nối tệp portfolio.html từ Bài 6, tạo bảng danh sách "Một vài bạn bè thân thiết" gồm 1 hàng tiêu đề, 3 hàng dữ liệu và 4 cột bằng thẻ table, tr, th, td có border="1".',
+                language: 'html',
+                runnable: true,
+                displayCode: `<h2>Một vài bạn bè thân thiết</h2>
 <table border="1">
     <tr>
         <th>Hạng</th>
@@ -1270,7 +1270,7 @@ Ngược lòng mình tìm về nông nổi
         <td>$104 B</td>
     </tr>
 </table>`,
-        initialCode: `<!DOCTYPE html>
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -1373,70 +1373,70 @@ Ngược lòng mình tìm về nông nổi
     </table>
 </body>
 </html>`,
-        explanation: 'Phân tích mã nguồn bảng:\n- Thẻ <table>: Khung bao ngoài cùng với thuộc tính border="1" giúp hiển thị các đường kẻ ô rõ ràng.\n- Hàng đầu tiên (<tr>): Chứa 4 ô tiêu đề (<th>) "Hạng", "Tên", "Nguồn gốc", "Tài sản" tự động in đậm và căn giữa.\n- 3 hàng tiếp theo (<tr>): Mỗi hàng chứa 4 ô dữ liệu (<td>) tương ứng với 4 cột thông tin của các bạn bè tỷ phú.\n- Khi bấm "Try it Yourself »", bạn sẽ thấy toàn bộ tệp portfolio.html hoàn chỉnh tích lũy từ các bài trước.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Đặt văn bản hoặc thẻ <td> trực tiếp trong <table> mà không bọc trong thẻ <tr>.',
-        cause: 'Viết <table><td>Dữ liệu</td></table> vi phạm quy tắc hộp trong hộp.',
-        solution: 'Luôn luôn tạo hàng <tr> trước, sau đó mới đặt các ô <td> hoặc <th> vào bên trong hàng đó.'
-      },
-      {
-        mistake: 'Quên trừ bớt thẻ <td> ở hàng sau khi đã dùng rowspan ở hàng trước.',
-        cause: 'Quên rằng ô gộp từ hàng trên đã chiếm sẵn một vị trí ở hàng dưới.',
-        solution: 'Đếm tổng số cột thực tế trên mỗi hàng để đảm bảo mọi hàng đều có cùng tổng số cột.'
-      },
-      {
-        mistake: 'Lạm dụng các thuộc tính cũ như bgcolor, cellpadding thay vì sử dụng CSS.',
-        cause: 'Dùng thuộc tính định dạng nhanh của HTML cho toàn bộ dự án lớn.',
-        solution: 'Nên dùng CSS (padding, background-color, border-collapse) để bảng hiển thị đẹp và chuẩn mực trên mọi kích thước màn hình.'
-      }
-    ],
-    keyTakeaways: [
-      'Quy tắc hộp trong hộp: <table> chứa <tr>, bên trong <tr> chứa <th> (tiêu đề) hoặc <td> (dữ liệu). Không thể có ô nếu chưa có hàng.',
-      'Mặc định bảng HTML không có đường viền; thêm border="1" vào thẻ <table> để hiển thị đường viền cơ bản.',
-      'Phân nhóm cấu trúc bằng <thead>, <tbody>, <tfoot> và chú thích <caption> giúp bảng chuẩn ngữ nghĩa và tối ưu SEO.',
-      'Các thuộc tính colspan (gộp cột ngang) và rowspan (gộp hàng dọc) giúp kết hợp các ô dữ liệu một cách linh hoạt.'
-    ]
-  },
-  {
-    id: 'html-8',
-    track: 'html',
-    order: 8,
-    title: 'Tạo siêu liên kết',
-    slug: 'tao-sieu-lien-ket',
-    description: 'Tạo liên kết với thẻ a, phân biệt đường dẫn tuyệt đối vs tương đối, mở liên kết trong tab mới với target="_blank", liên kết neo #id trong trang và liên kết email/điện thoại.',
-    estimatedMinutes: 25,
-    objectives: [
-      'Sử dụng thẻ <a> cùng thuộc tính href và title để liên kết các trang web lại với nhau.',
-      'Phân biệt rõ ràng đường dẫn tuyệt đối (Absolute URL) và đường dẫn tương đối (Relative URL).',
-      'Thiết lập mở liên kết ở tab mới bằng target="_blank" đi kèm rel="noopener noreferrer".',
-      'Tạo liên kết neo (Anchor Link) cuộn đến vị trí cụ thể trong trang bằng #id và liên kết mailto:/tel:.'
-    ],
-    sections: [
-      {
-        id: 'the-a-va-href',
-        title: '1. Thẻ <a> và thuộc tính cốt lõi href',
-        paragraphs: [
-          'Siêu liên kết (Hyperlink) chính là linh hồn của mạng World Wide Web, cho phép người dùng nhấp chuột để chuyển từ trang này sang trang khác hoặc truy cập tài nguyên khác một cách tức thì.',
-          'Thẻ <a> (viết tắt của Anchor — mỏ neo) dùng để tạo liên kết theo cú pháp: <code class="token-code">&lt;a href="địa_chỉ_đích"&gt;Nội dung hiển thị&lt;/a&gt;</code>. Trong đó, thuộc tính quan trọng nhất là href (Hypertext Reference), chứa địa chỉ đích cần dẫn đến.',
-          'Theo mặc định, văn bản trong thẻ <a> có màu xanh dương và gạch chân (chuyển sang màu tím nếu đã từng bấm vào), đồng thời con trỏ chuột biến thành hình bàn tay khi rê qua. Thẻ <a> có thể bọc văn bản trong đoạn <p>, danh sách <li> hoặc ngay bên trong các ô dữ liệu <td> của bảng.'
+                explanation: 'Phân tích mã nguồn bảng:\n- Thẻ <table>: Khung bao ngoài cùng với thuộc tính border="1" giúp hiển thị các đường kẻ ô rõ ràng.\n- Hàng đầu tiên (<tr>): Chứa 4 ô tiêu đề (<th>) "Hạng", "Tên", "Nguồn gốc", "Tài sản" tự động in đậm và căn giữa.\n- 3 hàng tiếp theo (<tr>): Mỗi hàng chứa 4 ô dữ liệu (<td>) tương ứng với 4 cột thông tin của các bạn bè tỷ phú.\n- Khi bấm "Try it Yourself »", bạn sẽ thấy toàn bộ tệp portfolio.html hoàn chỉnh tích lũy từ các bài trước.'
+            }
         ],
-        table: {
-          caption: 'Các thành phần cơ bản khi tạo siêu liên kết',
-          headers: ['Thành phần', 'Ý nghĩa & Công dụng', 'Ví dụ'],
-          rows: [
-            ['<code class="token-tag">&lt;a&gt;...&lt;/a&gt;</code>', 'Cặp thẻ tạo siêu liên kết, bao bọc phần nội dung có thể nhấp chuột', '<code class="token-code">&lt;a href="https://vi.wikipedia.org"&gt;Wikipedia&lt;/a&gt;</code>'],
-            ['href', 'Khai báo địa chỉ URL hoặc vị trí đích mà liên kết sẽ dẫn đến', '<code class="token-code">href="https://www.forbes.com"</code>'],
-            ['title', 'Hiển thị chú thích nhỏ (tooltip) khi người dùng rê chuột lên liên kết', '<code class="token-code">title="Mở trang Forbes"</code>']
-          ]
-        },
-        example: {
-          id: 'mini-a-href',
-          title: 'Ví dụ: Tạo siêu liên kết cơ bản với thẻ <a>, href và title',
-          caption: 'Gắn siêu liên kết vào câu văn và hiển thị gợi ý khi rê chuột qua:',
-          code: `<p>
+        commonMistakes: [
+            {
+                mistake: 'Đặt văn bản hoặc thẻ <td> trực tiếp trong <table> mà không bọc trong thẻ <tr>.',
+                cause: 'Viết <table><td>Dữ liệu</td></table> vi phạm quy tắc hộp trong hộp.',
+                solution: 'Luôn luôn tạo hàng <tr> trước, sau đó mới đặt các ô <td> hoặc <th> vào bên trong hàng đó.'
+            },
+            {
+                mistake: 'Quên trừ bớt thẻ <td> ở hàng sau khi đã dùng rowspan ở hàng trước.',
+                cause: 'Quên rằng ô gộp từ hàng trên đã chiếm sẵn một vị trí ở hàng dưới.',
+                solution: 'Đếm tổng số cột thực tế trên mỗi hàng để đảm bảo mọi hàng đều có cùng tổng số cột.'
+            },
+            {
+                mistake: 'Lạm dụng các thuộc tính cũ như bgcolor, cellpadding thay vì sử dụng CSS.',
+                cause: 'Dùng thuộc tính định dạng nhanh của HTML cho toàn bộ dự án lớn.',
+                solution: 'Nên dùng CSS (padding, background-color, border-collapse) để bảng hiển thị đẹp và chuẩn mực trên mọi kích thước màn hình.'
+            }
+        ],
+        keyTakeaways: [
+            'Quy tắc hộp trong hộp: <table> chứa <tr>, bên trong <tr> chứa <th> (tiêu đề) hoặc <td> (dữ liệu). Không thể có ô nếu chưa có hàng.',
+            'Mặc định bảng HTML không có đường viền; thêm border="1" vào thẻ <table> để hiển thị đường viền cơ bản.',
+            'Phân nhóm cấu trúc bằng <thead>, <tbody>, <tfoot> và chú thích <caption> giúp bảng chuẩn ngữ nghĩa và tối ưu SEO.',
+            'Các thuộc tính colspan (gộp cột ngang) và rowspan (gộp hàng dọc) giúp kết hợp các ô dữ liệu một cách linh hoạt.'
+        ]
+    },
+    {
+        id: 'html-8',
+        track: 'html',
+        order: 8,
+        title: 'Tạo siêu liên kết',
+        slug: 'tao-sieu-lien-ket',
+        description: 'Tạo liên kết với thẻ a, phân biệt đường dẫn tuyệt đối vs tương đối, mở liên kết trong tab mới với target="_blank", liên kết neo #id trong trang và liên kết email/điện thoại.',
+        estimatedMinutes: 25,
+        objectives: [
+            'Sử dụng thẻ <a> cùng thuộc tính href và title để liên kết các trang web lại với nhau.',
+            'Phân biệt rõ ràng đường dẫn tuyệt đối (Absolute URL) và đường dẫn tương đối (Relative URL).',
+            'Thiết lập mở liên kết ở tab mới bằng target="_blank" đi kèm rel="noopener noreferrer".',
+            'Tạo liên kết neo (Anchor Link) cuộn đến vị trí cụ thể trong trang bằng #id và liên kết mailto:/tel:.'
+        ],
+        sections: [
+            {
+                id: 'the-a-va-href',
+                title: '1. Thẻ <a> và thuộc tính cốt lõi href',
+                paragraphs: [
+                    'Siêu liên kết (Hyperlink) chính là linh hồn của mạng World Wide Web, cho phép người dùng nhấp chuột để chuyển từ trang này sang trang khác hoặc truy cập tài nguyên khác một cách tức thì.',
+                    'Thẻ <a> (viết tắt của Anchor — mỏ neo) dùng để tạo liên kết theo cú pháp: <code class="token-code">&lt;a href="địa_chỉ_đích"&gt;Nội dung hiển thị&lt;/a&gt;</code>. Trong đó, thuộc tính quan trọng nhất là href (Hypertext Reference), chứa địa chỉ đích cần dẫn đến.',
+                    'Theo mặc định, văn bản trong thẻ <a> có màu xanh dương và gạch chân (chuyển sang màu tím nếu đã từng bấm vào), đồng thời con trỏ chuột biến thành hình bàn tay khi rê qua. Thẻ <a> có thể bọc văn bản trong đoạn <p>, danh sách <li> hoặc ngay bên trong các ô dữ liệu <td> của bảng.'
+                ],
+                table: {
+                    caption: 'Các thành phần cơ bản khi tạo siêu liên kết',
+                    headers: ['Thành phần', 'Ý nghĩa & Công dụng', 'Ví dụ'],
+                    rows: [
+                        ['<code class="token-tag">&lt;a&gt;...&lt;/a&gt;</code>', 'Cặp thẻ tạo siêu liên kết, bao bọc phần nội dung có thể nhấp chuột', '<code class="token-code">&lt;a href="https://vi.wikipedia.org"&gt;Wikipedia&lt;/a&gt;</code>'],
+                        ['href', 'Khai báo địa chỉ URL hoặc vị trí đích mà liên kết sẽ dẫn đến', '<code class="token-code">href="https://www.forbes.com"</code>'],
+                        ['title', 'Hiển thị chú thích nhỏ (tooltip) khi người dùng rê chuột lên liên kết', '<code class="token-code">title="Mở trang Forbes"</code>']
+                    ]
+                },
+                example: {
+                    id: 'mini-a-href',
+                    title: 'Ví dụ: Tạo siêu liên kết cơ bản với thẻ <a>, href và title',
+                    caption: 'Gắn siêu liên kết vào câu văn và hiển thị gợi ý khi rê chuột qua:',
+                    code: `<p>
   Tra cứu kiến thức lập trình web trên
   <a href="https://vi.wikipedia.org" title="Bách khoa toàn thư mở Wikipedia">Wikipedia tiếng Việt</a>.
 </p>
@@ -1444,32 +1444,32 @@ Ngược lòng mình tìm về nông nổi
   Đọc tài liệu chuẩn HTML tại
   <a href="https://developer.mozilla.org/vi/" title="Tài liệu học Web MDN">MDN Web Docs</a>.
 </p>`,
-          explanation: 'Thuộc tính href quy định địa chỉ trang web đích khi người dùng bấm vào dòng chữ xanh gạch chân. Rê chuột lên liên kết vài giây sẽ thấy chú thích từ thuộc tính title hiện ra.'
-        }
-      },
-      {
-        id: 'duong-dan-tuyet-doi-tuong-doi',
-        title: '2. Phân biệt đường dẫn tuyệt đối và tương đối',
-        paragraphs: [
-          'Đây là kiến thức cực kỳ quan trọng mà học sinh rất hay nhầm lẫn khi làm bài tập thực hành nhiều trang:',
-          '1. Đường dẫn tuyệt đối (Absolute URL): Là địa chỉ đầy đủ trên Internet, bắt đầu bằng giao thức `http://` hoặc `https://` kèm tên miền. Dùng khi liên kết tới một trang web bên ngoài dự án (ví dụ: `https://vnexpress.net` hoặc `https://www.forbes.com/profile/elon-musk/`).',
-          '2. Đường dẫn tương đối (Relative URL): Là đường dẫn ngắn gọn tính từ vị trí tệp HTML hiện tại, dùng để liên kết các trang nội bộ nằm trong cùng thư mục dự án của bạn.'
-        ],
-        table: {
-          caption: 'So sánh đường dẫn tuyệt đối và đường dẫn tương đối',
-          headers: ['Loại đường dẫn', 'Cú pháp mẫu', 'Ý nghĩa & Trường hợp sử dụng'],
-          rows: [
-            ['Tuyệt đối (Absolute)', 'href="https://vnexpress.net"', 'Dẫn đến website bên ngoài trên Internet (luôn có `https://` hoặc `http://`)'],
-            ['Tương đối — Cùng thư mục', 'href="gioi-thieu.html"', 'Mở tệp `gioi-thieu.html` nằm cùng thư mục với tệp hiện tại'],
-            ['Tương đối — Thư mục con', 'href="bai-viet/bai-1.html"', 'Đi vào thư mục con `bai-viet` để mở tệp `bai-1.html`'],
-            ['Tương đối — Thư mục cha', 'href="../index.html"', 'Dùng `../` để lùi ra 1 cấp thư mục cha rồi mở `index.html`']
-          ]
-        },
-        example: {
-          id: 'mini-duong-dan-url',
-          title: 'Ví dụ: Đường dẫn tuyệt đối vs Đường dẫn tương đối',
-          caption: 'Phân biệt cách ghi href khi liên kết ra trang web ngoài Internet và khi chuyển trang nội bộ:',
-          code: `<!-- 1. Đường dẫn tuyệt đối: dẫn ra website bên ngoài -->
+                    explanation: 'Thuộc tính href quy định địa chỉ trang web đích khi người dùng bấm vào dòng chữ xanh gạch chân. Rê chuột lên liên kết vài giây sẽ thấy chú thích từ thuộc tính title hiện ra.'
+                }
+            },
+            {
+                id: 'duong-dan-tuyet-doi-tuong-doi',
+                title: '2. Phân biệt đường dẫn tuyệt đối và tương đối',
+                paragraphs: [
+                    'Đây là kiến thức cực kỳ quan trọng mà học sinh rất hay nhầm lẫn khi làm bài tập thực hành nhiều trang:',
+                    '1. Đường dẫn tuyệt đối (Absolute URL): Là địa chỉ đầy đủ trên Internet, bắt đầu bằng giao thức `http://` hoặc `https://` kèm tên miền. Dùng khi liên kết tới một trang web bên ngoài dự án (ví dụ: `https://vnexpress.net` hoặc `https://www.forbes.com/profile/elon-musk/`).',
+                    '2. Đường dẫn tương đối (Relative URL): Là đường dẫn ngắn gọn tính từ vị trí tệp HTML hiện tại, dùng để liên kết các trang nội bộ nằm trong cùng thư mục dự án của bạn.'
+                ],
+                table: {
+                    caption: 'So sánh đường dẫn tuyệt đối và đường dẫn tương đối',
+                    headers: ['Loại đường dẫn', 'Cú pháp mẫu', 'Ý nghĩa & Trường hợp sử dụng'],
+                    rows: [
+                        ['Tuyệt đối (Absolute)', 'href="https://vnexpress.net"', 'Dẫn đến website bên ngoài trên Internet (luôn có `https://` hoặc `http://`)'],
+                        ['Tương đối — Cùng thư mục', 'href="gioi-thieu.html"', 'Mở tệp `gioi-thieu.html` nằm cùng thư mục với tệp hiện tại'],
+                        ['Tương đối — Thư mục con', 'href="bai-viet/bai-1.html"', 'Đi vào thư mục con `bai-viet` để mở tệp `bai-1.html`'],
+                        ['Tương đối — Thư mục cha', 'href="../index.html"', 'Dùng `../` để lùi ra 1 cấp thư mục cha rồi mở `index.html`']
+                    ]
+                },
+                example: {
+                    id: 'mini-duong-dan-url',
+                    title: 'Ví dụ: Đường dẫn tuyệt đối vs Đường dẫn tương đối',
+                    caption: 'Phân biệt cách ghi href khi liên kết ra trang web ngoài Internet và khi chuyển trang nội bộ:',
+                    code: `<!-- 1. Đường dẫn tuyệt đối: dẫn ra website bên ngoài -->
 <h3>Website tham khảo (Đường dẫn tuyệt đối)</h3>
 <p>
   Xem bảng xếp hạng tỷ phú trên
@@ -1484,35 +1484,35 @@ Ngược lòng mình tìm về nông nổi
   <li>Vào thư mục con: <a href="bai-viet/bai-1.html">Bài viết số 1</a></li>
   <li>Lùi lên thư mục cha: <a href="../index.html">Quay lại Trang chủ</a></li>
 </ul>`,
-          explanation: 'Khi liên kết nhiều trang trong cùng bài tập (như portfolio.html sang gioi-thieu.html), luôn dùng đường dẫn tương đối để dự án chạy đúng trên mọi máy tính. (Trong khung chạy thử đơn tệp này chưa có các file .html phụ nên bấm vào link tương đối sẽ không mở được trang con.)'
-        },
-        callout: {
-          type: 'warning',
-          title: 'Không bao giờ dùng đường dẫn ổ cứng máy tính',
-          content: 'Tuyệt đối không viết đường dẫn kiểu `C:\\Users\\TenBan\\Desktop\\gioi-thieu.html` vào href. Khi gửi bài cho thầy cô hoặc đưa lên mạng, máy khác không có đường dẫn ổ C đó nên liên kết sẽ hỏng hoàn toàn!'
-        }
-      },
-      {
-        id: 'thuoc-tinh-target',
-        title: '3. Thuộc tính target và mở liên kết trong tab mới',
-        paragraphs: [
-          'Theo mặc định, khi bấm vào thẻ <a>, trình duyệt sẽ mở trang đích đè lên ngay tab hiện tại (`target="_self"`). Cách này phù hợp khi chuyển giữa các trang trong cùng một website.',
-          'Tuy nhiên, khi liên kết dẫn ra trang web bên ngoài (ví dụ: bấm vào tên nhân vật trong bảng portfolio để xem hồ sơ Forbes), bạn nên dùng thuộc tính target="_blank" để mở trang đích ở một tab mới, giúp người xem không bị thoát khỏi trang web của bạn.',
-          'Khi dùng target="_blank", nên đi kèm thuộc tính `rel="noopener noreferrer"` để tăng cường bảo mật cho trình duyệt.'
-        ],
-        table: {
-          caption: 'Các giá trị phổ biến của thuộc tính target',
-          headers: ['Giá trị', 'Hành vi của trình duyệt', 'Khi nào nên dùng?'],
-          rows: [
-            ['target="_self"', 'Mở trang đích ngay tại tab hiện tại (mặc định)', 'Chuyển trang nội bộ trong cùng dự án web'],
-            ['target="_blank"', 'Mở trang đích trong một tab trình duyệt mới', 'Liên kết dẫn ra website bên ngoài hoặc tài liệu tham khảo']
-          ]
-        },
-        example: {
-          id: 'mini-target-blank',
-          title: 'Ví dụ: So sánh mở cùng tab (_self) và mở tab mới (_blank)',
-          caption: 'Sử dụng target="_blank" để giữ nguyên trang web gốc khi mở liên kết ngoài:',
-          code: `<p>
+                    explanation: 'Khi liên kết nhiều trang trong cùng bài tập (như portfolio.html sang gioi-thieu.html), luôn dùng đường dẫn tương đối để dự án chạy đúng trên mọi máy tính. (Trong khung chạy thử đơn tệp này chưa có các file .html phụ nên bấm vào link tương đối sẽ không mở được trang con.)'
+                },
+                callout: {
+                    type: 'warning',
+                    title: 'Không bao giờ dùng đường dẫn ổ cứng máy tính',
+                    content: 'Tuyệt đối không viết đường dẫn kiểu `C:\\Users\\TenBan\\Desktop\\gioi-thieu.html` vào href. Khi gửi bài cho thầy cô hoặc đưa lên mạng, máy khác không có đường dẫn ổ C đó nên liên kết sẽ hỏng hoàn toàn!'
+                }
+            },
+            {
+                id: 'thuoc-tinh-target',
+                title: '3. Thuộc tính target và mở liên kết trong tab mới',
+                paragraphs: [
+                    'Theo mặc định, khi bấm vào thẻ <a>, trình duyệt sẽ mở trang đích đè lên ngay tab hiện tại (`target="_self"`). Cách này phù hợp khi chuyển giữa các trang trong cùng một website.',
+                    'Tuy nhiên, khi liên kết dẫn ra trang web bên ngoài (ví dụ: bấm vào tên nhân vật trong bảng portfolio để xem hồ sơ Forbes), bạn nên dùng thuộc tính target="_blank" để mở trang đích ở một tab mới, giúp người xem không bị thoát khỏi trang web của bạn.',
+                    'Khi dùng target="_blank", nên đi kèm thuộc tính `rel="noopener noreferrer"` để tăng cường bảo mật cho trình duyệt.'
+                ],
+                table: {
+                    caption: 'Các giá trị phổ biến của thuộc tính target',
+                    headers: ['Giá trị', 'Hành vi của trình duyệt', 'Khi nào nên dùng?'],
+                    rows: [
+                        ['target="_self"', 'Mở trang đích ngay tại tab hiện tại (mặc định)', 'Chuyển trang nội bộ trong cùng dự án web'],
+                        ['target="_blank"', 'Mở trang đích trong một tab trình duyệt mới', 'Liên kết dẫn ra website bên ngoài hoặc tài liệu tham khảo']
+                    ]
+                },
+                example: {
+                    id: 'mini-target-blank',
+                    title: 'Ví dụ: So sánh mở cùng tab (_self) và mở tab mới (_blank)',
+                    caption: 'Sử dụng target="_blank" để giữ nguyên trang web gốc khi mở liên kết ngoài:',
+                    code: `<p>
   1. Mở ở tab hiện tại (mặc định):
   <a href="https://vi.wikipedia.org" target="_self">Wikipedia (_self)</a>
 </p>
@@ -1522,26 +1522,26 @@ Ngược lòng mình tìm về nông nổi
     Hồ sơ Elon Musk trên Forbes (_blank)
   </a>
 </p>`,
-          explanation: 'Nhấp vào liên kết thứ hai sẽ mở hồ sơ Elon Musk sang một tab mới hoàn toàn, trong khi trang gốc của bạn vẫn được giữ nguyên.'
-        }
-      },
-      {
-        id: 'mo-tab-moi-va-anchor',
-        title: '4. Liên kết neo cuộn trong trang (Anchor Link với #id)',
-        paragraphs: [
-          'Với những trang web dài nhiều mục, bạn có thể tạo "nút nhảy nhanh" cuộn thẳng tới một phần cụ thể trên cùng trang mà không cần tải lại trang. Kỹ thuật này gọi là **liên kết neo (Anchor Link)**.',
-          'Cách thực hiện gồm 2 bước đơn giản:'
-        ],
-        bulletPoints: [
-          'Bước 1 — Đánh dấu vị trí đích: Gắn thuộc tính `id="ten-muc"` (viết liền không dấu, duy nhất trên trang) cho phần tử đích, ví dụ `<h3 id="chuong-2">Chương 2</h3>`.',
-          'Bước 2 — Tạo liên kết nhảy tới: Dùng dấu thăng `#` trước tên id trong href, ví dụ href="#chuong-2".',
-          'Mẹo tạo nút lên đầu trang: Đặt `id="dau-trang"` ở phần đầu trang, sau đó ở cuối trang đặt <code class="token-code">&lt;a href="#dau-trang"&gt;Lên đầu trang ↑&lt;/a&gt;</code>.'
-        ],
-        example: {
-          id: 'mini-anchor-id',
-          title: 'Ví dụ: Menu điều hướng nhanh bằng liên kết neo (#id)',
-          caption: 'Bấm "Try it Yourself »" rồi nhấp vào các liên kết mục lục để quan sát trang tự động cuộn:',
-          code: `<h2 id="dau-trang">Mục lục điều hướng nhanh</h2>
+                    explanation: 'Nhấp vào liên kết thứ hai sẽ mở hồ sơ Elon Musk sang một tab mới hoàn toàn, trong khi trang gốc của bạn vẫn được giữ nguyên.'
+                }
+            },
+            {
+                id: 'mo-tab-moi-va-anchor',
+                title: '4. Liên kết neo cuộn trong trang (Anchor Link với #id)',
+                paragraphs: [
+                    'Với những trang web dài nhiều mục, bạn có thể tạo "nút nhảy nhanh" cuộn thẳng tới một phần cụ thể trên cùng trang mà không cần tải lại trang. Kỹ thuật này gọi là **liên kết neo (Anchor Link)**.',
+                    'Cách thực hiện gồm 2 bước đơn giản:'
+                ],
+                bulletPoints: [
+                    'Bước 1 — Đánh dấu vị trí đích: Gắn thuộc tính `id="ten-muc"` (viết liền không dấu, duy nhất trên trang) cho phần tử đích, ví dụ `<h3 id="chuong-2">Chương 2</h3>`.',
+                    'Bước 2 — Tạo liên kết nhảy tới: Dùng dấu thăng `#` trước tên id trong href, ví dụ href="#chuong-2".',
+                    'Mẹo tạo nút lên đầu trang: Đặt `id="dau-trang"` ở phần đầu trang, sau đó ở cuối trang đặt <code class="token-code">&lt;a href="#dau-trang"&gt;Lên đầu trang ↑&lt;/a&gt;</code>.'
+                ],
+                example: {
+                    id: 'mini-anchor-id',
+                    title: 'Ví dụ: Menu điều hướng nhanh bằng liên kết neo (#id)',
+                    caption: 'Bấm "Try it Yourself »" rồi nhấp vào các liên kết mục lục để quan sát trang tự động cuộn:',
+                    code: `<h2 id="dau-trang">Mục lục điều hướng nhanh</h2>
 <p>
   <a href="#muc-1">1. Giới thiệu</a> |
   <a href="#muc-2">2. Kỹ năng</a> |
@@ -1565,24 +1565,24 @@ Ngược lòng mình tìm về nông nổi
   <p>Trang portfolio cá nhân tự tay thiết kế.</p>
   <p><a href="#dau-trang">↑ Quay lại đầu trang</a></p>
 </div>`,
-          explanation: 'Khi nhấp vào "2. Kỹ năng" hay "3. Dự án", trình duyệt tìm phần tử có id="muc-2" hoặc id="muc-3" và cuộn thẳng đến đúng vị trí đó. (Khoảng trống margin-bottom giúp bạn thấy rõ thao tác cuộn trang trong khung xem trước.)'
-        }
-      },
-      {
-        id: 'lien-ket-dac-biet',
-        title: '5. Liên kết gửi Email (mailto:) và gọi điện (tel:)',
-        paragraphs: [
-          'Ngoài liên kết tới trang web hay đề mục trong trang, thuộc tính href còn hỗ trợ các giao thức đặc biệt giúp người dùng liên hệ nhanh chóng:'
-        ],
-        bulletPoints: [
-          'Gửi Email (`mailto:`): Dùng `href="mailto:email@example.com"`. Khi nhấp vào, trình duyệt mở sẵn ứng dụng gửi email với địa chỉ người nhận đã điền sẵn (có thể kèm `?subject=...` để điền trước tiêu đề thư).',
-          'Gọi điện thoại (`tel:`): Dùng `href="tel:0912345678"`. Khi mở trên điện thoại di động, bấm vào liên kết sẽ bật ngay màn hình quay số gọi điện.'
-        ],
-        example: {
-          id: 'mini-mailto-tel',
-          title: 'Ví dụ: Liên kết gửi Email (mailto:) và gọi điện (tel:)',
-          caption: 'Tạo khối thông tin liên hệ nhanh cho trang cá nhân hoặc câu lạc bộ:',
-          code: `<h3>Thông tin liên hệ</h3>
+                    explanation: 'Khi nhấp vào "2. Kỹ năng" hay "3. Dự án", trình duyệt tìm phần tử có id="muc-2" hoặc id="muc-3" và cuộn thẳng đến đúng vị trí đó. (Khoảng trống margin-bottom giúp bạn thấy rõ thao tác cuộn trang trong khung xem trước.)'
+                }
+            },
+            {
+                id: 'lien-ket-dac-biet',
+                title: '5. Liên kết gửi Email (mailto:) và gọi điện (tel:)',
+                paragraphs: [
+                    'Ngoài liên kết tới trang web hay đề mục trong trang, thuộc tính href còn hỗ trợ các giao thức đặc biệt giúp người dùng liên hệ nhanh chóng:'
+                ],
+                bulletPoints: [
+                    'Gửi Email (`mailto:`): Dùng `href="mailto:email@example.com"`. Khi nhấp vào, trình duyệt mở sẵn ứng dụng gửi email với địa chỉ người nhận đã điền sẵn (có thể kèm `?subject=...` để điền trước tiêu đề thư).',
+                    'Gọi điện thoại (`tel:`): Dùng `href="tel:0912345678"`. Khi mở trên điện thoại di động, bấm vào liên kết sẽ bật ngay màn hình quay số gọi điện.'
+                ],
+                example: {
+                    id: 'mini-mailto-tel',
+                    title: 'Ví dụ: Liên kết gửi Email (mailto:) và gọi điện (tel:)',
+                    caption: 'Tạo khối thông tin liên hệ nhanh cho trang cá nhân hoặc câu lạc bộ:',
+                    code: `<h3>Thông tin liên hệ</h3>
 <ul>
   <li>
     Gửi Email cho cố vấn học tập:
@@ -1595,18 +1595,18 @@ Ngược lòng mình tìm về nông nổi
     <a href="tel:0912345678">0912 345 678</a>
   </li>
 </ul>`,
-          explanation: 'Tiền tố `mailto:` mở ứng dụng email mặc định (kèm tiêu đề mẫu qua `?subject=...`), còn tiền tố `tel:` giúp gọi điện nhanh khi người dùng xem trang trên điện thoại.'
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-portfolio-lien-ket',
-        title: 'portfolio.html',
-        description: 'Tiếp nối tệp portfolio.html từ Bài 7, nâng cấp bảng "Một vài bạn bè thân thiết" bằng cách gắn siêu liên kết <a> cùng target="_blank" vào tên từng nhân vật để mở hồ sơ Forbes ở tab mới.',
-        language: 'html',
-        runnable: true,
-        displayCode: `<h2>Một vài bạn bè thân thiết</h2>
+                    explanation: 'Tiền tố `mailto:` mở ứng dụng email mặc định (kèm tiêu đề mẫu qua `?subject=...`), còn tiền tố `tel:` giúp gọi điện nhanh khi người dùng xem trang trên điện thoại.'
+                }
+            }
+        ],
+        codeExamples: [
+            {
+                id: 'vd-portfolio-lien-ket',
+                title: 'portfolio.html',
+                description: 'Tiếp nối tệp portfolio.html từ Bài 7, nâng cấp bảng "Một vài bạn bè thân thiết" bằng cách gắn siêu liên kết <a> cùng target="_blank" vào tên từng nhân vật để mở hồ sơ Forbes ở tab mới.',
+                language: 'html',
+                runnable: true,
+                displayCode: `<h2>Một vài bạn bè thân thiết</h2>
 <table border="1">
     <tr>
         <th>Hạng</th>
@@ -1633,7 +1633,7 @@ Ngược lòng mình tìm về nông nổi
         <td>$104 B</td>
     </tr>
 </table>`,
-        initialCode: `<!DOCTYPE html>
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -1736,90 +1736,90 @@ Ngược lòng mình tìm về nông nổi
     </table>
 </body>
 </html>`,
-        explanation: 'Phân tích phần nâng cấp tiếp nối từ Bài 7:\n- Ở Bài 7, tên của 3 nhân vật trong bảng "Một vài bạn bè thân thiết" mới chỉ là chữ thuần nằm trong ô <td>.\n- Sang Bài 8, mỗi cái tên được bọc trong thẻ <a> (<code class="token-code">&lt;a href="..." target="_blank"&gt;...&lt;/a&gt;</code>) với đường dẫn tuyệt đối trỏ thẳng tới hồ sơ Forbes của từng người.\n- Thuộc tính target="_blank" giúp khi người dùng nhấp vào Bernard Arnault, Elon Musk hoặc Bill Gates, trang Forbes sẽ mở ra ở tab mới mà không làm mất trang portfolio.html.\n- Khi bấm "Try it Yourself »", bạn sẽ thấy và chạy thử toàn bộ tệp portfolio.html hoàn chỉnh tích lũy từ Bài 4 đến Bài 8.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Điền đường dẫn tệp tuyệt đối trên ổ cứng máy tính cá nhân (ví dụ: href="C:\\Users\\Admin\\Desktop\\gioi-thieu.html").',
-        cause: 'Sao chép trực tiếp đường dẫn từ thanh địa chỉ File Explorer của Windows.',
-        solution: 'Khi nộp bài cho thầy cô hoặc đưa lên mạng, máy người khác không có ổ C:\\Users\\Admin đó nên link sẽ chết hoàn toàn! Luôn dùng đường dẫn tương đối như href="gioi-thieu.html".'
-      },
-      {
-        mistake: 'Quên giao thức `https://` ở đầu liên kết ngoài (viết `href="www.forbes.com"` thay vì `href="https://www.forbes.com"`).',
-        cause: 'Trình duyệt sẽ hiểu nhầm `www.forbes.com` là một tệp hoặc thư mục nằm trên máy của bạn theo đường dẫn tương đối.',
-        solution: 'Mọi đường dẫn tuyệt đối ra trang web bên ngoài bắt buộc phải bắt đầu bằng `https://` hoặc `http://`.'
-      },
-      {
-        mistake: 'Quên ký tự # trong liên kết neo (viết href="phan-1" thay vì href="#phan-1").',
-        cause: 'Trình duyệt sẽ hiểu nhầm đó là một file có tên phan-1 và báo lỗi 404 Not Found.',
-        solution: 'Luôn bắt đầu bằng dấu # khi liên kết đến id trong cùng trang.'
-      }
-    ],
-    keyTakeaways: [
-      'Thẻ <a> dùng thuộc tính href để khai báo đích đến và có thể đặt trực tiếp bên trong đoạn văn, danh sách hoặc ô bảng <td>.',
-      'Phân biệt đường dẫn tuyệt đối (bắt đầu bằng `https://`) với đường dẫn tương đối (`gioi-thieu.html`, `../index.html`); tuyệt đối không dùng đường dẫn ổ cứng (`C:\\...`).',
-      'Dùng target="_blank" (nên kèm `rel="noopener noreferrer"`) để mở liên kết ngoài trong một tab mới.',
-      'Dùng href="#id" để tạo liên kết neo cuộn trong trang và dùng `mailto:`, `tel:` để gửi email hoặc gọi điện nhanh.'
-    ]
-  },
-  {
-    id: 'html-9',
-    track: 'html',
-    order: 9,
-    title: 'Tạo khung nhúng',
-    slug: 'tao-khung-nhung',
-    description: 'Sử dụng thẻ iframe để nhúng trang web con, video YouTube, Google Maps và hiểu lý do các website lớn chặn nhúng (X-Frame-Options).',
-    estimatedMinutes: 20,
-    objectives: [
-      'Hiểu bản chất của iframe (Inline Frame) là một cửa sổ nhúng trang web khác vào trang hiện tại.',
-      'Biết cách nhúng bản đồ Google Maps và video YouTube chuẩn xác.',
-      'Hiểu rõ cơ chế bảo mật khiến nhiều website (Facebook, Google tìm kiếm) chặn nhúng iframe.'
-    ],
-    sections: [
-      {
-        id: 'iframe-la-gi',
-        title: '1. Thẻ <iframe> là gì?',
-        paragraphs: [
-          'Thẻ <iframe> (viết tắt của Inline Frame) cho phép bạn nhúng cả một tài liệu HTML độc lập khác vào bên trong trang web hiện tại.',
-          'Nó giống như việc bạn mở một khung cửa sổ nhỏ trên bức tường để nhìn sang một ngôi nhà khác. Khung nhúng thường được dùng phổ biến để nhúng video từ YouTube, bản đồ vị trí từ Google Maps, hoặc tài liệu trình chiếu.'
+                explanation: 'Phân tích phần nâng cấp tiếp nối từ Bài 7:\n- Ở Bài 7, tên của 3 nhân vật trong bảng "Một vài bạn bè thân thiết" mới chỉ là chữ thuần nằm trong ô <td>.\n- Sang Bài 8, mỗi cái tên được bọc trong thẻ <a> (<code class="token-code">&lt;a href="..." target="_blank"&gt;...&lt;/a&gt;</code>) với đường dẫn tuyệt đối trỏ thẳng tới hồ sơ Forbes của từng người.\n- Thuộc tính target="_blank" giúp khi người dùng nhấp vào Bernard Arnault, Elon Musk hoặc Bill Gates, trang Forbes sẽ mở ra ở tab mới mà không làm mất trang portfolio.html.\n- Khi bấm "Try it Yourself »", bạn sẽ thấy và chạy thử toàn bộ tệp portfolio.html hoàn chỉnh tích lũy từ Bài 4 đến Bài 8.'
+            }
         ],
-        bulletPoints: [
-          'src: Địa chỉ URL của trang web hoặc tài nguyên cần nhúng.',
-          'width & height: Chiều rộng và chiều cao của khung nhúng (đơn vị pixel hoặc %).',
-          'title: Mô tả nội dung khung nhúng (bắt buộc theo tiêu chuẩn trợ năng tiếp cận).',
-          'allowfullscreen: Cho phép người xem bấm phóng to toàn màn hình (rất quan trọng với video).'
-        ]
-      },
-      {
-        id: 'luu-y-chan-nhung',
-        title: '2. Lưu ý sống còn: Vì sao nhiều website chặn nhúng?',
-        paragraphs: [
-          'Nhiều học sinh khi mới học thường thử viết <iframe src="https://google.com"> hoặc nhúng Facebook, nhưng kết quả chỉ thấy một khung xám trắng báo lỗi "google.com từ chối kết nối".',
-          'Lý do: Đây là tính năng BẢO MẬT của Internet. Để ngăn chặn hình thức tấn công lừa đảo (Clickjacking - kẻ xấu nhúng website ngân hàng vào rồi đặt nút bấm trong suốt lên trên để lừa lấy mật khẩu), các website lớn sẽ gửi kèm một tiêu đề bảo mật tên là X-Frame-Options hoặc Content-Security-Policy (CSP) cấm các trang khác nhúng họ vào iframe.'
+        commonMistakes: [
+            {
+                mistake: 'Điền đường dẫn tệp tuyệt đối trên ổ cứng máy tính cá nhân (ví dụ: href="C:\\Users\\Admin\\Desktop\\gioi-thieu.html").',
+                cause: 'Sao chép trực tiếp đường dẫn từ thanh địa chỉ File Explorer của Windows.',
+                solution: 'Khi nộp bài cho thầy cô hoặc đưa lên mạng, máy người khác không có ổ C:\\Users\\Admin đó nên link sẽ chết hoàn toàn! Luôn dùng đường dẫn tương đối như href="gioi-thieu.html".'
+            },
+            {
+                mistake: 'Quên giao thức `https://` ở đầu liên kết ngoài (viết `href="www.forbes.com"` thay vì `href="https://www.forbes.com"`).',
+                cause: 'Trình duyệt sẽ hiểu nhầm `www.forbes.com` là một tệp hoặc thư mục nằm trên máy của bạn theo đường dẫn tương đối.',
+                solution: 'Mọi đường dẫn tuyệt đối ra trang web bên ngoài bắt buộc phải bắt đầu bằng `https://` hoặc `http://`.'
+            },
+            {
+                mistake: 'Quên ký tự # trong liên kết neo (viết href="phan-1" thay vì href="#phan-1").',
+                cause: 'Trình duyệt sẽ hiểu nhầm đó là một file có tên phan-1 và báo lỗi 404 Not Found.',
+                solution: 'Luôn bắt đầu bằng dấu # khi liên kết đến id trong cùng trang.'
+            }
         ],
-        callout: {
-          type: 'warning',
-          title: 'Quy tắc nhúng YouTube',
-          content: 'Không thể nhúng đường link xem thông thường (https://youtube.com/watch?v=...). Bạn phải dùng đường link nhúng chuẩn có dạng https://www.youtube.com/embed/MÃ_VIDEO do YouTube cung cấp trong mục "Chia sẻ -> Nhúng".'
-        }
-      },
-      {
-        id: 'thuoc-tinh-sandbox',
-        title: '3. Thuộc tính an toàn sandbox',
-        paragraphs: [
-          'Thuộc tính sandbox giúp bảo vệ website của bạn khỏi mã độc chạy ngầm trong trang được nhúng. Khi khai báo sandbox, iframe sẽ bị vô hiệu hóa việc chạy mã JavaScript, gửi form hoặc mở cửa sổ mới trừ khi bạn cấp phép cụ thể (ví dụ: sandbox="allow-scripts").'
+        keyTakeaways: [
+            'Thẻ <a> dùng thuộc tính href để khai báo đích đến và có thể đặt trực tiếp bên trong đoạn văn, danh sách hoặc ô bảng <td>.',
+            'Phân biệt đường dẫn tuyệt đối (bắt đầu bằng `https://`) với đường dẫn tương đối (`gioi-thieu.html`, `../index.html`); tuyệt đối không dùng đường dẫn ổ cứng (`C:\\...`).',
+            'Dùng target="_blank" (nên kèm `rel="noopener noreferrer"`) để mở liên kết ngoài trong một tab mới.',
+            'Dùng href="#id" để tạo liên kết neo cuộn trong trang và dùng `mailto:`, `tel:` để gửi email hoặc gọi điện nhanh.'
         ]
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-nhung-iframe',
-        title: 'Ví dụ: Nhúng khung tài liệu an toàn',
-        description: 'Mô phỏng nhúng một trang tài liệu nội bộ và một bản đồ mô phỏng.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
+    },
+    {
+        id: 'html-9',
+        track: 'html',
+        order: 9,
+        title: 'Tạo khung nhúng',
+        slug: 'tao-khung-nhung',
+        description: 'Sử dụng thẻ iframe để nhúng trang web con, video YouTube, Google Maps và hiểu lý do các website lớn chặn nhúng (X-Frame-Options).',
+        estimatedMinutes: 20,
+        objectives: [
+            'Hiểu bản chất của iframe (Inline Frame) là một cửa sổ nhúng trang web khác vào trang hiện tại.',
+            'Biết cách nhúng bản đồ Google Maps và video YouTube chuẩn xác.',
+            'Hiểu rõ cơ chế bảo mật khiến nhiều website (Facebook, Google tìm kiếm) chặn nhúng iframe.'
+        ],
+        sections: [
+            {
+                id: 'iframe-la-gi',
+                title: '1. Thẻ <iframe> là gì?',
+                paragraphs: [
+                    'Thẻ <iframe> (viết tắt của Inline Frame) cho phép bạn nhúng cả một tài liệu HTML độc lập khác vào bên trong trang web hiện tại.',
+                    'Nó giống như việc bạn mở một khung cửa sổ nhỏ trên bức tường để nhìn sang một ngôi nhà khác. Khung nhúng thường được dùng phổ biến để nhúng video từ YouTube, bản đồ vị trí từ Google Maps, hoặc tài liệu trình chiếu.'
+                ],
+                bulletPoints: [
+                    'src: Địa chỉ URL của trang web hoặc tài nguyên cần nhúng.',
+                    'width & height: Chiều rộng và chiều cao của khung nhúng (đơn vị pixel hoặc %).',
+                    'title: Mô tả nội dung khung nhúng (bắt buộc theo tiêu chuẩn trợ năng tiếp cận).',
+                    'allowfullscreen: Cho phép người xem bấm phóng to toàn màn hình (rất quan trọng với video).'
+                ]
+            },
+            {
+                id: 'luu-y-chan-nhung',
+                title: '2. Lưu ý sống còn: Vì sao nhiều website chặn nhúng?',
+                paragraphs: [
+                    'Nhiều học sinh khi mới học thường thử viết <iframe src="https://google.com"> hoặc nhúng Facebook, nhưng kết quả chỉ thấy một khung xám trắng báo lỗi "google.com từ chối kết nối".',
+                    'Lý do: Đây là tính năng BẢO MẬT của Internet. Để ngăn chặn hình thức tấn công lừa đảo (Clickjacking - kẻ xấu nhúng website ngân hàng vào rồi đặt nút bấm trong suốt lên trên để lừa lấy mật khẩu), các website lớn sẽ gửi kèm một tiêu đề bảo mật tên là X-Frame-Options hoặc Content-Security-Policy (CSP) cấm các trang khác nhúng họ vào iframe.'
+                ],
+                callout: {
+                    type: 'warning',
+                    title: 'Quy tắc nhúng YouTube',
+                    content: 'Không thể nhúng đường link xem thông thường (https://youtube.com/watch?v=...). Bạn phải dùng đường link nhúng chuẩn có dạng https://www.youtube.com/embed/MÃ_VIDEO do YouTube cung cấp trong mục "Chia sẻ -> Nhúng".'
+                }
+            },
+            {
+                id: 'thuoc-tinh-sandbox',
+                title: '3. Thuộc tính an toàn sandbox',
+                paragraphs: [
+                    'Thuộc tính sandbox giúp bảo vệ website của bạn khỏi mã độc chạy ngầm trong trang được nhúng. Khi khai báo sandbox, iframe sẽ bị vô hiệu hóa việc chạy mã JavaScript, gửi form hoặc mở cửa sổ mới trừ khi bạn cấp phép cụ thể (ví dụ: sandbox="allow-scripts").'
+                ]
+            }
+        ],
+        codeExamples: [
+            {
+                id: 'vd-nhung-iframe',
+                title: 'Ví dụ: Nhúng khung tài liệu an toàn',
+                description: 'Mô phỏng nhúng một trang tài liệu nội bộ và một bản đồ mô phỏng.',
+                language: 'html',
+                runnable: true,
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -1840,112 +1840,112 @@ Ngược lòng mình tìm về nông nổi
   <p><em>(Thuộc tính srcdoc dùng để nhúng trực tiếp mã HTML vào khung mà không phụ thuộc tệp bên ngoài).</em></p>
 </body>
 </html>`,
-        explanation: 'Khung viền nét đứt màu xanh là một khung iframe độc lập hoàn toàn với trang web mẹ.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Cố gắng nhúng trang chủ Google Search hoặc Facebook vào iframe rồi tưởng mình viết sai mã.',
-        cause: 'Các trang này bật cấu hình X-Frame-Options: SAMEORIGIN để chống đánh cắp thông tin.',
-        solution: 'Chỉ nhúng những dịch vụ hỗ trợ đường dẫn embed công khai như YouTube Embed, Google Maps Embed hoặc các trang trong cùng hệ thống.'
-      }
-    ],
-    keyTakeaways: [
-      'Thẻ <iframe> dùng để nhúng trang web con, video hoặc bản đồ vào trang chính.',
-      'Cần có thuộc tính title để tăng khả năng tiếp cận và hỗ trợ người đọc màn hình.',
-      'Các website lớn chặn nhúng iframe để bảo vệ người dùng khỏi tấn công lừa đảo Clickjacking.'
-    ]
-  },
-  {
-    id: 'html-10',
-    track: 'html',
-    order: 10,
-    title: 'Tạo đa phương tiện',
-    slug: 'tao-da-phuong-tien',
-    description: 'Chèn hình ảnh với img và thuộc tính bắt buộc alt; phát âm thanh với audio; phát video với video và các thuộc tính điều khiển controls.',
-    estimatedMinutes: 25,
-    objectives: [
-      'Chèn hình ảnh đúng kỹ thuật với thẻ <img>, nắm rõ vai trò sống còn của thuộc tính alt.',
-      'Nhúng và phát tập tin âm thanh với thẻ <audio> và điều khiển controls.',
-      'Nhúng và phát video tự lưu trữ với thẻ <video>, poster và các thẻ con <source>.'
-    ],
-    sections: [
-      {
-        id: 'the-img-va-alt',
-        title: '1. Chèn hình ảnh với thẻ <img>',
-        paragraphs: [
-          'Thẻ <img> là thẻ rỗng (không có thẻ đóng), dùng để nhúng hình ảnh vào trang web.',
-          'Hai thuộc tính quan trọng nhất của thẻ <img> là:'
+                explanation: 'Khung viền nét đứt màu xanh là một khung iframe độc lập hoàn toàn với trang web mẹ.'
+            }
         ],
-        bulletPoints: [
-          'src (Source): Đường dẫn đến tệp hình ảnh (có thể là đường dẫn tương đối trong thư mục media/ hoặc link ảnh trên mạng).',
-          'alt (Alternative Text): Văn bản thay thế mô tả nội dung bức ảnh.',
-          'width & height: Thiết lập chiều rộng và chiều cao ảnh (khuyên dùng để trình duyệt giữ sẵn chỗ trước khi ảnh tải xong, chống giật khung hình Layout Shift).'
+        commonMistakes: [
+            {
+                mistake: 'Cố gắng nhúng trang chủ Google Search hoặc Facebook vào iframe rồi tưởng mình viết sai mã.',
+                cause: 'Các trang này bật cấu hình X-Frame-Options: SAMEORIGIN để chống đánh cắp thông tin.',
+                solution: 'Chỉ nhúng những dịch vụ hỗ trợ đường dẫn embed công khai như YouTube Embed, Google Maps Embed hoặc các trang trong cùng hệ thống.'
+            }
         ],
-        callout: {
-          type: 'note',
-          title: 'Tại sao thuộc tính alt lại BẮT BUỘC?',
-          content: '1. Khi đường link ảnh bị hỏng hoặc mạng yếu, nội dung alt sẽ hiển thị để người dùng vẫn biết bức ảnh chụp gì.\n2. Người khiếm thị dùng phần mềm đọc màn hình sẽ dựa vào alt để "nghe" bức ảnh.\n3. Công cụ tìm kiếm Google dùng alt để hiểu nội dung ảnh và hiển thị trên Google Hình ảnh.'
-        },
-        example: {
-          id: 'mini-img-20-11',
-          title: 'Ví dụ: Chèn ảnh kỷ niệm 20-11',
-          caption: 'Ảnh tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm:',
-          code: `<img 
+        keyTakeaways: [
+            'Thẻ <iframe> dùng để nhúng trang web con, video hoặc bản đồ vào trang chính.',
+            'Cần có thuộc tính title để tăng khả năng tiếp cận và hỗ trợ người đọc màn hình.',
+            'Các website lớn chặn nhúng iframe để bảo vệ người dùng khỏi tấn công lừa đảo Clickjacking.'
+        ]
+    },
+    {
+        id: 'html-10',
+        track: 'html',
+        order: 10,
+        title: 'Tạo đa phương tiện',
+        slug: 'tao-da-phuong-tien',
+        description: 'Chèn hình ảnh với img và thuộc tính bắt buộc alt; phát âm thanh với audio; phát video với video và các thuộc tính điều khiển controls.',
+        estimatedMinutes: 25,
+        objectives: [
+            'Chèn hình ảnh đúng kỹ thuật với thẻ <img>, nắm rõ vai trò sống còn của thuộc tính alt.',
+            'Nhúng và phát tập tin âm thanh với thẻ <audio> và điều khiển controls.',
+            'Nhúng và phát video tự lưu trữ với thẻ <video>, poster và các thẻ con <source>.'
+        ],
+        sections: [
+            {
+                id: 'the-img-va-alt',
+                title: '1. Chèn hình ảnh với thẻ <img>',
+                paragraphs: [
+                    'Thẻ <img> là thẻ rỗng (không có thẻ đóng), dùng để nhúng hình ảnh vào trang web.',
+                    'Hai thuộc tính quan trọng nhất của thẻ <img> là:'
+                ],
+                bulletPoints: [
+                    'src (Source): Đường dẫn đến tệp hình ảnh (có thể là đường dẫn tương đối trong thư mục media/ hoặc link ảnh trên mạng).',
+                    'alt (Alternative Text): Văn bản thay thế mô tả nội dung bức ảnh.',
+                    'width & height: Thiết lập chiều rộng và chiều cao ảnh (khuyên dùng để trình duyệt giữ sẵn chỗ trước khi ảnh tải xong, chống giật khung hình Layout Shift).'
+                ],
+                callout: {
+                    type: 'note',
+                    title: 'Tại sao thuộc tính alt lại BẮT BUỘC?',
+                    content: '1. Khi đường link ảnh bị hỏng hoặc mạng yếu, nội dung alt sẽ hiển thị để người dùng vẫn biết bức ảnh chụp gì.\n2. Người khiếm thị dùng phần mềm đọc màn hình sẽ dựa vào alt để "nghe" bức ảnh.\n3. Công cụ tìm kiếm Google dùng alt để hiểu nội dung ảnh và hiển thị trên Google Hình ảnh.'
+                },
+                example: {
+                    id: 'mini-img-20-11',
+                    title: 'Ví dụ: Chèn ảnh kỷ niệm 20-11',
+                    caption: 'Ảnh tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm:',
+                    code: `<img 
   src="media/20-11-le-thi-hong-gam.jpg" 
   alt="Tập thể thầy cô Trường THCS và THPT Lê Thị Hồng Gấm chào mừng Ngày Nhà giáo Việt Nam 20-11" 
   width="600"
 >`,
-          explanation: 'Thẻ <img> sử dụng đường dẫn tương đối trong thư mục media, có thuộc tính alt đầy đủ ý nghĩa.'
-        }
-      },
-      {
-        id: 'the-audio',
-        title: '2. Chèn âm thanh với thẻ <audio>',
-        paragraphs: [
-          'HTML5 cung cấp thẻ <audio> chuẩn để phát nhạc hoặc bài giảng âm thanh mà không cần cài thêm plugin ngoài.',
-          'Các thuộc tính chính: controls (hiển thị thanh điều khiển phát/dừng, âm lượng), autoplay (tự động phát - hầu hết trình duyệt chặn tính năng này nếu chưa có tương tác người dùng), loop (lặp lại vô tận).'
-        ],
-        example: {
-          id: 'mini-audio-tayduki',
-          title: 'Ví dụ: Nhạc phim tôi yêu thích',
-          caption: 'Bộ phát nhạc HTML5 với controls:',
-          code: `<p>Nhạc phim tôi yêu thích:</p>
+                    explanation: 'Thẻ <img> sử dụng đường dẫn tương đối trong thư mục media, có thuộc tính alt đầy đủ ý nghĩa.'
+                }
+            },
+            {
+                id: 'the-audio',
+                title: '2. Chèn âm thanh với thẻ <audio>',
+                paragraphs: [
+                    'HTML5 cung cấp thẻ <audio> chuẩn để phát nhạc hoặc bài giảng âm thanh mà không cần cài thêm plugin ngoài.',
+                    'Các thuộc tính chính: controls (hiển thị thanh điều khiển phát/dừng, âm lượng), autoplay (tự động phát - hầu hết trình duyệt chặn tính năng này nếu chưa có tương tác người dùng), loop (lặp lại vô tận).'
+                ],
+                example: {
+                    id: 'mini-audio-tayduki',
+                    title: 'Ví dụ: Nhạc phim tôi yêu thích',
+                    caption: 'Bộ phát nhạc HTML5 với controls:',
+                    code: `<p>Nhạc phim tôi yêu thích:</p>
 <audio controls>
   <source src="media/Tayduki.m4a" type="audio/mp4">
   Trình duyệt không hỗ trợ thẻ audio.
 </audio>`,
-          explanation: 'Thẻ <audio> với thuộc tính controls cho phép học sinh bấm Play, tua nhanh và chỉnh âm lượng.'
-        }
-      },
-      {
-        id: 'the-video',
-        title: '3. Chèn video với thẻ <video>',
-        paragraphs: [
-          'Thẻ <video> cho phép phát video trực tiếp. Bên trong thẻ <video>, ta thường dùng nhiều thẻ con <source> với các định dạng khác nhau (.mp4, .webm) để đảm bảo trình duyệt nào cũng xem được.',
-          'Thuộc tính controls giúp hiển thị nút Play/Pause, thanh thời lượng và điều chỉnh âm lượng cho video.'
-        ],
-        example: {
-          id: 'mini-video-your-name',
-          title: 'Ví dụ: Bộ phim mà tôi yêu thích',
-          caption: 'Khung phát video HTML5:',
-          code: `<p>Bộ phim mà tôi yêu thích:</p>
-<video width="600" controls style="max-width: 100%; height: auto;">
+                    explanation: 'Thẻ <audio> với thuộc tính controls cho phép học sinh bấm Play, tua nhanh và chỉnh âm lượng.'
+                }
+            },
+            {
+                id: 'the-video',
+                title: '3. Chèn video với thẻ <video>',
+                paragraphs: [
+                    'Thẻ <video> cho phép phát video trực tiếp. Bên trong thẻ <video>, ta thường dùng thẻ con <source> để khai báo nguồn tệp video (.mp4, .webm).',
+                    'Thuộc tính controls giúp hiển thị nút Play/Pause, thanh thời lượng và điều chỉnh âm lượng. Thuộc tính poster="media/Titanic-2-01.jpeg" dùng để hiển thị bức ảnh bìa (poster) trước khi bấm phát video.'
+                ],
+                example: {
+                    id: 'mini-video-your-name',
+                    title: 'Ví dụ: Bộ phim mà tôi yêu thích',
+                    caption: 'Khung phát video HTML5 có ảnh bìa poster:',
+                    code: `<p>Bộ phim mà tôi yêu thích:</p>
+<video width="600" controls poster="media/Titanic-2-01.jpeg" style="max-width: 100%; height: auto;">
   <source src="media/Titanic.mp4" type="video/mp4">
   Trình duyệt không hỗ trợ phát video.
 </video>`,
-          explanation: 'Thẻ <video> có thuộc tính controls để người dùng điều khiển phát và tạm dừng video.'
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-da-phuong-tien',
-        title: 'Ví dụ chèn hình ảnh, âm thanh và video',
-        description: 'Chèn ảnh trường THCS & THPT Lê Thị Hồng Gấm, phát nhạc phim tôi yêu thích và bộ phim mà tôi yêu thích.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
+                    explanation: 'Thẻ <video> có thuộc tính poster để hiển thị ảnh bìa phim Titanic trước khi người dùng bấm xem video.'
+                }
+            }
+        ],
+        codeExamples: [
+            {
+                id: 'vd-da-phuong-tien',
+                title: 'Ví dụ chèn hình ảnh, âm thanh và video',
+                description: 'Chèn ảnh trường THCS & THPT Lê Thị Hồng Gấm, phát nhạc phim tôi yêu thích và bộ phim mà tôi yêu thích.',
+                language: 'html',
+                runnable: true,
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -1967,110 +1967,110 @@ Ngược lòng mình tìm về nông nổi
   </audio>
 
   <h2>3. Bộ phim mà tôi yêu thích (thẻ video)</h2>
-  <video width="640" controls style="max-width: 100%; height: auto; border-radius: 8px;">
+  <video width="640" controls poster="media/Titanic-2-01.jpeg" style="max-width: 100%; height: auto; border-radius: 8px;">
     <source src="media/Titanic.mp4" type="video/mp4">
     Trình duyệt không hỗ trợ phát video.
   </video>
 </body>
 </html>`,
-        explanation: 'Thẻ <img> sử dụng đường dẫn tương đối "media/20-11-le-thi-hong-gam.jpg" có thuộc tính alt. Thẻ <audio> phát đoạn nhạc phim tôi yêu thích (tệp media/Tayduki.m4a). Thẻ <video> phát bộ phim mà tôi yêu thích (tệp media/Titanic.mp4) với thanh điều khiển controls.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Bỏ trống hoặc không viết thuộc tính alt cho thẻ <img>.',
-        cause: 'Nghĩ rằng ảnh hiển thị được là đủ rồi.',
-        solution: 'Luôn viết mô tả súc tích cho thuộc tính alt (ví dụ: alt="Học sinh lớp 12A1 trong giờ tin học").'
-      },
-      {
-        mistake: 'Quên thuộc tính controls trên thẻ <audio> hoặc <video>.',
-        cause: 'Nghĩ rằng trình duyệt sẽ tự động hiện nút bấm.',
-        solution: 'Nếu không có controls, trình duyệt sẽ ẩn hoàn toàn thanh điều khiển và người dùng không thể bấm phát nhạc/video được.'
-      }
-    ],
-    keyTakeaways: [
-      'Thẻ <img> là thẻ rỗng, bắt buộc phải có thuộc tính src và alt.',
-      'Thẻ <audio> và <video> cần thuộc tính controls để hiển thị nút bật/tắt âm thanh và thanh thời gian.',
-      'Sử dụng nhiều thẻ con <source> bên trong <video> để tương thích nhiều trình duyệt.'
-    ]
-  },
-  {
-    id: 'html-11',
-    track: 'html',
-    order: 11,
-    title: 'Tạo biểu mẫu',
-    slug: 'tao-bieu-mau',
-    description: 'Xây dựng biểu mẫu nhập liệu form với label, input (text, email, password, radio, checkbox), select, textarea, button và hiểu rõ giới hạn của front-end.',
-    estimatedMinutes: 30,
-    objectives: [
-      'Hiểu cấu trúc thẻ <form> cùng hai thuộc tính cốt lõi action và method (GET / POST).',
-      'Sử dụng đúng thẻ <label> gắn kết với <input> qua thuộc tính for và id.',
-      'Làm chủ các kiểu nhập liệu phổ biến: text, password, email, number, radio, checkbox, select, textarea.',
-      'Phân biệt rõ: HTML form chỉ thu thập dữ liệu; muốn lưu trữ hay xử lý bắt buộc phải có máy chủ backend.'
-    ],
-    sections: [
-      {
-        id: 'the-form-va-label',
-        title: '1. Thẻ <form> và cặp đôi hoàn hảo <label> - <input>',
-        paragraphs: [
-          'Biểu mẫu (Form) là công cụ tương tác chủ chốt trên web, cho phép người dùng nhập thông tin (đăng ký tài khoản, gửi phản hồi, tìm kiếm, đặt mua hàng).',
-          'Một biểu mẫu được gói bên trong cặp thẻ <form action="..." method="...">.'
+                explanation: 'Thẻ <img> sử dụng đường dẫn tương đối "media/20-11-le-thi-hong-gam.jpg" có thuộc tính alt. Thẻ <audio> phát đoạn nhạc phim tôi yêu thích (tệp media/Tayduki.m4a). Thẻ <video> phát bộ phim mà tôi yêu thích (tệp media/Titanic.mp4) kèm poster phim "media/Titanic-2-01.jpeg".'
+            }
         ],
-        bulletPoints: [
-          'action: Địa chỉ trang web hoặc dịch vụ máy chủ sẽ tiếp nhận dữ liệu khi người dùng gửi form.',
-          'method: Phương thức gửi dữ liệu, thông dụng nhất là "GET" (dữ liệu hiện lên thanh địa chỉ, dùng cho tìm kiếm) hoặc "POST" (dữ liệu gửi ẩn trong gói tin, dùng cho mật khẩu, đăng nhập).',
-          'Thẻ <label>: Nhãn mô tả ô nhập. Bắt buộc gắn kết thuộc tính for của <label> trùng khớp với id của <input>. Khi đó, người dùng chạm vào dòng chữ nhãn thì con trỏ sẽ tự động nhảy vào ô nhập.'
+        commonMistakes: [
+            {
+                mistake: 'Bỏ trống hoặc không viết thuộc tính alt cho thẻ <img>.',
+                cause: 'Nghĩ rằng ảnh hiển thị được là đủ rồi.',
+                solution: 'Luôn viết mô tả súc tích cho thuộc tính alt (ví dụ: alt="Học sinh lớp 12A1 trong giờ tin học").'
+            },
+            {
+                mistake: 'Quên thuộc tính controls trên thẻ <audio> hoặc <video>.',
+                cause: 'Nghĩ rằng trình duyệt sẽ tự động hiện nút bấm.',
+                solution: 'Nếu không có controls, trình duyệt sẽ ẩn hoàn toàn thanh điều khiển và người dùng không thể bấm phát nhạc/video được.'
+            }
+        ],
+        keyTakeaways: [
+            'Thẻ <img> là thẻ rỗng, bắt buộc phải có thuộc tính src và alt.',
+            'Thẻ <audio> và <video> cần thuộc tính controls để hiển thị nút bật/tắt âm thanh và thanh thời gian.',
+            'Sử dụng nhiều thẻ con <source> bên trong <video> để tương thích nhiều trình duyệt.'
         ]
-      },
-      {
-        id: 'cac-kieu-input',
-        title: '2. Các loại phần tử nhập liệu thông dụng',
-        paragraphs: [
-          'Thẻ <input> có thể biến đổi thành hàng chục công cụ nhập liệu khác nhau chỉ nhờ thay đổi thuộc tính type:'
+    },
+    {
+        id: 'html-11',
+        track: 'html',
+        order: 11,
+        title: 'Tạo biểu mẫu',
+        slug: 'tao-bieu-mau',
+        description: 'Xây dựng biểu mẫu nhập liệu form với label, input (text, email, password, radio, checkbox), select, textarea, button và hiểu rõ giới hạn của front-end.',
+        estimatedMinutes: 30,
+        objectives: [
+            'Hiểu cấu trúc thẻ <form> cùng hai thuộc tính cốt lõi action và method (GET / POST).',
+            'Sử dụng đúng thẻ <label> gắn kết với <input> qua thuộc tính for và id.',
+            'Làm chủ các kiểu nhập liệu phổ biến: text, password, email, number, radio, checkbox, select, textarea.',
+            'Phân biệt rõ: HTML form chỉ thu thập dữ liệu; muốn lưu trữ hay xử lý bắt buộc phải có máy chủ backend.'
         ],
-        table: {
-          caption: 'Các kiểu type phổ biến của thẻ <input>',
-          headers: ['type', 'Mục đích', 'Đặc điểm hiển thị'],
-          rows: [
-            ['text', 'Nhập chữ thông thường', 'Một dòng văn bản'],
-            ['password', 'Nhập mật khẩu', 'Ký tự bị ẩn thành dấu chấm tròn ••••'],
-            ['email', 'Nhập hòm thư điện tử', 'Trình duyệt tự kiểm tra ký tự @'],
-            ['number', 'Nhập số (tuổi, điểm, số lượng)', 'Có mũi tên tăng giảm số'],
-            ['radio', 'Chọn 1 trong nhiều phương án', 'Nút tròn (phải cùng thuộc tính name)'],
-            ['checkbox', 'Chọn nhiều phương án cùng lúc', 'Ô vuông tích chọn'],
-            ['date', 'Chọn ngày tháng năm', 'Hiện lịch chọn trực quan'],
-            ['submit', 'Nút gửi biểu mẫu', 'Kích hoạt hành động gửi dữ liệu']
-          ]
-        },
-        bulletPoints: [
-          '<select> & <option>: Tạo danh sách lựa chọn thả xuống (Dropdown menu).',
-          '<textarea>: Ô nhập văn bản nhiều dòng (dùng cho mục gửi lời nhắn, bình luận).',
-          'Thuộc tính bổ trợ hữu ích: placeholder (dòng chữ gợi ý mờ), required (bắt buộc nhập không được để trống), value (giá trị mặc định).'
-        ]
-      },
-      {
-        id: 'gioi-han-frontend',
-        title: '3. Giới hạn của HTML: Tại sao cần có Backend?',
-        paragraphs: [
-          'Rất nhiều bạn học sinh tự hỏi: "Sau khi tạo xong form đăng ký rất đẹp bằng HTML, dữ liệu học sinh gõ vào sẽ lưu ở đâu?".',
-          'Câu trả lời thẳng thắn: HTML và front-end CHỈ có thể vẽ ra giao diện để thu thập dữ liệu đầu vào. Bản thân HTML KHÔNG THỂ tự lưu dữ liệu vào cơ sở dữ liệu (Database), không thể tự gửi email xác nhận và không thể tự mã hóa bảo mật mật khẩu.',
-          'Để làm được việc lưu trữ và xử lý đó, ta bắt buộc phải có máy chủ Backend (được lập trình bằng các ngôn ngữ như Node.js, Python, PHP, Java, C#) cùng các hệ quản trị cơ sở dữ liệu như MySQL, PostgreSQL hoặc MongoDB.'
+        sections: [
+            {
+                id: 'the-form-va-label',
+                title: '1. Thẻ <form> và cặp đôi hoàn hảo <label> - <input>',
+                paragraphs: [
+                    'Biểu mẫu (Form) là công cụ tương tác chủ chốt trên web, cho phép người dùng nhập thông tin (đăng ký tài khoản, gửi phản hồi, tìm kiếm, đặt mua hàng).',
+                    'Một biểu mẫu được gói bên trong cặp thẻ <form action="..." method="...">.'
+                ],
+                bulletPoints: [
+                    'action: Địa chỉ trang web hoặc dịch vụ máy chủ sẽ tiếp nhận dữ liệu khi người dùng gửi form.',
+                    'method: Phương thức gửi dữ liệu, thông dụng nhất là "GET" (dữ liệu hiện lên thanh địa chỉ, dùng cho tìm kiếm) hoặc "POST" (dữ liệu gửi ẩn trong gói tin, dùng cho mật khẩu, đăng nhập).',
+                    'Thẻ <label>: Nhãn mô tả ô nhập. Bắt buộc gắn kết thuộc tính for của <label> trùng khớp với id của <input>. Khi đó, người dùng chạm vào dòng chữ nhãn thì con trỏ sẽ tự động nhảy vào ô nhập.'
+                ]
+            },
+            {
+                id: 'cac-kieu-input',
+                title: '2. Các loại phần tử nhập liệu thông dụng',
+                paragraphs: [
+                    'Thẻ <input> có thể biến đổi thành hàng chục công cụ nhập liệu khác nhau chỉ nhờ thay đổi thuộc tính type:'
+                ],
+                table: {
+                    caption: 'Các kiểu type phổ biến của thẻ <input>',
+                    headers: ['type', 'Mục đích', 'Đặc điểm hiển thị'],
+                    rows: [
+                        ['text', 'Nhập chữ thông thường', 'Một dòng văn bản'],
+                        ['password', 'Nhập mật khẩu', 'Ký tự bị ẩn thành dấu chấm tròn ••••'],
+                        ['email', 'Nhập hòm thư điện tử', 'Trình duyệt tự kiểm tra ký tự @'],
+                        ['number', 'Nhập số (tuổi, điểm, số lượng)', 'Có mũi tên tăng giảm số'],
+                        ['radio', 'Chọn 1 trong nhiều phương án', 'Nút tròn (phải cùng thuộc tính name)'],
+                        ['checkbox', 'Chọn nhiều phương án cùng lúc', 'Ô vuông tích chọn'],
+                        ['date', 'Chọn ngày tháng năm', 'Hiện lịch chọn trực quan'],
+                        ['submit', 'Nút gửi biểu mẫu', 'Kích hoạt hành động gửi dữ liệu']
+                    ]
+                },
+                bulletPoints: [
+                    '<select> & <option>: Tạo danh sách lựa chọn thả xuống (Dropdown menu).',
+                    '<textarea>: Ô nhập văn bản nhiều dòng (dùng cho mục gửi lời nhắn, bình luận).',
+                    'Thuộc tính bổ trợ hữu ích: placeholder (dòng chữ gợi ý mờ), required (bắt buộc nhập không được để trống), value (giá trị mặc định).'
+                ]
+            },
+            {
+                id: 'gioi-han-frontend',
+                title: '3. Giới hạn của HTML: Tại sao cần có Backend?',
+                paragraphs: [
+                    'Rất nhiều bạn học sinh tự hỏi: "Sau khi tạo xong form đăng ký rất đẹp bằng HTML, dữ liệu học sinh gõ vào sẽ lưu ở đâu?".',
+                    'Câu trả lời thẳng thắn: HTML và front-end CHỈ có thể vẽ ra giao diện để thu thập dữ liệu đầu vào. Bản thân HTML KHÔNG THỂ tự lưu dữ liệu vào cơ sở dữ liệu (Database), không thể tự gửi email xác nhận và không thể tự mã hóa bảo mật mật khẩu.',
+                    'Để làm được việc lưu trữ và xử lý đó, ta bắt buộc phải có máy chủ Backend (được lập trình bằng các ngôn ngữ như Node.js, Python, PHP, Java, C#) cùng các hệ quản trị cơ sở dữ liệu như MySQL, PostgreSQL hoặc MongoDB.'
+                ],
+                callout: {
+                    type: 'info',
+                    title: 'Ghi nhớ nguyên lý hoạt động',
+                    content: 'HTML Form = Chiếc phiếu đăng ký bằng giấy. Người dùng điền thông tin vào phiếu, nhưng phiếu đó muốn được lưu vào sổ lưu trữ thì phải nộp về phòng văn thư (Máy chủ Backend).'
+                }
+            }
         ],
-        callout: {
-          type: 'info',
-          title: 'Ghi nhớ nguyên lý hoạt động',
-          content: 'HTML Form = Chiếc phiếu đăng ký bằng giấy. Người dùng điền thông tin vào phiếu, nhưng phiếu đó muốn được lưu vào sổ lưu trữ thì phải nộp về phòng văn thư (Máy chủ Backend).'
-        }
-      }
-    ],
-    codeExamples: [
-      {
-        id: 'vd-form-dang-ky',
-        title: 'Ví dụ: Phiếu đăng ký câu lạc bộ tin học hoàn chỉnh',
-        description: 'Biểu mẫu chứa đầy đủ các kiểu nhập liệu thực tế.',
-        language: 'html',
-        runnable: true,
-        initialCode: `<!DOCTYPE html>
+        codeExamples: [
+            {
+                id: 'vd-form-dang-ky',
+                title: 'Ví dụ: Phiếu đăng ký câu lạc bộ tin học hoàn chỉnh',
+                description: 'Biểu mẫu chứa đầy đủ các kiểu nhập liệu thực tế.',
+                language: 'html',
+                runnable: true,
+                initialCode: `<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -2125,25 +2125,25 @@ Ngược lòng mình tìm về nông nổi
   </form>
 </body>
 </html>`,
-        explanation: 'Thử nhập thông tin vào biểu mẫu rồi bấm nút "Gửi đơn đăng ký" để xem thông báo tương tác.'
-      }
-    ],
-    commonMistakes: [
-      {
-        mistake: 'Các nút radio không cùng chung thuộc tính name.',
-        cause: 'Đặt name="khoi10" và name="khoi11".',
-        solution: 'Muốn người dùng chỉ được chọn 1 trong các nút radio, tất cả các nút radio đó phải có CÙNG thuộc tính name (ví dụ: name="khoi").'
-      },
-      {
-        mistake: 'Tưởng rằng bấm nút submit là dữ liệu đã được lưu vào hệ thống máy chủ.',
-        cause: 'Chưa phân biệt giữa Front-end và Back-end.',
-        solution: 'Hiểu rõ form HTML chỉ gửi gói tin HTTP request. Muốn lưu dữ liệu vào cơ sở dữ liệu thì phải có mã lệnh xử lý ở phía Backend.'
-      }
-    ],
-    keyTakeaways: [
-      'Gắn kết <label for="id_input"> với <input id="id_input"> để tăng trải nghiệm người dùng.',
-      'Các nút radio cùng nhóm bắt buộc phải có cùng thuộc tính name để chỉ chọn được 1 mục.',
-      'Form HTML chỉ đóng vai trò thu thập thông tin người dùng ở phía client, muốn lưu trữ dữ liệu cần kết hợp máy chủ backend.'
-    ]
-  }
+                explanation: 'Thử nhập thông tin vào biểu mẫu rồi bấm nút "Gửi đơn đăng ký" để xem thông báo tương tác.'
+            }
+        ],
+        commonMistakes: [
+            {
+                mistake: 'Các nút radio không cùng chung thuộc tính name.',
+                cause: 'Đặt name="khoi10" và name="khoi11".',
+                solution: 'Muốn người dùng chỉ được chọn 1 trong các nút radio, tất cả các nút radio đó phải có CÙNG thuộc tính name (ví dụ: name="khoi").'
+            },
+            {
+                mistake: 'Tưởng rằng bấm nút submit là dữ liệu đã được lưu vào hệ thống máy chủ.',
+                cause: 'Chưa phân biệt giữa Front-end và Back-end.',
+                solution: 'Hiểu rõ form HTML chỉ gửi gói tin HTTP request. Muốn lưu dữ liệu vào cơ sở dữ liệu thì phải có mã lệnh xử lý ở phía Backend.'
+            }
+        ],
+        keyTakeaways: [
+            'Gắn kết <label for="id_input"> với <input id="id_input"> để tăng trải nghiệm người dùng.',
+            'Các nút radio cùng nhóm bắt buộc phải có cùng thuộc tính name để chỉ chọn được 1 mục.',
+            'Form HTML chỉ đóng vai trò thu thập thông tin người dùng ở phía client, muốn lưu trữ dữ liệu cần kết hợp máy chủ backend.'
+        ]
+    }
 ];
