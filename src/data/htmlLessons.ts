@@ -1923,19 +1923,18 @@ Ngược lòng mình tìm về nông nổi
         title: '3. Chèn video với thẻ <video>',
         paragraphs: [
           'Thẻ <video> cho phép phát video trực tiếp. Bên trong thẻ <video>, ta thường dùng nhiều thẻ con <source> với các định dạng khác nhau (.mp4, .webm) để đảm bảo trình duyệt nào cũng xem được.',
-          'Thuộc tính poster="media/20-11-le-thi-hong-gam.jpg" dùng để hiển thị bức ảnh bìa trước khi người dùng bấm nút Play.'
+          'Thuộc tính controls giúp hiển thị nút Play/Pause, thanh thời lượng và điều chỉnh âm lượng cho video.'
         ],
         example: {
           id: 'mini-video-your-name',
           title: 'Ví dụ: Bộ phim mà tôi yêu thích',
-          caption: 'Khung video có ảnh bìa poster:',
+          caption: 'Khung phát video HTML5:',
           code: `<p>Bộ phim mà tôi yêu thích:</p>
-<video width="600" controls poster="media/20-11-le-thi-hong-gam.jpg">
+<video width="600" controls style="max-width: 100%; height: auto;">
   <source src="media/Titanic.mp4" type="video/mp4">
-  <source src="media/Tinanic.mp4" type="video/mp4">
   Trình duyệt không hỗ trợ phát video.
 </video>`,
-          explanation: 'Thẻ <video> có thuộc tính poster để hiển thị ảnh bìa trước khi bấm xem video.'
+          explanation: 'Thẻ <video> có thuộc tính controls để người dùng điều khiển phát và tạm dừng video.'
         }
       }
     ],
@@ -1968,14 +1967,13 @@ Ngược lòng mình tìm về nông nổi
   </audio>
 
   <h2>3. Bộ phim mà tôi yêu thích (thẻ video)</h2>
-  <video width="640" controls poster="media/20-11-le-thi-hong-gam.jpg" style="max-width: 100%; height: auto; border-radius: 8px;">
+  <video width="640" controls style="max-width: 100%; height: auto; border-radius: 8px;">
     <source src="media/Titanic.mp4" type="video/mp4">
-    <source src="media/Tinanic.mp4" type="video/mp4">
     Trình duyệt không hỗ trợ phát video.
   </video>
 </body>
 </html>`,
-        explanation: 'Thẻ <img> sử dụng đường dẫn tương đối "media/20-11-le-thi-hong-gam.jpg" có thuộc tính alt. Thẻ <audio> phát đoạn nhạc phim tôi yêu thích (tệp media/Tayduki.m4a). Thẻ <video> phát bộ phim mà tôi yêu thích (tệp media/Titanic.mp4) có gắn ảnh bìa poster.'
+        explanation: 'Thẻ <img> sử dụng đường dẫn tương đối "media/20-11-le-thi-hong-gam.jpg" có thuộc tính alt. Thẻ <audio> phát đoạn nhạc phim tôi yêu thích (tệp media/Tayduki.m4a). Thẻ <video> phát bộ phim mà tôi yêu thích (tệp media/Titanic.mp4) với thanh điều khiển controls.'
       }
     ],
     commonMistakes: [
