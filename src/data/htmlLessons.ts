@@ -1875,14 +1875,15 @@ Ngược lòng mình tìm về nông nổi
                 title: '1. Chèn hình ảnh với thẻ <img>',
                 paragraphs: [
                     'Thẻ <img> là thẻ rỗng (không có thẻ đóng), dùng để nhúng hình ảnh vào trang web.',
-                    'Bảng các thuộc tính quan trọng của thẻ <img>:'
+                    'Dưới đây là bảng tổng hợp các thuộc tính quan trọng nhất của thẻ <img>:'
                 ],
                 table: {
+                    caption: 'Bảng các thuộc tính của thẻ <img>',
                     headers: ['Thuộc tính', 'Ý nghĩa'],
                     rows: [
-                        ['`src`', 'URL của tập tin hình'],
-                        ['`width`', 'Độ rộng hiển thị của hình'],
-                        ['`height`', 'Độ cao hiển thị của hình'],
+                        ['`src`', 'URL của tập tin hình (đường dẫn tương đối hoặc tuyệt đối)'],
+                        ['`width`', 'Độ rộng hiển thị của hình (pixel)'],
+                        ['`height`', 'Độ cao hiển thị của hình (pixel)'],
                         ['`alt` (alternative text)', 'Nội dung sẽ hiển thị để thay thế nếu hình không hiển thị được'],
                         ['`title`', 'Nội dung sẽ hiển thị khi rê chuột lên hình']
                     ]
@@ -1910,8 +1911,20 @@ Ngược lòng mình tìm về nông nổi
                 title: '2. Chèn âm thanh với thẻ <audio>',
                 paragraphs: [
                     'HTML5 cung cấp thẻ <audio> chuẩn để phát nhạc hoặc bài giảng âm thanh mà không cần cài thêm plugin ngoài.',
-                    'Các thuộc tính chính: controls (hiển thị thanh điều khiển phát/dừng, âm lượng), autoplay (tự động phát - hầu hết trình duyệt chặn tính năng này nếu chưa có tương tác người dùng), loop (lặp lại vô tận).'
+                    'Dưới đây là bảng tổng hợp các thuộc tính thông dụng của thẻ <audio>:'
                 ],
+                table: {
+                    caption: 'Bảng các thuộc tính của thẻ <audio>',
+                    headers: ['Thuộc tính', 'Ý nghĩa'],
+                    rows: [
+                        ['`src`', 'URL đường dẫn đến tập tin âm thanh (hoặc khai báo trong thẻ con `<source>`)'],
+                        ['`controls`', 'Hiển thị thanh điều khiển phát nhạc (nút Play/Pause, tua thời lượng, âm lượng)'],
+                        ['`autoplay`', 'Tự động phát âm thanh ngay khi tải xong trang web'],
+                        ['`loop`', 'Tự động phát lặp lại vô tận khi phát hết bài nhạc'],
+                        ['`muted`', 'Tắt tiếng âm thanh mặc định khi mở'],
+                        ['`preload`', 'Chỉ định cách tải trước âm thanh (`auto`, `metadata`, `none`)']
+                    ]
+                },
                 example: {
                     id: 'mini-audio-tayduki',
                     title: 'Ví dụ: Nhạc phim tôi yêu thích',
@@ -1929,8 +1942,23 @@ Ngược lòng mình tìm về nông nổi
                 title: '3. Chèn video với thẻ <video>',
                 paragraphs: [
                     'Thẻ <video> cho phép phát video trực tiếp. Bên trong thẻ <video>, ta thường dùng thẻ con <source> để khai báo nguồn tệp video (.mp4, .webm).',
-                    'Thuộc tính controls giúp hiển thị nút Play/Pause, thanh thời lượng và điều chỉnh âm lượng. Thuộc tính poster="media/Titanic-2-01.jpeg" dùng để hiển thị bức ảnh bìa (poster) trước khi bấm phát video.'
+                    'Dưới đây là bảng tổng hợp các thuộc tính thông dụng của thẻ <video>:'
                 ],
+                table: {
+                    caption: 'Bảng các thuộc tính của thẻ <video>',
+                    headers: ['Thuộc tính', 'Ý nghĩa'],
+                    rows: [
+                        ['`src`', 'URL đường dẫn đến tập tin video (hoặc khai báo trong thẻ con `<source>`)'],
+                        ['`controls`', 'Hiển thị thanh điều khiển video (Play/Pause, tua thời gian, âm lượng, toàn màn hình)'],
+                        ['`poster`', 'URL hình ảnh hiển thị làm ảnh bìa (poster) trước khi bấm phát video'],
+                        ['`width`', 'Độ rộng hiển thị của khung video (pixel)'],
+                        ['`height`', 'Độ cao hiển thị của khung video (pixel)'],
+                        ['`autoplay`', 'Tự động phát video ngay khi tải xong trang (thường phải kèm `muted`)'],
+                        ['`loop`', 'Tự động phát lặp lại video khi kết thúc'],
+                        ['`muted`', 'Tắt âm thanh video mặc định'],
+                        ['`preload`', 'Chỉ định cách tải trước dữ liệu video (`auto`, `metadata`, `none`)']
+                    ]
+                },
                 example: {
                     id: 'mini-video-your-name',
                     title: 'Ví dụ: Bộ phim mà tôi yêu thích',
